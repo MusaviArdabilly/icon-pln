@@ -94,6 +94,7 @@ body {
 
 .nav-link {
   /* letter-spacing: 1px; */
+  letter-spacing: 0px;
 }
 
 .hero-video {
@@ -123,8 +124,8 @@ body {
 .heading-content-wrapper {
   position: relative;
   background-color: #ECEFF1;
+  /* padding-top: 64px; */
   padding-bottom: 40px;
-  padding-top: 64px;
   padding-left: 40px;
   padding-right: 40px;
   border-radius: 20px;
@@ -166,7 +167,8 @@ body {
 }
 
 .hero-heading h1 {
-  position: relative;
+  /* position: relative; */
+  /* top: -150px; */
   display: inline;
   font-size: 5rem;
   font-weight: 700;
@@ -175,20 +177,24 @@ body {
   padding-left: 24px;
   padding-right: 24px;
   padding-top: 12px;
-  padding-bottom: 24px;
+  padding-bottom: 12px;
   border-radius: 16px;
+  /* add-on */
+  /* margin-bottom: 124px !important; */
 }
 
 .hero-heading h2 {
   position: relative;
-  margin-top: 16px;
+  /* margin-top: 16px; */
   font-size: 1.25rem;
   font-weight: 400;
   text-wrap: balance;
   width: 100%;
   max-width: 880px;
   padding: 16px;
-  border-radius: 12px;
+  /* border-radius: 12px; */
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   z-index: 10;
 }
 
