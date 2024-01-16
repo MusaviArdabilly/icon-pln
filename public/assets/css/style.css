@@ -7,8 +7,8 @@
 }
 
 body {
-  /* font-family: 'Poppins', sans-serif; */
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Manrope', sans-serif; */
 }
 
 ::-webkit-scrollbar {
@@ -93,7 +93,7 @@ body {
 }
 
 .nav-link {
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
 }
 
 .hero-video {

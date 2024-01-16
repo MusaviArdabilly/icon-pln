@@ -26,7 +26,8 @@
 	<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-	<nav id="navbar" class="navbar navbar-expand-lg sticky-top var-bg-primary">
+	{{-- v1 --}}
+	{{-- <nav id="navbar" class="navbar navbar-expand-lg sticky-top var-bg-primary">
 		<div class="container">
 			<a class="navbar-brand" href="/">
 				<img src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="Logo" height="28px">
@@ -37,14 +38,53 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav ms-auto">
-					{{-- <li class="nav-item">
+					<li class="nav-item">
 						<a class="nav-link fw-600 text-light active" aria-current="page" href="/">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link fw-600 text-light" href="#">Features</a>
-					</li> --}}
+						<a class="nav-link fw-600 text-light" href="/idea">Ide</a>
+					</li>
 					<li class="nav-item">
-						<a class="nav-link fw-600 text-light" href="#">Login</a>
+						<a class="nav-link fw-600 text-light" href="/innovation">Inovasi</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link fw-600 text-light" href="/repository">Pustaka</a>
+					</li>
+					<div class="vr text-light"></div>
+					<li class="nav-item">
+						<a class="nav-link fw-600 text-light" href="/login">Login</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav> --}}
+	{{-- v2  --}}
+	<nav id="navbar" class="navbar navbar-expand-lg sticky-top bg-light shadow">
+		<div class="container">
+			<a class="navbar-brand" href="/">
+				<img src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="Logo" height="28px">
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+				aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a class="nav-link fw-600 text-dark active" aria-current="page" href="/">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link fw-600 text-dark" href="/idea">Ide</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link fw-600 text-dark" href="/innovation">Inovasi</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link fw-600 text-dark" href="/repository">Pustaka</a>
+					</li>
+					<div class="vr text-dark mx-1"></div>
+					<li class="nav-item">
+						<a class="nav-link fw-600 text-dark" href="/login">Login</a>
 					</li>
 				</ul>
 			</div>
@@ -52,23 +92,58 @@
 	</nav>
 
 	@yield('content')
-	 
-	<footer class="var-bg-primary">
+	 {{-- v1  --}}
+	{{-- <footer class="var-bg-primary">
 		<div class="container py-3">
 			<img src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="" height="28px" class="mb-3">
 			<ul class="navbar-nav d-flex flex-row">
 				<li class="nav-item">
-					<a class="nav-link fw-400 text-light me-3" aria-current="page" href="/">Home</a>
+					<a class="nav-link fw-600 text-light me-3" aria-current="page" href="/">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link fw-400 text-light me-3" href="#">Features</a>
+					<a class="nav-link fw-600 text-light me-3" href="/idea">Ide</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link fw-400 text-light" href="#">Pricing</a>
+					<a class="nav-link fw-600 text-light me-3" href="/innovation">Inovasi</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link fw-600 text-light me-3" href="/repository">Pustaka</a>
+				</li>
+				<div class="vr text-light me-3"></div>
+				<li class="nav-item">
+					<a class="nav-link fw-600 text-light me-3" href="/login">Login</a>
 				</li>
 			</ul>
 			<hr class="text-light">
 			<div class="text-center text-light fw-400">
+				© 2024 Icon PLN. All rights reserved.
+			</div>
+		</div>
+	</footer> --}}
+	{{-- v2 --}}
+	<footer class="bg-light">
+		<div class="container py-3">
+			<img src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="" height="28px" class="mb-3">
+			<ul class="navbar-nav d-flex flex-row">
+				<li class="nav-item">
+					<a class="nav-link fw-600 text-dark me-3" aria-current="page" href="/">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link fw-600 text-dark me-3" href="/idea">Ide</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link fw-600 text-dark me-3" href="/innovation">Inovasi</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link fw-600 text-dark me-3" href="/repository">Pustaka</a>
+				</li>
+				<div class="vr text-dark me-3"></div>
+				<li class="nav-item">
+					<a class="nav-link fw-600 text-dark me-3" href="/login">Login</a>
+				</li>
+			</ul>
+			<hr class="text-dark">
+			<div class="text-center text-dark fw-400">
 				© 2024 Icon PLN. All rights reserved.
 			</div>
 		</div>
