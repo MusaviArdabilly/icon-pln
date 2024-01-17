@@ -62,7 +62,7 @@
 	<nav id="navbar" class="navbar navbar-expand-lg sticky-top bg-light shadow">
 		<div class="container">
 			<a class="navbar-brand" href="/">
-				<img src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="Logo" height="28px">
+				<img src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="Logo" height="32px">
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 				aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
