@@ -15,8 +15,8 @@
   <div class="hero-heading d-flex align-items-center justify-content-center">
     <div>
       <div class="d-flex align-items-center justify-content-center">
-        <h1 data-aos="fade-down" data-aos-duration="2000" data-aos-delay="200" class="title">ICONIC</h1>
-        <img data-aos="fade-left" data-aos-duration="1500" src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="" height="80px">
+        <h1 data-aos="fade-down" data-aos-duration="2000" data-aos-delay="200" class="title d-flex align-items-center shadow mb-3">IC<img src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="64px" class="filter-invert mx-1">NIC</h1>
+        {{-- <img data-aos="fade-left" data-aos-duration="1500" src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="" height="80px"> --}}
       </div>
       <div data-aos="fade-down" data-aos-duration="500" class="heading-content-wrapper shadow text-center">
         <img data-aos="zoom-in-left" data-aos-duration="1500" data-aos-delay="200" id="led-lamp" src="{{ asset('assets/image/icon/landing-page/led-lamp.png') }}" alt="" height="128px">

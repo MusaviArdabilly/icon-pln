@@ -133,7 +133,7 @@ body {
 
 .heading-content-wrapper #led-lamp {
   position: absolute;
-  top: -60px;
+  top: -200px;
   right: -60px;
   z-index: 20;
 }
@@ -156,7 +156,7 @@ body {
     /* top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) translateY(-224px); */
-    top: -155px;
+    top: -255px;
     right: -20px;
   }
 
@@ -271,4 +271,8 @@ body {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease;
+}
+
+.filter-invert {
+  filter: invert(100%);
 }
