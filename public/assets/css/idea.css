@@ -350,7 +350,7 @@ html {
 
 .center a span:nth-child(2) {
     color: #fff;
-    background: #b292ec;
+    background: #0377A3;
 }
 
 .center a span:nth-child(1):before {
@@ -374,7 +374,7 @@ html {
     position: absolute;
     top: 0;
     left: 0;
-    background: #b292ec;
+    background: #0377A3;
     padding: 15px;
     transition: 0.5S;
     transform-origin: bottom;
@@ -391,7 +391,7 @@ html {
     position: absolute;
     top: 0;
     left: 0;
-    background: #028299;
+    background: #0377A3;
     transform-origin: bottom;
     transform: rotateX(0deg) translateY(0%);
     transition: 0.5s;

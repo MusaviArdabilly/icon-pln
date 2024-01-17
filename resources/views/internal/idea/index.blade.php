@@ -2,6 +2,12 @@
 @section('content')
 <section class="title_idea container-xxl mt-5" style="position: relative;">
   <div class="title_idea_head w-100 text-center d-flex flex-column justify-items-center" style="position: relative;">
+    <div class="d-none d-sm-block" style="position: absolute; top: 7em;" data-aos="fade-left"
+      data-aos-delay="600">
+      <lottie-player src="https://lottie.host/b2ff9005-051c-4d7d-8082-e72438480eb7/CJiqYViFfI.json"
+        background="##FFFFFF" speed="1" style="width: 400px; height: 400px;" loop autoplay direction="1"
+        mode="normal"></lottie-player>
+    </div>
     <h2 data-aos="fade-zoom-in" class="fs-3" style="color: #c1bee2;">IDEABOX </h2>
     <div class="d-flex justify-content-center mx-auto" style="position: relative; width: fit-content;">
       <h1 data-aos="fade-up" data-aos-delay="800" style="color: #9aca28; font-size: 4em;">Berikan Idemu!</h1>

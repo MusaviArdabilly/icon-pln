@@ -1,14 +1,12 @@
 @extends('layouts.user')
 @section('content')
 <section class="title_idea container-xxl mt-5 " style="position: relative;">
-  <div class="d-none d-sm-block" style="position: absolute; left: -1em;" data-aos="fade-right" data-aos-delay="500">
-    <lottie-player src="https://lottie.host/afda5d7c-8513-41e1-8bea-b32d7c59206f/dp6oAKt4w6.json" background="##FFFFFF"
-      speed="1" style="width: 400px; height: 400px" loop autoplay direction="1" mode="normal"></lottie-player>
-  </div>
-  <div class="d-none d-sm-block" style="position: absolute; right: -2em; top: 2em;" data-aos="fade-left" data-aos-delay="600">
-    <lottie-player src="https://lottie.host/f7dff6b5-2aec-4ae0-8663-d1ee47056339/gyhDCHpMLj.json" background="##FFFFFF"
-      speed="1" style="width: 400px; height: 400px" loop  autoplay direction="1" mode="normal"></lottie-player>
-  </div>
+  <div class="d-none d-sm-block" style="position: absolute; top: 7em;" data-aos="fade-left"
+      data-aos-delay="600">
+      <lottie-player src="https://lottie.host/16571e74-0e61-4abc-90d0-0b706bc4b6b1/Sns24ZbjEy.json"
+        background="##FFFFFF" speed="1" style="width: 400px; height: 400px;" loop autoplay direction="1"
+        mode="normal"></lottie-player>
+    </div>
   <div class="title_idea_head w-100 text-center d-flex flex-column justify-items-center" style="position: relative;">
     <h2 data-aos="fade-zoom-in" class="fs-3" style="color: #c1bee2;">INNOVATION </h2>
     <div class="d-flex justify-content-center mx-auto" style="position: relative; width: fit-content;">
