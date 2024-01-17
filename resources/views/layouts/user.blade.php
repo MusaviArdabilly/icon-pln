@@ -120,7 +120,7 @@
 		</div>
 	</footer> --}}
 	{{-- v2 --}}
-	<footer class="bg-light">
+	<footer id="footer" class="bg-light">
 		<div class="container py-3">
 			<img src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="" height="28px" class="mb-3">
 			<ul class="navbar-nav d-flex flex-row">
