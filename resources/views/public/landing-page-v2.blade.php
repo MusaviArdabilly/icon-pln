@@ -4,6 +4,7 @@
   <script type="text/javascript">
     document.getElementById('navbar').classList.remove('bg-light', 'shadow', 'sticky-top');
     document.getElementById('navbar').classList.add('fixed-top');
+    document.getElementById('nav-brand-logo').classList.add('filter-invert');
 
     var navLinks = document.getElementsByClassName('top-nav-link');
     for (var i = 0; i < navLinks.length; i++) {
@@ -89,7 +90,7 @@
         }
       } else {
         targetElement.classList.remove('bg-light');
-        document.getElementById('nav-brand-logo').classList.add('filter-invert')
+        document.getElementById('nav-brand-logo').classList.add('filter-invert');
         var navLinks = document.getElementsByClassName('top-nav-link');
         for (var i = 0; i < navLinks.length; i++) {
           navLinks[i].classList.remove('text-dark');

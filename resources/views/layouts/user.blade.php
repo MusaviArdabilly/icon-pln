@@ -62,7 +62,7 @@
 	<nav id="navbar" class="navbar navbar-expand-lg sticky-top bg-light shadow">
 		<div class="container">
 			<a class="navbar-brand" href="/">
-        <h1 class="d-flex align-items-center top-nav-link fs-16 fw-700 m-0">IC<img id="nav-brand-logo" src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="16px" class="filter-invert mx-1px">NIC</h1>
+        <h1 class="d-flex align-items-center top-nav-link fs-16 fw-700 m-0">IC<img id="nav-brand-logo" src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="16px" class="mx-1px">NIC</h1>
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 				aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
