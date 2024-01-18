@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <h3 class="me-auto mt-5">List Idea</h3>
+  <h3 class="me-auto mt-5">List Innovation</h3>
   <div class="mt-3 row row-cols-4 gap-5 w-100 justify-content-center justify-content-sm-start">
     <div data-aos="fade-up"
       class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
