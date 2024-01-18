@@ -9,7 +9,7 @@
     </div>
     <h2 data-aos="fade-zoom-in" class="fs-3" style="color: #c1bee2;">IDEABOX </h2>
     <div class="d-flex justify-content-center mx-auto" style="position: relative; width: fit-content;">
-      <h1 data-aos="fade-up" data-aos-delay="800" style="color: #9aca28; font-size: 4em;">Berikan Idemu!</h1>
+      <h1 data-aos="fade-up" data-aos-delay="800" style="color: #182958; font-size: 4em;">Berikan Idemu!</h1>
       <div class="" style="position: absolute; left: 0; top: 0;" data-aos="fade-in" data-aos-delay="1800">
         <lottie-player src="https://lottie.host/497756f7-db22-4876-93ce-3f1e0ff799f7/fB5gp7edM9.json"
           background="transparent" speed="1" style="width: 400px; height: 400px" loop autoplay direction="1"
@@ -163,7 +163,7 @@
       </div>
       <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
         <h5 class="card-title mt-2">Peningkatan Jaringan PLN ICON</h5>
-        <a href="#" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
+        <a href="/idea/12" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
           Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
       </div>
     </div>
@@ -177,7 +177,7 @@
       </div>
       <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
         <h5 class="card-title mt-2">Peningkatan ide dan innovasi PLN ICON</h5>
-        <a href="#" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
+        <a href="/idea/1" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
           Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
       </div>
     </div>
