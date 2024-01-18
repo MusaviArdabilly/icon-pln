@@ -8,24 +8,29 @@
   
   <div class="min-vh-100">
     <div class="container detail">
-      <div class="d-flex align-items-center fw-600 my-3">
-        <a href="/idea" class="text-decoration-none text-dark">
+      <div class="fw-600 my-3">
+        <a href="/idea" class="text-decoration-none text-dark d-flex align-items-center">
           <svg xmlns="http://www.w3.org/2000/svg" height="16" width="10" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
           &nbsp;Kembali
         </a>
       </div>
       <div class="row mb-5">
+        <div class="col-12 d-md-none">
+          <div class="tumbnail-desktop">
+            <img src="{{ asset('assets/image/tumbnail/iot.jpg') }}" alt="">
+          </div>
+        </div>
         <div class="col-12 col-md-9">
-          <h1 class="fs-36 fw-600 text-overflow-hidden" data-mdb-toggle="popover" title="Penggunaan Sistem Otomasi Pintar">Penggunaan Sistem Otomasi Pintar</h1>
+          <h1 class="d-none d-md-block fs-36 fw-600 text-overflow-hidden" data-mdb-toggle="popover" title="Penggunaan Sistem Otomasi Pintar">Penggunaan Sistem Otomasi Pintar</h1>
+          <h1 class="d-md-none fs-36 fw-600">Penggunaan Sistem Otomasi Pintar</h1>
           {{-- max 650 character abstraksi --}}
           <p class="abstraction fs-16 fw-400 lh-24">Ini abstraksi Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. including versions of Lorem Ipsum. including versions of Lore</p>
           <h2 class="fs-16 fw-600 m-0">Oleh:</h2>
           <div class="d-flex">
-            <label class="fs-16 fw-600">Musavi Ardabilly,&#160;</label>
-            <label class="fs-16 fw-400"> John Petruci, John Doe, Andrea Galaxy, Seilal Farah</label>
+            <label class="fs-16 fw-400"><strong class="fw-600">Musavi Ardabilly,</strong> John Petruci, John Doe, Andrea Galaxy, Seilal Farah</label>
           </div>
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-3 d-none d-md-block">
           <div class="d-flex justify-content-end h-100 align-items-center">
             <div class="tumbnail">
               <img src="{{ asset('assets/image/tumbnail/iot.jpg') }}" alt="">
@@ -99,7 +104,7 @@
           <label class="fs-16 fw-500 mt-2">Blueprint.png</label>
         </div>
         <div class="col-6 col-md-2 p-3">
-          <img src="{{ asset('assets/image/tumbnail/asd.jpg') }}" alt="" class="shadow rounded attachment-tumbnail rounded">
+          <img src="{{ asset('assets/image/tumbnail/test.jpg') }}" alt="" class="shadow rounded attachment-tumbnail rounded">
           <label class="fs-16 fw-500 mt-2">Grand Plan.jpg</label>
         </div>
         <div class="col-6 col-md-2 p-3">
@@ -107,6 +112,57 @@
           <label class="fs-16 fw-500 mt-2">Bonus.pdf</label>
         </div>
       </div>
+      <hr class="mb-4">
+      <div class="comment mb-4">
+        <label class="fs-20 fw-600 mt-0 mb-4">Komentar</label>
+        <form action="" class="d-flex align-items-center">
+          <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
+          <input type="text" class="input_comment">
+          <button type="submit" class="btn btn-sm btn-outline-secondary ms-2">Kirim</button>
+        </form>
+        <hr class="dashed my-4">
+        <ul>
+          <li>
+            <div class="d-flex">
+              <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
+              <div class="comment-container rounded p-3">
+                <div class="diamond"></div>
+                <div class="comment-content mx-2">
+                  <h2 class="fs-20 fw-600">Musavi Ardabilly</h2>
+                  <p class="fs-16 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
+                </div>
+              </div>
+            </div>
+            <ul class="reply">
+              <li>
+                <div class="d-flex">
+                  <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
+                  <div class="comment-container rounded p-3">
+                    <div class="diamond"></div>
+                    <div class="comment-content mx-2">
+                      <h2 class="fs-20 fw-600">John Doe</h2>
+                      <p class="fs-16 mb-0">Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="d-flex">
+                  <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
+                  <div class="comment-container rounded p-3">
+                    <div class="diamond"></div>
+                    <div class="comment-content mx-2">
+                      <h2 class="fs-20 fw-600">Alexander Grahambel</h2>
+                      <p class="fs-16 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
     </div>
   </div>
 
