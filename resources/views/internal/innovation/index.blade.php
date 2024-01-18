@@ -44,7 +44,7 @@
       class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
       style="width: 18rem;">
       <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-4">
-        <img src="https://digitalamoeba.id/wp-content/uploads/2022/04/20220401-154841-1024x512.png"
+        <img src="{{ asset('assets/image/tumbnail/iconpln2.jpg') }}"
           style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
       </div>
       <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
@@ -58,7 +58,7 @@
       class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
       style="width: 18rem;">
       <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-4">
-        <img src="https://cdn.medcom.id/dynamic/content/2023/12/02/1636460/YaPEIUVSvD.jpeg?w=700"
+        <img src="{{ asset('assets/image/tumbnail/icon pln.jpeg') }}"
           style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
       </div>
       <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
