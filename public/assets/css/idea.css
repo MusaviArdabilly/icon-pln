@@ -438,3 +438,9 @@ html {
 .animation-hover-card:hover {
     transform: translateY(-1.5em) !important;
 }
+
+/* pagination button */
+.pagination-previous, .pagination-next {
+    background-color: white;
+    border-color: #0377A3 !important;
+}

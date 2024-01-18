@@ -2,8 +2,7 @@
 @section('content')
 <section class="title_idea container-xxl mt-5" style="position: relative;">
   <div class="title_idea_head w-100 text-center d-flex flex-column justify-items-center" style="position: relative;">
-    <div class="d-none d-sm-block" style="position: absolute; top: 7em;" data-aos="fade-left"
-      data-aos-delay="600">
+    <div class="d-none d-sm-block" style="position: absolute; top: 7em;" data-aos="fade-left" data-aos-delay="600">
       <lottie-player src="https://lottie.host/b2ff9005-051c-4d7d-8082-e72438480eb7/CJiqYViFfI.json"
         background="##FFFFFF" speed="1" style="width: 400px; height: 400px;" loop autoplay direction="1"
         mode="normal"></lottie-player>
@@ -156,9 +155,9 @@
   <h3 class="me-auto mt-5">List Idea</h3>
   <div class="mt-3 row row-cols-4 gap-5 w-100 justify-content-center justify-content-sm-start">
     <div data-aos="fade-up"
-      class="card d-flex flex-column align-items-center py-3 px-2 shadow border-0 animation-hover-card"
+      class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
       style="width: 18rem;">
-      <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-3">
+      <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-4">
         <img src="https://digitalamoeba.id/wp-content/uploads/2022/04/20220401-154841-1024x512.png"
           style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
       </div>
@@ -170,94 +169,28 @@
     </div>
 
     <div data-aos="fade-up"
-      class="card d-flex flex-column align-items-center py-3 px-2 shadow border-0 animation-hover-card"
+      class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
       style="width: 18rem;">
-      <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-3">
-        <img src="https://digitalamoeba.id/wp-content/uploads/2022/04/20220401-154841-1024x512.png"
+      <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-4">
+        <img src="https://cdn.medcom.id/dynamic/content/2023/12/02/1636460/YaPEIUVSvD.jpeg?w=700"
           style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
       </div>
       <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
-        <h5 class="card-title mt-2">Peningkatan Jaringan PLN ICON</h5>
-        <a href="#" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
-          Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
-      </div>
-    </div>
-    <div data-aos="fade-up"
-      class="card d-flex flex-column align-items-center py-3 px-2 shadow border-0 animation-hover-card"
-      style="width: 18rem;">
-      <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-3">
-        <img src="https://digitalamoeba.id/wp-content/uploads/2022/04/20220401-154841-1024x512.png"
-          style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
-      </div>
-      <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
-        <h5 class="card-title mt-2">Peningkatan Jaringan PLN ICON</h5>
-        <a href="#" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
-          Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
-      </div>
-    </div>
-
-    <div data-aos="fade-up"
-      class="card d-flex flex-column align-items-center py-3 px-2 shadow border-0 animation-hover-card"
-      style="width: 18rem;">
-      <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-3">
-        <img src="https://digitalamoeba.id/wp-content/uploads/2022/04/20220401-154841-1024x512.png"
-          style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
-      </div>
-      <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
-        <h5 class="card-title mt-2">Peningkatan Jaringan PLN ICON</h5>
-        <a href="#" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
-          Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
-      </div>
-    </div>
-
-    <div data-aos="fade-up"
-      class="card d-flex flex-column align-items-center py-3 px-2 shadow border-0 animation-hover-card"
-      style="width: 18rem;">
-      <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-3">
-        <img src="https://digitalamoeba.id/wp-content/uploads/2022/04/20220401-154841-1024x512.png"
-          style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
-      </div>
-      <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
-        <h5 class="card-title mt-2">Peningkatan Jaringan PLN ICON</h5>
-        <a href="#" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
-          Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
-      </div>
-    </div>
-
-    <div data-aos="fade-up"
-      class="card d-flex flex-column align-items-center py-3 px-2 shadow border-0 animation-hover-card"
-      style="width: 18rem;">
-      <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-3">
-        <img src="https://digitalamoeba.id/wp-content/uploads/2022/04/20220401-154841-1024x512.png"
-          style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
-      </div>
-      <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
-        <h5 class="card-title mt-2">Peningkatan Jaringan PLN ICON</h5>
+        <h5 class="card-title mt-2">Peningkatan ide dan innovasi PLN ICON</h5>
         <a href="#" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
           Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
       </div>
     </div>
   </div>
-  <div aria-label="Page navigation example" class="mt-5 ">
-    <ul class="pagination pagination-lg">
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
+
+  <div aria-label="Page navigation example" class="pagination-container mt-5 d-flex me-auto">
+    <button class="pagination-previous border border-1 rounded-circle py-2 px-3 me-3"><i class="bi bi-chevron-left fs-3"></i></button>
+    <button class="pagination-next border border-1 rounded-circle py-2 px-3"><i class="bi bi-chevron-right fs-3"></i></div>
   </div>
+
 </section>
 
-<section class="container-xxl">
+<section class="container-xxl mb-5">
   <h1 class="fs-3 mb-4" data-aos="bounce-in" data-aos-delay=""="1000">Kenapa Harus Menggunakan Ideabox ?</h1>
   <div class="card shadow border-0" data-aos="bounce-in" data-aos-delay="2000">
     <div class="card-body">

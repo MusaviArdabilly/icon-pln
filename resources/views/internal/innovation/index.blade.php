@@ -1,12 +1,6 @@
 @extends('layouts.user')
 @section('content')
 <section class="title_idea container-xxl mt-5 " style="position: relative;">
-  <div class="d-none d-sm-block" style="position: absolute; top: 7em;" data-aos="fade-left"
-      data-aos-delay="600">
-      <lottie-player src="https://lottie.host/16571e74-0e61-4abc-90d0-0b706bc4b6b1/Sns24ZbjEy.json"
-        background="##FFFFFF" speed="1" style="width: 400px; height: 400px;" loop autoplay direction="1"
-        mode="normal"></lottie-player>
-    </div>
   <div class="title_idea_head w-100 text-center d-flex flex-column justify-items-center" style="position: relative;">
     <h2 data-aos="fade-zoom-in" class="fs-3" style="color: #c1bee2;">INNOVATION </h2>
     <div class="d-flex justify-content-center mx-auto" style="position: relative; width: fit-content;">
@@ -20,109 +14,6 @@
     <p data-aos="fade-up" data-aos-delay="1000">Jadikan bagian dalam ekosistem inovasi <br /> dengan berperan aktif
       dalam <br /> perkembangan idea inovasi.</p>
   </div>
-</section>
-
-<section class="container-xxl w-100 d-flex flex-column align-items-center bounce-in"
-  style="position: relative; margin-bottom: 5em; margin-top: 5em;">
-
-  <div class="center" onclick="show(this)">
-    <a href="#"><span data-attr="Create">Create</span><span data-attr="Idea">Idea</span></a>
-  </div>
-
-
-  <div class="card w-100 text-center px-3 py-3 hidden_idea_form mt-3 border-0 shadow bounce-in" style="display: none;">
-    <h3 class="mx-auto">Ideabox</h3>
-    <!-- image upload -->
-    <div class="row input_item">
-      <p class="col-3">Banner</p>
-      <div class="col-9">
-        <form id="file-upload-form" class="uploader">
-          <input id="file-upload" type="file" name="fileUpload" accept="image/*" style="display:none" />
-          <label for="file-upload" id="file-drag">
-            <img id="file-image" src="#" alt="Preview" class="hidden">
-            <div id="start">
-              <i class="bi bi-download" aria-hidden="true"></i>
-              <div>Select a file or drag here</div>
-              <div id="notimage" class="hidden">Please select an image</div>
-              <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
-            </div>
-            <div id="response" class="hidden">
-              <div id="messages"></div>
-            </div>
-          </label>
-        </form>
-      </div>
-    </div>
-    <div class="row input_item">
-      <p class="col-3">Judul/Topik</p>
-      <div class="col-9">
-        <div id="quillEditorJudul">
-        </div>
-      </div>
-    </div>
-    <div class="row input_item">
-      <p class="col-3">Abstrak</p>
-      <div class="col-9">
-        <div id="quillEditorAbstrak">
-        </div>
-      </div>
-    </div>
-    <div class="row input_item">
-      <p class="col-3">Latar Belakang</p>
-      <div class="col-9">
-        <div id="quillEditorLatarBelakang">
-        </div>
-      </div>
-    </div>
-    <div class="row input_item">
-      <p class="col-3">Isi</p>
-      <div class="col-9">
-        <div id="quillEditorIsi">
-        </div>
-      </div>
-    </div>
-    <div class="row input_item">
-      <p class="col-3">Solusi</p>
-      <div class="col-9">
-        <div id="quillEditorSolusi">
-        </div>
-      </div>
-    </div>
-    <!-- chips input -->
-    <div class="row input_item">
-      <p class="col-3">Team</p>
-      <div class="col-9">
-        <div class="container_chips_input">
-          <ul id="list_chips"></ul>
-          <input type="text" id="txt_chips" placeholder="type and Enter ...">
-        </div>
-      </div>
-    </div>
-    <!-- attachmen -->
-    <div class="row input_item">
-      <p class="col-3">Attachmen</p>
-      <div class="col-9 d-flex justify-content-center">
-        <p class="d-flex">
-          <label for="attachment">
-            <a class="btn btn-primary text-light" role="button" aria-disabled="false">+ Add</a>
-          </label>
-          <input type="file" name="file[]" accept=".pdf" id="attachment" style="visibility: hidden; position: absolute;"
-            multiple />
-        </p>
-        <p id="files-area">
-          <span id="filesList">
-            <span id="files-names"></span>
-          </span>
-        </p>
-      </div>
-    </div>
-    <div class="d-flex ms-auto w-0" style="width: fit-content;">
-      <button type="button" class="btn btn-primary me-3">Submit</button>
-      <button type="button" class="btn btn-danger" onclick="show(this)">Cencel</button>
-    </div>
-  </div>
-  </div>
-
 </section>
 
 <section class="container-xxl mt-5 d-flex flex-column align-items-center my-5">
@@ -148,91 +39,63 @@
   </div>
 
   <h3 class="me-auto mt-5">List Idea</h3>
-  <div class="mt-3 row row-cols-4 gap-5">
-    <div data-aos="fade-up" class="card d-flex flex-column align-items-center py-3 px-2 shadow border-0"
+  <div class="mt-3 row row-cols-4 gap-5 w-100 justify-content-center justify-content-sm-start">
+    <div data-aos="fade-up"
+      class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
       style="width: 18rem;">
-      <div style="width: 80%;" class="overflow-hidden rounded-3">
+      <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-4">
         <img src="https://digitalamoeba.id/wp-content/uploads/2022/04/20220401-154841-1024x512.png"
           style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
       </div>
-      <div class="card-body text-center">
+      <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
         <h5 class="card-title mt-2">Peningkatan Jaringan PLN ICON</h5>
         <a href="#" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
           Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
       </div>
     </div>
 
-    <div data-aos="fade-up" class="card d-flex flex-column align-items-center py-3 px-2 shadow border-0"
+    <div data-aos="fade-up"
+      class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
       style="width: 18rem;">
-      <div style="width: 80%;" class="overflow-hidden rounded-3">
-        <img src="https://digitalamoeba.id/wp-content/uploads/2022/04/20220401-154841-1024x512.png"
+      <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-4">
+        <img src="https://cdn.medcom.id/dynamic/content/2023/12/02/1636460/YaPEIUVSvD.jpeg?w=700"
           style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
       </div>
-      <div class="card-body text-center">
-        <h5 class="card-title mt-2">Peningkatan Jaringan PLN ICON</h5>
-        <a href="#" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
-          Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
-      </div>
-    </div>
-
-    <div data-aos="fade-up" class="card d-flex flex-column align-items-center py-3 px-2 shadow border-0"
-      style="width: 18rem;">
-      <div style="width: 80%;" class="overflow-hidden rounded-3">
-        <img src="https://digitalamoeba.id/wp-content/uploads/2022/04/20220401-154841-1024x512.png"
-          style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
-      </div>
-      <div class="card-body text-center">
-        <h5 class="card-title mt-2">Peningkatan Jaringan PLN ICON</h5>
-        <a href="#" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
-          Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
-      </div>
-    </div>
-
-    <div data-aos="fade-up" class="card d-flex flex-column align-items-center py-3 px-2 shadow border-0"
-      style="width: 18rem;">
-      <div style="width: 80%;" class="overflow-hidden rounded-3">
-        <img src="https://digitalamoeba.id/wp-content/uploads/2022/04/20220401-154841-1024x512.png"
-          style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
-      </div>
-      <div class="card-body text-center">
-        <h5 class="card-title mt-2">Peningkatan Jaringan PLN ICON</h5>
+      <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
+        <h5 class="card-title mt-2">Peningkatan ide dan innovasi PLN ICON</h5>
         <a href="#" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
           Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
       </div>
     </div>
   </div>
-  <div aria-label="Page navigation example" class="mt-5 ">
-    <ul class="pagination pagination-lg">
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
+
+  <div aria-label="Page navigation example" class="pagination-container mt-5 d-flex me-auto">
+    <button class="pagination-previous border border-1 rounded-circle py-2 px-3 me-3"><i
+        class="bi bi-chevron-left fs-3"></i></button>
+    <button class="pagination-next border border-1 rounded-circle py-2 px-3"><i class="bi bi-chevron-right fs-3"></i>
   </div>
+  </div>
+
 </section>
 
-<section class="container-xxl">
-  <h1 class="fs-3 mb-4">Kenapa Harus Menggunakan Ideabox?</h1>
-  <div class="card shadow border-0">
+<section class="container-xxl mb-5">
+  <h1 class="fs-3 mb-4" data-aos="bounce-in" data-aos-delay=""="1000">Kenapa Harus berinovasi ?</h1>
+  <div class="card shadow border-0" data-aos="bounce-in" data-aos-delay="2000">
     <div class="card-body">
-      Ideabox menyedikan kemudahan pengelolaan ide dan kemudahan proses tahap selanjutnya untuk menghasilkan inovasi dan
-      juga terdapat berbagai benefit yang ada. Ideabox dapat digunakan oleh bisnis di semua jenis industri dan skala apa
-      pun. Untuk segala instansi, terlebih yang sudah memulai untuk membangun Innovation Culture di
-      instansi/perusahaanya.
+      <blockquote class="blockquote">
+        Inovasi membantu memecahkan masalah, meningkatkan efisiensi, dan membuka peluang baru, Proses inovasi melibatkan
+        identifikasi peluang, pengembangan ide, implementasi solusi, dan penyesuaian berkelanjutan. ayo ciptakan perubahan yang positif
+      </blockquote>
     </div>
   </div>
 </section>
 
 <script>
+  // all data form
+  var items = [];
+  var imageUpload;
+  var attachmen;
+
   AOS.init();
   function show() {
     var paragraph = document.querySelector(".hidden_idea_form");
@@ -358,7 +221,7 @@
       // var fileType = file.type;
       // console.log(fileType);
       var imageName = file.name;
-      console.log(file)
+      imageUpload = file
       var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
       if (isGood) {
         document.getElementById('start').classList.add("hidden");
@@ -403,6 +266,7 @@
 
   // attachmen
   const dt = new DataTransfer();
+  attachmen = dt
 
   $("#attachment").on('change', function (e) {
     for (var i = 0; i < this.files.length; i++) {
@@ -434,6 +298,11 @@
       document.getElementById('attachment').files = dt.files;
     });
   });
+
+  // submit form
+  function submitForm() {
+    console.log(JSON.stringify(quillEditorJudul.root.innerHTML), items, attachmen, imageUpload)
+  }
 
 </script>
 @endsection
