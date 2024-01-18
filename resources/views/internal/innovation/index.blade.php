@@ -4,7 +4,7 @@
   <div class="title_idea_head w-100 text-center d-flex flex-column justify-items-center" style="position: relative;">
     <h2 data-aos="fade-zoom-in" class="fs-3" style="color: #c1bee2;">INNOVATION </h2>
     <div class="d-flex justify-content-center mx-auto" style="position: relative; width: fit-content;">
-      <h1 data-aos="fade-up" data-aos-delay="800" style="color: #9aca28; font-size: 4em;">Realisasikan Inovasi Kamu!
+      <h1 data-aos="fade-up" data-aos-delay="800" style="color: #182958; font-size: 4em;">Realisasikan Inovasi Kamu!
       </h1>
       <lottie-player data-aos="fade-zoom-in" data-aos-delay="1800" class="lamp-animation d-none d-sm-block"
         src="https://lottie.host/4bccb2e2-d0a4-439c-9c67-e74b87f32faf/VS7x2mrJRd.json" background="##fff" speed="1"
