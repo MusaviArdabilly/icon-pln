@@ -163,7 +163,7 @@
       </div>
       <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
         <h5 class="card-title mt-2">Peningkatan Jaringan PLN ICON</h5>
-        <a href="#" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
+        <a href="/idea/1" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
           Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
       </div>
     </div>
@@ -177,7 +177,7 @@
       </div>
       <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
         <h5 class="card-title mt-2">Peningkatan ide dan innovasi PLN ICON</h5>
-        <a href="#" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
+        <a href="/idea/2" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
           Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
       </div>
     </div>
