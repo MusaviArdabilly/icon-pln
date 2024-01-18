@@ -62,7 +62,7 @@
 	<nav id="navbar" class="navbar navbar-expand-lg sticky-top bg-light shadow">
 		<div class="container">
 			<a class="navbar-brand" href="/">
-				<img src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="Logo" height="32px">
+        <h1 class="d-flex align-items-center top-nav-link fs-16 fw-700 m-0">IC<img id="nav-brand-logo" src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="16px" class="filter-invert mx-1px">NIC</h1>
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 				aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,21 +70,21 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item">
-						<a class="nav-link fw-600 text-dark active" aria-current="page" href="/">Home</a>
+					<li class="nav-item me-2">
+						<a class="nav-link top-nav-link fw-600 text-dark active" aria-current="page" href="/">Home</a>
+					</li>
+					<li class="nav-item me-2">
+						<a class="nav-link top-nav-link fw-600 text-dark" href="/idea">Ide</a>
+					</li>
+					<li class="nav-item me-2">
+						<a class="nav-link top-nav-link fw-600 text-dark" href="/innovation">Inovasi</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link fw-600 text-dark" href="/idea">Ide</a>
+						<a class="nav-link top-nav-link fw-600 text-dark" href="/repository">Pustaka</a>
 					</li>
+					<div class="d-none top-nav-link d-md-block vr text-dark mx-2"></div>
 					<li class="nav-item">
-						<a class="nav-link fw-600 text-dark" href="/innovation">Inovasi</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link fw-600 text-dark" href="/repository">Pustaka</a>
-					</li>
-					<div class="vr text-dark mx-1"></div>
-					<li class="nav-item">
-						<a class="nav-link fw-600 text-dark" href="/login">Login</a>
+						<a class="nav-link top-nav-link fw-600 text-dark" href="/login">Login</a>
 					</li>
 				</ul>
 			</div>
@@ -122,7 +122,7 @@
 	{{-- v2 --}}
 	<footer id="footer" class="bg-light">
 		<div class="container py-3">
-			<img src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="" height="28px" class="mb-3">
+			<h1 class="d-flex align-items-center fs-16 fw-700 m-0">IC<img src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="16px" class="mx-1px">NIC</h1>
 			<ul class="navbar-nav d-flex flex-row">
 				<li class="nav-item">
 					<a class="nav-link fw-600 text-dark me-3" aria-current="page" href="/">Home</a>
@@ -135,10 +135,6 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link fw-600 text-dark me-3" href="/repository">Pustaka</a>
-				</li>
-				<div class="vr text-dark me-3"></div>
-				<li class="nav-item">
-					<a class="nav-link fw-600 text-dark me-3" href="/login">Login</a>
 				</li>
 			</ul>
 			<hr class="text-dark">

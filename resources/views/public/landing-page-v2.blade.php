@@ -2,8 +2,13 @@
 @section('content')
   
   <script type="text/javascript">
-    document.getElementById('navbar').classList.remove('var-bg-primary', 'sticky-top');
+    document.getElementById('navbar').classList.remove('bg-light', 'shadow', 'sticky-top');
     document.getElementById('navbar').classList.add('fixed-top');
+
+    var navLinks = document.getElementsByClassName('top-nav-link');
+    for (var i = 0; i < navLinks.length; i++) {
+      navLinks[i].classList.add('text-white');
+    }
   </script>
 
   <div class="hero-video">
@@ -75,9 +80,21 @@
     
     window.addEventListener('scroll', function() {
       if (window.scrollY > (heroVideoHeight - navbarHeight)) {
-        targetElement.classList.add('var-bg-primary');
+        targetElement.classList.add('bg-light');
+        document.getElementById('nav-brand-logo').classList.remove('filter-invert');
+        var navLinks = document.getElementsByClassName('top-nav-link');
+        for (var i = 0; i < navLinks.length; i++) {
+          navLinks[i].classList.add('text-dark');
+          navLinks[i].classList.remove('text-white');
+        }
       } else {
-        targetElement.classList.remove('var-bg-primary');
+        targetElement.classList.remove('bg-light');
+        document.getElementById('nav-brand-logo').classList.add('filter-invert')
+        var navLinks = document.getElementsByClassName('top-nav-link');
+        for (var i = 0; i < navLinks.length; i++) {
+          navLinks[i].classList.remove('text-dark');
+          navLinks[i].classList.add('text-white');
+        }
       }
     });
   </script>
