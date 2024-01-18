@@ -121,6 +121,38 @@ body {
   object-fit: cover; 
 }
 
+  /* hero v3 */
+.hero-video-v3 video {
+  filter: brightness(50%);
+}
+
+.hero-video .overlay {
+  position: absolute;
+}
+
+.overlay h1 {
+  width: 100%;
+  max-width: 680px;
+  font-size: 36px;
+}
+
+@media screen and (max-width: 500px) {
+  .overlay h1 {
+    font-size: 28px;
+  }
+}
+
+.btn-hero {
+  cursor: pointer;
+}
+
+.btn-hero:hover {
+  cursor: pointer;
+  scale: 0.9;
+}
+
+/* end of v3  */
+
 .hero-heading {
   width: 100%;
   min-height: 100vh;
