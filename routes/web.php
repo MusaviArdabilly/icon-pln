@@ -21,8 +21,8 @@ use App\Http\Controllers\AuthController;
 //     return view('welcome');
 // });
 
-Route::get('/', [PublicController::class, 'index']);
-Route::get('/lp-v2', [PublicController::class, 'index_v2']);
+Route::get('/', [PublicController::class, 'index_v2']);
+Route::get('/lp-v2', [PublicController::class, 'index']);
 
 Route::get('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'register']);
