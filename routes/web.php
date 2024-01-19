@@ -33,6 +33,7 @@ Route::get('/idea/{id}', [InternalController::class, 'detail_idea']);
 Route::get('/innovation', [InternalController::class, 'innovation']);
 Route::get('/innovation/{id}', [InternalController::class, 'detail_innovation']);
 Route::get('/repository', [InternalController::class, 'repository']);
+Route::get('/repository-v2', [InternalController::class, 'repository_v2']);
 
 Route::prefix('admin')->group(function () {
     Route::get('/idea', [AdminController::class, 'idea']);

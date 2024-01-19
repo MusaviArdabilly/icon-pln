@@ -314,6 +314,11 @@ body {
   cursor: pointer;
 } 
 
+.toggle svg:hover {
+  scale: 0.9;
+  transition: scale 0.25s ease;
+} 
+
 .transition-height {
   max-height: 0;
   overflow: hidden;
@@ -372,4 +377,17 @@ ul {
 .input_comment{
   width: 100%;
   margin-left: 28px;
+}
+
+/* repository */
+
+.repository a{
+  color: #000;
+  scale: 0.99;
+  transition: scale 0.25s ease;
+}
+
+.repository a:hover h2{
+  scale: 0.99;
+  transition: scale 0.25s ease;
 }

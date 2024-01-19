@@ -25,4 +25,8 @@ class InternalController extends Controller
     public function repository() {
         return view('internal.repository.index');
     }
+
+    public function repository_v2() {
+        return view('internal.repository.index-v2');
+    }
 }
