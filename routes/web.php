@@ -40,3 +40,5 @@ Route::prefix('admin')->group(function () {
     Route::get('/innovation', [AdminController::class, 'innovation']);
     Route::get('/user-managemenet', [AdminController::class, 'user_management']);
 });
+
+Route::get('/reload-captcha-url', [AuthController::class, 'reload_captcha']);

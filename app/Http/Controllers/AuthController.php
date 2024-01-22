@@ -13,4 +13,8 @@ class AuthController extends Controller
     public function login() {
         return view('auth.login');
     }
+
+    public function reload_captcha() {
+        return response()->json(['captcha_url' => captcha_src()]);
+    }
 }
