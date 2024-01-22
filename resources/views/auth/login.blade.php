@@ -10,7 +10,7 @@
   });
 </script>
 
-  <div class="min-vh-100 d-flex justify-content-center align-items-center">
+  <div class="min-vh-100 d-flex justify-content-center align-items-center pb-4">
     <div class="col-12 col-md-4 mx-auto shadow rounded mb-5 p-3 p-md-5">
       <h1 class="fs-36 fw-700 text-center">LOGIN</h1>
       <form method="POST" >
