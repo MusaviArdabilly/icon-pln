@@ -101,6 +101,18 @@ body {
   overflow: hidden;
 }
 
+.nav-item:hover {
+  scale: 0.9;
+}
+
+.nav-item .active {
+  border-bottom: solid 2px #000;
+}
+
+.nav-item .active-white {
+  border-bottom: solid 2px #fff;
+}
+
 .nav-link {
   /* letter-spacing: 1px; */
   letter-spacing: 0px;

@@ -71,20 +71,20 @@
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item me-2">
-						<a class="nav-link top-nav-link fw-600 text-dark active" aria-current="page" href="/">Home</a>
+						<a id="nav-home" class="nav-link top-nav-link fw-600 text-dark" aria-current="page" href="/">Home</a>
 					</li>
 					<li class="nav-item me-2">
-						<a class="nav-link top-nav-link fw-600 text-dark" href="/idea">Ide</a>
+						<a id="nav-idea" class="nav-link top-nav-link fw-600 text-dark" href="/idea">Ide</a>
 					</li>
 					<li class="nav-item me-2">
-						<a class="nav-link top-nav-link fw-600 text-dark" href="/innovation">Inovasi</a>
+						<a id="nav-innovation" class="nav-link top-nav-link fw-600 text-dark" href="/innovation">Inovasi</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link top-nav-link fw-600 text-dark" href="/repository">Pustaka</a>
+						<a id="nav-repository" class="nav-link top-nav-link fw-600 text-dark" href="/repository">Pustaka</a>
 					</li>
 					<div class="d-none top-nav-link d-md-block vr text-dark mx-2"></div>
 					<li class="nav-item">
-						<a class="nav-link top-nav-link fw-600 text-dark" href="/login">Login</a>
+						<a id="nav-auth" class="nav-link top-nav-link fw-600 text-dark" href="/login">Login</a>
 					</li>
 				</ul>
 			</div>
@@ -153,7 +153,7 @@
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -1,5 +1,10 @@
 @extends('layouts.user')
 @section('content')
+  
+  <script type="text/javascript">
+    document.getElementById('nav-idea').classList.add('active');
+  </script>
+
 <section class="title_idea container-xxl mt-5" style="position: relative;">
   <div class="title_idea_head w-100 text-center d-flex flex-column justify-items-center" style="position: relative;">
     <div class="d-none d-sm-block" style="position: absolute; top: 7em;" data-aos="fade-left" data-aos-delay="600">

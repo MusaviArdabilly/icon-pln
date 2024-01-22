@@ -1,5 +1,10 @@
 @extends('layouts.user')
 @section('content')
+  
+  <script type="text/javascript">
+    document.getElementById('nav-innovation').classList.add('active');
+  </script>
+
 <section class="title_idea container-xxl mt-5 " style="position: relative;">
   <div class="title_idea_head w-100 text-center d-flex flex-column justify-items-center" style="position: relative;">
     <h2 data-aos="fade-zoom-in" class="fs-3" style="color: #c1bee2;">INNOVATION </h2>

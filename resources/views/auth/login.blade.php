@@ -2,6 +2,7 @@
 @section('content')
   
 <script type="text/javascript">
+  document.getElementById('nav-auth').classList.add('active');
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('navbar').classList.remove('sticky-top');
     document.getElementById('navbar').classList.add('fixed-top');

@@ -1,5 +1,10 @@
 @extends('layouts.user')
 @section('content')
+  
+  <script type="text/javascript">
+    document.getElementById('nav-repository').classList.add('active');
+  </script>
+
   <div class="container repository min-vh-100">
     <div class="fw-600 my-3">
       <a href="/idea" class="text-decoration-none text-dark d-flex align-items-center">

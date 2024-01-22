@@ -2,6 +2,7 @@
 @section('content')
   
   <script type="text/javascript">
+    document.getElementById('nav-home').classList.add('active-white');
     document.getElementById('navbar').classList.remove('bg-light', 'shadow', 'sticky-top');
     document.getElementById('navbar').classList.add('fixed-top');
     document.getElementById('nav-brand-logo').classList.add('filter-invert');
@@ -96,6 +97,8 @@
       if (window.scrollY > (heroVideoHeight - navbarHeight)) {
         targetElement.classList.add('bg-light', 'shadow');
         document.getElementById('nav-brand-logo').classList.remove('filter-invert');
+        document.getElementById('nav-home').classList.remove('active-white');
+        document.getElementById('nav-home').classList.add('active');
         var navLinks = document.getElementsByClassName('top-nav-link');
         for (var i = 0; i < navLinks.length; i++) {
           navLinks[i].classList.add('text-dark');
@@ -104,6 +107,8 @@
       } else {
         targetElement.classList.remove('bg-light', 'shadow');
         document.getElementById('nav-brand-logo').classList.add('filter-invert');
+        document.getElementById('nav-home').classList.add('active-white');
+        document.getElementById('nav-home').classList.remove('active');
         var navLinks = document.getElementsByClassName('top-nav-link');
         for (var i = 0; i < navLinks.length; i++) {
           navLinks[i].classList.remove('text-dark');
