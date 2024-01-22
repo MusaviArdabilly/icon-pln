@@ -2,9 +2,9 @@
 @section('content')
   
   <script type="text/javascript">
-    // document.getElementById('navbar').classList.remove('sticky-top');
-    // document.getElementById('navbar').classList.add('fixed-top');
+    document.getElementById('nav-idea').classList.add('active');
   </script>
+
   
   <div class="min-vh-100">
     <div class="container detail">

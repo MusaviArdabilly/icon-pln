@@ -1,6 +1,10 @@
 @extends('layouts.user')
 @section('content')
   
+  <script type="text/javascript">
+    document.getElementById('nav-innovation').classList.add('active');
+  </script>
+
   <div class="min-vh-100">
     <div class="container detail">
       <div class="fw-600 my-3">

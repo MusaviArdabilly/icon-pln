@@ -1,5 +1,6 @@
 :root {
-  --color-primary: #0377A3;
+  --color-primary: #0093ad;
+  --color-secondary: #1f2855;
 }
 
 :root{
@@ -34,8 +35,8 @@ body {
   background-color: var(--color-primary);
 }
 
-.var-bg-x {
-  background-color: #ECEFF1;
+.var-bg-secondary {
+  background-color: var(--color-secondary);
 }
 
 .fw-400 {
@@ -70,6 +71,10 @@ body {
   font-size: 16px;
 }
 
+.fs-12 {
+  font-size: 12px;
+}
+
 .lh-24 {
   line-height: 24px;
 }
@@ -95,6 +100,31 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.bounce {
+  position: relative;
+  animation: bounceAnimation 2s infinite;
+}
+
+@keyframes bounceAnimation {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.nav-item:hover {
+  scale: 0.9;
+}
+
+.nav-item .active {
+  border-bottom: solid 2px #fff;
 }
 
 .nav-link {

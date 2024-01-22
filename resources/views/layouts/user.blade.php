@@ -59,10 +59,10 @@
 		</div>
 	</nav> --}}
 	{{-- v2  --}}
-	<nav id="navbar" class="navbar navbar-expand-lg sticky-top bg-light shadow">
+	<nav id="navbar" class="navbar navbar-expand-lg sticky-top var-bg-primary shadow">
 		<div class="container">
 			<a class="navbar-brand" href="/">
-        <h1 class="d-flex align-items-center top-nav-link fs-16 fw-700 m-0">IC<img id="nav-brand-logo" src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="16px" class="mx-1px">NIC</h1>
+        <h1 class="d-flex align-items-center top-nav-link fs-16 fw-700 m-0 text-white">IC<img id="nav-brand-logo" src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="16px" class="filter-invert mx-1px">NIC</h1>
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 				aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,20 +71,20 @@
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item me-2">
-						<a class="nav-link top-nav-link fw-600 text-dark active" aria-current="page" href="/">Home</a>
+						<a id="nav-home" class="nav-link top-nav-link fw-600 text-white" aria-current="page" href="/">Home</a>
 					</li>
 					<li class="nav-item me-2">
-						<a class="nav-link top-nav-link fw-600 text-dark" href="/idea">Ide</a>
+						<a id="nav-idea" class="nav-link top-nav-link fw-600 text-white" href="/idea">Ide</a>
 					</li>
 					<li class="nav-item me-2">
-						<a class="nav-link top-nav-link fw-600 text-dark" href="/innovation">Inovasi</a>
+						<a id="nav-innovation" class="nav-link top-nav-link fw-600 text-white" href="/innovation">Inovasi</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link top-nav-link fw-600 text-dark" href="/repository">Pustaka</a>
+						<a id="nav-repository" class="nav-link top-nav-link fw-600 text-white" href="/repository">Pustaka</a>
 					</li>
-					<div class="d-none top-nav-link d-md-block vr text-dark mx-2"></div>
+					<div class="d-none top-nav-link d-md-block vr text-white mx-2"></div>
 					<li class="nav-item">
-						<a class="nav-link top-nav-link fw-600 text-dark" href="/login">Login</a>
+						<a id="nav-auth" class="nav-link top-nav-link fw-600 text-white" href="/login">Login</a>
 					</li>
 				</ul>
 			</div>
@@ -120,25 +120,25 @@
 		</div>
 	</footer> --}}
 	{{-- v2 --}}
-	<footer id="footer" class="bg-light">
+	<footer id="footer" class="var-bg-primary">
 		<div class="container py-3">
-			<h1 class="d-flex align-items-center fs-16 fw-700 m-0">IC<img src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="16px" class="mx-1px">NIC</h1>
+			<h1 class="d-flex align-items-center fs-16 fw-700 my-2 text-white">IC<img src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="16px" class="filter-invert mx-1px">NIC</h1>
 			<ul class="navbar-nav d-flex flex-row">
 				<li class="nav-item">
-					<a class="nav-link fw-600 text-dark me-3" aria-current="page" href="/">Home</a>
+					<a class="nav-link fw-600 text-white me-3 py-0" aria-current="page" href="/">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link fw-600 text-dark me-3" href="/idea">Ide</a>
+					<a class="nav-link fw-600 text-white me-3 py-0" href="/idea">Ide</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link fw-600 text-dark me-3" href="/innovation">Inovasi</a>
+					<a class="nav-link fw-600 text-white me-3 py-0" href="/innovation">Inovasi</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link fw-600 text-dark me-3" href="/repository">Pustaka</a>
+					<a class="nav-link fw-600 text-white me-3 py-0" href="/repository">Pustaka</a>
 				</li>
 			</ul>
-			<hr class="text-dark">
-			<div class="text-center text-dark fw-400">
+			<hr class="text-white">
+			<div class="text-center text-white fw-400 fs-12">
 				© 2024 Icon PLN. All rights reserved.
 			</div>
 		</div>
@@ -153,7 +153,7 @@
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 
 </html>
