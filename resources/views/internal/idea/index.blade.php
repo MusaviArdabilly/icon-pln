@@ -40,7 +40,7 @@
     <div class="row input_item">
       <p class="col-3">Banner</p>
       <div class="col-9">
-        <form id="file-upload-form" class="uploader">
+        <form id="file-upload-form" class="uploader shadow border-0 radius-3">
           <input id="file-upload" type="file" name="fileUpload" accept="image/*" style="display:none" />
           <label for="file-upload" id="file-drag">
             <img id="file-image" src="#" alt="Preview" class="hidden">
@@ -60,35 +60,35 @@
     <div class="row input_item">
       <p class="col-3">Judul/Topik</p>
       <div class="col-9">
-        <div id="quillEditorJudul">
+        <div id="quillEditorJudul" class="quillCustom shadow border-0 radius-3">
         </div>
       </div>
     </div>
     <div class="row input_item">
       <p class="col-3">Abstrak</p>
       <div class="col-9">
-        <div id="quillEditorAbstrak">
+        <div id="quillEditorAbstrak" class="quillCustom shadow border-0 radius-3">
         </div>
       </div>
     </div>
     <div class="row input_item">
       <p class="col-3">Latar Belakang</p>
       <div class="col-9">
-        <div id="quillEditorLatarBelakang">
+        <div id="quillEditorLatarBelakang" class="quillCustom shadow border-0 radius-3">
         </div>
       </div>
     </div>
     <div class="row input_item">
       <p class="col-3">Isi</p>
       <div class="col-9">
-        <div id="quillEditorIsi">
+        <div id="quillEditorIsi" class="quillCustom shadow border-0 radius-3">
         </div>
       </div>
     </div>
     <div class="row input_item">
       <p class="col-3">Solusi</p>
       <div class="col-9">
-        <div id="quillEditorSolusi">
+        <div id="quillEditorSolusi" class="quillCustom shadow border-0 radius-3">
         </div>
       </div>
     </div>
@@ -104,11 +104,11 @@
     </div>
     <!-- attachmen -->
     <div class="row input_item">
-      <p class="col-3">Attachmen</p>
+      <p class="col-3">Attachment</p>
       <div class="col-9 d-flex justify-content-center">
         <p class="d-flex">
           <label for="attachment">
-            <a class="btn btn-primary text-light" role="button" aria-disabled="false">+ Add</a>
+            <a class="btn btn-primary text-light shadow" role="button" aria-disabled="false">+ Add</a>
           </label>
           <input type="file" name="file[]" accept=".pdf" id="attachment" style="visibility: hidden; position: absolute;"
             multiple />
@@ -183,7 +183,7 @@
     </div>
   </div>
 
-  <div aria-label="Page navigation example" class="pagination-container mt-5 d-flex me-auto">
+  <div aria-label="Page navigation example" class="pagination-container mt-5 d-flex me-sm-auto ">
     <button class="pagination-previous border border-1 rounded-circle py-2 px-3 me-3"><i class="bi bi-chevron-left fs-3"></i></button>
     <button class="pagination-next border border-1 rounded-circle py-2 px-3"><i class="bi bi-chevron-right fs-3"></i></div>
   </div>
