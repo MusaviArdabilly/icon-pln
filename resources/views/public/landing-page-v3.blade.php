@@ -2,15 +2,10 @@
 @section('content')
   
   <script type="text/javascript">
-    document.getElementById('nav-home').classList.add('active-white');
-    document.getElementById('navbar').classList.remove('bg-light', 'shadow', 'sticky-top');
+    document.getElementById('nav-home').classList.add('active');
+    document.getElementById('navbar').classList.remove('var-bg-primary', 'shadow', 'sticky-top');
     document.getElementById('navbar').classList.add('fixed-top');
     document.getElementById('nav-brand-logo').classList.add('filter-invert');
-
-    var navLinks = document.getElementsByClassName('top-nav-link');
-    for (var i = 0; i < navLinks.length; i++) {
-      navLinks[i].classList.add('text-white');
-    }
   </script>
 
   <div class="hero-video hero-video-v3">
@@ -95,38 +90,20 @@
     
     window.addEventListener('scroll', function() {
       if (window.scrollY > (heroVideoHeight - navbarHeight)) {
-        targetElement.classList.add('bg-light', 'shadow');
-        document.getElementById('nav-brand-logo').classList.remove('filter-invert');
-        document.getElementById('nav-home').classList.remove('active-white');
-        document.getElementById('nav-home').classList.add('active');
-        var navLinks = document.getElementsByClassName('top-nav-link');
-        for (var i = 0; i < navLinks.length; i++) {
-          navLinks[i].classList.add('text-dark');
-          navLinks[i].classList.remove('text-white');
-        }
+        targetElement.classList.add('var-bg-primary', 'shadow');
       } else {
-        targetElement.classList.remove('bg-light', 'shadow');
-        document.getElementById('nav-brand-logo').classList.add('filter-invert');
-        document.getElementById('nav-home').classList.add('active-white');
-        document.getElementById('nav-home').classList.remove('active');
-        var navLinks = document.getElementsByClassName('top-nav-link');
-        for (var i = 0; i < navLinks.length; i++) {
-          navLinks[i].classList.remove('text-dark');
-          navLinks[i].classList.add('text-white');
-        }
+        targetElement.classList.remove('var-bg-primary', 'shadow');
       }
     });
   </script>
   
   <script>
     function skipHero() {
-      // Get the height of the hero video
       var heroHeight = document.querySelector('.hero-video').offsetHeight;
 
-      // Scroll to the height of the hero video
       window.scrollTo({
         top: heroHeight,
-        behavior: 'smooth' // You can use 'auto' instead of 'smooth' for instant scrolling
+        behavior: 'smooth'
       });
     }
   </script>

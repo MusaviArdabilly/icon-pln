@@ -1,5 +1,6 @@
 :root {
-  --color-primary: #0377A3;
+  --color-primary: #0093ad;
+  --color-secondary: #1f2855;
 }
 
 :root{
@@ -34,8 +35,8 @@ body {
   background-color: var(--color-primary);
 }
 
-.var-bg-x {
-  background-color: #ECEFF1;
+.var-bg-secondary {
+  background-color: var(--color-secondary);
 }
 
 .fw-400 {
@@ -106,10 +107,6 @@ body {
 }
 
 .nav-item .active {
-  border-bottom: solid 2px #000;
-}
-
-.nav-item .active-white {
   border-bottom: solid 2px #fff;
 }
 
