@@ -94,7 +94,7 @@
     
     window.addEventListener('scroll', function() {
       if (window.scrollY > (heroVideoHeight - navbarHeight)) {
-        targetElement.classList.add('bg-light');
+        targetElement.classList.add('bg-light', 'shadow');
         document.getElementById('nav-brand-logo').classList.remove('filter-invert');
         var navLinks = document.getElementsByClassName('top-nav-link');
         for (var i = 0; i < navLinks.length; i++) {
@@ -102,7 +102,7 @@
           navLinks[i].classList.remove('text-white');
         }
       } else {
-        targetElement.classList.remove('bg-light');
+        targetElement.classList.remove('bg-light', 'shadow');
         document.getElementById('nav-brand-logo').classList.add('filter-invert');
         var navLinks = document.getElementsByClassName('top-nav-link');
         for (var i = 0; i < navLinks.length; i++) {
