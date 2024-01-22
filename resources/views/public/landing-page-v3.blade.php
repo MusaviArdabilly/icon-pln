@@ -15,7 +15,7 @@
     <div class="container">
       <div class="overlay min-vh-100 d-flex align-items-center z-1">
         {{-- <h1 class="d-flex align-items-center fw-700 mb-3 text-black">IC<img src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="64px" class="mx-1">NIC</h1> --}}
-        <h1 class="fs-28 fw-500 mb-0 text-light">
+        <h1 class="fs-28 fw-500 mb-0 text-light" data-aos="fade-left" data-aos-duration="1000">
           Terangi Harimu dengan Ide Brilian! Berkolaborasi, Ciptakan Solusi Positif!
         </h1>
       </div>
