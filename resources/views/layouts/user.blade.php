@@ -84,8 +84,18 @@
 					</li>
 					<div class="d-none top-nav-link d-md-block vr text-white mx-2"></div>
 					<li class="nav-item">
-						<a id="nav-auth" class="nav-link top-nav-link fw-600 text-white" href="/login">Login</a>
+						@auth
+							<a id="nav-auth" class="nav-link top-nav-link fw-600 text-white" href="/login">{{ Auth::user()->name }}</a>
+						@endauth
+						@guest
+							<a id="nav-auth" class="nav-link top-nav-link fw-600 text-white" href="/login">Login</a>
+						@endguest
 					</li>
+					{{-- @auth
+						<li class="nav-item">
+							<a id="nav-repository" class="nav-link top-nav-link fw-600 text-white" href="/logout">Logout</a>
+						</li>
+					@endauth --}}
 				</ul>
 			</div>
 		</div>
