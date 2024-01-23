@@ -85,7 +85,7 @@ html {
 
         li {
             display: inline-block;
-            background: #555;
+            background: #0093ad;
             color: white;
             padding: 3px 5px 3px 10px;
             border-radius: 15px;
@@ -97,7 +97,7 @@ html {
                 text-decoration: none;
                 margin-left: 5px;
                 font-size: 10px;
-                background: #333;
+                background: #0093ad;
                 width: 15px;
                 height: 15px;
                 border-radius: 50%;
@@ -443,4 +443,14 @@ html {
 .pagination-previous, .pagination-next {
     background-color: white;
     border-color: #0377A3 !important;
+}
+
+/* quilljs custom style */
+.ql-toolbar {
+    border-radius: 10px 10px 0 0 !important;
+    border-radius: 10px;
+}
+
+.quillCustom {
+    border-radius: 0 0 10px 10px;
 }

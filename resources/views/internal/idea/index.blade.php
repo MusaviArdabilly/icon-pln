@@ -1,9 +1,9 @@
 @extends('layouts.user')
 @section('content')
-  
-  <script type="text/javascript">
-    document.getElementById('nav-idea').classList.add('active');
-  </script>
+
+<script type="text/javascript">
+  document.getElementById('nav-idea').classList.add('active');
+</script>
 
 <section class="title_idea container-xxl mt-5" style="position: relative;">
   <div class="title_idea_head w-100 text-center d-flex flex-column justify-items-center" style="position: relative;">
@@ -40,63 +40,65 @@
 
   <div class="card w-100 text-center px-3 py-3 hidden_idea_form mt-3 border-0 shadow bounce-in" style="display: none;">
     <h3 class="mx-auto">Ideabox</h3>
-    <!-- image upload -->
-
-    <div class="row input_item">
-      <p class="col-3">Banner</p>
-      <div class="col-9">
-        <form id="file-upload-form" class="uploader">
-          <input id="file-upload" type="file" name="fileUpload" accept="image/*" style="display:none" />
-          <label for="file-upload" id="file-drag">
-            <img id="file-image" src="#" alt="Preview" class="hidden">
-            <div id="start">
-              <i class="bi bi-download" aria-hidden="true"></i>
-              <div>Select a file or drag here</div>
-              <div id="notimage" class="hidden">Please select an image</div>
-              <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
-            </div>
-            <div id="response" class="hidden">
-              <div id="messages"></div>
-            </div>
-          </label>
-        </form>
-      </div>
-    </div>
-    <div class="row input_item">
-      <p class="col-3">Judul/Topik</p>
-      <div class="col-9">
-        <div id="quillEditorJudul">
+    <form id="ideabox-submit">
+      <!-- image upload -->
+      @csrf
+      <div class="row input_item">
+        <p class="col-3">Banner</p>
+        <div class="uploader">
+          <div class="col-9">
+            <input id="file-upload" type="file" name="fileUpload" accept="image/*" style="display:none" />
+            <label for="file-upload" id="file-drag">
+              <img id="file-image" src="#" alt="Preview" class="hidden">
+              <div id="start">
+                <i class="bi bi-download" aria-hidden="true"></i>
+                <div>Select a file or drag here</div>
+                <div id="notimage" class="hidden">Please select an image</div>
+                <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+              </div>
+              <div id="response" class="hidden">
+                <div id="messages"></div>
+              </div>
+            </label>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row input_item">
-      <p class="col-3">Abstrak</p>
-      <div class="col-9">
-        <div id="quillEditorAbstrak">
+      <div class="row input_item">
+        <p class="col-3">Judul/Topik</p>
+        <div class="col-9">
+          <div id="quillEditorJudul" class="quillCustom shadow border-0 radius-3">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row input_item">
-      <p class="col-3">Latar Belakang</p>
-      <div class="col-9">
-        <div id="quillEditorLatarBelakang">
+      <div class="row input_item">
+        <p class="col-3">Abstrak</p>
+        <div class="col-9">
+          <div id="quillEditorAbstrak" class="quillCustom shadow border-0 radius-3">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row input_item">
-      <p class="col-3">Isi</p>
-      <div class="col-9">
-        <div id="quillEditorIsi">
+      <div class="row input_item">
+        <p class="col-3">Latar Belakang</p>
+        <div class="col-9">
+          <div id="quillEditorLatarBelakang" class="quillCustom shadow border-0 radius-3">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row input_item">
-      <p class="col-3">Solusi</p>
-      <div class="col-9">
-        <div id="quillEditorSolusi">
+      <div class="row input_item">
+        <p class="col-3">Isi</p>
+        <div class="col-9">
+          <div id="quillEditorIsi" class="quillCustom shadow border-0 radius-3">
+          </div>
         </div>
       </div>
-    </div>
+      <div class="row input_item">
+        <p class="col-3">Solusi</p>
+        <div class="col-9">
+          <div id="quillEditorSolusi" class="quillCustom shadow border-0 radius-3">
+          </div>
+        </div>
+      </div>
+    </form>
     <!-- chips input -->
     <div class="row input_item">
       <p class="col-3">Team</p>
@@ -109,11 +111,11 @@
     </div>
     <!-- attachmen -->
     <div class="row input_item">
-      <p class="col-3">Attachmen</p>
+      <p class="col-3">Attachment</p>
       <div class="col-9 d-flex justify-content-center">
         <p class="d-flex">
           <label for="attachment">
-            <a class="btn btn-primary text-light" role="button" aria-disabled="false">+ Add</a>
+            <a class="btn btn-primary text-light shadow" role="button" aria-disabled="false">+ Add</a>
           </label>
           <input type="file" name="file[]" accept=".pdf" id="attachment" style="visibility: hidden; position: absolute;"
             multiple />
@@ -126,7 +128,7 @@
       </div>
     </div>
     <div class="d-flex ms-auto w-0" style="width: fit-content;">
-      <button type="button" class="btn btn-primary me-3" onclick="submitForm()">Submit</button>
+      <button type="submit" class="btn btn-primary me-3" onclick="onSubmit()">Submit</button>
       <button type="button" class="btn btn-danger" onclick="show(this)">Cencel</button>
     </div>
 
@@ -168,7 +170,8 @@
       </div>
       <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
         <h5 class="card-title mt-2">Peningkatan Jaringan PLN ICON</h5>
-        <a href="/idea/12" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
+        <a href="/idea/12" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none">
+          Lihat
           Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
       </div>
     </div>
@@ -188,9 +191,11 @@
     </div>
   </div>
 
-  <div aria-label="Page navigation example" class="pagination-container mt-5 d-flex me-auto">
-    <button class="pagination-previous border border-1 rounded-circle py-2 px-3 me-3"><i class="bi bi-chevron-left fs-3"></i></button>
-    <button class="pagination-next border border-1 rounded-circle py-2 px-3"><i class="bi bi-chevron-right fs-3"></i></div>
+  <div aria-label="Page navigation example" class="pagination-container mt-5 d-flex me-sm-auto ">
+    <button class="pagination-previous border border-1 rounded-circle py-2 px-3 me-3"><i
+        class="bi bi-chevron-left fs-3"></i></button>
+    <button class="pagination-next border border-1 rounded-circle py-2 px-3"><i class="bi bi-chevron-right fs-3"></i>
+  </div>
   </div>
 
 </section>
@@ -357,7 +362,6 @@
         document.getElementById('notimage').classList.remove("hidden");
         document.getElementById('start').classList.remove("hidden");
         document.getElementById('response').classList.add("hidden");
-        document.getElementById("file-upload-form").reset();
       }
     }
 
@@ -421,9 +425,45 @@
   });
 
   // submit form
-  function submitForm() {
-    console.log(JSON.stringify(quillEditorJudul.root.innerHTML), items, attachmen, imageUpload)
+  function onSubmit() {
+    const valueIdea = {
+      title: JSON.stringify(quillEditorJudul.root.innerHTML),
+      abstract: JSON.stringify(quillEditorAbstrak.root.innerHTML),
+      background: JSON.stringify(quillEditorLatarBelakang.root.innerHTML),
+      content: JSON.stringify(quillEditorIsi.root.innerHTML),
+      solution: JSON.stringify(quillEditorSolusi.root.innerHTML),
+      team: items,
+      attachment: attachmen,
+      banner: imageUpload
+
+    }
+    var formData = new FormData();
+    console.log(valueIdea)
+
+    for (var key in valueIdea) {
+      formData.append(key, valueIdea[key]);
+    }
+    $.ajax({
+      type: 'POST',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: "/idea-submit",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (response) {
+        console.log(response);
+        // Handle success response, redirect, or update UI as needed
+      },
+      error: function (error) {
+        console.log(error);
+        // Handle error response
+      }
+    });
+
   }
+
 
 </script>
 @endsection

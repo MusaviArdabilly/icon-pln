@@ -74,7 +74,7 @@
     </div>
   </div>
 
-  <div aria-label="Page navigation example" class="pagination-container mt-5 d-flex me-auto">
+  <div aria-label="Page navigation example" class="pagination-container mt-5 d-flex me-sm-auto">
     <button class="pagination-previous border border-1 rounded-circle py-2 px-3 me-3"><i
         class="bi bi-chevron-left fs-3"></i></button>
     <button class="pagination-next border border-1 rounded-circle py-2 px-3"><i class="bi bi-chevron-right fs-3"></i>
