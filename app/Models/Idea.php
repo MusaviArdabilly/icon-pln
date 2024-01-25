@@ -10,6 +10,7 @@ class Idea extends Model
     use HasFactory;
 
     protected $table = 'idea';
+    
     protected $fillable = [
         'tumbnail',
         'title',
@@ -17,6 +18,11 @@ class Idea extends Model
         'background',
         'content',
         'solution',
-        'team'
+        'team',
+        'status'
+    ];
+    
+    protected $casts = [
+        'attachment' => 'json',
     ];
 }

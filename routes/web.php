@@ -37,9 +37,15 @@ Route::get('/innovation/{id}', [InternalController::class, 'detail_innovation'])
 Route::get('/repository', [InternalController::class, 'repository_v2']);
 Route::get('/repository-v2', [InternalController::class, 'repository']);
 
-Route::prefix('admin')->group(function () {
+Route::prefix('/admin')->group(function () {
     Route::get('/idea', [AdminController::class, 'idea']);
+    Route::get('/idea/{id}', [AdminController::class, 'detail_idea']);
+    Route::get('/idea/{id}/transfer-to-innovation', [AdminController::class, 'idea_to_innovation']);
+    Route::get('/idea/{id}/delete', [AdminController::class, 'delete_idea']);
     Route::get('/innovation', [AdminController::class, 'innovation']);
+    Route::get('/innovation/{id}', [AdminController::class, 'detail_innovation']);
+    Route::get('/innovation/{id}/transfer-to-idea', [AdminController::class, 'innovation_to_idea']);
+    Route::get('/innovation/{id}/delete', [AdminController::class, 'delete_innovation']);
     Route::get('/user-managemenet', [AdminController::class, 'user_management']);
 });
 
