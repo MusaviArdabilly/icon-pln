@@ -17,7 +17,7 @@ class InternalController extends Controller
             'content' => 'required',
             'solution' => 'required',
             'team' => 'required',
-            'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'attachment' => 'required',
         ]);
 
         // $post = new Post;

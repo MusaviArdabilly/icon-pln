@@ -31,6 +31,7 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [AuthController::class, 'register']);
 
 Route::get('/idea', [InternalController::class, 'idea']);
+Route::post('/idea-submit', [InternalController::class, 'ideaSubmit']);
 Route::get('/idea/{id}', [InternalController::class, 'detail_idea']);
 Route::get('/innovation', [InternalController::class, 'innovation']);
 Route::get('/innovation/{id}', [InternalController::class, 'detail_innovation']);
