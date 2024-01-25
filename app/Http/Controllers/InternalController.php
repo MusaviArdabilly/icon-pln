@@ -18,20 +18,25 @@ class InternalController extends Controller
             'solution' => 'required',
             'team' => 'required',
         ]);
-        $images = [];
-        $tumbnailName = $request->file('tumbnail')->store('assets/image/tumbnail', 'public');
+        // $images = [];
+        $path = public_path('assets/image/tumbnail');
+        !is_dir($path) &&
+            mkdir($path, 0777, true);
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $file) {
-                $filename = time() . '_' . $file->getClientOriginalName();
-                $file->storeAs('public/images', $filename);
-                $images[] = $filename;
-            }
-            // $post->images = implode(',', $images);
-        }
+        $imageName = time() . '.' . $request->tumbnail->extension();
+        $request->tumbnail->move($path, $imageName);
+
+        // if ($request->hasFile('images')) {
+        //     foreach ($request->file('images') as $file) {
+        //         $filename = time() . '_' . $file->getClientOriginalName();
+        //         $file->storeAs('public/images', $filename);
+        //         $images[] = $filename;
+        //     }
+        //     // $post->images = implode(',', $images);
+        // }
 
         Idea::create([
-            'tumbnail'     => $request->file('tumbnail')->getClientOriginalName(),
+            'tumbnail'     => $imageName,
             'title'        => $request->title,
             'abstract'     => $request->abstract,
             'background'   => $request->background,

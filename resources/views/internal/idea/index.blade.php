@@ -161,25 +161,34 @@
 
   <h3 class="me-auto mt-5">List Idea</h3>
   <div class="mt-3 row row-cols-4 gap-5 w-100 justify-content-center justify-content-sm-start">
-    @forelse ($idea as $item)
-      <div data-aos="fade-up"
-        class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
-        style="width: 18rem;">
-        <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-4">
-          <img src="{{ asset('assets/image/tumbnail/iot.jpg') }}"
-            style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
-        </div>
-        <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
-          <h5 class="card-title mt-2">{{ $item->title }}</h5>
-          <a href="/idea/{{ $item->id }}" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
-            Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
-        </div>
+    <div data-aos="fade-up"
+      class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
+      style="width: 18rem;">
+      <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-4">
+        <img src="{{ asset('assets/image/tumbnail/iconpln2.jpg') }}"
+          style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
       </div>
-    @empty
-      <div class="alert alert-danger w-100 text-center" role="alert">
-        Tidak ada Data
+      <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
+        <h5 class="card-title mt-2">Peningkatan Jaringan PLN ICON</h5>
+        <a href="/idea/12" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none">
+          Lihat
+          Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
       </div>
-    @endforelse
+    </div>
+
+    <div data-aos="fade-up"
+      class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
+      style="width: 18rem;">
+      <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-4">
+        <img src="{{ asset('assets/image/tumbnail/icon pln.jpeg') }}"
+          style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
+      </div>
+      <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
+        <h5 class="card-title mt-2">Peningkatan ide dan innovasi PLN ICON</h5>
+        <a href="/idea/1" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
+          Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
+      </div>
+    </div>
   </div>
 
   <div aria-label="Page navigation example" class="pagination-container mt-5 d-flex me-sm-auto ">
@@ -416,9 +425,45 @@
   });
 
   // submit form
-  function submitForm() {
-    console.log(JSON.stringify(quillEditorJudul.root.innerHTML), items, attachmen, imageUpload)
+  function onSubmit() {
+    const valueIdea = {
+      title: JSON.stringify(quillEditorJudul.root.innerHTML),
+      abstract: JSON.stringify(quillEditorAbstrak.root.innerHTML),
+      background: JSON.stringify(quillEditorLatarBelakang.root.innerHTML),
+      content: JSON.stringify(quillEditorIsi.root.innerHTML),
+      solution: JSON.stringify(quillEditorSolusi.root.innerHTML),
+      team: items,
+      attachment: attachmen,
+      tumbnail: imageUpload
+
+    }
+    var formData = new FormData();
+    console.log(valueIdea)
+
+    for (var key in valueIdea) {
+      formData.append(key, valueIdea[key]);
+    }
+    $.ajax({
+      type: 'POST',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: "/idea-submit",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (response) {
+        console.log(response);
+        // Handle success response, redirect, or update UI as needed
+      },
+      error: function (error) {
+        console.log(error);
+        // Handle error response
+      }
+    });
+
   }
+
 
 </script>
 @endsection
