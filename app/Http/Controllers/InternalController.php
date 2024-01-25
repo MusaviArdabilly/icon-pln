@@ -10,28 +10,36 @@ class InternalController extends Controller
 {
     public function ideaSubmit(Request $request) {
         $validator = Validator::make($request->all(), [
-            'banner'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'tumbnail'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'title'     => 'required',
             'abstract'   => 'required',
             'background' => 'required',
             'content' => 'required',
             'solution' => 'required',
             'team' => 'required',
-            'attachment' => 'required',
         ]);
+        $images = [];
+        $tumbnailName = $request->file('tumbnail')->store('assets/image/tumbnail', 'public');
 
-        // $post = new Post;
-        // $post->title = $request->title;
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('public/images', $filename);
+                $images[] = $filename;
+            }
+            // $post->images = implode(',', $images);
+        }
 
-        // if ($request->hasFile('images')) {
-        //     $images = [];
-        //     foreach ($request->file('images') as $file) {
-        //         $filename = time() . '_' . $file->getClientOriginalName();
-        //         $file->storeAs('public/images', $filename);
-        //         $images[] = $filename;
-        //     }
-        //     // $post->images = implode(',', $images);
-        // }
+        Idea::create([
+            'tumbnail'     => $request->file('tumbnail')->getClientOriginalName(),
+            'title'        => $request->title,
+            'abstract'     => $request->abstract,
+            'background'   => $request->background,
+            'content'      => $request->content,
+            'solution'     => $request->solution,
+            'team'         => $request->team,
+            'status'       => "ide",
+        ]);
 
         // $post->save();
         if ($validator->fails()) {
