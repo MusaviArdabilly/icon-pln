@@ -10,21 +10,23 @@ class InternalController extends Controller
 {
     public function ideaSubmit(Request $request) {
         $validator = Validator::make($request->all(), [
-            'banner'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'tumbnail'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'title'     => 'required',
             'abstract'   => 'required',
             'background' => 'required',
             'content' => 'required',
             'solution' => 'required',
             'team' => 'required',
-            'attachment' => 'required',
         ]);
+        // $images = [];
+        $path = public_path('assets/image/tumbnail');
+        !is_dir($path) &&
+            mkdir($path, 0777, true);
 
-        // $post = new Post;
-        // $post->title = $request->title;
+        $imageName = time() . '.' . $request->tumbnail->extension();
+        $request->tumbnail->move($path, $imageName);
 
         // if ($request->hasFile('images')) {
-        //     $images = [];
         //     foreach ($request->file('images') as $file) {
         //         $filename = time() . '_' . $file->getClientOriginalName();
         //         $file->storeAs('public/images', $filename);
@@ -32,6 +34,17 @@ class InternalController extends Controller
         //     }
         //     // $post->images = implode(',', $images);
         // }
+
+        Idea::create([
+            'tumbnail'     => $imageName,
+            'title'        => $request->title,
+            'abstract'     => $request->abstract,
+            'background'   => $request->background,
+            'content'      => $request->content,
+            'solution'     => $request->solution,
+            'team'         => $request->team,
+            'status'       => "ide",
+        ]);
 
         // $post->save();
         if ($validator->fails()) {

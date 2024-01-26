@@ -166,11 +166,11 @@
         class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
         style="width: 18rem;">
         <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-4">
-          <img src="{{ asset('assets/image/tumbnail/iot.jpg') }}"
+          <img src="{{ asset('assets/image/tumbnail/'. $item->tumbnail) }}"
             style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
         </div>
         <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
-          <h5 class="card-title mt-2">{{ $item->title }}</h5>
+          <h5 class="card-title mt-2">{!! $item->title !!} </h5>
           <a href="/idea/{{ $item->id }}" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
             Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
         </div>
@@ -415,9 +415,44 @@
     });
   });
 
-  // submit form
-  function submitForm() {
-    console.log(JSON.stringify(quillEditorJudul.root.innerHTML), items, attachmen, imageUpload)
+   // submit form
+   function onSubmit() {
+    const valueIdea = {
+      title: quillEditorJudul.root.innerHTML,
+      abstract: quillEditorAbstrak.root.innerHTML,
+      background: quillEditorLatarBelakang.root.innerHTML,
+      content: quillEditorIsi.root.innerHTML,
+      solution: quillEditorSolusi.root.innerHTML,
+      team: items,
+      attachment: attachmen,
+      tumbnail: imageUpload
+
+    }
+    var formData = new FormData();
+    console.log(valueIdea)
+
+    for (var key in valueIdea) {
+      formData.append(key, valueIdea[key]);
+    }
+    $.ajax({
+      type: 'POST',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: "/idea-submit",
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (response) {
+        console.log(response);
+        // Handle success response, redirect, or update UI as needed
+      },
+      error: function (error) {
+        console.log(error);
+        // Handle error response
+      }
+    });
+
   }
 
 </script>
