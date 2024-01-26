@@ -47,7 +47,7 @@
                         @endif
                       @endfor
                     </td>
-                    <td class="text-center"><button class="btn btn-sm var-bg-primary text-white" disabled>Inovasi</button></td>
+                    <td class="text-center"><label class="btn btn-sm bg-success text-white" style="cursor: auto">Inovasi</label></td>
                     <td class="text-center nowrap">
                       <a href="/admin/innovation/{{ $item->id }}" class="btn btn-sm btn-secondary mb-1"><i class="fas fa-fw fa-eye"></i></a>
                       <a href="/admin/innovation/{{ $item->id }}/delete" class="btn btn-sm btn-danger mb-1"

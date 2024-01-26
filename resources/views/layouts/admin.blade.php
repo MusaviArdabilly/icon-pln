@@ -23,7 +23,11 @@
 
 						<!-- Sidebar - Brand -->
 						<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-								<h1 class="d-flex align-items-center top-nav-link fs-36 fw-700 m-0 text-white">IC<img id="nav-brand-logo" src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="36px" style="filter: invert(100)">NIC</h1>			
+								<h1 class="d-flex align-items-center top-nav-link fs-36 fw-700 m-0 text-white">
+									<label class="sidebar-brand-text font-weight-bold m-0">IC</label>
+									<img id="nav-brand-logo" src="{{ asset('assets/image/icon/landing-page/box.png') }}" class="mx-1 sidebar-brand-icon" alt="" height="36px" style="filter: invert(100)">
+									<label class="sidebar-brand-text font-weight-bold m-0">NIC</label>
+								</h1>			
 						</a>
 
 						{{-- <!-- Divider -->
@@ -184,14 +188,7 @@
 		<script src="{{ asset('assets/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
 		<!-- Custom scripts for all pages-->
-		<script src="js/sb-admin-2.min.js"></script>
-
-		<!-- Page level plugins -->
-		<script src="vendor/chart.js/Chart.min.js"></script>
-
-		<!-- Page level custom scripts -->
-		<script src="js/demo/chart-area-demo.js"></script>
-		<script src="js/demo/chart-pie-demo.js"></script>
+		<script src="{{ asset('assets/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
     <script src="{{ asset('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
