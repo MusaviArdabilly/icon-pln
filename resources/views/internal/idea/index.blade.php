@@ -161,7 +161,6 @@
 
   <h3 class="me-auto mt-5">List Idea</h3>
   <div class="mt-3 row row-cols-4 gap-5 w-100 justify-content-center justify-content-sm-start">
-<<<<<<< HEAD
     @forelse ($idea as $item)
       <div data-aos="fade-up"
         class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
@@ -175,14 +174,6 @@
           <a href="/idea/{{ $item->id }}" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
             Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
         </div>
-=======
-    <div data-aos="fade-up"
-      class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
-      style="width: 18rem;">
-      <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-4">
-        <img src="{{ asset('assets/image/tumbnail/iconpln2.jpg') }}"
-          style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
->>>>>>> main
       </div>
       <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
         <h5 class="card-title mt-2">Peningkatan Jaringan PLN ICON</h5>
@@ -191,6 +182,7 @@
           Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
       </div>
     </div>
+    @endsection
 
     <div data-aos="fade-up"
       class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
@@ -479,7 +471,4 @@
     });
 
   }
-
-
 </script>
-@endsection
