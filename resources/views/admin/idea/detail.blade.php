@@ -12,14 +12,14 @@
         <a href="/admin/idea" class="text-decoration-none font-weight-bold d-flex align-items-center">
           <i class="fas fa-fw fa-angle-left"></i>&nbsp;Kembali
         </a>
-          <div class="dropdown">
-            <div class="dropdown-toggle text-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-            </div>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="/admin/idea/{{ $idea->id }}/transfer-to-innovation" onclick="moveIdea(event)">Masukkan ke Inovasi</a>
-            </div>
+        <div class="dropdown">
+          <div class="dropdown-toggle text-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
           </div>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/admin/idea/{{ $idea->id }}/transfer-to-innovation" onclick="moveIdea(event)">Masukkan ke Inovasi</a>
+          </div>
+        </div>
       </div>
       <div class="row mb-5">
         <div class="col-12 d-md-none">
