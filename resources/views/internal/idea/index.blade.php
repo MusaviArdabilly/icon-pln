@@ -423,7 +423,7 @@
       background: quillEditorLatarBelakang.root.innerHTML,
       content: quillEditorIsi.root.innerHTML,
       solution: quillEditorSolusi.root.innerHTML,
-      team: items,
+      team: items.join(', '),
       attachment: attachmen,
       tumbnail: imageUpload
 

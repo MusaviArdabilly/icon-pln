@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
 	<title>Icon PLN</title>
+	<link rel="icon" type="image/x-icon" href="{{ asset('assets/image/logo/favicon.png') }}">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -63,7 +64,8 @@
 	<nav id="navbar" class="navbar navbar-expand-lg sticky-top var-bg-primary shadow">
 		<div class="container">
 			<a class="navbar-brand" href="/">
-        <h1 class="d-flex align-items-center top-nav-link fs-16 fw-700 m-0 text-white">IC<img id="nav-brand-logo" src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="16px" class="filter-invert mx-1px">NIC</h1>
+        {{-- <h1 class="d-flex align-items-center top-nav-link fs-16 fw-700 m-0 text-white">IC<img id="nav-brand-logo" src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="16px" class="filter-invert mx-1px">NIC</h1> --}}
+				<img src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="" height="36px">
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 				aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,7 +135,8 @@
 	{{-- v2 --}}
 	<footer id="footer" class="var-bg-primary">
 		<div class="container py-3">
-			<h1 class="d-flex align-items-center fs-16 fw-700 my-2 text-white">IC<img src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="16px" class="filter-invert mx-1px">NIC</h1>
+			{{-- <h1 class="d-flex align-items-center fs-16 fw-700 my-2 text-white">IC<img src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="16px" class="filter-invert mx-1px">NIC</h1> --}}
+			<img class="my-2" src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="" height="36px">
 			<ul class="navbar-nav d-flex flex-row">
 				<li class="nav-item">
 					<a class="nav-link fw-600 text-white me-3 py-0" aria-current="page" href="/">Home</a>

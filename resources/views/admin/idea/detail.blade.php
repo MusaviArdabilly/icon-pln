@@ -22,8 +22,8 @@
           </div>
         </div>
         <div class="col-12 col-md-9">
-          <h2 class="d-none d-md-block font-weight-bold text-overflow-hidden" data-mdb-toggle="popover" title="{{ $idea->title }}">{{ $idea->title }}</h2>
-          <h2 class="d-md-none font-weight-bold">{{ $idea->title }}</h2>
+          <h2 class="d-none d-md-block font-weight-bold text-overflow-hidden" data-mdb-toggle="popover" title="{{ $idea->title }}">{!! $idea->title !!}</h2>
+          <h2 class="d-md-none font-weight-bold">{{ e($idea->title) }}</h2>
           {{-- max 650 character abstraksi --}}
           <p class="abstraction fs-16 fw-400 lh-24">{{ $idea->abstract }}</p>
           <h5 class="font-weight-bold m-0">Oleh:</h5>

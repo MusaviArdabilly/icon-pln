@@ -3,60 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Idea;
 
 class InternalController extends Controller
 {
-    public function ideaSubmit(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'tumbnail'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'title'     => 'required',
-            'abstract'   => 'required',
-            'background' => 'required',
-            'content' => 'required',
-            'solution' => 'required',
-            'team' => 'required',
-        ]);
-        // $images = [];
-        $path = public_path('assets/image/tumbnail');
-        !is_dir($path) &&
-            mkdir($path, 0777, true);
-
-        $imageName = time() . '.' . $request->tumbnail->extension();
-        $request->tumbnail->move($path, $imageName);
-
-        // if ($request->hasFile('images')) {
-        //     foreach ($request->file('images') as $file) {
-        //         $filename = time() . '_' . $file->getClientOriginalName();
-        //         $file->storeAs('public/images', $filename);
-        //         $images[] = $filename;
-        //     }
-        //     // $post->images = implode(',', $images);
-        // }
-
-        Idea::create([
-            'tumbnail'     => $imageName,
-            'title'        => $request->title,
-            'abstract'     => $request->abstract,
-            'background'   => $request->background,
-            'content'      => $request->content,
-            'solution'     => $request->solution,
-            'team'         => $request->team,
-            'status'       => "ide",
-        ]);
-
-        // $post->save();
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        } else {
-            return response()->json(
-                ['message' => 'Post created successfully',
-                "data" => $request->all()
-            ]);
-        }
-
-    }
     public function idea() {
         $idea = Idea::where('status', 'ide')->get();
 
@@ -67,6 +19,23 @@ class InternalController extends Controller
         $idea = Idea::find($id);
 
         return view('internal.idea.detail', compact('idea'));
+    }
+
+    public function idea_submit(Request $request) {
+        $clean_title = strip_tags($request->title);
+        $tumbnail_name = 'Tumbnail - ' . Auth::user()->name . ' ' . $clean_title;
+        
+        $idea =  new Idea;
+        $idea->tumbnail = $tumbnail_name;
+        $idea->title = $request->title;
+        $idea->abstract = $request->abstract;
+        $idea->background = $request->background;
+        $idea->content = $request->content;
+        $idea->solution = $request->solution;
+        $idea->team = $request->team;
+        $idea->status = 'Ide';
+        $idea->attachment = $request->attachment;
+        $idea->save();
     }
     
     public function innovation() {
