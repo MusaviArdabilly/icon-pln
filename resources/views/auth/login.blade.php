@@ -87,4 +87,18 @@
     }
   </script>
 
+  @if ($errors->has('Unauthorized'))
+    <script>
+      setTimeout(function() {
+        window.Swal.fire({
+          icon: 'error',
+          title: 'Tidak ada akses',
+          text: 'Anda Harus Login Terlebih Dahulu',
+          timer: 5000,
+          showConfirmButton: false,
+        });
+      }, 500);
+    </script>
+  @endif
+
 @endsection
