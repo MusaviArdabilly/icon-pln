@@ -12,6 +12,9 @@
 		<link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome/css/all.css') }}">
     <link href="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 		<link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
+		
+		{{-- Sweet Alert --}}
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	</head>
 	<body id="page-top">
 
@@ -196,5 +199,17 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ asset('assets/js/datatables-demo.js') }}"></script>
+
+		{{-- use common JS  --}}
+		<script>
+			const Swal = require('sweetalert2')
+
+			Swal.fire({
+				title: 'Error!',
+				text: 'Do you want to continue',
+				icon: 'error',
+				confirmButtonText: 'Cool'
+			})
+		</script>
 	</body>
 </html>

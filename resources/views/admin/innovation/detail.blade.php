@@ -12,8 +12,14 @@
         <a href="/admin/innovation" class="text-decoration-none font-weight-bold d-flex align-items-center">
           <i class="fas fa-fw fa-angle-left"></i>&nbsp;Kembali
         </a>
-        <a href="/admin/innovation/{{ $innovation->id }}/transfer-to-idea" class="btn btn-sm btn-danger"
-          onclick="return confirm(`Apakah anda yakin untuk mengubah innovasi yang berjudul:\n{{ $innovation->title }}\ndari tim:\n{{ $innovation->team }}\nmenjadi ide?`)">Kembalikan ke Ide</a>
+        <div class="dropdown">
+          <div class="dropdown-toggle text-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+          </div>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/admin/innovation/{{ $innovation->id }}/transfer-to-idea" onclick="moveIdea(event)">Kembalikan ke Ide</a>
+          </div>
+        </div>
       </div>
       <div class="row mb-5">
         <div class="col-12 d-md-none">
@@ -198,6 +204,26 @@
       content.style.maxHeight = content.scrollHeight + "px";
       toggleShow.classList.add('d-none');
       toggleHide.classList.remove('d-none');
+    }
+  </script>
+  
+  <script>
+    function moveIdea(event) {
+      event.preventDefault();
+      var redirectTo = event.currentTarget.getAttribute('href');  
+      window.Swal.fire({
+        title: 'Ubah inovasi menjadi ide',
+        text: 'Apakah anda ingin mengubah inovasi ini kembali menjadi ide?',
+        icon: 'question',
+        reverseButtons: true,
+        showCancelButton: true,
+        cancelButtonText: 'Batal',
+        confirmButtonText: 'Ya'
+      }).then(function(result) {
+        if (result.isConfirmed) {
+          location.assign(redirectTo);
+        }
+      });
     }
   </script>
 

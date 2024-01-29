@@ -133,3 +133,7 @@ ul {
   width: 100%;
   margin-left: 28px;
 }
+
+.dropdown-toggle::after {
+  content: none; /* Remove the default arrow */
+}
