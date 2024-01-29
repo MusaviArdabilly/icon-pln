@@ -26,10 +26,10 @@
 
 						<!-- Sidebar - Brand -->
 						<a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-								<h1 class="d-flex align-items-center top-nav-link fs-36 fw-700 m-0 text-white">
-									<label class="sidebar-brand-text font-weight-bold m-0">IC</label>
+								<h1 class="d-flex align-items-center top-nav-link fs-36 fw-700 m-0 text-white cursor-pointer">
+									<label class="sidebar-brand-text font-weight-bold m-0 cursor-pointer">IC</label>
 									<img id="nav-brand-logo" src="{{ asset('assets/image/icon/landing-page/box.png') }}" class="mx-1 sidebar-brand-icon" alt="" height="36px" style="filter: invert(100)">
-									<label class="sidebar-brand-text font-weight-bold m-0">NIC</label>
+									<label class="sidebar-brand-text font-weight-bold m-0 cursor-pointer">NIC</label>
 								</h1>			
 						</a>
 

@@ -34,6 +34,10 @@
   background-color: var(--color-secondary);
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .nowrap {
   white-space: nowrap;
 }
