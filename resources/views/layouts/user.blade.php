@@ -99,6 +99,10 @@
 									{{ Auth::user()->name }}
 								</span>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+									<a class="dropdown-item" href="/admin/idea" data-toggle="modal" data-target="#logoutModal">
+										<i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>Admin
+									</a>
+									<hr class="m-2">
 									<a class="dropdown-item" href="/logout" data-toggle="modal" data-target="#logoutModal">
 										<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout
 									</a>
