@@ -102,6 +102,12 @@ body {
   overflow: hidden;
 }
 
+.text-overflow-hidden p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .bounce {
   position: relative;
   animation: bounceAnimation 2s infinite;
@@ -305,11 +311,27 @@ body {
 }
 
 /* Detail Idea  */
-.abstraction {
+/* .abstraction {
   height: 168px;
-  /* background-color: #808080; */
   overflow: hidden;
   text-overflow: ellipsis;
+} */
+.abstraction {
+  /* height: 168px; */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 5; /* Number of lines to show */
+}
+
+/* Fallback for non-WebKit browsers */
+@supports not (-webkit-line-clamp: 5) {
+  .abstraction {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
 .detail .tumbnail img {

@@ -21,10 +21,10 @@
           </div>
         </div>
         <div class="col-12 col-md-9">
-          <h1 class="d-none d-md-block fs-36 fw-600 text-overflow-hidden" data-mdb-toggle="popover" title="{{ $idea->title }}">{{ $idea->title }}</h1>
-          <h1 class="d-md-none fs-36 fw-600">{{ $idea->title }}</h1>
+          <h1 class="d-none d-md-block fs-36 fw-600 text-overflow-hidden" data-mdb-toggle="popover" title="{{ strip_tags($idea->title) }}">{!! $idea->title !!}</h1>
+          <h1 class="d-md-none fs-36 fw-600">{!! $idea->title !!}</h1>
           {{-- max 650 character abstraksi --}}
-          <p class="abstraction fs-16 fw-400 lh-24">{{ $idea->abstract }}</p>
+          <label class="abstraction fs-16 fw-400 lh-24 mb-4">{!! $idea->abstract !!}</label>
           <h2 class="fs-16 fw-600 m-0">Oleh:</h2>
           <div class="d-flex">
             @php
@@ -65,7 +65,7 @@
               </div>
             </div>
             <div id="content1" class="transition-height">
-              <p class="fs-16 fw-400 lh-24 mt-3 mb-0">{{ $idea->background }}</p>
+              <p class="fs-16 fw-400 lh-24 mt-3 mb-0">{!! $idea->background !!}</p>
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@
               </div>
             </div>
             <div id="content2" class="transition-height">
-              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{{ $idea->content }}</p>
+              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $idea->content !!}</p>
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@
               </div>
             </div>
             <div id="content3" class="transition-height">
-              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{{ $idea->solution }}</p>
+              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $idea->solution !!}</p>
             </div>
           </div>
         </div>
@@ -111,12 +111,12 @@
         <h3 class="fs-20 fw-600">Lampiran</h3>
       </div>
       <div class="row mb-4">
-        @foreach ($idea->attachment as $item)
+        {{-- @foreach ($idea->attachment as $item)
           <div class="col-6 col-md-2 p-3">
             <img src="{{ asset('assets/image/icon/landing-page/atom.png') }}" alt="" class="shadow rounded attachment-tumbnail rounded">
             <label class="fs-16 fw-500 mt-2">{{ $item }}</label>
           </div>
-        @endforeach
+        @endforeach --}}
       </div>
       <hr class="mb-4">
       <div class="comment mb-4">
