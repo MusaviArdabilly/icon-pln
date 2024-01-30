@@ -96,6 +96,12 @@ body {
   margin-right: 2px;
 }
 
+.relative-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .text-overflow-hidden {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -356,10 +362,50 @@ body {
   transition: max-height 0.5s ease;
 } */
 
+.two-rows-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2; /* Number of lines to show */
+}
+
+/* Fallback for non-WebKit browsers */
+@supports not (-webkit-line-clamp: 5) {
+  .two-rows-text {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
 .attachment-tumbnail {
   width: 100%;
   height: 150px;
+  overflow: hidden;
+}
+
+.attachment-image {
+  height: 150px;
+  width: 100%;
   object-fit: cover;
+}
+
+.attachment-tumbnail a {
+  display: none;
+}
+
+.attachment-tumbnail:hover {
+  background-color: #00000080;
+}
+
+.attachment-tumbnail:hover img {
+  filter: brightness(0.5);
+}
+
+.attachment-tumbnail:hover a {
+  display: block;
+  cursor: pointer;
 }
 
 .navbar {

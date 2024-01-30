@@ -111,12 +111,38 @@
         <h3 class="fs-20 fw-600">Lampiran</h3>
       </div>
       <div class="row mb-4">
-        {{-- @foreach ($idea->attachment as $item)
-          <div class="col-6 col-md-2 p-3">
-            <img src="{{ asset('assets/image/icon/landing-page/atom.png') }}" alt="" class="shadow rounded attachment-tumbnail rounded">
-            <label class="fs-16 fw-500 mt-2">{{ $item }}</label>
+        @foreach ($idea->attachment as $item)
+          @php
+            $filePath = $item; 
+            $fileInfo = pathinfo($filePath);
+            $fileExtension = $fileInfo['extension'];
+          @endphp
+          <div class="col-6 col-md-2 p-3 attachment">
+            @if (in_array($fileExtension, ['png', 'jpg', 'jpeg']))
+            <div class="position-relative shadow rounded attachment-tumbnail rounded">
+              <img class="position-absolute relative-center attachment-image" src="{{ asset('storage/' . $item) }}" alt="">
+              <a href="{{ url('download/'.$item) }}" class="position-absolute relative-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="36px"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+              </a>
+            </div>
+            @elseif ($fileExtension == 'pdf')
+            <div class="position-relative shadow rounded attachment-tumbnail rounded">
+              <img class="position-absolute relative-center" src="{{ asset('assets/image/icon/pdf-icon.png') }}" alt="" height="100px">
+              <a href="{{ url('download/'.$item) }}" class="position-absolute relative-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="36px"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+              </a>
+            </div>
+            @elseif (in_array($fileExtension, ['ppt', 'pptx']))
+            <div class="position-relative shadow rounded attachment-tumbnail rounded">
+              <img class="position-absolute relative-center" src="{{ asset('assets/image/icon/ppt-icon.png') }}" alt="" height="100px">
+              <a href="{{ url('download/'.$item) }}" class="position-absolute relative-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="36px"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+              </a>
+            </div>
+            @endif
+            <label class="fs-16 fw-500 mt-2 two-rows-text">{{ str_replace('attachments/', '', $item) }}</label>
           </div>
-        @endforeach --}}
+        @endforeach
       </div>
       <hr class="mb-4">
       <div class="comment mb-4">
@@ -172,58 +198,6 @@
     </div>
   </div>
 
-  {{-- <script>
-    function toggleContent(contentId, toggleShowId, toggleHideId) {
-      const content = document.getElementById(contentId);
-      const toggleShow = document.getElementById(toggleShowId);
-      const toggleHide = document.getElementById(toggleHideId);
-  
-      if (content.style.maxHeight) {
-        content.style.maxHeight = null;
-        toggleShow.classList.remove('d-none');
-        toggleHide.classList.add('d-none');
-      } else {
-        content.style.maxHeight = content.scrollHeight + "px";
-        toggleShow.classList.add('d-none');
-        toggleHide.classList.remove('d-none');
-      }
-    }
-  </script> --}}
-
-  {{-- <script>
-    function hideContent1(){
-      document.getElementById('content1').classList.add('d-none');
-      document.getElementById('toggleShow1').classList.remove('d-none');
-      document.getElementById('toggleHide1').classList.add('d-none');
-    }
-    function showContent1(){
-      document.getElementById('content1').classList.remove('d-none');
-      document.getElementById('toggleShow1').classList.add('d-none');
-      document.getElementById('toggleHide1').classList.remove('d-none');
-    }
-    function hideContent2(){
-      document.getElementById('content2').classList.add('d-none');
-      document.getElementById('toggleShow2').classList.remove('d-none');
-      document.getElementById('toggleHide2').classList.add('d-none');
-    }
-    function showContent2(){
-      document.getElementById('content2').classList.remove('d-none');
-      document.getElementById('toggleShow2').classList.add('d-none');
-      document.getElementById('toggleHide2').classList.remove('d-none');
-    }
-    function hideContent3(){
-      document.getElementById('content3').classList.add('d-none');
-      document.getElementById('toggleShow3').classList.remove('d-none');
-      document.getElementById('toggleHide3').classList.add('d-none');
-    }
-    function showContent3(){
-      document.getElementById('content3').classList.remove('d-none');
-      document.getElementById('toggleShow3').classList.add('d-none');
-      document.getElementById('toggleHide3').classList.remove('d-none');
-    }
-  </script> --}}
-
-  
   <script>
     window.onload = function() {
       showContent('content1', 'toggleShow1', 'toggleHide1');

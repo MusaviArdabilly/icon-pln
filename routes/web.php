@@ -52,5 +52,5 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-
+Route::get('/download/attachments/{param}', [InternalController::class, 'download_attachment']);
 Route::get('/reload-captcha-url', [AuthController::class, 'reload_captcha']);

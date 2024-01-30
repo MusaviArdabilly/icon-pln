@@ -47,7 +47,7 @@
         <p class="col-3">Banner</p>
         <div class="uploader">
           <div class="col-9">
-            <input id="file-upload" type="file" name="fileUpload" accept="image/*" style="display:none" />
+            <input id="file-upload" type="file" name="thumbnail" accept="image/*" style="display:none" />
             <label for="file-upload" id="file-drag">
               <img id="file-image" src="#" alt="Preview" class="hidden">
               <div id="start">
@@ -109,7 +109,7 @@
         </div>
       </div>
     </div>
-    <!-- attachmen -->
+    <!-- attachment -->
     <div class="row input_item">
       <p class="col-3">Attachment</p>
       <div class="col-9 d-flex justify-content-center">
@@ -117,7 +117,7 @@
           <label for="attachment">
             <a class="btn btn-primary text-light shadow" role="button" aria-disabled="false">+ Add</a>
           </label>
-          <input type="file" name="file[]" accept=".pdf" id="attachment" style="visibility: hidden; position: absolute;"
+          <input type="file" name="file[]" accept=".jpg, .jpeg, .png, .pdf, .ppt, .pptx" id="attachment" style="visibility: hidden; position: absolute;"
             multiple />
         </p>
         <p id="files-area">
@@ -166,7 +166,7 @@
         class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
         style="width: 18rem;">
         <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-4">
-          <img src="{{ asset('assets/image/tumbnail/'. $item->tumbnail) }}"
+          <img src="{{ asset('storage/' . $item->thumbnail) }}"
             style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
         </div>
         <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
@@ -211,7 +211,7 @@
   // all data form
   var items = [];
   var imageUpload;
-  var attachmen;
+  var attachment;
 
   AOS.init();
   function show() {
@@ -380,9 +380,9 @@
   }
   ekUpload();
 
-  // attachmen
+  // attachment
   const dt = new DataTransfer();
-  attachmen = dt
+  attachment = dt
 
   $("#attachment").on('change', function (e) {
     for (var i = 0; i < this.files.length; i++) {
@@ -392,12 +392,12 @@
         .append(fileName);
       $("#filesList > #files-names").append(fileBloc);
     };
+
     for (let file of this.files) {
       dt.items.add(file);
     }
 
     this.files = dt.files;
-
 
     $('span.file-delete').click(function () {
       let name = $(this).next('span.name').text();
@@ -423,17 +423,23 @@
       background: quillEditorLatarBelakang.root.innerHTML,
       content: quillEditorIsi.root.innerHTML,
       solution: quillEditorSolusi.root.innerHTML,
-      team: items.join(', '),
-      attachment: attachmen,
-      tumbnail: imageUpload
-
+      team: items.join(', ')
     }
+
     var formData = new FormData();
-    console.log(valueIdea)
-
-    for (var key in valueIdea) {
-      formData.append(key, valueIdea[key]);
+    formData.append('title', valueIdea.title);
+    formData.append('abstract', valueIdea.abstract);
+    formData.append('background', valueIdea.background);
+    formData.append('content', valueIdea.content);
+    formData.append('solution', valueIdea.solution);
+    formData.append('team', valueIdea.team);
+    
+    // Append the file(s) to the FormData object
+    for (let file of attachment.files) {
+      formData.append('attachment[]', file);
     }
+    formData.append('thumbnail', imageUpload);
+
     $.ajax({
       type: 'POST',
       headers: {
@@ -444,15 +450,22 @@
       contentType: false,
       processData: false,
       success: function (response) {
-        console.log(response);
-        // Handle success response, redirect, or update UI as needed
+        console.log('Data successfully stored');
+        show(); // hide
+        setTimeout(function() {
+          window.Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Data berhasil disimpan',
+            timer: 5000,
+            showConfirmButton: false,
+          });
+        }, 500);
       },
       error: function (error) {
         console.log(error);
-        // Handle error response
       }
     });
-
   }
 
 </script>
