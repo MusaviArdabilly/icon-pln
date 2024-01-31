@@ -65,6 +65,7 @@
               </div>
             </div>
             <div id="content1" class="transition-height">
+              <hr>
               <p class="fs-16 fw-400 lh-24 mt-3 mb-0">{!! $idea->background !!}</p>
             </div>
           </div>
@@ -83,6 +84,7 @@
               </div>
             </div>
             <div id="content2" class="transition-height">
+              <hr>
               <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $idea->content !!}</p>
             </div>
           </div>
@@ -101,6 +103,7 @@
               </div>
             </div>
             <div id="content3" class="transition-height">
+              <hr>
               <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $idea->solution !!}</p>
             </div>
           </div>
