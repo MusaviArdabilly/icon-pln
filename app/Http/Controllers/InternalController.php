@@ -16,6 +16,12 @@ class InternalController extends Controller
         return view('internal.idea.index', compact('idea'));
     }
 
+    public function idea_v2() {
+        $idea = Idea::where('status', 'ide')->get();
+
+        return view('internal.idea.index_v2', compact('idea'));
+    }
+
     public function idea_submit(Request $request) {
         $attachments = [];
         
