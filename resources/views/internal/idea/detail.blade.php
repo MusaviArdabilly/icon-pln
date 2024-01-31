@@ -17,7 +17,7 @@
       <div class="row mb-5">
         <div class="col-12 d-md-none">
           <div class="tumbnail-desktop">
-            <img src="{{ asset('assets/image/tumbnail/iot.jpg') }}" alt="">
+            <img src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
           </div>
         </div>
         <div class="col-12 col-md-9">
@@ -45,7 +45,7 @@
         <div class="col-12 col-md-3 d-none d-md-block">
           <div class="d-flex justify-content-end h-100 align-items-center">
             <div class="tumbnail">
-              <img src="{{ asset('assets/image/tumbnail/iot.jpg') }}" alt="">
+              <img src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
             </div>
           </div>
         </div>

@@ -33,7 +33,7 @@
                   @forelse ($innovation as $index => $item)
                     <tr>
                       <th>{{ $index + 1 }}</th>
-                      <td>{{ $item->title }}</td>
+                      <td>{!! $item->title !!}</td>
                       @php
                         $team = $item->team;
                         $teamArray = explode(', ', $team);

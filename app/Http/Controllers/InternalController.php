@@ -87,8 +87,9 @@ class InternalController extends Controller
 
     public function detail_innovation($id) {
         $innovation = Idea::find($id);
+        $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
 
-        return view('internal.innovation.detail', compact('innovation'));
+        return view('internal.innovation.detail', compact('innovation', 'comments'));
     }
 
     public function repository() {

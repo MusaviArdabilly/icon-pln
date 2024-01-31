@@ -2,7 +2,7 @@
 @section('content')
   
   <script type="text/javascript">
-    document.getElementById('nav-innvation').classList.add('active');
+    document.getElementById('nav-innovation').classList.add('active');
   </script>
 
   
@@ -24,14 +24,14 @@
       <div class="row mb-5">
         <div class="col-12 d-md-none">
           <div class="tumbnail-desktop">
-            <img src="{{ asset('assets/image/tumbnail/iot.jpg') }}" alt="">
+            <img src="{{ asset('storage/' . $innovation->thumbnail) }}" alt="">
           </div>
         </div>
         <div class="col-12 col-md-9">
-          <h2 class="d-none d-md-block font-weight-bold text-overflow-hidden" data-mdb-toggle="popover" title="{{ $innovation->title }}">{{ $innovation->title }}</h2>
-          <h2 class="d-md-none font-weight-bold">{{ $innovation->title }}</h2>
-          {{-- max 650 character abstraksi --}}
-          <p class="abstraction fs-16 fw-400 lh-24">{{ $innovation->abstract }}</p>
+          <h2 class="d-none d-md-block font-weight-bold text-overflow-hidden" data-mdb-toggle="popover" title="{{ strip_tags($innovation->title) }}">{!! $innovation->title !!}</h2>
+          <h2 class="d-md-none font-weight-bold">{!! $innovation->title !!}</h2>
+          {{-- max 500 character abstraksi --}}
+          <p class="abstraction fs-16 fw-400 lh-24">{!! $innovation->abstract !!}</p>
           <h5 class="font-weight-bold m-0">Oleh:</h5>
           <div class="d-flex">
             @php
@@ -52,7 +52,7 @@
         <div class="col-12 col-md-3 d-none d-md-block">
           <div class="d-flex justify-content-end h-100 align-items-center">
             <div class="tumbnail">
-              <img src="{{ asset('assets/image/tumbnail/iot.jpg') }}" alt="">
+              <img src="{{ asset('storage/' . $innovation->thumbnail) }}" alt="">
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@
         <div class="col-12">
           <div class="shadow rounded p-3">
             <div class="d-flex justify-content-between align-items-center">
-              <h4 class="fs-28 font-weight-bold m-0">Latar Belakang</h4>
+              <h2 class="fs-28 fw-600 m-0">Latar Belakang</h2>
               <div id="toggleHide1" onclick="toggleContent('content1', 'toggleShow1', 'toggleHide1')" class="toggle">
               {{-- <div id="toggleHide1" onclick="toggleContent('content1', 'toggleShow1', 'toggleHide1')"> --}}
                 <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z"/></svg>
@@ -72,7 +72,8 @@
               </div>
             </div>
             <div id="content1" class="transition-height">
-              <p class="fs-16 fw-400 lh-24 mt-3 mb-0">{{ $innovation->background }}</p>
+              <hr>
+              <p class="fs-16 fw-400 lh-24 mt-3 mb-0">{!! $innovation->background !!}</p>
             </div>
           </div>
         </div>
@@ -81,7 +82,7 @@
         <div class="col-12">
           <div class="shadow rounded p-3">
             <div class="d-flex justify-content-between align-items-center">
-              <h4 class="fs-28 font-weight-bold m-0">Isi</h4>
+              <h2 class="fs-28 fw-600 m-0">Isi</h2>
               <div id="toggleHide2" onclick="toggleContent('content2', 'toggleShow2', 'toggleHide2')" class="toggle">
                 <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z"/></svg>
               </div>
@@ -90,7 +91,8 @@
               </div>
             </div>
             <div id="content2" class="transition-height">
-              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{{ $innovation->content }}</p>
+              <hr>
+              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $innovation->content !!}</p>
             </div>
           </div>
         </div>
@@ -99,7 +101,7 @@
         <div class="col-12">
           <div class="shadow rounded p-3">
             <div class="d-flex justify-content-between align-items-center">
-              <h4 class="fs-28 font-weight-bold m-0">Solusi</h4>
+              <h2 class="fs-28 fw-600 m-0">Solusi</h2>
               <div id="toggleHide3" onclick="toggleContent('content3', 'toggleShow3', 'toggleHide3')" class="toggle">
                 <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z"/></svg>
               </div>
@@ -108,74 +110,109 @@
               </div>
             </div>
             <div id="content3" class="transition-height">
-              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{{ $innovation->solution }}</p>
+              <hr>
+              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $innovation->solution !!}</p>
             </div>
           </div>
         </div>
       </div>
       <hr class="dashed mb-4">
       <div class="row">
-        <h4 class="fs-20 font-weight-bold">Lampiran</h4>
+        <h3 class="fs-20 fw-600">Lampiran</h3>
       </div>
       <div class="row mb-4">
         @foreach ($innovation->attachment as $item)
-          <div class="col-6 col-md-2 p-3">
-            <img src="{{ asset('assets/image/icon/landing-page/atom.png') }}" alt="" class="shadow rounded attachment-tumbnail rounded">
-            <label class="fs-16 fw-500 mt-2">{{ $item }}</label>
+          @php
+            $filePath = $item; 
+            $fileInfo = pathinfo($filePath);
+            $fileExtension = $fileInfo['extension'];
+          @endphp
+          <div class="col-6 col-md-2 p-3 attachment">
+            @if (in_array($fileExtension, ['png', 'jpg', 'jpeg']))
+            <div class="position-relative shadow rounded attachment-tumbnail rounded">
+              <img class="position-absolute relative-center attachment-image" src="{{ asset('storage/' . $item) }}" alt="">
+              <a href="{{ url('download/'.$item) }}" class="position-absolute relative-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="36px"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+              </a>
+            </div>
+            @elseif ($fileExtension == 'pdf')
+            <div class="position-relative shadow rounded attachment-tumbnail rounded">
+              <img class="position-absolute relative-center" src="{{ asset('assets/image/icon/pdf-icon.png') }}" alt="" height="100px">
+              <a href="{{ url('download/'.$item) }}" class="position-absolute relative-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="36px"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+              </a>
+            </div>
+            @elseif (in_array($fileExtension, ['ppt', 'pptx']))
+            <div class="position-relative shadow rounded attachment-tumbnail rounded">
+              <img class="position-absolute relative-center" src="{{ asset('assets/image/icon/ppt-icon.png') }}" alt="" height="100px">
+              <a href="{{ url('download/'.$item) }}" class="position-absolute relative-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="36px"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+              </a>
+            </div>
+            @endif
+            <label class="fs-14 fw-500 mt-2 two-rows-text">{{ str_replace('attachments/', '', $item) }}</label>
           </div>
         @endforeach
       </div>
       <hr class="mb-4">
       <div class="comment mb-4">
-        <h4 class=" font-weight-bold mt-0 mb-4">Komentar</h4>
-        <form action="" class="d-flex align-items-center">
+        <label class="fs-20 fw-600 mt-0 mb-2">Komentar <label class="fs-16 fw-400">sebagai: {{ Auth::user()->name }}</label></label>
+        <form action="/idea/{{ $innovation->id }}/comment/post" method="POST" class="d-flex align-items-center">
+          @csrf
           <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
-          <input type="text" class="input_comment">
-          <button type="submit" class="btn btn-sm btn-outline-secondary ml-2">Kirim</button>
+          <input type="text" name="content" class="input_comment">
+          <button type="submit" class="btn btn-sm btn-outline-secondary ms-2">Kirim</button>
         </form>
         <hr class="dashed my-4">
         <ul>
-          <li>
-            <div class="d-flex">
-              <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
-              <div class="comment-container rounded p-3">
-                <div class="diamond"></div>
-                <div class="comment-content mx-2">
-                  <h5 class="fs-20 font-weight-bold">Musavi Ardabilly</h5>
-                  <p class="fs-16 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
+          @forelse ($comments as $comment)
+            @if (!$comment->parent_id)
+              <li>
+                <div class="d-flex">
+                  <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
+                  <div class="comment-container rounded p-3">
+                    <div class="diamond"></div>
+                    <div class="comment-content mx-2 pt-1">
+                      <div class="d-flex justify-content-between align-items-center mb-1">
+                        <h2 class="fs-16 fw-600 m-0">{{ $comment->user->name }}</h2>
+                        <div class="fs-14 ms-5 btn-reply" onclick="showComment({{ $comment->user->id }}, {{ $innovation->id }}, {{ $comment->id }})">
+                          <div class="ml-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#858796" d="M205 34.8c11.5 5.1 19 16.6 19 29.2v64H336c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96H224v64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
+                            Balas
+                          </div>
+                        </div>
+                      </div>
+                      <p class="fs-14 mb-0">{{ $comment->content }}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+                <ul id="replyComment" class="reply">
+                  @foreach ($comments as $reply)
+                    @if ($reply->parent_id == $comment->id)
+                    <li>
+                      <div class="d-flex">
+                        <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
+                        <div class="comment-container rounded p-3">
+                          <div class="diamond"></div>
+                          <div class="comment-content mx-2 pt-1">
+                            <h2 class="fs-16 fw-600 mb-1">{{ $reply->user->name }}</h2>
+                            <p class="fs-14 mb-0">{{ $reply->content }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    @endif
+                  @endforeach
+                </ul>
+              </li>
+            @endif
+          @empty
+            <div class="alert alert-light w-100 text-center" role="alert">
+              Belum ada komentar
             </div>
-            <ul class="reply">
-              <li>
-                <div class="d-flex">
-                  <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
-                  <div class="comment-container rounded p-3">
-                    <div class="diamond"></div>
-                    <div class="comment-content mx-2">
-                      <h5 class="fs-20 font-weight-bold">John Doe</h5>
-                      <p class="fs-16 mb-0">Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="d-flex">
-                  <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
-                  <div class="comment-container rounded p-3">
-                    <div class="diamond"></div>
-                    <div class="comment-content mx-2">
-                      <h5 class="fs-20 font-weight-bold">Alexander Grahambel</h5>
-                      <p class="fs-16 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </li>
+          @endforelse
         </ul>
       </div>
-
     </div>
   </div>
   
@@ -224,6 +261,66 @@
           location.assign(redirectTo);
         }
       });
+    }
+  </script>
+
+  <script>
+    async function showComment(userId, ideaId, parentId) {
+      const { value: reply } = await window.Swal.fire({
+        title: `Balas komentar`,
+        input: "textarea",
+        reverseButtons: true,
+        showCancelButton: true,
+        cancelButtonText: 'Tutup',
+        confirmButtonText: 'Kirim',
+        inputValidator: (value) => {
+          if (!value) {
+            return "Komentar tidak boleh kosong";
+          }
+        }
+      });
+
+      if(reply){
+        console.log('submited')
+        console.log(reply);
+        var formData = new FormData();
+        formData.append('_token', '{{ csrf_token() }}'); 
+        formData.append('user_id', userId);
+        formData.append('idea_id', ideaId);
+        formData.append('parent_id', parentId);
+        formData.append('content', reply);
+
+        $.ajax({
+          type: 'POST',
+          // headers: {
+          //   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          // },
+          url: `/idea/${ideaId}/comment/post`,
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function(response) {
+            window.Swal.fire({
+              icon: 'success',
+              title: 'Berhasil',
+              text: 'Balasan komentar berhasil disimpan',
+              timer: 5000,
+              showConfirmButton: false,
+            });
+            location.reload();
+          },
+          error: function(error) {
+            window.Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Gagal menyimpan balasan komentar',
+              timer: 5000,
+              showConfirmButton: false,
+            });
+            console.log(error);
+          }
+        });
+      }
     }
   </script>
 

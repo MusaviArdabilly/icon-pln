@@ -11,12 +11,14 @@
 		<link rel="stylesheet" href="{{ asset('assets/css/sb-admin-2.css') }}">
 		<link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome/css/all.css') }}">
     <link href="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-		<link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
+		{{-- <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}"> --}}
+		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 		
 		{{-- Sweet Alert --}}
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	</head>
 	<body id="page-top">
+		<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 		<!-- Page Wrapper -->
 		<div id="wrapper">
@@ -184,7 +186,6 @@
 		</div>
 
 		<!-- Bootstrap core JavaScript-->
-		<script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
 		<script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 		<!-- Core plugin JavaScript-->
@@ -199,17 +200,5 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ asset('assets/js/datatables-demo.js') }}"></script>
-
-		{{-- use common JS  --}}
-		<script>
-			const Swal = require('sweetalert2')
-
-			Swal.fire({
-				title: 'Error!',
-				text: 'Do you want to continue',
-				icon: 'error',
-				confirmButtonText: 'Cool'
-			})
-		</script>
 	</body>
 </html>

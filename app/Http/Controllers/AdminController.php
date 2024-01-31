@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comment;
 use App\Models\Idea;
 
 class AdminController extends Controller
@@ -15,8 +16,9 @@ class AdminController extends Controller
 
     public function detail_idea($id) {
         $idea = Idea::find($id);
+        $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
         
-        return view('admin.idea.detail', compact('idea'));
+        return view('admin.idea.detail', compact('idea', 'comments'));
     }
 
     public function idea_to_innovation($id) {
@@ -42,8 +44,9 @@ class AdminController extends Controller
 
     public function detail_innovation($id) {
         $innovation = Idea::find($id);
+        $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
         
-        return view('admin.innovation.detail', compact('innovation'));
+        return view('admin.innovation.detail', compact('innovation', 'comments'));
     }
 
     public function innovation_to_idea($id) {

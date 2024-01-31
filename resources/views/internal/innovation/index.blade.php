@@ -44,21 +44,30 @@
   </div>
 
   <h3 class="me-auto mt-5">List Innovation</h3>
-  <div class="mt-3 row row-cols-4 gap-5 w-100 justify-content-center justify-content-sm-start">
+  <div class="mt-3 row w-100 justify-content-center justify-content-sm-start">
     @forelse ($innovation as $item)
+    <div class="col-12 col-md-3 p-3">
       <div data-aos="fade-up"
-        class="card d-flex flex-column align-items-center py-4 px-2 shadow border-0 animation-hover-card rounded-4"
-        style="width: 18rem;">
-        <div data-aos="fade-up" data-aos-delay="200" style="width: 80%;" class="overflow-hidden rounded-4">
-          <img src="{{ asset('assets/image/tumbnail/iot.jpg') }}"
-            style="width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="card-img-top" alt="idea-banner">
+        class="card h-100 p-2 shadow border-0 animation-hover-card rounded-4">
+        <div class="mx-auto rounded-4">
+          <img src="{{ asset('storage/' . $item->thumbnail) }}"
+            style="height: 100%; width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="rounded-3" alt="idea-banner">
         </div>
-        <div data-aos="fade-up" data-aos-delay="300" class="card-body text-center">
-          <h5 class="card-title mt-2">{{ $item->title }}</h5>
-          <a href="/idea/{{ $item->id }}" class="d-flex align-items-center justify-content-center mt-3 fs-5 text-decoration-none"> Lihat
-            Detail <i class="bi bi-arrow-right-circle ms-2"></i></a>
+        <div class="d-flex flex-column justify-content-between h-100 p-2">
+          <div class=" card-title mt-2">
+            @php
+              $team = $item->team;
+              $teamArray = explode(', ', $team);
+            @endphp
+            <h6 class="fs-12 fw-400 mt-2 mb-2 text-secondary"><label class="fw-500">Team: </label> {{ $teamArray[0] }}, dkk</h6>
+            <h5 class="fs-16 three-rows-text">{!! $item->title !!} </h5>
+          </div>
+          <a href="/innovation/{{ $item->id }}" class="fs-16 fw-400 ms-auto text-decoration-none">
+            Lihat Detail <i class="bi bi-arrow-bar-right"></i>
+          </a>
         </div>
       </div>
+    </div>
     @empty
       <div class="alert alert-danger w-100 text-center" role="alert">
         Tidak ada Data
