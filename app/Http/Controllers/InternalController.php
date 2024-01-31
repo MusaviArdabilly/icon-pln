@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Idea;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Comment;
 
 class InternalController extends Controller
 {
@@ -52,8 +53,30 @@ class InternalController extends Controller
 
     public function detail_idea($id) {
         $idea = Idea::find($id);
+        $comment = [];
+        $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
+        // dump($comments->toArray());
 
-        return view('internal.idea.detail', compact('idea'));
+        return view('internal.idea.detail', compact('idea', 'comments'));
+    }
+
+    public function comment_post($id, Request $request) {
+        $user_id = Auth::user()->id;
+        $idea_id = $id;
+
+        if($request->parent_id){ // reply
+            $user_id = $request->user_id;
+            $idea_id = $request->idea_id;
+        }
+        
+        $comment = new Comment;
+        $comment->user_id = $user_id;
+        $comment->idea_id = $idea_id;
+        $comment->parent_id = $request->parent_id;
+        $comment->content = $request->content;
+        $comment->save();
+
+        return redirect('idea/'.$id);
     }
     
     public function innovation() {

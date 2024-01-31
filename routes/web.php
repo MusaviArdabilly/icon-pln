@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/idea_v2', [InternalController::class, 'idea_v2']);
     Route::post('/idea-submit', [InternalController::class, 'idea_submit']);
     Route::get('/idea/{id}', [InternalController::class, 'detail_idea']);
+    Route::post('/idea/{id}/comment/post', [InternalController::class, 'comment_post']);
     Route::get('/innovation', [InternalController::class, 'innovation']);
     Route::get('/innovation/{id}', [InternalController::class, 'detail_innovation']);
     Route::get('/repository', [InternalController::class, 'repository_v2']);

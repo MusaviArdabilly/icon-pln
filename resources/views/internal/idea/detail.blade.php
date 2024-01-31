@@ -143,61 +143,64 @@
               </a>
             </div>
             @endif
-            <label class="fs-16 fw-500 mt-2 two-rows-text">{{ str_replace('attachments/', '', $item) }}</label>
+            <label class="fs-14 fw-500 mt-2 two-rows-text">{{ str_replace('attachments/', '', $item) }}</label>
           </div>
         @endforeach
       </div>
       <hr class="mb-4">
       <div class="comment mb-4">
-        <label class="fs-20 fw-600 mt-0 mb-4">Komentar</label>
-        <form action="" class="d-flex align-items-center">
+        <label class="fs-20 fw-600 mt-0 mb-2">Komentar <label class="fs-16 fw-400">sebagai: {{ Auth::user()->name }}</label></label>
+        <form action="/idea/{{ $idea->id }}/comment/post" method="POST" class="d-flex align-items-center">
+          @csrf
           <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
-          <input type="text" class="input_comment">
+          <input type="text" name="content" class="input_comment">
           <button type="submit" class="btn btn-sm btn-outline-secondary ms-2">Kirim</button>
         </form>
         <hr class="dashed my-4">
         <ul>
-          <li>
-            <div class="d-flex">
-              <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
-              <div class="comment-container rounded p-3">
-                <div class="diamond"></div>
-                <div class="comment-content mx-2">
-                  <h2 class="fs-20 fw-600">Musavi Ardabilly</h2>
-                  <p class="fs-16 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
+          @forelse ($comments as $comment)
+            @if (!$comment->parent_id)
+              <li>
+                <div class="d-flex">
+                  <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
+                  <div class="comment-container rounded p-3">
+                    <div class="diamond"></div>
+                    <div class="comment-content mx-2 pt-1">
+                      <div class="d-flex justify-content-between align-items-center mb-1">
+                        <h2 class="fs-16 fw-600 m-0">{{ $comment->user->name }}</h2>
+                        <div class="fs-14 ms-5 btn-reply" onclick="showComment({{ $comment->user->id }}, {{ $idea->id }}, {{ $comment->id }})"><i class="d-inline fs-20 bi bi-reply-fill"></i>Balas</div>
+                      </div>
+                      <p class="fs-14 mb-0">{{ $comment->content }}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+                <ul id="replyComment" class="reply">
+                  @foreach ($comments as $reply)
+                    @if ($reply->parent_id == $comment->id)
+                    <li>
+                      <div class="d-flex">
+                        <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
+                        <div class="comment-container rounded p-3">
+                          <div class="diamond"></div>
+                          <div class="comment-content mx-2 pt-1">
+                            <h2 class="fs-16 fw-600 mb-1">{{ $reply->user->name }}</h2>
+                            <p class="fs-14 mb-0">{{ $reply->content }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    @endif
+                  @endforeach
+                </ul>
+              </li>
+            @endif
+          @empty
+            <div class="alert alert-light w-100 text-center" role="alert">
+              Belum ada komentar
             </div>
-            <ul class="reply">
-              <li>
-                <div class="d-flex">
-                  <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
-                  <div class="comment-container rounded p-3">
-                    <div class="diamond"></div>
-                    <div class="comment-content mx-2">
-                      <h2 class="fs-20 fw-600">John Doe</h2>
-                      <p class="fs-16 mb-0">Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="d-flex">
-                  <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
-                  <div class="comment-container rounded p-3">
-                    <div class="diamond"></div>
-                    <div class="comment-content mx-2">
-                      <h2 class="fs-20 fw-600">Alexander Grahambel</h2>
-                      <p class="fs-16 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </li>
+          @endforelse
         </ul>
       </div>
-
     </div>
   </div>
 
@@ -232,6 +235,65 @@
       content.style.maxHeight = content.scrollHeight + "px";
       toggleShow.classList.add('d-none');
       toggleHide.classList.remove('d-none');
+    }
+  </script>
+
+  <script>
+    async function showComment(userId, ideaId, parentId) {
+      const { value: reply } = await Swal.fire({
+        title: `Balas komentar`,
+        input: "textarea",
+        reverseButtons: true,
+        showCancelButton: true,
+        cancelButtonText: 'Tutup',
+        confirmButtonText: 'Kirim',
+        inputValidator: (value) => {
+          if (!value) {
+            return "Komentar tidak boleh kosong";
+          }
+        }
+      });
+
+      if(reply){
+        console.log('submited')
+        console.log(reply);
+        var formData = new FormData();
+        formData.append('user_id', userId);
+        formData.append('idea_id', ideaId);
+        formData.append('parent_id', parentId);
+        formData.append('content', reply);
+  
+        $.ajax({
+          type: 'POST',
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          url: `/idea/${ideaId}/comment/post`,
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function(response) {
+            window.Swal.fire({
+              icon: 'success',
+              title: 'Berhasil',
+              text: 'Balasan komentar berhasil disimpan',
+              timer: 5000,
+              showConfirmButton: false,
+            });
+            location.reload();
+          },
+          error: function(error) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Gagal menyimpan balasan komentar',
+              timer: 5000,
+              showConfirmButton: false,
+            });
+            console.log(error);
+          }
+        });
+      }
     }
   </script>
 

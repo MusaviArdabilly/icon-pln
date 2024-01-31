@@ -71,6 +71,10 @@ body {
   font-size: 16px;
 }
 
+.fs-14 {
+  font-size: 14px;
+}
+
 .fs-12 {
   font-size: 12px;
 }
@@ -496,6 +500,10 @@ ul {
 .input_comment{
   width: 100%;
   margin-left: 28px;
+}
+
+.btn-reply {
+  cursor: pointer;
 }
 
 /* repository */
