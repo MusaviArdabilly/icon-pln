@@ -159,24 +159,24 @@
     </div>
   </div>
 
-  <h3 class="me-auto mt-5">List Idea</h3>
+  <h3 class="me-auto fw-600 mt-5">List Idea</h3>
   <div class="mt-3 row w-100 justify-content-center justify-content-sm-start">
     @forelse ($idea as $item)
     <div class="col-12 col-md-3 p-3">
       <div data-aos="fade-up"
         class="card h-100 p-2 shadow border-0 animation-hover-card rounded-4">
-        <div data-aos="fade-up" data-aos-delay="200" class="mx-auto rounded-4">
+        <div class="mx-auto rounded-4">
           <img src="{{ asset('storage/' . $item->thumbnail) }}"
-            style="height: 250px; width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="rounded-3" alt="idea-banner">
+            style="height: 100%; width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="rounded-3" alt="idea-banner">
         </div>
-        <div data-aos="fade-up" data-aos-delay="300" class="d-flex flex-column justify-content-between h-100 p-2">
+        <div class="d-flex flex-column justify-content-between h-100 p-2">
           <div class=" card-title mt-2">
             @php
               $team = $item->team;
               $teamArray = explode(', ', $team);
             @endphp
-            <h6 class="fs-12 mt-1 mb-3 text-secondary">Team: {{ $teamArray[0] }}, dkk</h6>
-            <h5 class="fs-16">{!! $item->title !!} </h5>
+            <h6 class="fs-12 mt-2 mb-2 text-secondary">Team: {{ $teamArray[0] }}, dkk</h6>
+            <h5 class="fs-16 three-rows-text">{!! $item->title !!} </h5>
           </div>
           <a href="/idea/{{ $item->id }}" class="fs-16 fw-600 ms-auto text-decoration-none">
             Lihat Detail <i class="bi bi-arrow-right-circle ms-1"></i>

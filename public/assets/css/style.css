@@ -370,8 +370,25 @@ body {
 }
 
 /* Fallback for non-WebKit browsers */
-@supports not (-webkit-line-clamp: 5) {
+@supports not (-webkit-line-clamp: 2) {
   .two-rows-text {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.three-rows-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 3; /* Number of lines to show */
+}
+
+/* Fallback for non-WebKit browsers */
+@supports not (-webkit-line-clamp: 3) {
+  .three-rows-text {
     display: block;
     overflow: hidden;
     white-space: nowrap;
