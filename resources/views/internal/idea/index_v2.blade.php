@@ -175,11 +175,11 @@
               $team = $item->team;
               $teamArray = explode(', ', $team);
             @endphp
-            <h6 class="fs-12 mt-2 mb-2 text-secondary">Team: {{ $teamArray[0] }}, dkk</h6>
+            <h6 class="fs-12 fw-400 mt-2 mb-2 text-secondary"><label class="fw-500">Team: </label> {{ $teamArray[0] }}, dkk</h6>
             <h5 class="fs-16 three-rows-text">{!! $item->title !!} </h5>
           </div>
-          <a href="/idea/{{ $item->id }}" class="fs-16 fw-600 ms-auto text-decoration-none">
-            Lihat Detail <i class="bi bi-arrow-right-circle ms-1"></i>
+          <a href="/idea/{{ $item->id }}" class="fs-16 fw-400 ms-auto text-decoration-none">
+            Lihat Detail <i class="bi bi-arrow-bar-right"></i>
           </a>
         </div>
       </div>
