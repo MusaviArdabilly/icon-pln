@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Storage;
 class InternalController extends Controller
 {
     public function idea() {
-        $idea = Idea::where('status', 'ide')->get();
+        $idea = Idea::where('status', 'ide')->orderBy('created_at', 'desc')->get();
 
         return view('internal.idea.index', compact('idea'));
     }
 
     public function idea_v2() {
-        $idea = Idea::where('status', 'ide')->get();
+        $idea = Idea::where('status', 'ide')->orderBy('created_at', 'desc')->get();
 
         return view('internal.idea.index_v2', compact('idea'));
     }
