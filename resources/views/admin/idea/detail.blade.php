@@ -17,7 +17,7 @@
           <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
         </div>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/admin/idea/{{ $idea->id }}/transfer-to-idea" onclick="moveIdea(event)">Kembalikan ke Ide</a>
+          <a class="dropdown-item" href="/admin/idea/{{ $idea->id }}/transfer-to-innovation" onclick="moveIdea(event)">Jadikan Inovasi</a>
         </div>
       </div>
     </div>
@@ -249,8 +249,8 @@
     event.preventDefault();
     var redirectTo = event.currentTarget.getAttribute('href');  
     window.Swal.fire({
-      title: 'Ubah inovasi menjadi ide',
-      text: 'Apakah anda ingin mengubah inovasi ini kembali menjadi ide?',
+      title: 'Ubah ide menjadi inovasi',
+      text: 'Apakah anda ingin mengubah ide ini menjadi inovasi?',
       icon: 'question',
       reverseButtons: true,
       showCancelButton: true,

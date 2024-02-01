@@ -466,10 +466,11 @@
             icon: 'success',
             title: 'Berhasil',
             text: 'Data berhasil disimpan',
-            timer: 5000,
+            timer: 3000,
             showConfirmButton: false,
           });
         }, 500);
+        location.reload();
       },
       error: function (error) {
         console.log(error);
