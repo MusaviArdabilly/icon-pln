@@ -7,7 +7,7 @@
 
   
 <div class="min-vh-100 mb-3">
-  <div class="container detail px-5 py-2 rounded shadow bg-white">
+  <div class="detail px-5 py-2 rounded shadow bg-white">
     <div class="d-flex justify-content-between my-3">
       <a href="/admin/idea" class="text-decoration-none font-weight-bold d-flex align-items-center">
         <i class="fas fa-fw fa-angle-left"></i>&nbsp;Kembali
@@ -27,26 +27,31 @@
           <img src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
         </div>
       </div>
-      <div class="col-12 col-md-9">
-        <h2 class="d-none d-md-block font-weight-bold text-overflow-hidden" data-mdb-toggle="popover" title="{{ strip_tags($idea->title) }}">{!! $idea->title !!}</h2>
-        <h2 class="d-md-none font-weight-bold">{!! $idea->title !!}</h2>
-        {{-- max 500 character abstraksi --}}
-        <p class="abstraction fs-16 fw-400 lh-24">{!! $idea->abstract !!}</p>
-        <h5 class="font-weight-bold m-0">Oleh:</h5>
-        <div class="d-flex">
-          @php
-            $team = $idea->team;
-            $teamArray = explode(', ', $team);
-          @endphp
-          <label class="fs-16 fw-400">
-            <strong class="font-weight-bold">{{ $teamArray[0] }},</strong>
-            @for ($i = 1; $i < count($teamArray); $i++)
-              {{ $teamArray[$i] }}
-              @if ($i < count($teamArray) - 1)
-                  ,
-              @endif
-            @endfor
-          </label>
+      <div class="col-12 col-md-9 d-flex flex-column justify-content-between">
+        <div>
+          <h2 class="d-none d-md-block font-weight-bold" data-mdb-toggle="popover" title="{{ strip_tags($idea->title) }}">{!! $idea->title !!}</h2>
+          <h2 class="d-md-none font-weight-bold">{!! $idea->title !!}</h2>
+          {{-- max 500 character abstraksi --}}
+          {{-- <p class="abstraction fs-16 fw-400 lh-24">{!! $idea->abstract !!}</p> --}}
+          {{-- <hr> --}}
+        </div>
+        <div>
+          <h5 class="font-weight-bold m-0">Oleh:</h5>
+          <div class="d-flex">
+            @php
+              $team = $idea->team;
+              $teamArray = explode(', ', $team);
+            @endphp
+            <label class="fs-16 fw-400">
+              <strong class="font-weight-bold">{{ $teamArray[0] }}</strong>@if (count($teamArray) > 1),@endif
+              @for ($i = 1; $i < count($teamArray); $i++)
+                {{ $teamArray[$i] }}
+                @if ($i < count($teamArray) - 1)
+                    ,
+                @endif
+              @endfor
+            </label>
+          </div>
         </div>
       </div>
       <div class="col-12 col-md-3 d-none d-md-block">

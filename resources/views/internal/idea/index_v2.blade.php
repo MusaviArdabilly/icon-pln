@@ -44,7 +44,7 @@
       <!-- image upload -->
       @csrf
       <div class="row input_item">
-        <p class="col-3">Banner</p>
+        <p class="col-3">Thumbnail</p>
         <div class="uploader">
           <div class="col-9">
             <input id="file-upload" type="file" name="thumbnail" accept="image/*" style="display:none" />
@@ -70,13 +70,13 @@
           </div>
         </div>
       </div>
-      <div class="row input_item">
+      {{-- <div class="row input_item">
         <p class="col-3">Abstrak</p>
         <div class="col-9">
           <div id="quillEditorAbstrak" class="quillCustom shadow border-0 radius-3">
           </div>
         </div>
-      </div>
+      </div> --}}
       <div class="row input_item">
         <p class="col-3">Latar Belakang</p>
         <div class="col-9">
@@ -92,7 +92,7 @@
         </div>
       </div>
       <div class="row input_item">
-        <p class="col-3">Solusi</p>
+        <p class="col-3">Usulan</p>
         <div class="col-9">
           <div id="quillEditorSolusi" class="quillCustom shadow border-0 radius-3">
           </div>
@@ -111,11 +111,11 @@
     </div>
     <!-- attachment -->
     <div class="row input_item">
-      <p class="col-3">Attachment</p>
+      <p class="col-3">Lampiran</p>
       <div class="col-9 d-flex justify-content-center">
         <p class="d-flex">
           <label for="attachment">
-            <a class="btn btn-primary text-light shadow" role="button" aria-disabled="false">+ Add</a>
+            <a class="btn btn-primary text-light shadow" role="button" aria-disabled="false">+ Tambah</a>
           </label>
           <input type="file" name="file[]" accept=".jpg, .jpeg, .png, .pdf, .ppt, .pptx" id="attachment" style="visibility: hidden; position: absolute;"
             multiple />
@@ -236,9 +236,9 @@
   var quillEditorJudul = new Quill('#quillEditorJudul', {
     theme: 'snow'
   });
-  var quillEditorAbstrak = new Quill('#quillEditorAbstrak', {
-    theme: 'snow'
-  });
+  // var quillEditorAbstrak = new Quill('#quillEditorAbstrak', {
+  //   theme: 'snow'
+  // });
   var quillEditorLatarBelakang = new Quill('#quillEditorLatarBelakang', {
     theme: 'snow'
   });
@@ -428,7 +428,7 @@
    function onSubmit() {
     const valueIdea = {
       title: quillEditorJudul.root.innerHTML,
-      abstract: quillEditorAbstrak.root.innerHTML,
+      // abstract: quillEditorAbstrak.root.innerHTML,
       background: quillEditorLatarBelakang.root.innerHTML,
       content: quillEditorIsi.root.innerHTML,
       solution: quillEditorSolusi.root.innerHTML,
@@ -437,7 +437,7 @@
 
     var formData = new FormData();
     formData.append('title', valueIdea.title);
-    formData.append('abstract', valueIdea.abstract);
+    // formData.append('abstract', valueIdea.abstract);
     formData.append('background', valueIdea.background);
     formData.append('content', valueIdea.content);
     formData.append('solution', valueIdea.solution);

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('tumbnail');
             $table->string('title');
-            $table->text('abstract');
+            // $table->text('abstract');
             $table->text('background');
             $table->text('content');
             $table->text('solution');

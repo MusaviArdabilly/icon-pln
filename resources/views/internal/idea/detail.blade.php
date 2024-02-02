@@ -20,26 +20,31 @@
             <img src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
           </div>
         </div>
-        <div class="col-12 col-md-9">
-          <h1 class="d-none d-md-block fs-36 fw-600 text-overflow-hidden" data-mdb-toggle="popover" title="{{ strip_tags($idea->title) }}">{!! $idea->title !!}</h1>
-          <h1 class="d-md-none fs-36 fw-600">{!! $idea->title !!}</h1>
-          {{-- max 650 character abstraksi --}}
-          <label class="abstraction fs-16 fw-400 lh-24 mb-4">{!! $idea->abstract !!}</label>
-          <h2 class="fs-16 fw-600 m-0">Oleh:</h2>
-          <div class="d-flex">
-            @php
-              $team = $idea->team;
-              $teamArray = explode(', ', $team);
-            @endphp
-            <label class="fs-16 fw-400">
-              <strong class="font-weight-bold">{{ $teamArray[0] }},</strong>
-              @for ($i = 1; $i < count($teamArray); $i++)
-                {{ $teamArray[$i] }}
-                @if ($i < count($teamArray) - 1)
-                    ,
-                @endif
-              @endfor
-            </label>
+        <div class="col-12 col-md-9 d-flex flex-column justify-content-between">
+          <div>
+            <h1 class="d-none d-md-block fs-36 fw-600" data-mdb-toggle="popover" title="{{ strip_tags($idea->title) }}">{!! $idea->title !!}</h1>
+            <h1 class="d-md-none fs-36 fw-600">{!! $idea->title !!}</h1>
+            {{-- max 650 character abstraksi --}}
+            {{-- <label class="abstraction fs-16 fw-400 lh-24 mb-4">{!! $idea->abstract !!}</label> --}}
+            {{-- <hr> --}}
+          </div>
+          <div>
+            <h2 class="fs-16 fw-600 m-0">Oleh:</h2>
+            <div class="d-flex">
+              @php
+                $team = $idea->team;
+                $teamArray = explode(', ', $team);
+              @endphp
+              <label class="fs-16 fw-400">
+                <strong class="font-weight-bold">{{ $teamArray[0] }}</strong>@if (count($teamArray) > 1),@endif
+                @for ($i = 1; $i < count($teamArray); $i++)
+                  {{ $teamArray[$i] }}
+                  @if ($i < count($teamArray) - 1)
+                      ,
+                  @endif
+                @endfor
+              </label>
+            </div>
           </div>
         </div>
         <div class="col-12 col-md-3 d-none d-md-block">
