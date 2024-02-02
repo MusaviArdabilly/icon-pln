@@ -243,4 +243,64 @@
     }
   </script>
 
+  <script>
+    async function showComment(userId, ideaId, parentId) {
+      const { value: reply } = await window.Swal.fire({
+        title: `Balas komentar`,
+        input: "textarea",
+        reverseButtons: true,
+        showCancelButton: true,
+        cancelButtonText: 'Tutup',
+        confirmButtonText: 'Kirim',
+        inputValidator: (value) => {
+          if (!value) {
+            return "Komentar tidak boleh kosong";
+          }
+        }
+      });
+
+      if(reply){
+        console.log('submited')
+        console.log(reply);
+        var formData = new FormData();
+        formData.append('_token', '{{ csrf_token() }}'); 
+        formData.append('user_id', userId);
+        formData.append('idea_id', ideaId);
+        formData.append('parent_id', parentId);
+        formData.append('content', reply);
+
+        $.ajax({
+          type: 'POST',
+          // headers: {
+          //   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          // },
+          url: `/idea/${ideaId}/comment/post`,
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function(response) {
+            window.Swal.fire({
+              icon: 'success',
+              title: 'Berhasil',
+              text: 'Balasan komentar berhasil disimpan',
+              timer: 5000,
+              showConfirmButton: false,
+            });
+            location.reload();
+          },
+          error: function(error) {
+            window.Swal.fire({
+              icon: 'error',
+              title: 'Gagal',
+              text: 'Gagal menyimpan balasan komentar',
+              timer: 5000,
+              showConfirmButton: false,
+            });
+            console.log(error);
+          }
+        });
+      }
+    }
+  </script>
+
 @endsection
