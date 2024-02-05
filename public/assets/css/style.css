@@ -104,6 +104,14 @@ body {
   margin-right: 2px;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-pointer:hover {
+  scale: 0.9;
+}
+
 .relative-center {
   top: 50%;
   left: 50%;
@@ -504,10 +512,6 @@ ul {
 .input_comment{
   width: 100%;
   margin-left: 28px;
-}
-
-.btn-reply {
-  cursor: pointer;
 }
 
 /* repository */

@@ -51,6 +51,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/innovation/{id}/transfer-to-idea', [AdminController::class, 'innovation_to_idea']);
         Route::get('/innovation/{id}/delete', [AdminController::class, 'delete_innovation']);
         Route::get('/user-managemenet', [AdminController::class, 'user_management']);
+
+        Route::get('/idea/{ideaId}/comment/{commentId}/delete', [AdminController::class, 'comment_delete']);
     });
 });
 

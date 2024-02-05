@@ -180,12 +180,16 @@
                     <div class="comment-content mx-2 pt-1">
                       <div class="d-flex justify-content-between align-items-center mb-1">
                         <h2 class="fs-16 fw-600 m-0">{{ $comment->user->name }}</h2>
-                        <div class="fs-14 ms-5 btn-reply" onclick="showComment({{ $comment->user->id }}, {{ $innovation->id }}, {{ $comment->id }})">
+                        <div class="fs-14 ms-5 cursor-pointer" onclick="showComment({{ $comment->user->id }}, {{ $innovation->id }}, {{ $comment->id }})">
                           <div class="ml-5">
                             <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#858796" d="M205 34.8c11.5 5.1 19 16.6 19 29.2v64H336c97.2 0 176 78.8 176 176c0 113.3-81.5 163.9-100.2 174.1c-2.5 1.4-5.3 1.9-8.1 1.9c-10.9 0-19.7-8.9-19.7-19.7c0-7.5 4.3-14.4 9.8-19.5c9.4-8.8 22.2-26.4 22.2-56.7c0-53-43-96-96-96H224v64c0 12.6-7.4 24.1-19 29.2s-25 3-34.4-5.4l-160-144C3.9 225.7 0 217.1 0 208s3.9-17.7 10.6-23.8l160-144c9.4-8.5 22.9-10.6 34.4-5.4z"/></svg>
                             Balas
                           </div>
                         </div>
+                        <div class="mx-3">|</div>
+                        <a href="/admin/idea/{{ $innovation->id }}/comment/{{ $comment->id }}/delete" class="cursor-pointer">
+                          <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#e74a3b" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+                        </a>
                       </div>
                       <p class="fs-14 mb-0">{{ $comment->content }}</p>
                     </div>
@@ -200,7 +204,12 @@
                         <div class="comment-container rounded p-3">
                           <div class="diamond"></div>
                           <div class="comment-content mx-2 pt-1">
-                            <h2 class="fs-16 fw-600 mb-1">{{ $reply->user->name }}</h2>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <h2 class="fs-16 fw-600 m-0">{{ $reply->user->name }}</h2>
+                              <a href="/admin/idea/{{ $innovation->id }}/comment/{{ $reply->id }}/delete" class="ml-5 cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#e74a3b" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+                              </a>
+                            </div>
                             <p class="fs-14 mb-0">{{ $reply->content }}</p>
                           </div>
                         </div>

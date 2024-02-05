@@ -67,4 +67,14 @@ class AdminController extends Controller
     public function user_management() {
         return view('admin.user-managemenet.index');
     }
+
+    public function comment_delete($ideaId, $commentId) {
+        $comment = Comment::find($commentId);
+        $replies = Comment::where('parent_id', $comment->id);
+        
+        $replies->delete();
+        $comment->delete();
+        
+        return redirect()->back();
+    }
 }

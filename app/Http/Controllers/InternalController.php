@@ -59,25 +59,6 @@ class InternalController extends Controller
 
         return view('internal.idea.detail', compact('idea', 'comments'));
     }
-
-    public function comment_post($id, Request $request) {
-        $user_id = Auth::user()->id;
-        $idea_id = $id;
-
-        if($request->parent_id){ // reply
-            $user_id = $request->user_id;
-            $idea_id = $request->idea_id;
-        }
-        
-        $comment = new Comment;
-        $comment->user_id = $user_id;
-        $comment->idea_id = $idea_id;
-        $comment->parent_id = $request->parent_id;
-        $comment->content = $request->content;
-        $comment->save();
-
-        return redirect('idea/'.$id);
-    }
     
     public function innovation() {
         $innovation = Idea::where('status', 'inovasi')->get();
@@ -110,5 +91,24 @@ class InternalController extends Controller
 
         return response()->download($path, $filename);
         // dd($filename);
+    }
+
+    public function comment_post($id, Request $request) {
+        $user_id = Auth::user()->id;
+        $idea_id = $id;
+
+        if($request->parent_id){ // reply
+            $user_id = $request->user_id;
+            $idea_id = $request->idea_id;
+        }
+        
+        $comment = new Comment;
+        $comment->user_id = $user_id;
+        $comment->idea_id = $idea_id;
+        $comment->parent_id = $request->parent_id;
+        $comment->content = $request->content;
+        $comment->save();
+
+        return redirect()->back();
     }
 }
