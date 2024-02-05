@@ -40,10 +40,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/repository-v2', [InternalController::class, 'repository']);
     
     Route::post('/idea/{id}/comment/post', [InternalController::class, 'comment_post']);
-
-    Route::prefix('/user')->group(function () {
-        Route::get('/idea', [InternalController::class, 'idea_user']);
-    });
     
     Route::middleware('role:admin')->prefix('/admin')->group(function () {
         Route::get('/idea', [AdminController::class, 'idea']);
