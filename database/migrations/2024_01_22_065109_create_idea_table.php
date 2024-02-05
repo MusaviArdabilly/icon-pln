@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('idea', function (Blueprint $table) {
             $table->id();
-            $table->string('tumbnail');
+            $table->string('thumbnail');
             $table->string('title');
             // $table->text('abstract');
             $table->text('background');

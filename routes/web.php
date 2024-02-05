@@ -40,8 +40,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/repository-v2', [InternalController::class, 'repository']);
     
     Route::post('/idea/{id}/comment/post', [InternalController::class, 'comment_post']);
+
+    Route::prefix('/user')->group(function () {
+        Route::get('/idea', [InternalController::class, 'idea_user']);
+    });
     
-    Route::prefix('/admin')->group(function () {
+    Route::middleware('role:admin')->prefix('/admin')->group(function () {
         Route::get('/idea', [AdminController::class, 'idea']);
         Route::get('/idea/{id}', [AdminController::class, 'detail_idea']);
         Route::get('/idea/{id}/transfer-to-innovation', [AdminController::class, 'idea_to_innovation']);
