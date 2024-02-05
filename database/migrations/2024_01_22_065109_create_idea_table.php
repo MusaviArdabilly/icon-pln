@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('team');
             $table->string('status');
             $table->json('attachment')->default(new Expression('(JSON_ARRAY())'));
+            $table->unsignedBigInteger('total_views')->default(0);;
+            $table->unsignedBigInteger('total_comments')->default(0);;
             $table->timestamps();
         });
     }

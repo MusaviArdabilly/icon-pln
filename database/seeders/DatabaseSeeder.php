@@ -35,7 +35,9 @@ class DatabaseSeeder extends Seeder
             'solution' => 'Ini adalah solusi Pemanfaatan Internet of Things (IoT)',
             'team' => 'Musavi Ardabilly, John Petruci, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'ide',
-            'attachment' => ['Blueprint.png', 'Diagram.png', 'Bundle.pdf']
+            'attachment' => ['Blueprint.png', 'Diagram.png', 'Bundle.pdf'],
+            'total_views' => 0,
+            'total_comments' => 0,
         ]);
         Idea::create([
             'thumbnail' => 'default.png',
@@ -46,7 +48,9 @@ class DatabaseSeeder extends Seeder
             'solution' => 'Hybrid Power System pada PLN Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
             'team' => 'Dani Alfaza, James Bond, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'ide',
-            'attachment' => ['Flow Diagram.png', 'Prototype1.png', 'Prototype2.png']
+            'attachment' => ['Flow Diagram.png', 'Prototype1.png', 'Prototype2.png'],
+            'total_views' => 0,
+            'total_comments' => 0,
         ]);
         Idea::create([
             'thumbnail' => 'default.png',
@@ -57,7 +61,9 @@ class DatabaseSeeder extends Seeder
             'solution' => 'Teknologi Microgrid Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
             'team' => 'Naufal Fakhrian, Marteen Bruelee, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'ide',
-            'attachment' => ['Flow Diagram.png', 'Prototype1.png', 'Prototype2.png']
+            'attachment' => ['Flow Diagram.png', 'Prototype1.png', 'Prototype2.png'],
+            'total_views' => 0,
+            'total_comments' => 0,
         ]);
         Idea::create([
             'thumbnail' => 'default.png',
@@ -68,7 +74,9 @@ class DatabaseSeeder extends Seeder
             'solution' => 'Distribusi PLN Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
             'team' => 'Bagas Afnan, Alex marchel, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'ide',
-            'attachment' => ['Flow Diagram.png', 'Prototype1.png', 'Prototype2.png']
+            'attachment' => ['Flow Diagram.png', 'Prototype1.png', 'Prototype2.png'],
+            'total_views' => 0,
+            'total_comments' => 0,
         ]);
         Idea::create([
             'thumbnail' => 'default.png',
@@ -79,7 +87,9 @@ class DatabaseSeeder extends Seeder
             'solution' => 'Distribusi PLN Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
             'team' => 'Bagas Afnan, Alex marchel, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'inovasi',
-            'attachment' => ['Flow Diagram.png', 'Prototype1.png', 'Prototype2.png']
+            'attachment' => ['Flow Diagram.png', 'Prototype1.png', 'Prototype2.png'],
+            'total_views' => 0,
+            'total_comments' => 0,
         ]);
         Idea::create([
             'thumbnail' => 'default.png',
@@ -90,7 +100,9 @@ class DatabaseSeeder extends Seeder
             'solution' => 'Distribusi PLN Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
             'team' => 'Bagas Afnan, Alex marchel, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'inovasi',
-            'attachment' => ['Flow Diagram.png', 'Prototype1.png', 'Prototype2.png']
+            'attachment' => ['Flow Diagram.png', 'Prototype1.png', 'Prototype2.png'],
+            'total_views' => 0,
+            'total_comments' => 0,
         ]);
         Idea::create([
             'thumbnail' => 'default.png',
@@ -101,7 +113,9 @@ class DatabaseSeeder extends Seeder
             'solution' => 'Distribusi PLN Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
             'team' => 'Bagas Afnan, Alex marchel, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'inovoasi',
-            'attachment' => ['Flow Diagram.png', 'Prototype1.png', 'Prototype2.png']
+            'attachment' => ['Flow Diagram.png', 'Prototype1.png', 'Prototype2.png'],
+            'total_views' => 0,
+            'total_comments' => 0,
         ]);
         // \App\Models\User::factory(10)->create();
 

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Idea;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Comment;
+use Carbon\Carbon;
 
 class InternalController extends Controller
 {
@@ -55,7 +56,19 @@ class InternalController extends Controller
         $idea = Idea::find($id);
         $comment = [];
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
-        // dump($comments->toArray());
+        
+        if(Auth::user()->role == 'user'){
+            $userId = auth()->id();
+            $now = Carbon::now();
+            $midnight = Carbon::today();
+            
+            $lastView = $idea->view()->where('user_id', $userId)->where('created_at', '>=', $midnight)->latest()->first();
+
+            if(!$lastView) {
+                $idea->incrementViews();
+                $idea->view()->create(['user_id' => $userId]);
+            }
+        }
 
         return view('internal.idea.detail', compact('idea', 'comments'));
     }
@@ -69,6 +82,19 @@ class InternalController extends Controller
     public function detail_innovation($id) {
         $innovation = Idea::find($id);
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
+        
+        if(Auth::user()->role == 'user'){
+            $userId = auth()->id();
+            $now = Carbon::now();
+            $midnight = Carbon::today();
+
+            $lastView = $innovation->view()->where('user_id', $userId)->where('created_at', '>=', $midnight)->latest()->first();
+
+            if(!$lastView) {
+                $innovation->incrementViews();
+                $innovation->view()->create(['user_id' => $userId]);
+            }
+        }
 
         return view('internal.innovation.detail', compact('innovation', 'comments'));
     }
@@ -90,7 +116,6 @@ class InternalController extends Controller
         }
 
         return response()->download($path, $filename);
-        // dd($filename);
     }
 
     public function comment_post($id, Request $request) {
@@ -108,6 +133,9 @@ class InternalController extends Controller
         $comment->parent_id = $request->parent_id;
         $comment->content = $request->content;
         $comment->save();
+        
+        $idea = Idea::find($id);
+        $idea->incrementComments();
 
         return redirect()->back();
     }

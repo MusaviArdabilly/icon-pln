@@ -74,6 +74,10 @@ class AdminController extends Controller
         
         $replies->delete();
         $comment->delete();
+
+        $idea = Idea::find($ideaId);
+        $idea->total_comments = $idea->comment()->count();
+        $idea->save();
         
         return redirect()->back();
     }
