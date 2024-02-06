@@ -28,6 +28,7 @@ class InternalController extends Controller
         $attachments = [];
         
         $idea =  new Idea;
+        $idea->user_id = Auth::user()->id;
         if($request->hasFile('thumbnail')){
             $thumbnail = $request->file('thumbnail')->store('thumbnails', 'public');
             $idea->thumbnail = $thumbnail;
@@ -35,7 +36,6 @@ class InternalController extends Controller
             $idea->thumbnail = 'thumbnails/default-tumbnail-idea.png';
         }
         $idea->title = $request->title;
-        // $idea->abstract = $request->abstract;
         $idea->background = $request->background;
         $idea->content = $request->content;
         $idea->solution = $request->solution;
