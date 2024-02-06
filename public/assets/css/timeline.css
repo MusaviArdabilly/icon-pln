@@ -38,7 +38,7 @@
   position: relative;
   height: 100px;
   width: 90%;
-  max-width: 800px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 .cd-horizontal-timeline .events-wrapper {
@@ -85,7 +85,7 @@
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: #313740;
+  background-color: #0093ad;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
   -ms-transform: scaleX(0);
@@ -144,11 +144,11 @@
   pointer-events: none;
 }
 .cd-horizontal-timeline .events a.selected::after {
-  background-color: #313740;
-  border-color: #313740;
+  background-color: #0093ad;
+  border-color: #0093ad;
 }
 .cd-horizontal-timeline .events a.older-event::after {
-  border-color: #313740;
+  border-color: #0093ad;
 }
 @media only screen and (min-width: 1100px) {
   .cd-horizontal-timeline::before {

@@ -45,37 +45,37 @@
     <div class="container d-flex align-items-center">
       <div class="mb-120px mt-120px">
         <div data-aos="zoom-in-down" data-aos-duration="2000" class="col-12 title-landing text-center mb-40px">
-          <h1>
-            Let's Participate on ICONIC
+          <h1 class="text-wrap">
+            Berpartisipasi di ICONIC
           </h1>
         </div>
         <div class="row gx-0">
           <div class="col-12 col-md-3 text-center p-3">
             <div data-aos="zoom-out-down" data-aos-duration="2000" class="shadow rounded-4 p-3 bg-light">
               <img src="{{ asset('assets/image/icon/landing-page/idea.png') }}" alt="Icon" class="mb-3">
-              <h3 class="fs-20">Create your idea</h3>
+              <h3 class="fs-20">Buat ide mu</h3>
               <h3 class="fs-16 fw-400">Submit ide mu tanpa ragu, untuk semua orang, kapan pun! Inspirasi tak mengenal batas.</h3>
             </div>
           </div>
           <div class="col-12 col-md-3 text-center p-3">
             <div data-aos="zoom-in-up" data-aos-duration="1500" class="shadow rounded-4 p-3 bg-light">
               <img src="{{ asset('assets/image/icon/landing-page/collab.png') }}" alt="Icon" class="mb-3">
-              <h3 class="fs-20">Let's collaborate</h3>
+              <h3 class="fs-20">Mari Berkoaborasi</h3>
               <h3 class="fs-16 fw-400">Kamu dapat berkolaborasi untuk membuat idea kamu semakin berkembang.</h3>
             </div>
           </div>
           <div class="col-12 col-md-3 text-center p-3">
             <div data-aos="zoom-in-up" data-aos-duration="1500" class="shadow rounded-4 p-3 bg-light">
               <img src="{{ asset('assets/image/icon/landing-page/environment.png') }}" alt="Icon" class="mb-3">
-              <h3 class="fs-20">Build innovation</h3>
+              <h3 class="fs-20">Bangun Inovasi</h3>
               <h3 class="fs-16 fw-400">Jadilah bagian dari ekosistem inovasi dengan berperan aktif dalam perkembangan ide.</h3>
             </div>
           </div>
           <div class="col-12 col-md-3 text-center p-3">
             <div data-aos="zoom-in-left" data-aos-duration="1500" class="shadow rounded-4 p-3 bg-light">
               <img src="{{ asset('assets/image/icon/landing-page/dream.png') }}" alt="Icon" class="mb-3">
-              <h3 class="fs-20">Make your dream come true</h3>
-              <h3 class="fs-16 fw-400">Ayo realisasikan idea kamu melalui program inovasi PLN!</h3>
+              <h3 class="fs-20">Wujudkan Idemu</h3>
+              <h3 class="fs-16 fw-400">Mari kita wujudkan ide yang dimiliki melalui program inovasi yang diselenggarakan oleh PLN.</h3>
             </div>
           </div>
         </div>
@@ -83,21 +83,21 @@
     </div>
   </div>
   
-  <div class="container min-vh-100 d-flex align-items-center justify-content-center">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="">
+  <div data-aos="zoom-in-down" data-aos-duration="2000" class="container min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="row w-100">
+      <div class="col-12">
+        <div class="shadow rounded-4 p-3 bg-light">
           <div class="body">
             <div class="cd-horizontal-timeline loaded">
               <div data-aos="zoom-in-left" data-aos-duration="1500" class="timeline">
                 <div class="events-wrapper">
-                  <div class="events" style="width: 720px;">
+                  <div class="events">
                     <ol>
-                      <li><a href="#0" data-date="01/01/2024" class="fw-600 text-decoration-none older-event">Problem</a></li>
-                      <li><a href="#0" data-date="08/01/2024" class="fw-600 text-decoration-none older-event">Design</a></li>
-                      <li><a href="#0" data-date="16/01/2024" class="fw-600 text-decoration-none selected">Prototype</a></li>
-                      <li><a href="#0" data-date="24/01/2024" class="fw-600 text-decoration-none">Evaluasi</a></li>
-                      <li><a href="#0" data-date="31/01/2024" class="fw-600 text-decoration-none">Report</a></li>
+                      <li><a href="#0" data-date="01/01/2024" class="fs-24 fw-600 text-decoration-none older-event">Problem</a></li>
+                      <li><a href="#0" data-date="08/01/2024" class="fs-24 fw-600 text-decoration-none older-event">Design</a></li>
+                      <li><a href="#0" data-date="16/01/2024" class="fs-24 fw-600 text-decoration-none selected">Prototype</a></li>
+                      <li><a href="#0" data-date="24/01/2024" class="fs-24 fw-600 text-decoration-none">Evaluasi</a></li>
+                      <li><a href="#0" data-date="31/01/2024" class="fs-24 fw-600 text-decoration-none">Report</a></li>
                     </ol>
                     <span class="filling-line" aria-hidden="true" style="transform: scaleX(0.281506);"></span>
                   </div>
@@ -111,7 +111,7 @@
                 <!-- .cd-timeline-navigation -->
               </div>
               <!-- .timeline -->
-              <div data-aos="zoom-in-up" data-aos-duration="1500" class="events-content" style="height: 225px;">
+              <div data-aos="zoom-in-up" data-aos-duration="1500" class="events-content">
                   <ol>
                       <li class="" data-date="01/01/2024">
                           <p class="text-center">
