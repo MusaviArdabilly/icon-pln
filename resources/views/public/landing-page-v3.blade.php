@@ -89,7 +89,7 @@
         <div class="">
           <div class="body">
             <div class="cd-horizontal-timeline loaded">
-              <div class="timeline">
+              <div data-aos="zoom-in-left" data-aos-duration="1500" class="timeline">
                 <div class="events-wrapper">
                   <div class="events" style="width: 720px;">
                     <ol>
@@ -111,7 +111,7 @@
                 <!-- .cd-timeline-navigation -->
               </div>
               <!-- .timeline -->
-              <div class="events-content" style="height: 225px;">
+              <div data-aos="zoom-in-up" data-aos-duration="1500" class="events-content" style="height: 225px;">
                   <ol>
                       <li class="" data-date="01/01/2024">
                           <p class="text-center">
