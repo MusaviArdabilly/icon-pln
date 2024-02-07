@@ -84,61 +84,68 @@
   </div>
   
   <div data-aos="zoom-in-down" data-aos-duration="2000" class="container min-vh-100 d-flex align-items-center justify-content-center">
-    <div class="row w-100">
-      <div class="col-12">
-        <div class="shadow rounded-4 p-3 bg-light">
-          <div class="body">
-            <div class="cd-horizontal-timeline loaded">
-              <div data-aos="zoom-in-left" data-aos-duration="1500" class="timeline">
-                <div class="events-wrapper">
-                  <div class="events">
-                    <ol>
-                      <li><a href="#0" data-date="01/01/2024" class="fs-24 fw-600 text-decoration-none older-event">Problem</a></li>
-                      <li><a href="#0" data-date="08/01/2024" class="fs-24 fw-600 text-decoration-none older-event">Design</a></li>
-                      <li><a href="#0" data-date="16/01/2024" class="fs-24 fw-600 text-decoration-none selected">Prototype</a></li>
-                      <li><a href="#0" data-date="24/01/2024" class="fs-24 fw-600 text-decoration-none">Evaluasi</a></li>
-                      <li><a href="#0" data-date="31/01/2024" class="fs-24 fw-600 text-decoration-none">Report</a></li>
-                    </ol>
-                    <span class="filling-line" aria-hidden="true" style="transform: scaleX(0.281506);"></span>
+    <div class="w-100">
+      <div data-aos="zoom-in-down" data-aos-duration="2000" class="col-12 title-landing text-center mb-40px">
+        <h1 class="text-wrap">
+          Alur ICONIC
+        </h1>
+      </div>
+      <div class="row w-100">
+        <div class="col-12">
+          <div class="shadow rounded-4 p-3 bg-light">
+            <div class="body">
+              <div class="cd-horizontal-timeline loaded">
+                <div data-aos="zoom-in-left" data-aos-duration="1500" class="timeline">
+                  <div class="events-wrapper">
+                    <div class="events">
+                      <ol>
+                        <li><a href="#0" data-date="01/01/2024" class="fs-24 fw-600 text-decoration-none older-event">Problem</a></li>
+                        <li><a href="#0" data-date="08/01/2024" class="fs-24 fw-600 text-decoration-none older-event">Design</a></li>
+                        <li><a href="#0" data-date="16/01/2024" class="fs-24 fw-600 text-decoration-none selected">Prototype</a></li>
+                        <li><a href="#0" data-date="24/01/2024" class="fs-24 fw-600 text-decoration-none">Evaluasi</a></li>
+                        <li><a href="#0" data-date="31/01/2024" class="fs-24 fw-600 text-decoration-none">Report</a></li>
+                      </ol>
+                      <span class="filling-line" aria-hidden="true" style="transform: scaleX(0.281506);"></span>
+                    </div>
+                    <!-- .events -->
                   </div>
-                  <!-- .events -->
+                  <!-- .events-wrapper -->
+                  <ul class="cd-timeline-navigation d-block d-md-none">
+                    <li><a href="#0" class="prev inactive">Prev</a></li>
+                    <li><a href="#0" class="next">Next</a></li>
+                  </ul>
+                  <!-- .cd-timeline-navigation -->
                 </div>
-                <!-- .events-wrapper -->
-                <ul class="cd-timeline-navigation d-block d-md-none">
-                  <li><a href="#0" class="prev inactive">Prev</a></li>
-                  <li><a href="#0" class="next">Next</a></li>
-                </ul>
-                <!-- .cd-timeline-navigation -->
-              </div>
-              <!-- .timeline -->
-              <div data-aos="zoom-in-up" data-aos-duration="1500" class="events-content">
-                  <ol>
-                      <li class="" data-date="01/01/2024">
-                          <p class="text-center">
-                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
-                          </p>
-                      </li>
-                      <li data-date="08/01/2024" class="">
-                          <p class="text-center">
-                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
-                          </p>
-                      </li>
-                      <li data-date="16/01/2024" class="selected">
-                          <p class="text-center">
-                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
-                          </p>
-                      </li>
-                      <li data-date="24/01/2024">
-                          <p class="text-center">
-                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
-                          </p>
-                      </li>
-                      <li data-date="31/01/2024">
-                          <p class="text-center">
-                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
-                          </p>
-                      </li>
-                  </ol>
+                <!-- .timeline -->
+                <div data-aos="zoom-in-up" data-aos-duration="1500" class="events-content">
+                    <ol>
+                        <li class="" data-date="01/01/2024">
+                            <p class="text-center">
+                              It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
+                            </p>
+                        </li>
+                        <li data-date="08/01/2024" class="">
+                            <p class="text-center">
+                              It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
+                            </p>
+                        </li>
+                        <li data-date="16/01/2024" class="selected">
+                            <p class="text-center">
+                              It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
+                            </p>
+                        </li>
+                        <li data-date="24/01/2024">
+                            <p class="text-center">
+                              It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
+                            </p>
+                        </li>
+                        <li data-date="31/01/2024">
+                            <p class="text-center">
+                              It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
+                            </p>
+                        </li>
+                    </ol>
+                </div>
               </div>
             </div>
           </div>
