@@ -173,7 +173,7 @@
                     <div class="comment-content mx-2 pt-1">
                       <div class="d-flex justify-content-between align-items-center mb-1">
                         <h2 class="fs-16 fw-600 m-0">{{ $comment->user->name }}</h2>
-                        <div class="fs-14 ms-5 btn-reply" onclick="showComment({{ $comment->user->id }}, {{ $idea->id }}, {{ $comment->id }})"><i class="d-inline fs-20 bi bi-reply-fill"></i>Balas</div>
+                        <div class="fs-14 ms-5 btn-reply cursor-pointer" onclick="showComment({{ $comment->user->id }}, {{ $idea->id }}, {{ $comment->id }})"><i class="d-inline fs-20 bi bi-reply-fill"></i>Balas</div>
                       </div>
                       <p class="fs-14 mb-0">{{ $comment->content }}</p>
                     </div>
