@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use App\Models\Idea;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Comment;
 use Carbon\Carbon;
+use Illuminate\View\View;
+use Illuminate\Pagination\Paginator;
 
 class InternalController extends Controller
 {
@@ -19,9 +22,72 @@ class InternalController extends Controller
     }
 
     public function idea_v2() {
-        $idea = Idea::where('status', 'ide')->orderBy('created_at', 'desc')->get();
+        $idea = Idea::select('*', DB::raw('(total_views + (2 * total_comments)) as popularity'))
+                ->where('status', 'ide')
+                ->orderBy('created_at', 'desc')
+                ->simplePaginate(8);
+                // dd($idea);
 
         return view('internal.idea.index_v2', compact('idea'));
+    }
+
+    // old v3 
+    public function idea_v3(Request $request): View {
+        $idea = Idea::select('*', DB::raw('(total_views + (2 * total_comments)) as popularity'))
+                ->where('status', 'ide')
+                ->orderBy('created_at', 'desc')
+                ->simplePaginate(8);
+        
+        if($request->ajax()){
+            return view('internal.idea.card_idea', compact('idea'));
+        }
+
+        return view('internal.idea.index_v3', compact('idea'));
+    }
+
+    // public function idea_v3(Request $request): View {
+    //     $perPage = 8;
+    //     $currentPage = $request->input('page', 1);
+    
+    //     $totalItems = Idea::where('status', 'ide')->count();
+    
+    //     $ideas = Idea::select('*', DB::raw('(total_views + (2 * total_comments)) as popularity'))
+    //             ->where('status', 'ide')
+    //             ->orderBy('created_at', 'desc')
+    //             ->get();
+    
+    //     // Manually paginate the ideas
+    //     $paginator = new Paginator($ideas, $perPage, $currentPage);
+    //     $idea = $paginator->items();
+    
+    //     if ($request->ajax()) {
+    //         return view('internal.idea.card_idea', compact('idea'));
+    //     }
+    
+    //     $totalPages = ceil($totalItems / $perPage);
+    //     $disablePrev = ($currentPage == 1) ? true : false;
+    //     $disableNext = ($currentPage == $totalPages || $totalPages == 0) ? true : false;
+    
+    //     return view('internal.idea.index_v3', compact('idea', 'totalPages', 'currentPage', 'disablePrev', 'disableNext'));
+    // }
+
+    public function get_idea(Request $request) {
+        $page = $request->input('page', 1);
+        $perPage = 8;
+
+        $idea = Idea::select('*', DB::raw('(total_views + (2 * total_comments)) as popularity'))
+            ->where('status', 'ide')
+            ->orderBy('created_at', 'desc')
+            ->offset(($page - 1) * $perPage)
+            ->limit($perPage)
+            ->get();
+
+        $lastPage = Idea::where('status', 'ide')->count() / $perPage;
+
+        return response()->json([
+            'ideas' => view('internal.idea.ideas', compact('idea'))->render(),
+            'lastPage' => ceil($lastPage),
+        ]);
     }
 
     public function idea_submit(Request $request) {

@@ -108,6 +108,19 @@ body {
   margin-right: 2px;
 }
 
+@keyframes swipeLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.swipe-left {
+  animation: swipeLeft 0.5s ease-out;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

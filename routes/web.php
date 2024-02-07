@@ -31,13 +31,15 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [AuthController::class, 'register']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/idea', [InternalController::class, 'idea_v2']);
+    Route::get('/idea', [InternalController::class, 'idea_v3']);
     Route::post('/idea-submit', [InternalController::class, 'idea_submit']);
     Route::get('/idea/{id}', [InternalController::class, 'detail_idea']);
     Route::get('/innovation', [InternalController::class, 'innovation']);
     Route::get('/innovation/{id}', [InternalController::class, 'detail_innovation']);
     Route::get('/repository', [InternalController::class, 'repository_v2']);
     Route::get('/repository-v2', [InternalController::class, 'repository']);
+
+    Route::get('/get-idea', [InternalController::class, 'get_idea']);
     
     Route::post('/idea/{id}/comment/post', [InternalController::class, 'comment_post']);
     
