@@ -31,7 +31,7 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [AuthController::class, 'register']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/idea', [InternalController::class, 'idea_v3']);
+    Route::get('/idea', [InternalController::class, 'idea_v4']);
     Route::post('/idea-submit', [InternalController::class, 'idea_submit']);
     Route::get('/idea/{id}', [InternalController::class, 'detail_idea']);
     Route::get('/innovation', [InternalController::class, 'innovation']);
@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/repository-v2', [InternalController::class, 'repository']);
 
     Route::get('/get-idea', [InternalController::class, 'get_idea']);
+    Route::get('/get-popular-idea', [InternalController::class, 'get_popular_idea']);
     
     Route::post('/idea/{id}/comment/post', [InternalController::class, 'comment_post']);
     

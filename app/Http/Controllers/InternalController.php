@@ -44,7 +44,7 @@ class InternalController extends Controller
 
         return view('internal.idea.index_v3', compact('idea'));
     }
-
+    // v3 
     // public function idea_v3(Request $request): View {
     //     $perPage = 8;
     //     $currentPage = $request->input('page', 1);
@@ -71,23 +71,46 @@ class InternalController extends Controller
     //     return view('internal.idea.index_v3', compact('idea', 'totalPages', 'currentPage', 'disablePrev', 'disableNext'));
     // }
 
+    public function idea_v4(Request $request){
+        $currentPage = 1;
+
+        return view('internal.idea.index_v4', compact('currentPage'));
+    }
+
     public function get_idea(Request $request) {
-        $page = $request->input('page', 1);
-        $perPage = 8;
+        $perPage = 8; 
+        $page = $request->input('page', 1); // Current page
 
-        $idea = Idea::select('*', DB::raw('(total_views + (2 * total_comments)) as popularity'))
-            ->where('status', 'ide')
-            ->orderBy('created_at', 'desc')
-            ->offset(($page - 1) * $perPage)
-            ->limit($perPage)
-            ->get();
+        $idea = Idea::where('status', 'ide') 
+                    ->orderByDesc('created_at') 
+                    ->skip(($page - 1) * $perPage)
+                    ->take($perPage)
+                    ->get();
 
-        $lastPage = Idea::where('status', 'ide')->count() / $perPage;
+        // Calculate popularity using the given formula
+        $idea = $idea->map(function ($item) {
+            $item->popularity = $item->total_views + (2 * $item->total_comments);
+            return $item;
+        });
+
+        $totalIdea = Idea::where('status', 'ide')->count();
+        $lastPage = ceil($totalIdea / $perPage);
 
         return response()->json([
-            'ideas' => view('internal.idea.ideas', compact('idea'))->render(),
+            'ideas' => view('internal.idea.card_idea', compact('idea'))->render(),
             'lastPage' => ceil($lastPage),
+            'totalIdea' => $totalIdea
         ]);
+    }
+
+    public function get_popular_idea(Request $request):View {
+        $idea = Idea::where('status', 'ide')
+                    ->where(DB::raw('total_views + (2 * total_comments)'), '>', 0)
+                    ->orderByDesc(DB::raw('total_views + (2 * total_comments)'))
+                    ->take(8)
+                    ->get();
+
+        return view('internal.idea.card_idea', compact('idea'));
     }
 
     public function idea_submit(Request $request) {
