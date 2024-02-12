@@ -183,6 +183,7 @@
   </div>
 
 </section>
+
 <script>
   var currentPage = 1; // Initial page
   var lastPage = 1;   // Initialize lastPage variable
@@ -210,10 +211,10 @@
               $("#btn-filter-newest").addClass('active');
               $("#pagination").addClass('d-flex').removeClass('d-none');
               updatePaginationButtons();
-              console.log('total ideda:', response.totalIdea)
-              console.log('current page:', currentPage)
-              console.log('last page:', response.lastPage)
-              console.log(response)
+              // console.log('total ideda:', response.totalIdea)
+              // console.log('current page:', currentPage)
+              // console.log('last page:', response.lastPage)
+              // console.log(response)
           }
       });
   }

@@ -42,6 +42,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/get-idea', [InternalController::class, 'get_idea']);
     Route::get('/get-popular-idea', [InternalController::class, 'get_popular_idea']);
+
+    Route::get('/get-innovation', [InternalController::class, 'get_innovation']);
+    Route::get('/get-popular-innovation', [InternalController::class, 'get_popular_innovation']);
     
     Route::post('/idea/{id}/comment/post', [InternalController::class, 'comment_post']);
     

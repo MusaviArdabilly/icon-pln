@@ -72,9 +72,7 @@ class InternalController extends Controller
     // }
 
     public function idea_v4(Request $request){
-        $currentPage = 1;
-
-        return view('internal.idea.index_v4', compact('currentPage'));
+        return view('internal.idea.index_v4');
     }
 
     public function get_idea(Request $request) {
@@ -163,9 +161,7 @@ class InternalController extends Controller
     }
     
     public function innovation() {
-        $innovation = Idea::where('status', 'inovasi')->get();
-
-        return view('internal.innovation.index', compact('innovation'));
+        return view('internal.innovation.index');
     }
 
     public function detail_innovation($id) {
@@ -186,6 +182,42 @@ class InternalController extends Controller
         }
 
         return view('internal.innovation.detail', compact('innovation', 'comments'));
+    }
+
+    public function get_innovation(Request $request) {
+        $perPage = 8; 
+        $page = $request->input('page', 1); // Current page
+
+        $innovation = Idea::where('status', 'inovasi') 
+                    ->orderByDesc('created_at') 
+                    ->skip(($page - 1) * $perPage)
+                    ->take($perPage)
+                    ->get();
+
+        // Calculate popularity using the given formula
+        $innovation = $innovation->map(function ($item) {
+            $item->popularity = $item->total_views + (2 * $item->total_comments);
+            return $item;
+        });
+
+        $totalInnovation = Idea::where('status', 'inovasi')->count();
+        $lastPage = ceil($totalInnovation / $perPage);
+
+        return response()->json([
+            'ideas' => view('internal.innovation.card_innovation', compact('innovation'))->render(),
+            'lastPage' => ceil($lastPage),
+            'totalInnovation' => $totalInnovation
+        ]);
+    }
+
+    public function get_popular_innovation(Request $request):View {
+        $innovation = Idea::where('status', 'inovasi')
+                    ->where(DB::raw('total_views + (2 * total_comments)'), '>', 0)
+                    ->orderByDesc(DB::raw('total_views + (2 * total_comments)'))
+                    ->take(8)
+                    ->get();
+
+        return view('internal.innovation.card_innovation', compact('innovation'));
     }
 
     public function repository() {
