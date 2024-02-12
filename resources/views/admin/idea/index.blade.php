@@ -55,7 +55,11 @@
                       </td>
                     </tr>
                   @empty
-                      
+                    <tr>
+                      <td class="text-center" colspan="5">
+                          Tidak ada data
+                      </td>
+                    </tr>
                   @endforelse
                 </tbody>
             </table>

@@ -25,8 +25,8 @@
                       <th>No</th>
                       <th>Judul</th>
                       <th>Tim</th>
-                      <th class="text-center">Status</th>
-                      <th class="text-center">Aksi</th>
+                      <th>Status</th>
+                      <th>Aksi</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -55,9 +55,11 @@
                       </td>
                     </tr>
                   @empty
-                      <tr rowspan="5" class="text-center">
-                        Tidak ada data
-                      </tr>
+                    <tr>
+                      <td class="text-center" colspan="5">
+                          Tidak ada data
+                      </td>
+                    </tr>
                   @endforelse
                 </tbody>
             </table>
