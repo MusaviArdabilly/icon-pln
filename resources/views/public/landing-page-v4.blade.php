@@ -10,7 +10,7 @@
 
   <div class="hero-video hero-video-v4">
     <video autoplay loop muted plays-inline class="z-0">
-      <source src="{{ asset('assets/video/valorant_vid.mp4') }}" type="video/mp4">
+      <source src="{{ asset('assets/video/compro.mp4') }}" type="video/mp4">
     </video>
     <div class="container">
       <div class="overlay min-vh-100 d-flex align-items-center z-1">
