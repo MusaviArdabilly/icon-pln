@@ -17,4 +17,8 @@ class PublicController extends Controller
     public function index_v3() {
         return view('public.landing-page-v3');
     }
+
+    public function index_v4() {
+        return view('public.landing-page-v4');
+    }
 }

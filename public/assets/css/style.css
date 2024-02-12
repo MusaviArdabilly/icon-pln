@@ -205,6 +205,36 @@ body {
   filter: brightness(50%);
 }
 
+.hero-video-v4 {
+  width: 100%;
+  min-height: 90dvh;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-video-v4 video {
+  top: 0 !important;
+  transform: translate(-50%, 0) !important;
+  height: auto;
+  max-height: 90dvh !important;
+  min-height: 90dvh !important;
+  filter: brightness(50%);
+}
+
+.hero-video-v4 .min-vh-100 {
+  height: auto;
+  min-height: 90dvh !important;
+  max-height: 90dvh !important;
+}
+
+.full-width {
+  position: absolute;
+  left: 0;
+  width: auto;
+  min-width: 100%;
+}
+
+
 .hero-video .overlay {
   position: absolute;
 }
