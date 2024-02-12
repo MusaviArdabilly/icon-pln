@@ -13,11 +13,22 @@
     <link href="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 		{{-- <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}"> --}}
 		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+		<link href="{{ asset('assets/css/idea.css') }}" rel="stylesheet" />
+		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	
+		<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 		
 		{{-- Sweet Alert --}}
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	</head>
 	<body id="page-top" class="text-dark">
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+		<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+		<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 		<!-- Page Wrapper -->
@@ -53,37 +64,57 @@
 								Data
 						</div>
 
-						<!-- Nav Item -->
-						<li id="nav-idea" class="nav-item">
-								<a class="nav-link" href="/admin/idea">
-										<i class="fas fa-fw fa-chart-area"></i>
-										<span>Ide</span></a>
-						</li>
+						@if (Auth::user()->role == 'admin')
 
-						<!-- Nav Item -->
-						<li id="nav-innovation" class="nav-item">
-								<a class="nav-link" href="/admin/innovation">
-										<i class="fas fa-fw fa-table"></i>
-										<span>Inovasi</span></a>
-						</li>
+							<!-- Nav Item -->
+							<li id="nav-idea" class="nav-item">
+									<a class="nav-link" href="/admin/idea">
+											<i class="fas fa-fw fa-chart-area"></i>
+											<span>Ide</span></a>
+							</li>
 
-						<!-- Divider -->
-						<hr class="sidebar-divider d-none d-md-block">
+							<!-- Nav Item -->
+							<li id="nav-innovation" class="nav-item">
+									<a class="nav-link" href="/admin/innovation">
+											<i class="fas fa-fw fa-table"></i>
+											<span>Inovasi</span></a>
+							</li>
 
-						<!-- Heading -->
-						<div class="sidebar-heading">
-								User
-						</div>
+							<!-- Divider -->
+							<hr class="sidebar-divider d-none d-md-block">
 
-						<!-- Nav Item -->
-						<li id="nav-user" class="nav-item">
-								<a class="nav-link" href="#">
-										<i class="fas fa-fw fa-user"></i>
-										<span>Manajemen User</span></a>
-						</li>
+							<!-- Heading -->
+							<div class="sidebar-heading">
+									User
+							</div>
 
-						<!-- Divider -->
-						<hr class="sidebar-divider d-none d-md-block">
+							<!-- Nav Item -->
+							<li id="nav-user" class="nav-item">
+									<a class="nav-link" href="#">
+											<i class="fas fa-fw fa-user"></i>
+											<span>Manajemen User</span></a>
+							</li>
+
+							<!-- Divider -->
+							<hr class="sidebar-divider d-none d-md-block">
+						@else
+							<!-- Nav Item -->
+							<li id="nav-idea" class="nav-item">
+									<a class="nav-link" href="/user/idea">
+											<i class="fas fa-fw fa-chart-area"></i>
+											<span>Ide</span></a>
+							</li>
+
+							<!-- Nav Item -->
+							<li id="nav-innovation" class="nav-item">
+									<a class="nav-link" href="/user/innovation">
+											<i class="fas fa-fw fa-table"></i>
+											<span>Inovasi</span></a>
+							</li>
+
+							<!-- Divider -->
+							<hr class="sidebar-divider d-none d-md-block">
+						@endif
 
 						<!-- Sidebar Toggler (Sidebar) -->
 						<div class="text-center d-none d-md-inline">
@@ -184,6 +215,9 @@
 						</div>
 				</div>
 		</div>
+		<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+		{{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> --}}
 
 		<!-- Bootstrap core JavaScript-->
 		<script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

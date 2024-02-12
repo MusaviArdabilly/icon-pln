@@ -45,6 +45,13 @@ Route::middleware('auth')->group(function () {
     
     Route::post('/idea/{id}/comment/post', [InternalController::class, 'comment_post']);
     
+    Route::middleware('role:user')->prefix('/user')->group(function () {
+        Route::get('/idea', [InternalController::class, 'idea_user']);
+        Route::get('/idea/{id}', [InternalController::class, 'detail_idea_user']);
+        Route::get('/innovation', [InternalController::class, 'innovation_user']);
+        Route::get('/innovation/{id}', [InternalController::class, 'detail_innovation_user']);
+    });
+
     Route::middleware('role:admin')->prefix('/admin')->group(function () {
         Route::get('/idea', [AdminController::class, 'idea']);
         Route::get('/idea/{id}', [AdminController::class, 'detail_idea']);

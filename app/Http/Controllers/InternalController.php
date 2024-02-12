@@ -228,4 +228,65 @@ class InternalController extends Controller
 
         return redirect()->back();
     }
+
+    //owner:user
+
+    public function idea_user() {
+        $idea = Idea::where('status', 'ide')
+                    ->where('user_id', Auth::user()->id)
+                    ->orderBy('created_at', 'desc')->get();
+
+        return view('internal.dashboard.idea', compact('idea'));
+    }
+
+    public function detail_idea_user($id) {
+        $idea = Idea::find($id);
+        $comment = [];
+        $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
+        
+        if(Auth::user()->role == 'user'){
+            $userId = auth()->id();
+            $now = Carbon::now();
+            $midnight = Carbon::today();
+            
+            $lastView = $idea->view()->where('user_id', $userId)->where('created_at', '>=', $midnight)->latest()->first();
+
+            if(!$lastView) {
+                $idea->incrementViews();
+                $idea->view()->create(['user_id' => $userId]);
+            }
+        }
+
+        return view('internal.dashboard.detail_idea', compact('idea', 'comments'));
+    }
+
+
+    public function innovation_user() {
+        $idea = Idea::where('status', 'inovasi')
+                    ->where('user_id', Auth::user()->id)
+                    ->orderBy('created_at', 'desc')->get();
+
+        return view('internal.dashboard.innovation', compact('idea'));
+    }
+
+    public function detail_innovation_user($id) {
+        $idea = Idea::find($id);
+        $comment = [];
+        $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
+        
+        if(Auth::user()->role == 'user'){
+            $userId = auth()->id();
+            $now = Carbon::now();
+            $midnight = Carbon::today();
+            
+            $lastView = $idea->view()->where('user_id', $userId)->where('created_at', '>=', $midnight)->latest()->first();
+
+            if(!$lastView) {
+                $idea->incrementViews();
+                $idea->view()->create(['user_id' => $userId]);
+            }
+        }
+
+        return view('internal.dashboard.detail_innovation', compact('idea', 'comments'));
+    }
 }
