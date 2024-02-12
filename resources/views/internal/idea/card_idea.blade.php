@@ -1,6 +1,6 @@
 @foreach ($idea as $item)
   <div class="col-12 col-md-3 p-2" data-popularity="{{ $item->popularity }}" data-date="{{ $item->created_at }}">
-    <div class="card h-100 p-2 shadow border-0 animation-hover-card rounded-4">
+    <div class="card h-100 p-2 shadow border-0 card-idea-animation rounded-4">
       <div class="mx-auto rounded-4">
         <img src="{{ asset('storage/' . $item->thumbnail) }}"
           style="height: 100%; width: 100%; aspect-ratio: 1/1; object-fit: cover;" class="rounded-3" alt="idea-banner">

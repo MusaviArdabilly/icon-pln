@@ -349,6 +349,14 @@ body {
   }
 }
 
+.card-idea-animation {
+  transition: transform 0.3s;
+}
+
+.card-idea-animation:hover {
+  transform: rotate(2.5deg);
+}
+
 /* Detail Idea  */
 /* .abstraction {
   height: 168px;

@@ -160,7 +160,7 @@
   </div>
 
   <div class="d-flex justify-content-between w-100 mt-5">
-    <h3 class="fw-600">Daftar Ide v4</h3>
+    <h3 class="fw-600">Daftar Ide</h3>
     <div>
       <button id="btn-filter-newest" class="btn btn-sm btn-outline-primary active" onclick="loadIdeas(1)">Terbaru</button>
       <button id="btn-filter-popular" class="btn btn-sm btn-outline-primary" onclick="loadPopularIdeas()">Terpopuler</button>
