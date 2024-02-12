@@ -162,8 +162,14 @@
   <div class="d-flex justify-content-between w-100 mt-5">
     <h3 class="fw-600">Daftar Ide</h3>
     <div>
-      <button id="btn-filter-newest" class="btn btn-sm btn-outline-primary active" onclick="loadIdeas(1)">Terbaru</button>
-      <button id="btn-filter-popular" class="btn btn-sm btn-outline-primary" onclick="loadPopularIdeas()">Terpopuler</button>
+      <button id="btn-filter-newest" class="btn btn-outline-primary active" onclick="loadIdeas(1)">
+        <img height="20px" src="{{ asset('assets/image/icon/new.png') }}" alt="">
+        Terbaru
+      </button>
+      <button id="btn-filter-popular" class="btn btn-outline-primary" onclick="loadPopularIdeas()">
+        <img height="20px" src="{{ asset('assets/image/icon/trending.png') }}" alt="">
+        Terpopuler
+      </button>
     </div>
   </div>
   <div id="itemList" class="mt-3 row w-100 justify-content-center justify-content-sm-start">
@@ -172,8 +178,8 @@
     
   <div id="pagination" class="d-flex justify-content-end w-100 mt-5">
     {{-- {{ $idea->links() }} --}}
-    <button class="btn btn-sm btn-outline-primary me-3" id="prevBtn" onclick="loadIdeas('prev')" disabled><</button>
-    <button class="btn btn-sm btn-outline-primary" id="nextBtn" onclick="loadIdeas('next')" disabled>></button>
+    <button class="btn btn-outline-primary me-3" id="prevBtn" onclick="loadIdeas('prev')" disabled><</button>
+    <button class="btn btn-outline-primary" id="nextBtn" onclick="loadIdeas('next')" disabled>></button>
   </div>
 
 </section>
