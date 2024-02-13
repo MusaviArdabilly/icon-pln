@@ -18,7 +18,7 @@
           <p class="col-3">Thumbnail</p>
           <div class="col-9 uploader">
             <div class="d-flex">
-              <img src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
+              <img height="156px" src="{{ asset('storage/' . $idea->thumbnail) }}" alt="" class="mr-3">
               <input id="file-upload" type="file" name="thumbnail" accept="image/*" style="display:none" />
               <label for="file-upload" id="file-drag">
                 <img id="file-image" src="#" alt="Preview" class="hidden">
