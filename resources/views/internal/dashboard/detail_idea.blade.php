@@ -398,10 +398,19 @@
       list.innerHTML += `<li><span>${item}</span><a href="javascript: remove(${index})">X</a></li>`;
     });
   }
-
   function remove(i) {
-    items = items.filter(item => items.indexOf(item) != i);
-    render();
+    if (i > 0) {
+      items = items.filter((item, index) => index !== i);
+      render();
+    } else {
+      window.Swal.fire({
+        icon: 'error',
+        title: 'Tidak bisa',
+        text: 'Nama pengirim ide tidak bisa dihapus',
+        timer: 3000,
+        showConfirmButton: false,
+      });
+    }
   }
 
   window.onload = function () {
