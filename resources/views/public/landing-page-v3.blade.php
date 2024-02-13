@@ -98,9 +98,9 @@
                   <div class="events-wrapper">
                     <div class="events">
                       <ol>
-                        <li><a href="#0" data-date="01/01/2024" class="fs-24 fw-600 text-decoration-none older-event">Problem</a></li>
-                        <li><a href="#0" data-date="08/01/2024" class="fs-24 fw-600 text-decoration-none older-event">Design</a></li>
-                        <li><a href="#0" data-date="16/01/2024" class="fs-24 fw-600 text-decoration-none selected">Prototype</a></li>
+                        <li><a href="#0" data-date="01/01/2024" class="fs-24 fw-600 text-decoration-none selected">Problem</a></li>
+                        <li><a href="#0" data-date="08/01/2024" class="fs-24 fw-600 text-decoration-none">Design</a></li>
+                        <li><a href="#0" data-date="16/01/2024" class="fs-24 fw-600 text-decoration-none">Prototype</a></li>
                         <li><a href="#0" data-date="24/01/2024" class="fs-24 fw-600 text-decoration-none">Evaluasi</a></li>
                         <li><a href="#0" data-date="31/01/2024" class="fs-24 fw-600 text-decoration-none">Report</a></li>
                       </ol>
@@ -118,7 +118,7 @@
                 <!-- .timeline -->
                 <div data-aos="zoom-in-up" data-aos-duration="1500" class="events-content">
                     <ol>
-                        <li class="" data-date="01/01/2024">
+                        <li class="selected" data-date="01/01/2024">
                           <div class="d-flex gap-5">
                             <img height="128px" src="{{ asset('assets/image/icon/landing-page/problem.png') }}" alt="">
                             <p class="d-inline-block text-center">
@@ -134,7 +134,7 @@
                             </p>
                           </div>
                         </li>
-                        <li data-date="16/01/2024" class="selected">
+                        <li data-date="16/01/2024" class="">
                           <div class="d-flex gap-5">
                             <img height="128px" src="{{ asset('assets/image/icon/landing-page/prototype.png') }}" alt="">
                             <p class="d-inline-block text-center">
