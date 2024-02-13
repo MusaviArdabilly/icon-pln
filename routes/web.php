@@ -52,9 +52,11 @@ Route::middleware('auth')->group(function () {
     
     Route::middleware('role:user')->prefix('/user')->group(function () {
         Route::get('/idea', [InternalController::class, 'idea_user']);
-        Route::get('/idea/{id}', [InternalController::class, 'detail_idea_user']);
         Route::get('/innovation', [InternalController::class, 'innovation_user']);
-        Route::get('/innovation/{id}', [InternalController::class, 'detail_innovation_user']);
+        Route::middleware('ownership')->group(function () {
+            Route::get('/idea/{id}', [InternalController::class, 'detail_idea_user']);
+            Route::get('/innovation/{id}', [InternalController::class, 'detail_innovation_user']);
+        });
     });
 
     Route::middleware('role:admin')->prefix('/admin')->group(function () {
