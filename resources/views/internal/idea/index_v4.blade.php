@@ -306,6 +306,8 @@
 </script> --}}
 
 <script>
+
+  var username = @json(Auth::user()->name);
   // all data form
   var items = [];
   var imageUpload;
@@ -342,6 +344,7 @@
   var txt = document.getElementById('txt_chips');
   var list = document.getElementById('list_chips');
   var items = [];
+  items.push(username);
 
   txt.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
@@ -369,9 +372,19 @@
   }
 
   function remove(i) {
-    items = items.filter(item => items.indexOf(item) != i);
-    render();
-  }
+    if (i > 0) {
+        items = items.filter((item, index) => index !== i);
+        render();
+    } else {
+      window.Swal.fire({
+            icon: 'error',
+            title: 'Tidak bisa',
+            text: 'Nama pengirim ide tidak bisa dihapus',
+            timer: 3000,
+            showConfirmButton: false,
+          });
+    }
+}
 
   window.onload = function () {
     render();
