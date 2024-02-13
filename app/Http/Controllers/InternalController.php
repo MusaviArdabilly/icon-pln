@@ -139,6 +139,34 @@ class InternalController extends Controller
         $idea->save();
     }
 
+    public function idea_edit(Request $request, $id) {
+        $attachments = [];
+        
+        $idea =  Idea::find($id);
+        $idea->user_id = Auth::user()->id;
+        if($request->hasFile('thumbnail')){
+            $thumbnail = $request->file('thumbnail')->store('thumbnails', 'public');
+            $idea->thumbnail = $thumbnail;
+        }else{
+            $idea->thumbnail = 'thumbnails/default-tumbnail-idea.png';
+        }
+        $idea->title = $request->title;
+        $idea->background = $request->background;
+        $idea->content = $request->content;
+        $idea->solution = $request->solution;
+        $idea->team = $request->team;
+        $idea->status = 'Ide';
+        if ($request->hasFile('attachment')) {
+            foreach ($request->file('attachment') as $attachment) {
+                $attachment_file_name = $attachment->getClientOriginalName();
+                $path = $attachment->storeAs('attachments', $attachment_file_name, 'public');
+                $attachments[] = $path;
+            }
+            $idea->attachment =  $attachments;
+        }
+        $idea->save();
+    }
+
     public function detail_idea($id) {
         $idea = Idea::find($id);
         $comment = [];

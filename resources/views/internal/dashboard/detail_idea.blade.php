@@ -10,14 +10,15 @@
   <div class="detail px-5 py-2 rounded shadow bg-white">
     
     <div class="card w-100 text-center px-3 py-3 hidden_idea_form mt-3 border-0 shadow bounce-in" style="display: none;">
-      <h3 class="mx-auto">Ideabox</h3>
+      <h3 class="mx-auto fw-600 mb-4">Edit Data</h3>
       <form id="ideabox-submit">
         <!-- image upload -->
         @csrf
-        {{-- <div class="row input_item">
+        <div class="row input_item">
           <p class="col-3">Thumbnail</p>
-          <div class="uploader">
-            <div class="col-9">
+          <div class="col-9 uploader">
+            <div class="d-flex">
+              <img src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
               <input id="file-upload" type="file" name="thumbnail" accept="image/*" style="display:none" />
               <label for="file-upload" id="file-drag">
                 <img id="file-image" src="#" alt="Preview" class="hidden">
@@ -33,7 +34,7 @@
               </label>
             </div>
           </div>
-        </div> --}}
+        </div>
         <div class="row input_item">
           <p class="col-3">Judul/Topik</p>
           <div class="col-9">
@@ -71,17 +72,17 @@
         </div>
       </form>
       <!-- chips input -->
-      {{-- <div class="row input_item">
+      <div class="row input_item">
         <p class="col-3">Team</p>
         <div class="col-9">
           <div class="container_chips_input">
             <ul id="list_chips"></ul>
-            <input type="text" id="txt_chips" placeholder="type and Enter ...">
+            <input class="border border-primary rounded" type="text" id="txt_chips" placeholder="Ketik dan tekan enter ...">
           </div>
         </div>
       </div>
       <!-- attachment -->
-      <div class="row input_item">
+      {{-- <div class="row input_item">
         <p class="col-3">Lampiran</p>
         <div class="col-9 d-flex justify-content-center">
           <p class="d-flex">
@@ -98,8 +99,8 @@
           </p>
         </div>
       </div> --}}
-      <div class="d-flex ms-auto w-0" style="width: fit-content;">
-        <button type="submit" class="btn btn-primary me-3" onclick="onSubmit()">Simpan</button>
+      <div class="d-flex ml-auto w-0" style="width: fit-content;">
+        <button type="submit" class="btn btn-primary mr-3" onclick="onSubmit({{ $idea->id }})">Simpan</button>
         <button type="button" class="btn btn-danger" onclick="show(this)">Batal</button>
       </div>
     </div>
@@ -338,31 +339,40 @@
     }
   }
 
-  // quill js text editor
+  // Function to apply styles to Quill editor
+  function applyStyles(quillInstance, text, styles) {
+    // Your logic to convert styles from the database to inline styles
+    var inlineStyles = ''; // Modify this based on your actual styles
+
+    // Use Quill's API to insert formatted text
+    quillInstance.clipboard.dangerouslyPasteHTML(0, `<span style="${inlineStyles}">${text}</span>`);
+  }
+
+  // Initialize Quill editors
   var quillEditorJudul = new Quill('#quillEditorJudul', {
     theme: 'snow'
   });
-  quillEditorJudul.setText("{{ $idea->title }}");
+  applyStyles(quillEditorJudul, "{!! $idea->title !!}", /* Styles from your database */);
 
   var quillEditorLatarBelakang = new Quill('#quillEditorLatarBelakang', {
     theme: 'snow'
   });
-  quillEditorLatarBelakang.setText("{{ $idea->background }}");
+  applyStyles(quillEditorLatarBelakang, "{!! $idea->background !!}", /* Styles from your database */);
 
   var quillEditorIsi = new Quill('#quillEditorIsi', {
     theme: 'snow'
   });
-  quillEditorIsi.setText("{{ $idea->content }}");
+  applyStyles(quillEditorIsi, "{!! $idea->content !!}", /* Styles from your database */);
 
   var quillEditorSolusi = new Quill('#quillEditorSolusi', {
     theme: 'snow'
   });
-  quillEditorSolusi.setText("{{ $idea->solution }}");
+  applyStyles(quillEditorSolusi, "{!! $idea->solution !!}", /* Styles from your database */);
 
   // chips input
   var txt = document.getElementById('txt_chips');
   var list = document.getElementById('list_chips');
-  var items = [];
+  var items = {!! json_encode(explode(',', $idea->team)) !!} || [];
 
   txt.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
@@ -535,7 +545,7 @@
   });
 
    // submit form
-   function onSubmit() {
+   function onSubmit(id) {
     const valueIdea = {
       title: quillEditorJudul.root.innerHTML,
       // abstract: quillEditorAbstrak.root.innerHTML,
@@ -560,11 +570,11 @@
     formData.append('thumbnail', imageUpload);
 
     $.ajax({
-      type: 'POST',
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      url: "/idea-submit",
+      type: 'POST',
+      url: `/idea-edit/${id}`,
       data: formData,
       contentType: false,
       processData: false,
