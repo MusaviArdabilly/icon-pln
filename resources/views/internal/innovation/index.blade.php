@@ -21,7 +21,7 @@
   </div>
 </section>
 
-<section class="container-xxl mt-5 d-flex flex-column align-items-center my-5">
+<section class="container mt-5 d-flex flex-column align-items-center my-5">
 
   <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
     style="border: transparent !important; background-color: transparent !important;">
@@ -46,11 +46,11 @@
   <div class="d-flex justify-content-between w-100 mt-5">
     <h3 class="fw-600">Daftar Inovasi</h3>
     <div>
-      <button id="btn-filter-newest" class="btn btn-outline-primary active" onclick="loadIdeas(1)">
+      <button id="btn-filter-newest" class="btn var-btn-outline-primary active" onclick="loadIdeas(1)">
         <img height="20px" src="{{ asset('assets/image/icon/new.png') }}" alt="">
         Terbaru
       </button>
-      <button id="btn-filter-popular" class="btn btn-outline-primary" onclick="loadPopularIdeas()">
+      <button id="btn-filter-popular" class="btn var-btn-outline-primary" onclick="loadPopularIdeas()">
         <img height="20px" src="{{ asset('assets/image/icon/trending.png') }}" alt="">
         Terpopuler
       </button>
@@ -59,8 +59,8 @@
   <div id="itemList" class="mt-3 row w-100 justify-content-center justify-content-sm-start"></div>
 
   <div id="pagination" class="d-flex justify-content-end w-100 mt-5">
-    <button class="btn btn-outline-primary me-3" id="prevBtn" onclick="loadIdeas('prev')" disabled><</button>
-    <button class="btn btn-outline-primary" id="nextBtn" onclick="loadIdeas('next')" disabled>></button>
+    <button class="btn var-btn-outline-primary me-3" id="prevBtn" onclick="loadIdeas('prev')" disabled><</button>
+    <button class="btn var-btn-outline-primary" id="nextBtn" onclick="loadIdeas('next')" disabled>></button>
   </div>
 
 </section>
