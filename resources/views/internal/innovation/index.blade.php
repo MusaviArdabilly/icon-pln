@@ -44,7 +44,7 @@
   </div>
 
   <div class="d-flex justify-content-between w-100 mt-5">
-    <h3 class="fw-600">Daftar Ide</h3>
+    <h3 class="fw-600">Daftar Inovasi</h3>
     <div>
       <button id="btn-filter-newest" class="btn btn-outline-primary active" onclick="loadIdeas(1)">
         <img height="20px" src="{{ asset('assets/image/icon/new.png') }}" alt="">
