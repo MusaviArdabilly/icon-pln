@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome/css/all.css') }}">
     <link href="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 		{{-- <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}"> --}}
-		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/css/xstyle.css') }}">
 		<link href="{{ asset('assets/css/idea.css') }}" rel="stylesheet" />
 		
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
