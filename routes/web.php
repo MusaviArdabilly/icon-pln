@@ -47,6 +47,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/get-innovation', [InternalController::class, 'get_innovation']);
     Route::get('/get-popular-innovation', [InternalController::class, 'get_popular_innovation']);
+
+    Route::get('/get-detail-repository/{year}/{month}', [InternalController::class, 'get_detail_repository']);
     
     Route::post('/idea/{id}/comment/post', [InternalController::class, 'comment_post']);
     
@@ -75,4 +77,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/download/attachments/{param}', [InternalController::class, 'download_attachment']);
+Route::get('/download/archive/{id}', [InternalController::class, 'download_archive']);
+Route::get('/create-zip', [InternalController::class, 'createEmptyZip']);
 Route::get('/reload-captcha-url', [AuthController::class, 'reload_captcha']);

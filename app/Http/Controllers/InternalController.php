@@ -12,6 +12,9 @@ use App\Models\Comment;
 use Carbon\Carbon;
 use Illuminate\View\View;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\App;
+use ZipArchive;
+use Illuminate\Support\Facades\File;
 
 class InternalController extends Controller
 {
@@ -256,8 +259,34 @@ class InternalController extends Controller
         $repository = Idea::where('status', 'inovasi')
                             ->orderBy('created_at', 'desc')
                             ->get();
+
+        $repositoryByYears = $repository->groupBy(function ($date) {
+            return Carbon::parse($date->created_at)->format('Y');
+        })->map(function ($yearGroup) {
+            return $yearGroup->groupBy(function ($date) {
+                return Carbon::parse($date->created_at)->locale('id')->format('F');
+            });
+        });
+        
+        $currentYear = now()->year;
+        $currentMonth = now()->month;
+
+        // dd('response', json_decode($repository), json_decode($repositoryByYears));
                             
-        return view('internal.repository.index-v2');
+        return view('internal.repository.index-v2', compact('repositoryByYears', 'currentYear', 'currentMonth'));
+    }
+
+    public function get_detail_repository($year, $month) {
+        // Convert month name to numeric representation
+        $monthNumeric = Carbon::parse("1 {$month}")->month;
+
+        $repository = Idea::whereYear('created_at', $year)
+                            ->whereMonth('created_at', $monthNumeric)
+                            ->where('status', 'inovasi')
+                            ->get();
+
+        // return response()->json($repository);
+        return view('internal.repository.card-swiper-slide', compact('repository'));
     }
     
     public function download_attachment($filename)
@@ -353,4 +382,37 @@ class InternalController extends Controller
 
         return view('internal.dashboard.detail_innovation', compact('idea', 'comments'));
     }
+
+    public function download_archive($id) {
+        $name = str_replace(' ', '_', Auth::user()->name);
+        $repository = Idea::findOrFail($id);
+
+        $tempDir = storage_path('app/public/temp_zip/temp_zip_' . time());
+        File::makeDirectory($tempDir);
+
+        $zip = new ZipArchive;
+        $zipFileName = 'attachments_' . $id . '_' . $name . '.zip';
+        $zipFilePath = $tempDir . '/' . $zipFileName;
+
+        $zip->open($zipFilePath, ZipArchive::CREATE);
+            foreach ($repository->attachment as $attachment) {
+                $attachmentPath = storage_path("app/public/{$attachment}");
+                $zip->addFile($attachmentPath, $attachment);
+            }
+            $zip->close();
+        
+
+        $headers = [
+            'Content-Type' => 'application/zip',
+            'Content-Disposition' => 'attachment; filename="' . $zipFileName . '"',
+        ];
+
+        $response = response()->download($zipFilePath, $zipFileName, $headers);
+    
+        $response->deleteFileAfterSend(true);
+
+        return $response;
+    }
+
+
 }
