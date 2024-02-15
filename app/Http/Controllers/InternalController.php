@@ -253,6 +253,10 @@ class InternalController extends Controller
     }
 
     public function repository_v2() {
+        $repository = Idea::where('status', 'inovasi')
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+                            
         return view('internal.repository.index-v2');
     }
     

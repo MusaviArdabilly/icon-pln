@@ -62,7 +62,7 @@
   <div class="min-vh-100 var-bg-x d-flex">
     <div class="container d-flex align-items-center">
       <div class="mb-120px mt-120px position-relative">
-        <img id="item-lp-1" data-aos="zoom-in-left" data-aos-duration="2000" src="{{ asset('assets/image/icon/landing-page/itemLP1.png') }}" alt="">
+        <img id="item-lp-1" data-aos="zoom-in-up" data-aos-duration="2000" src="{{ asset('assets/image/icon/landing-page/itemLP1.png') }}" alt="">
         <div data-aos="zoom-in-down" data-aos-duration="2000" class="col-12 title-landing text-center mb-40px">
           <h1 class="text-wrap">
             Berpartisipasi di ICONIC
