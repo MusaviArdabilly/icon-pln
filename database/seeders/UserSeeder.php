@@ -25,5 +25,11 @@ class UserSeeder extends Seeder
             'email' => 'naufal@gmail.com',
             'password' => bcrypt('password')
         ]);
+        User::create([
+            'name' => 'Super Admin',
+            'role' => 'super_admin',
+            'email' => 'superAdmin@lodagency.co.id',
+            'password' => bcrypt('password')
+        ]);
     }
 }
