@@ -61,7 +61,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-    Route::middleware('role:admin')->prefix('/admin')->group(function () {
+    Route::middleware('role:admin,super_admin')->prefix('/admin')->group(function () {
         Route::get('/idea', [AdminController::class, 'idea']);
         Route::get('/idea/{id}', [AdminController::class, 'detail_idea']);
         Route::get('/idea/{id}/transfer-to-innovation', [AdminController::class, 'idea_to_innovation']);
@@ -70,13 +70,18 @@ Route::middleware('auth')->group(function () {
         Route::get('/innovation/{id}', [AdminController::class, 'detail_innovation']);
         Route::get('/innovation/{id}/transfer-to-idea', [AdminController::class, 'innovation_to_idea']);
         Route::get('/innovation/{id}/delete', [AdminController::class, 'delete_innovation']);
-        Route::get('/user-managemenet', [AdminController::class, 'user_management']);
 
         Route::get('/idea/{ideaId}/comment/{commentId}/delete', [AdminController::class, 'comment_delete']);
+        
+        Route::middleware('role:super_admin')->group(function () {
+            Route::get('/user-management', [AdminController::class, 'user_management']);
+            Route::get('/user-management/get-data', [AdminController::class, 'get_data_user_management']);
+            Route::get('/user-management/make-admin/{id}', [AdminController::class, 'make_admin']);
+            Route::get('/user-management/make-user/{id}', [AdminController::class, 'make_user']);
+        });
     });
 });
 
 Route::get('/download/attachments/{param}', [InternalController::class, 'download_attachment']);
 Route::get('/download/archive/{id}', [InternalController::class, 'download_archive']);
-Route::get('/create-zip', [InternalController::class, 'createEmptyZip']);
 Route::get('/reload-captcha-url', [AuthController::class, 'reload_captcha']);
