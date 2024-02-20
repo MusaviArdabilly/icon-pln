@@ -52,7 +52,7 @@
                   <th>No</th>
                   <th>Nama</th>
                   <th>Email</th>
-                  <th>Aksi</th>
+                  <th class="text-center">Aksi</th>
                 </tr>
               </thead>
               <tfoot>
@@ -60,7 +60,7 @@
                   <th>No</th>
                   <th>Nama</th>
                   <th>Email</th>
-                  <th>Aksi</th>
+                  <th class="text-center">Aksi</th>
                 </tr>
               </tfoot>
               <tbody id="adminContainer">
