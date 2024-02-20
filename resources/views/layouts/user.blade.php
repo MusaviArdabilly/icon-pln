@@ -70,7 +70,7 @@
 		<div class="container">
 			<a class="navbar-brand" href="/">
         {{-- <h1 class="d-flex align-items-center top-nav-link fs-16 fw-700 m-0 text-white">IC<img id="nav-brand-logo" src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="16px" class="filter-invert mx-1px">NIC</h1> --}}
-				<img src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="" height="36px">
+				<img src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="">
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 				aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

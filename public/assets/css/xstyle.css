@@ -141,7 +141,18 @@ body {
     height: 0px;
   }
   to {
-    height: 65px;
+    height: 96px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  @keyframes pop-down-navbar {
+    from {
+      height: 0px;
+    }
+    to {
+      height: 65px;
+    }
   }
 }
 
@@ -600,7 +611,21 @@ body {
 }
 
 .navbar {
-  height: 65px;
+  height: 96px;
+}
+
+.navbar-brand img {
+  height: 60px
+}
+
+@media screen and (max-width: 500px) {
+  .navbar {
+    height: 65px;
+  }
+
+  .navbar-brand img {
+    height: 36px
+  }
 }
 
 .toggle svg {
