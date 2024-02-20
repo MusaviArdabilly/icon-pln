@@ -17,7 +17,7 @@
       <div class="row mb-5">
         <div class="col-12 d-md-none">
           <div class="tumbnail-desktop">
-            <img src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
+            <img class="rounded" src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
           </div>
         </div>
         <div class="col-12 col-md-9 d-flex flex-column justify-content-between">
@@ -30,7 +30,7 @@
           </div>
           <div>
             <h2 class="fs-16 fw-600 m-0">Oleh:</h2>
-            <div class="d-flex">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-end">
               @php
                 $team = $idea->team;
                 $teamArray = explode(', ', $team);
@@ -44,13 +44,14 @@
                   @endif
                 @endfor
               </label>
+              <label class="fs-12 text-secondary ms-auto">{{ $idea->created_at->format('d/F/Y') }}</label>
             </div>
           </div>
         </div>
         <div class="col-12 col-md-3 d-none d-md-block">
           <div class="d-flex justify-content-end h-100 align-items-center">
             <div class="tumbnail">
-              <img src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
+              <img class="rounded" src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
             </div>
           </div>
         </div>
