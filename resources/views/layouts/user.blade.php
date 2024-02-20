@@ -101,14 +101,18 @@
 									{{ Auth::user()->name }}
 								</span>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-									@if (Auth::user()->role == 'admin')
-										<a class="dropdown-item" href="/admin/idea" data-toggle="modal" data-target="#logoutModal">
-											<i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>Admin
+									@if (Auth::user()->role == 'super_admin')
+										<a class="dropdown-item" href="/admin/cms/landing-page" data-toggle="modal" data-target="#logoutModal">
+											<i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>Super Admin
 										</a>
+									@elseif (Auth::user()->role == 'admin')
+									<a class="dropdown-item" href="/admin/idea" data-toggle="modal" data-target="#logoutModal">
+										<i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>Admin
+									</a>
 									@else
-										<a class="dropdown-item" href="/user/idea" data-toggle="modal" data-target="#logoutModal">
-											<i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>Profil
-										</a>
+									<a class="dropdown-item" href="/user/idea" data-toggle="modal" data-target="#logoutModal">
+										<i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>Profil
+									</a>
 									@endif
 									<hr class="m-2">
 									<a class="dropdown-item" href="/logout" data-toggle="modal" data-target="#logoutModal">

@@ -48,12 +48,13 @@
   <div class="hero-heading d-flex align-items-center justify-content-center">
     <div>
       <div class="d-flex align-items-center justify-content-center">
-        <h1 data-aos="fade-down" data-aos-duration="2000" data-aos-delay="200" class="title d-flex align-items-center shadow mb-3">IC<img src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="64px" class="filter-invert mx-1">NIC</h1>
+        {{-- IC<img src="{{ asset('assets/image/icon/landing-page/box.png') }}" alt="" height="64px" class="filter-invert mx-1">NIC --}}
+        <h1 data-aos="fade-down" data-aos-duration="2000" data-aos-delay="200" class="title d-flex align-items-center shadow mb-3">{!! $data->section1_title !!}</h1>
         {{-- <img data-aos="fade-left" data-aos-duration="1500" src="{{ asset('assets/image/logo/pln-logo.png') }}" alt="" height="80px"> --}}
       </div>
       <div data-aos="fade-down" data-aos-duration="500" class="heading-content-wrapper shadow text-center">
         <img data-aos="zoom-in-left" data-aos-duration="1500" data-aos-delay="200" id="led-lamp" src="{{ asset('assets/image/icon/landing-page/led-lamp.png') }}" alt="" height="128px">
-        <h2 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="200" class="sub-title bg-light shadow">Merupakan singkatan dari <strong>Icon Innovation Center</strong>, yang digunakan sebagai media sosial inovasi bagi karyawan PLN untuk dapat menyampaikan ide dan berkolaborasi mengembangkannya</h2>
+        <h2 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="200" class="sub-title bg-light shadow">{!! $data->section1_content !!}</h2>
         <img data-aos="zoom-in-right" data-aos-duration="1500" data-aos-delay="200" id="atom" src="{{ asset('assets/image/icon/landing-page/atom.png') }}" alt="" height="128px">
       </div>
     </div>
@@ -64,37 +65,35 @@
       <div class="mb-120px mt-120px position-relative">
         <img id="item-lp-1" data-aos="zoom-in-up" data-aos-duration="2000" src="{{ asset('assets/image/icon/landing-page/itemLP1.png') }}" alt="">
         <div data-aos="zoom-in-down" data-aos-duration="2000" class="col-12 title-landing text-center mb-40px">
-          <h1 class="text-wrap">
-            Berpartisipasi di ICONIC
-          </h1>
+          <h1 class="text-wrap">{!! $data->section2_title !!}</h1>
         </div>
         <div class="row gx-0">
           <div class="col-12 col-md-3 text-center p-3">
             <div data-aos="zoom-out-down" data-aos-duration="2000" class="shadow rounded-4 p-3 bg-light">
               <img src="{{ asset('assets/image/icon/landing-page/idea.png') }}" alt="Icon" class="mb-3">
-              <h3 class="fs-20">Buat ide mu</h3>
-              <h3 class="fs-16 fw-400">Submit ide mu tanpa ragu, untuk semua orang, kapan pun! Inspirasi tak mengenal batas.</h3>
+              <h3 class="fs-20">{!! $data->section2_subtitle1 !!}</h3>
+              <h3 class="fs-16 fw-400">{!! $data->section2_subtitle1_content !!}</h3>
             </div>
           </div>
           <div class="col-12 col-md-3 text-center p-3">
             <div data-aos="zoom-in-up" data-aos-duration="1500" class="shadow rounded-4 p-3 bg-light">
               <img src="{{ asset('assets/image/icon/landing-page/collab.png') }}" alt="Icon" class="mb-3">
-              <h3 class="fs-20">Mari Berkoaborasi</h3>
-              <h3 class="fs-16 fw-400">Kamu dapat berkolaborasi untuk membuat idea kamu semakin berkembang.</h3>
+              <h3 class="fs-20">{!! $data->section2_subtitle2 !!}</h3>
+              <h3 class="fs-16 fw-400">{!! $data->section2_subtitle2_content !!}</h3>
             </div>
           </div>
           <div class="col-12 col-md-3 text-center p-3">
             <div data-aos="zoom-in-up" data-aos-duration="1500" class="shadow rounded-4 p-3 bg-light">
               <img src="{{ asset('assets/image/icon/landing-page/environment.png') }}" alt="Icon" class="mb-3">
-              <h3 class="fs-20">Bangun Inovasi</h3>
-              <h3 class="fs-16 fw-400">Jadilah bagian dari ekosistem inovasi dengan berperan aktif dalam perkembangan ide.</h3>
+              <h3 class="fs-20">{!! $data->section2_subtitle3 !!}</h3>
+              <h3 class="fs-16 fw-400">{!! $data->section2_subtitle3_content !!}</h3>
             </div>
           </div>
           <div class="col-12 col-md-3 text-center p-3">
             <div data-aos="zoom-in-left" data-aos-duration="1500" class="shadow rounded-4 p-3 bg-light">
               <img src="{{ asset('assets/image/icon/landing-page/dream.png') }}" alt="Icon" class="mb-3">
-              <h3 class="fs-20">Wujudkan Idemu</h3>
-              <h3 class="fs-16 fw-400">Mari kita wujudkan ide yang dimiliki melalui program inovasi yang diselenggarakan oleh PLN.</h3>
+              <h3 class="fs-20">{!! $data->section2_subtitle4 !!}</h3>
+              <h3 class="fs-16 fw-400">{!! $data->section2_subtitle4_content !!}</h3>
             </div>
           </div>
         </div>
@@ -106,9 +105,7 @@
     <div class="w-100 position-relative">
       <img id="item-lp-2" data-aos="zoom-in-right" data-aos-duration="2000" src="{{ asset('assets/image/icon/landing-page/itemLP2.png') }}" alt="">
       <div data-aos="zoom-in-down" data-aos-duration="2000" class="col-12 title-landing text-center mb-40px">
-        <h1 class="text-wrap">
-          Alur ICONIC
-        </h1>
+        <h1 class="text-wrap">{!! $data->section3_title !!}</h1>
       </div>
       <div class="d-flex justify-content-center">
         <div data-aos="zoom-in-down" data-aos-duration="2000" class="row w-100">
@@ -120,11 +117,11 @@
                     <div class="events-wrapper">
                       <div class="events">
                         <ol>
-                          <li><a href="#0" data-date="01/01/2024" class="fs-24 fw-600 text-decoration-none selected">Problem</a></li>
-                          <li><a href="#0" data-date="08/01/2024" class="fs-24 fw-600 text-decoration-none">Design</a></li>
-                          <li><a href="#0" data-date="16/01/2024" class="fs-24 fw-600 text-decoration-none">Prototype</a></li>
-                          <li><a href="#0" data-date="24/01/2024" class="fs-24 fw-600 text-decoration-none">Evaluasi</a></li>
-                          <li><a href="#0" data-date="31/01/2024" class="fs-24 fw-600 text-decoration-none">Report</a></li>
+                          <li><a href="#0" data-date="01/01/2024" class="fs-24 fw-600 text-decoration-none selected">{!! $data->section3_subtitle1 !!}</a></li>
+                          <li><a href="#0" data-date="08/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $data->section3_subtitle2 !!}</a></li>
+                          <li><a href="#0" data-date="16/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $data->section3_subtitle3 !!}</a></li>
+                          <li><a href="#0" data-date="24/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $data->section3_subtitle4 !!}</a></li>
+                          <li><a href="#0" data-date="31/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $data->section3_subtitle5 !!}</a></li>
                         </ol>
                         <span class="filling-line" aria-hidden="true" style="transform: scaleX(0.281506);"></span>
                       </div>
@@ -142,42 +139,37 @@
                       <ol>
                           <li class="selected" data-date="01/01/2024">
                             <div class="d-flex flex-column flex-sm-row gap-5">
-                              <img height="128px" width="128px" class="mx-auto" src="{{ asset('assets/image/icon/landing-page/problem.png') }}" alt="">
-                              <p class="d-inline-block text-center">
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
-                              </p>
+                              <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
+                               class="mx-auto" src="{{ asset('assets/image/icon/landing-page/problem.png') }}" alt="">
+                              <p style="flex: 1;" class="d-inline-block text-center">{!! $data->section3_subtitle1_content !!}</p>
                             </div>
                           </li>
                           <li data-date="08/01/2024" class="">
                             <div class="d-flex flex-column flex-sm-row gap-5">
-                              <img height="128px" width="128px" class="mx-auto" src="{{ asset('assets/image/icon/landing-page/design.png') }}" alt="">
-                              <p class="d-inline-block text-center">
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
-                              </p>
+                              <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
+                               class="mx-auto" src="{{ asset('assets/image/icon/landing-page/design.png') }}" alt="">
+                              <p style="flex: 1;" class="d-inline-block text-center">{!! $data->section3_subtitle2_content !!}</p>
                             </div>
                           </li>
                           <li data-date="16/01/2024" class="">
                             <div class="d-flex flex-column flex-sm-row gap-5">
-                              <img height="128px" width="128px" class="mx-auto" src="{{ asset('assets/image/icon/landing-page/prototype.png') }}" alt="">
-                              <p class="d-inline-block text-center">
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
-                              </p>
+                              <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
+                               class="mx-auto" src="{{ asset('assets/image/icon/landing-page/prototype.png') }}" alt="">
+                              <p style="flex: 1;" class="d-inline-block text-center">{!! $data->section3_subtitle3_content !!}</p>
                             </div>
                           </li>
                           <li data-date="24/01/2024">
                             <div class="d-flex flex-column flex-sm-row gap-5">
-                              <img height="128px" width="128px" class="mx-auto" src="{{ asset('assets/image/icon/landing-page/evaluation.png') }}" alt="">
-                              <p class="d-inline-block text-center">
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
-                              </p>
+                              <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
+                               class="mx-auto" src="{{ asset('assets/image/icon/landing-page/evaluation.png') }}" alt="">
+                              <p style="flex: 1;" class="d-inline-block text-center">{!! $data->section3_subtitle4_content !!}</p>
                             </div>
                           </li>
                           <li data-date="31/01/2024">
                             <div class="d-flex flex-column flex-sm-row gap-5">
-                              <img height="128px" width="128px" class="mx-auto" src="{{ asset('assets/image/icon/landing-page/report.png') }}" alt="">
-                              <p class="d-inline-block text-center">
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors infancy.
-                              </p>
+                              <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
+                               class="mx-auto" src="{{ asset('assets/image/icon/landing-page/report.png') }}" alt="">
+                              <p style="flex: 1;" class="d-inline-block text-center">{!! $data->section3_subtitle5_content !!}</p>
                             </div>
                           </li>
                       </ol>

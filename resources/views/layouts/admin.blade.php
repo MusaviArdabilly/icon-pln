@@ -98,6 +98,21 @@
 
 							<!-- Divider -->
 							<hr class="sidebar-divider d-none d-md-block">
+
+							<!-- Heading -->
+							<div class="sidebar-heading">
+									CMS
+							</div>
+
+							<!-- Nav Item -->
+							<li id="nav-landing-page" class="nav-item">
+									<a class="nav-link" href="/admin/cms/landing-page">
+											<i class="fas fa-fw fa-list"></i>
+											<span>Landing Page</span></a>
+							</li>
+
+							<!-- Divider -->
+							<hr class="sidebar-divider d-none d-md-block">
 							
 						@elseif (Auth::user()->role == 'admin')
 

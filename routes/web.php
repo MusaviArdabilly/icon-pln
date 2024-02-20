@@ -5,6 +5,7 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\InternalController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CMSController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +75,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/idea/{ideaId}/comment/{commentId}/delete', [AdminController::class, 'comment_delete']);
         
         Route::middleware('role:super_admin')->group(function () {
+            Route::prefix('/cms')->group(function() {
+                Route::get('/landing-page', [CMSController::class, 'cms_landing_page']);
+                Route::post('/landing-page/edit/post', [CMSController::class, 'cms_landing_page_edit']);
+            });
             Route::get('/user-management', [AdminController::class, 'user_management']);
             Route::get('/user-management/get-data', [AdminController::class, 'get_data_user_management']);
             Route::get('/user-management/make-admin/{id}', [AdminController::class, 'make_admin']);
