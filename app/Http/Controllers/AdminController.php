@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Idea;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -65,7 +66,32 @@ class AdminController extends Controller
     }
 
     public function user_management() {
-        return view('admin.user-managemenet.index');
+        return view('admin.user-management.index');
+    }
+
+    public function get_data_user_management() {
+        $users = User::where('role', 'user')->get();
+        $admins = User::where('role', 'admin')->get();
+
+        return response()->json([
+            'users' => $users,
+            'admins' => $admins ]);
+    }
+
+    public function make_admin($id) {
+        $user = User::findOrFail($id);
+        $user->role = 'admin';
+        $user->save();
+    }
+
+    public function make_user($id) {
+        $user = User::findOrFail($id);
+        if($user->role != 'super_admin'){
+            $user->role = 'user';
+            $user->save();
+        } else {
+            abort(403, 'Anda tidak bisa mengubah role super admin');
+        }
     }
 
     public function comment_delete($ideaId, $commentId) {

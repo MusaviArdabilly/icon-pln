@@ -65,7 +65,7 @@
 								Data
 						</div>
 
-						@if (Auth::user()->role == 'admin')
+						@if (Auth::user()->role == 'super_admin')
 
 							<!-- Nav Item -->
 							<li id="nav-idea" class="nav-item">
@@ -91,14 +91,43 @@
 
 							<!-- Nav Item -->
 							<li id="nav-user" class="nav-item">
-									<a class="nav-link" href="#">
+									<a class="nav-link" href="/admin/user-management">
 											<i class="fas fa-fw fa-user"></i>
 											<span>Manajemen User</span></a>
 							</li>
 
 							<!-- Divider -->
 							<hr class="sidebar-divider d-none d-md-block">
+							
+						@elseif (Auth::user()->role == 'admin')
+
+							<!-- Nav Item -->
+							<li id="nav-idea" class="nav-item">
+									<a class="nav-link" href="/admin/idea">
+											<i class="fas fa-fw fa-chart-area"></i>
+											<span>Ide</span></a>
+							</li>
+
+							<!-- Nav Item -->
+							<li id="nav-innovation" class="nav-item">
+									<a class="nav-link" href="/admin/innovation">
+											<i class="fas fa-fw fa-table"></i>
+											<span>Inovasi</span></a>
+							</li>
+
+							<!-- Divider -->
+							<hr class="sidebar-divider d-none d-md-block">
+
+							<!-- Heading -->
+							<div class="sidebar-heading">
+									User
+							</div>
+
+							<!-- Divider -->
+							<hr class="sidebar-divider d-none d-md-block">
+
 						@else
+
 							<!-- Nav Item -->
 							<li id="nav-idea" class="nav-item">
 									<a class="nav-link" href="/user/idea">
@@ -115,6 +144,7 @@
 
 							<!-- Divider -->
 							<hr class="sidebar-divider d-none d-md-block">
+							
 						@endif
 
 						<!-- Sidebar Toggler (Sidebar) -->
