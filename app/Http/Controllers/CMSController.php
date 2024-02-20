@@ -39,6 +39,6 @@ class CMSController extends Controller
         $landing_page_content->section3_subtitle5_content = $request->section3_subtitle5_content;
         $landing_page_content->save();
 
-        return redirect('/admin/cms/landing-page');
+        return redirect('/admin/cms/landing-page')->with('success', 'Landing Page berhasil diperbaruhi');;
     }
 }
