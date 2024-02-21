@@ -87,6 +87,12 @@
       </div>
     </div>
   </div>
+  
+  <script>
+    setInterval(function() {
+        location.reload(true); // true forces a reload from the server, not from the cache
+    }, 900000);
+  </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 

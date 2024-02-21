@@ -68,6 +68,13 @@
   </div>
 
   <script>
+    // Refresh the page every 15 minutes (900,000 milliseconds)
+    setInterval(function() {
+        location.reload(true); // true forces a reload from the server, not from the cache
+    }, 900000);
+  </script>
+
+  <script>
     function deleteIdea(event) {
       event.preventDefault();
       var redirectTo = event.currentTarget.getAttribute('href');  

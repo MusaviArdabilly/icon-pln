@@ -68,6 +68,12 @@
   </div>
 
   <script>
+    setInterval(function() {
+        location.reload(true); // true forces a reload from the server, not from the cache
+    }, 900000);
+  </script>
+
+  <script>
     function deleteIdea(event) {
       event.preventDefault();
       var redirectTo = event.currentTarget.getAttribute('href');  
