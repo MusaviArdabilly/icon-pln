@@ -351,7 +351,7 @@ body {
   height: 200px;
   position: absolute;
   top: -445px;
-  right: -214px;
+  right: -160px;
   z-index: 20;
   filter: drop-shadow(0 2px 0.25rem #0000006e);
 }
@@ -360,7 +360,7 @@ body {
   height: 200px;
   position: absolute;
   top: -400px;
-  left: -214px;
+  left: -160px;
   z-index: 20;
   filter: drop-shadow(0 2px 0.25rem #0000006e);
 }
