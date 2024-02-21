@@ -71,6 +71,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/innovation/{id}', [AdminController::class, 'detail_innovation']);
         Route::get('/innovation/{id}/transfer-to-idea', [AdminController::class, 'innovation_to_idea']);
         Route::get('/innovation/{id}/delete', [AdminController::class, 'delete_innovation']);
+        Route::get('/repository', [AdminController::class, 'repository']);
+
+        Route::get('/repository/get-data', [AdminController::class, 'get_data_repository']);
+        Route::post('/repository/add-data', [AdminController::class, 'add_data_repository']);
+        Route::get('/repository/delete-data/{id}', [AdminController::class, 'delete_data_repository']);
 
         Route::get('/idea/{ideaId}/comment/{commentId}/delete', [AdminController::class, 'comment_delete']);
         

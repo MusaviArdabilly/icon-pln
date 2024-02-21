@@ -22,8 +22,12 @@
 		<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 		
+		{{-- DatePicker --}}
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
+
 		{{-- Sweet Alert --}}
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 	</head>
 	<body id="page-top" class="text-dark">
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -81,6 +85,13 @@
 											<span>Inovasi</span></a>
 							</li>
 
+							<!-- Nav Item -->
+							<li id="nav-repository" class="nav-item">
+									<a class="nav-link" href="/admin/repository">
+											<i class="fas fa-fw fa-table"></i>
+											<span>Pustaka</span></a>
+							</li>
+
 							<!-- Divider -->
 							<hr class="sidebar-divider d-none d-md-block">
 
@@ -130,6 +141,13 @@
 											<span>Inovasi</span></a>
 							</li>
 
+							<!-- Nav Item -->
+							<li id="nav-innovation" class="nav-item">
+									<a class="nav-link" href="/admin/repository">
+											<i class="fas fa-fw fa-table"></i>
+											<span>Pustaka</span></a>
+							</li>
+
 							<!-- Divider -->
 							<hr class="sidebar-divider d-none d-md-block">
 
@@ -177,7 +195,7 @@
 						<div id="content">
 
 								<!-- Topbar -->
-								<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+								<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" style="height: 65px">
 
 										<!-- Sidebar Toggle (Topbar) -->
 										<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">

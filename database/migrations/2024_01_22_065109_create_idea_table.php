@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('thumbnail');
             $table->string('title');
             // $table->text('abstract');
-            $table->text('background');
-            $table->text('content');
-            $table->text('solution');
+            $table->text('background')->nullable();
+            $table->text('content')->nullable();
+            $table->text('solution')->nullable();
             $table->string('team');
             $table->string('status');
             $table->json('attachment')->default(new Expression('(JSON_ARRAY())'));

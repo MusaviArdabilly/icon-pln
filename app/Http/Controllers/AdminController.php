@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Idea;
@@ -106,5 +107,58 @@ class AdminController extends Controller
         $idea->save();
         
         return redirect()->back();
+    }
+
+    public function repository() {
+        return view('admin.repository.index');
+    }
+
+    public function get_data_repository() {
+        $repository = Idea::where('status', 'inovasi')
+                            ->orderBy('created_at', 'desc')->get();
+
+        return response()->json($repository);
+    }
+
+    public function add_data_repository(Request $request) {
+        $attachments = [];
+        $repository = new Idea;
+        $repository->user_id = Auth::user()->id;
+        $repository->thumbnail = 'thumbnails/default-tumbnail-idea.png';
+        $repository->title = $request->title;
+        $repository->team = $request->team;
+        $repository->status = 'inovasi';
+        if($request->hasFile('attachment')){
+            foreach ($request->file('attachment') as $attachment) {
+                $attachment_file_name = $attachment->getClientOriginalName();
+                $path = $attachment->storeAs('attachments', $attachment_file_name, 'public');
+                $attachments[] = $path;
+            }
+            $repository->attachment = $attachments;
+        }
+        $repository->save();
+
+        return redirect('/admin/repository');
+    }
+
+    public function delete_data_repository($id) {
+        $repository = Idea::findOrFail($id);
+
+        foreach ($repository->attachment as $attachment) {
+            if ($attachment !== 'attachments/attachment-icon.png') {
+                $attachmentPath = storage_path("app/public/$attachment");
+                if (file_exists($attachmentPath)) {
+                    unlink($attachmentPath);
+                }
+            }
+        }
+        if ($repository->thumbnail !== 'thumbnails/default-tumbnail-idea.png') {
+            $thumbnailPath = storage_path("app/public/{$repository->thumbnail}");
+            if (file_exists($thumbnailPath)) {
+                unlink($thumbnailPath);
+            }
+        }
+
+        $repository->delete();
     }
 }
