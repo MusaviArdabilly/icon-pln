@@ -132,13 +132,25 @@
     }
 
     function deleteRepository(id){
-      $.ajax({
-        url: 'repository/delete-data/' + id,
-        type: 'GET',
-        success: function(response){
-          loadRepository();
+      window.Swal.fire({
+        title: 'Hapus repository',
+        text: 'Apakah anda yakin untuk menghapus repository terkait?',
+        icon: 'warning',
+        reverseButtons: true,
+        showCancelButton: true,
+        cancelButtonText: 'Batal',
+        confirmButtonText: 'Ya'
+      }).then(function(result) {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: 'repository/delete-data/' + id,
+            type: 'GET',
+            success: function(response){
+              loadRepository();
+            }
+          })
         }
-      })
+      });
     }
   </script>
 
