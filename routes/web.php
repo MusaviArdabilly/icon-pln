@@ -6,6 +6,7 @@ use App\Http\Controllers\InternalController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CMSController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,3 +96,24 @@ Route::middleware('auth')->group(function () {
 Route::get('/download/attachments/{param}', [InternalController::class, 'download_attachment']);
 Route::get('/download/archive/{id}', [InternalController::class, 'download_archive']);
 Route::get('/reload-captcha-url', [AuthController::class, 'reload_captcha']);
+
+Route::get('/create-symlink', function () {
+    try {
+        Artisan::call('storage:link');
+
+        return 'Symlink created successfully.';
+    } catch (\Exception $e) {
+
+        return 'Error creating symlink: ' . $e->getMessage();
+    }
+});
+
+Route::get('/clear-cache', function () {
+    try {
+        Artisan::call('cache:clear');
+
+        return 'Cache cleared successfully.';
+    } catch (\Exception $e) {
+        return 'Error clearing cache: ' . $e->getMessage();
+    }
+});

@@ -1,6 +1,6 @@
 @foreach ($idea as $item)
   <div class="col-12 col-md-3 p-2" data-popularity="{{ $item->popularity }}" data-date="{{ $item->created_at }}">
-    <a href="/idea/{{ $item->id }}" class="text-decoration-none">
+    <a href="/idea/{{ $item->id }}" class="text-decoration-none card-idea">
       <div class="card h-100 p-2 shadow border-0 card-idea-animation rounded-4">
           <div class="mx-auto rounded-4">
             <img src="{{ asset('storage/' . $item->thumbnail) }}"
