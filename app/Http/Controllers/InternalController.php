@@ -130,7 +130,7 @@ class InternalController extends Controller
         $idea->content = $request->content;
         $idea->solution = $request->solution;
         $idea->team = $request->team;
-        $idea->status = 'Ide';
+        $idea->status = 'ide';
         if ($request->hasFile('attachment')) {
             foreach ($request->file('attachment') as $attachment) {
                 $attachment_file_name = $attachment->getClientOriginalName();
