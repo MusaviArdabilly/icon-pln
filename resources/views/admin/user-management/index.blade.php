@@ -136,8 +136,6 @@
         url: 'user-management/make-admin/' + id,
         type: 'GET',
         success: function(response){
-          $('#userDataTable').DataTable().destroy();
-          $('#adminDataTable').DataTable().destroy();
           loadUser();
         }
       })
@@ -148,8 +146,6 @@
         url: 'user-management/make-user/' + id,
         type: 'GET',
         success: function(response){
-          $('#userDataTable').DataTable().destroy();
-          $('#adminDataTable').DataTable().destroy();
           loadUser();
         }
       })
