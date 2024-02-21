@@ -22,7 +22,7 @@ class IdeaSeeder extends Seeder
             'solution' => '<p?>Hybrid Power System pada PLN Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>',
             'team' => 'Developer LOD, James Bond, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'ide',
-            'attachment' => ['attachments\/attachment-icon.png', 'attachments\/attachment-icon.png', 'attachments\/attachment-icon.png'],
+            'attachment' => ['attachments/attachment-icon.png', 'attachments/attachment-icon.png', 'attachments/attachment-icon.png'],
             'total_views' => 0,
             'total_comments' => 1,
             'created_at' => '2023-11-25 14:07:53'
@@ -36,7 +36,7 @@ class IdeaSeeder extends Seeder
             'solution' => '<p?>Hybrid Power System pada PLN Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>',
             'team' => 'Developer LOD, James Bond, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'ide',
-            'attachment' => ['attachments\/attachment-icon.png', 'attachments\/attachment-icon.png', 'attachments\/attachment-icon.png'],
+            'attachment' => ['attachments/attachment-icon.png', 'attachments/attachment-icon.png', 'attachments/attachment-icon.png'],
             'total_views' => 0,
             'total_comments' => 3,
             'created_at' => '2023-12-11 14:07:53'
@@ -50,7 +50,7 @@ class IdeaSeeder extends Seeder
             'solution' => '<p?>Teknologi Microgrid Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>',
             'team' => 'Developer LOD, Marteen Bruelee, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'ide',
-            'attachment' => ['attachments\/attachment-icon.png', 'attachments\/attachment-icon.png', 'attachments\/attachment-icon.png'],
+            'attachment' => ['attachments/attachment-icon.png', 'attachments/attachment-icon.png', 'attachments/attachment-icon.png'],
             'total_views' => 0,
             'total_comments' => 1,
             'created_at' => '2023-12-25 14:07:53'
@@ -64,7 +64,7 @@ class IdeaSeeder extends Seeder
             'solution' => '<p?>Hybrid Power System pada PLN Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>',
             'team' => 'Developer LOD, James Bond, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'ide',
-            'attachment' => ['attachments\/attachment-icon.png', 'attachments\/attachment-icon.png', 'attachments\/attachment-icon.png'],
+            'attachment' => ['attachments/attachment-icon.png', 'attachments/attachment-icon.png', 'attachments/attachment-icon.png'],
             'total_views' => 0,
             'total_comments' => 2,
             'created_at' => '2024-01-01 14:07:53'
@@ -78,7 +78,7 @@ class IdeaSeeder extends Seeder
             'solution' => '<p?>Hybrid Power System pada PLN Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>',
             'team' => 'Developer LOD, James Bond, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'ide',
-            'attachment' => ['attachments\/attachment-icon.png', 'attachments\/attachment-icon.png', 'attachments\/attachment-icon.png'],
+            'attachment' => ['attachments/attachment-icon.png', 'attachments/attachment-icon.png', 'attachments/attachment-icon.png'],
             'total_views' => 0,
             'total_comments' => 2,
             'created_at' => '2024-01-09 14:07:53'
@@ -92,7 +92,7 @@ class IdeaSeeder extends Seeder
             'solution' => '<p?>Teknologi Microgrid Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>',
             'team' => 'Developer LOD, Marteen Bruelee, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'ide',
-            'attachment' => ['attachments\/attachment-icon.png', 'attachments\/attachment-icon.png', 'attachments\/attachment-icon.png'],
+            'attachment' => ['attachments/attachment-icon.png', 'attachments/attachment-icon.png', 'attachments/attachment-icon.png'],
             'total_views' => 0,
             'total_comments' => 3,
             'created_at' => '2024-01-11 14:07:53'
@@ -107,7 +107,7 @@ class IdeaSeeder extends Seeder
             'solution' => '<p?>Distribusi PLN Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>',
             'team' => 'Naufal Fakhrian, Alex marchel, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'ide',
-            'attachment' => ['attachments\/attachment-icon.png', 'attachments\/attachment-icon.png', 'attachments\/attachment-icon.png'],
+            'attachment' => ['attachments/attachment-icon.png', 'attachments/attachment-icon.png', 'attachments/attachment-icon.png'],
             'total_views' => 0,
             'total_comments' => 0,
             'created_at' => '2024-01-20 14:07:53'
@@ -121,7 +121,7 @@ class IdeaSeeder extends Seeder
             'solution' => '<p?>Distribusi PLN Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>',
             'team' => 'Naufal Fakhrian, Alex marchel, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'ide',
-            'attachment' => ['attachments\/attachment-icon.png', 'attachments\/attachment-icon.png', 'attachments\/attachment-icon.png'],
+            'attachment' => ['attachments/attachment-icon.png', 'attachments/attachment-icon.png', 'attachments/attachment-icon.png'],
             'total_views' => 0,
             'total_comments' => 0,
             'created_at' => '2024-02-11 14:07:53'
@@ -135,7 +135,7 @@ class IdeaSeeder extends Seeder
             'solution' => '<p?>Distribusi PLN Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>',
             'team' => 'Naufal Fakhrian, Alex marchel, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'ide',
-            'attachment' => ['attachments\/attachment-icon.png', 'attachments\/attachment-icon.png', 'attachments\/attachment-icon.png'],
+            'attachment' => ['attachments/attachment-icon.png', 'attachments/attachment-icon.png', 'attachments/attachment-icon.png'],
             'total_views' => 0,
             'total_comments' => 0,
             'created_at' => '2024-02-15 14:07:53'
@@ -149,7 +149,7 @@ class IdeaSeeder extends Seeder
             'solution' => '<p?>Distribusi PLN Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>',
             'team' => 'Naufal Fakhrian, Alex marchel, John Doe, Andrea Galaxy, Seilal Farah',
             'status' => 'ide',
-            'attachment' => ['attachments\/attachment-icon.png', 'attachments\/attachment-icon.png', 'attachments\/attachment-icon.png'],
+            'attachment' => ['attachments/attachment-icon.png', 'attachments/attachment-icon.png', 'attachments/attachment-icon.png'],
             'total_views' => 0,
             'total_comments' => 0,
             'created_at' => '2024-02-19 14:07:53'
