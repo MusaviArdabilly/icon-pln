@@ -187,11 +187,11 @@
   <script>
     // const heroVideoHeight = document.querySelector('.hero-video').offsetHeight;
     const heroVideoHeight = document.querySelector('.hero-video-v5').offsetHeight;
-    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+    // const navbarHeight = document.querySelector('.navbar').offsetHeight;
     const targetElement = document.getElementById('navbar');
     
     window.addEventListener('scroll', function() {
-      if (window.scrollY > (heroVideoHeight - navbarHeight)) {
+      if (window.scrollY > (heroVideoHeight - 150)) {
         targetElement.classList.remove('d-none');
       } else {
         targetElement.classList.add('d-none');
