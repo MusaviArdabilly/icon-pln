@@ -78,21 +78,21 @@
         </div>
       </div>
       <div class="row input_item">
-        <p class="col-3">Latar Belakang</p>
+        <p class="col-3">Latar Belakang Masalah</p>
         <div class="col-9">
           <div id="quillEditorLatarBelakang" class="quillCustom shadow border-0 radius-3">
           </div>
         </div>
       </div>
       <div class="row input_item">
-        <p class="col-3">Isi</p>
+        <p class="col-3">Tujuan</p>
         <div class="col-9">
           <div id="quillEditorIsi" class="quillCustom shadow border-0 radius-3">
           </div>
         </div>
       </div>
       <div class="row input_item">
-        <p class="col-3">Solusi</p>
+        <p class="col-3">Usulan Solusi</p>
         <div class="col-9">
           <div id="quillEditorSolusi" class="quillCustom shadow border-0 radius-3">
           </div>
