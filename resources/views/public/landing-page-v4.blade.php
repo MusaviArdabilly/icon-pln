@@ -117,11 +117,11 @@
                     <div class="events-wrapper">
                       <div class="events">
                         <ol>
-                          <li><a href="#0" data-date="01/01/2024" class="fs-24 fw-600 text-decoration-none selected">{!! $data->section3_subtitle1 !!}</a></li>
-                          <li><a href="#0" data-date="08/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $data->section3_subtitle2 !!}</a></li>
-                          <li><a href="#0" data-date="16/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $data->section3_subtitle3 !!}</a></li>
-                          <li><a href="#0" data-date="24/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $data->section3_subtitle4 !!}</a></li>
-                          <li><a href="#0" data-date="31/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $data->section3_subtitle5 !!}</a></li>
+                          <li><a href="#0" data-date="01/01/2024" class="fs-24 fw-600 text-decoration-none selected">{!! $flow_position[0]->name !!}</a></li>
+                          <li><a href="#0" data-date="08/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $flow_position[1]->name !!}</a></li>
+                          <li><a href="#0" data-date="16/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $flow_position[2]->name !!}</a></li>
+                          <li><a href="#0" data-date="24/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $flow_position[3]->name !!}</a></li>
+                          <li><a href="#0" data-date="31/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $flow_position[4]->name !!}</a></li>
                         </ol>
                         <span class="filling-line" aria-hidden="true" style="transform: scaleX(0.281506);"></span>
                       </div>
