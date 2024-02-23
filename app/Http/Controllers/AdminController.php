@@ -11,7 +11,9 @@ use App\Models\User;
 class AdminController extends Controller
 {
     public function idea() {
-        $idea = Idea::where('status', 'ide')->get();
+        $idea = Idea::where('status', 'ide')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
         
         return view('admin.idea.index', compact('idea'));
     }
@@ -39,7 +41,9 @@ class AdminController extends Controller
     }
 
     public function innovation() {
-        $innovation = Idea::where('status', 'inovasi')->get();
+        $innovation = Idea::where('status', 'inovasi')
+                            ->orderBy('created_at', 'desc')
+                            ->get();
         
         return view('admin.innovation.index', compact('innovation'));
     }
@@ -71,8 +75,8 @@ class AdminController extends Controller
     }
 
     public function get_data_user_management() {
-        $users = User::where('role', 'user')->get();
-        $admins = User::where('role', 'admin')->get();
+        $users = User::where('role', 'user')->orderBy('created_at', 'desc')->get();
+        $admins = User::where('role', 'admin')->orderBy('created_at', 'desc')->get();
 
         return response()->json([
             'users' => $users,
