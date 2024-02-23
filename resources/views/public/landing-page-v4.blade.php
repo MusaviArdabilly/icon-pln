@@ -6,7 +6,7 @@
     // document.getElementById('navbar').classList.remove('var-bg-primary', 'shadow', 'sticky-top');
     document.getElementById('navbar').classList.add('d-none');
     document.getElementById('navbar').classList.add('animation-pop-down-navbar');
-    document.getElementById('nav-brand-logo').classList.add('filter-invert');
+    // document.getElementById('nav-brand-logo').classList.add('filter-invert');
   </script>
 
   <div class="hero-video-v5 position-relative">
