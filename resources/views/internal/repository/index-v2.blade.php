@@ -6,7 +6,27 @@
   </script>
 
   <div class="container repository min-vh-100">
-    <h1 class="fs-36 fw-600 pt-5 mb-4">Pustaka Inovasi</h1>
+    <div class="d-flex justify-content-between align-items-center pt-5 mb-4">
+      <h1 class="fs-36 fw-600">Pustaka Iconic</h1>
+      <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#searchRepositoryModal">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+    <div class="modal fade" id="searchRepositoryModal" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content" style="background: transparent !important; border: transparent !important;">
+          <div class="form_search d-flex align-items-center w-100">
+            <i class="bi bi-search"></i>
+            <input type="text" id="searchRepositoryInput" class="form-control form_search-input" placeholder="Cari Repositori berdasarkan judul atau nama pengirim">
+          </div>
+          <div id="searchResult" class="list-group">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
     @forelse ($repositoryByYears as $year => $monthGroup)
       <div class="shadow rounded p-3 mb-3">
         <div class="row">
@@ -91,42 +111,7 @@
               <div class="swiper-button-prev position-sticky me-3"></div>
             </div>
             <div class="swiper">
-              <!-- Additional required wrapper -->
               <div id="itemContainer" class="swiper-wrapper">
-                <!-- Slides -->
-                {{-- <div class="swiper-slide p-3 mb-5">
-                  <div class="shadow rounded p-0 p-md-3">
-                    asd <br>
-                    asd <br>
-                    asd <br>
-                    asd <br>
-                    asd <br>
-                  </div>
-                </div>
-                <div class="swiper-slide p-3 mb-5">
-                  <div class="shadow rounded p-0 p-md-3">
-                    asd <br>
-                    asd <br>
-                    asd <br>
-                    asd <br>
-                    asd <br>
-                  </div>
-                </div>
-                <div class="swiper-slide p-3 mb-5">
-                  <div class="shadow rounded p-0 p-md-3">
-                    asd <br>
-                    asd <br>
-                    asd <br>
-                    asd <br>
-                    asd <br>
-                  </div>
-                </div> --}}
-                {{-- <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
-                <div class="swiper-slide">Slide 4</div>
-                <div class="swiper-slide">Slide 5</div>
-                <div class="swiper-slide">Slide 6</div>
-                ... --}}
               </div>
             </div>
             <div class="position-sticky ms-3 mb-3">
@@ -139,16 +124,48 @@
     </div>
   </div>
 
+  <script>
+    function debounce(func, delay) {
+      let timer;
+      return function () {
+        const context = this;
+        const args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          func.apply(context, args);
+        }, delay);
+      };
+    }
+  
+    function searchRepository(query) {
+      console.log(query)
+      $.ajax({
+        url: '/searchRepository?query=' + encodeURIComponent(query),
+        type: 'GET',
+        success: function(response) {
+          console.log(response)
+          $('#searchResult').html(response);
+        }
+      })
+    }
+  
+    const debounceSearch = debounce(function(){
+      const query = document.getElementById('searchRepositoryInput').value;
+      searchRepository(query);
+    }, 300);
+  
+    document.getElementById('searchRepositoryInput').addEventListener('input', debounceSearch);
+  
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
     const swiper = new Swiper('.swiper', {
-      // If we need pagination
       pagination: {
         el: '.swiper-pagination',
       },
 
-      // Navigation arrows
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',

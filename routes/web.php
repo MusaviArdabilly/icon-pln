@@ -53,6 +53,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/get-detail-repository/{year}/{month}', [InternalController::class, 'get_detail_repository']);
     
     Route::post('/idea/{id}/comment/post', [InternalController::class, 'comment_post']);
+
+    Route::get('/searchIdea', [InternalController::class, 'search_idea']);
+    Route::get('/searchInnovation', [InternalController::class, 'search_innovation']);
+    Route::get('/searchRepository', [InternalController::class, 'search_repository']);
     
     Route::middleware('role:user')->prefix('/user')->group(function () {
         Route::get('/idea', [InternalController::class, 'idea_user']);

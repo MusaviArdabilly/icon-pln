@@ -414,5 +414,51 @@ class InternalController extends Controller
         return $response;
     }
 
+    public function search_idea(Request $request) {
+        $search = Idea::with('user')
+                        ->where('status', 'ide')
+                        ->where(function($query) use($request) {
+                            $query->where('title', 'LIKE', '%'.$request->query('query').'%')
+                                ->orWhereHas('user', function($userQuery) use($request) {
+                                    $userQuery->where('name', 'LIKE', '%'.$request->query('query').'%')
+                                            ->where('status', 'ide');
+                                });
+                        });
+        $total_data = $search->count();
+        $result = $search->orderBy('created_at', 'desc')->limit(8)->get();
 
+        return view('internal.idea.search_result', compact('result', 'total_data'));
+    }
+
+    public function search_innovation(Request $request) {
+        $search = Idea::with('user')
+                        ->where('status', 'inovasi')
+                        ->where(function($query) use($request) {
+                            $query->where('title', 'LIKE', '%'.$request->query('query').'%')
+                                ->orWhereHas('user', function($userQuery) use($request) {
+                                    $userQuery->where('name', 'LIKE', '%'.$request->query('query').'%')
+                                            ->where('status', 'inovasi');
+                                });
+                        });
+        $total_data = $search->count();
+        $result = $search->orderBy('created_at', 'desc')->limit(8)->get();
+
+        return view('internal.innovation.search_result', compact('result', 'total_data'));
+    }
+
+    public function search_repository(Request $request) {
+        $search = Idea::with('user')
+                        ->where('status', 'inovasi')
+                        ->where(function($query) use($request) {
+                            $query->where('title', 'LIKE', '%'.$request->query('query').'%')
+                                ->orWhereHas('user', function($userQuery) use($request) {
+                                    $userQuery->where('name', 'LIKE', '%'.$request->query('query').'%')
+                                            ->where('status', 'inovasi');
+                                });
+                        });
+        $total_data = $search->count();
+        $result = $search->orderBy('created_at', 'desc')->limit(8)->get();
+
+        return view('internal.repository.search_result', compact('total_data', 'result'));
+    }
 }

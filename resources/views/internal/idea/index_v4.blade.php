@@ -12,7 +12,7 @@
         background="##FFFFFF" speed="1" style="width: 400px; height: 400px;" loop autoplay direction="1"
         mode="normal"></lottie-player>
     </div>
-    <h2 data-aos="fade-zoom-in" class="fs-3" style="color: #c1bee2;">IDEABOX </h2>
+    <h2 data-aos="fade-zoom-in" class="fs-3" style="color: #c1bee2;">IDEABOX</h2>
     <div class="d-flex justify-content-center mx-auto" style="position: relative; width: fit-content;">
       <h1 data-aos="fade-up" data-aos-delay="800" style="color: #182958; font-size: 4em;">Berikan Idemu!</h1>
       <div class="" style="position: absolute; left: 0; top: 0;" data-aos="fade-in" data-aos-delay="1800">
@@ -143,7 +143,7 @@
     style="border: transparent !important; background-color: transparent !important;">
     <div class="form_search d-flex align-items-center shadow-sm">
       <i class="bi bi-search"></i>
-      <input type="text" class="form-control form_search-input" placeholder="Search anything...">
+      <input type="text" class="form-control form_search-input" placeholder="Cari Ide ...">
     </div>
   </button>
 
@@ -151,9 +151,12 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content" style="background: transparent !important; border: transparent !important;">
-        <div class="form_search d-flex align-items-center w-100">
+        <div class="form_search d-flex align-items-center w-100 mb-3">
           <i class="bi bi-search"></i>
-          <input type="text" class="form-control form_search-input" placeholder="Search anything...">
+          <input type="text" id="searchIdeaInput" class="form-control form_search-input focus" placeholder="Cari Ide berdasarkan judul atau nama pengirim">
+        </div>
+        <div id="searchResult" class="list-group">
+          
         </div>
       </div>
     </div>
@@ -183,6 +186,39 @@
   </div>
 
 </section>
+
+<script>
+  function debounce(func, delay) {
+    let timer;
+    return function () {
+      const context = this;
+      const args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(context, args);
+      }, delay);
+    };
+  }
+
+  function searchIdea(query) {
+    console.log(query)
+    $.ajax({
+      url: '/searchIdea?query=' + encodeURIComponent(query),
+      type: 'GET',
+      success: function(response) {
+        console.log(response)
+        $('#searchResult').html(response);
+      }
+    })
+  }
+
+  const debounceSearch = debounce(function(){
+    const query = document.getElementById('searchIdeaInput').value;
+    searchIdea(query);
+  }, 300);
+
+  document.getElementById('searchIdeaInput').addEventListener('input', debounceSearch);
+</script>
 
 <script>
   var currentPage = 1; // Initial page
@@ -251,59 +287,6 @@
     })
   }
 </script>
-
-
-{{-- <script>
-  const originalOrder = []; // Store the original order of items
-  const pagination = document.getElementById('pagination');//Get pagination class
-  const btnNewest = document.getElementById('btn-filter-newest');
-  const btnPopular = document.getElementById('btn-filter-popular');
-
-  // Initialize original order when the page loads
-  document.addEventListener('DOMContentLoaded', () => {
-    const itemList = document.getElementById('itemList');
-    originalOrder.push(...Array.from(itemList.children));
-  });
-
-  function filterItems(filterType) {
-    const itemList = document.getElementById('itemList');
-    const items = originalOrder.slice(); // Create a copy of the original order
-
-    // Sort items based on the chosen filter
-    if (filterType === 'popular') {
-      items.sort((a, b) => {
-        const popularityA = parseInt(a.getAttribute('data-popularity'));
-        const popularityB = parseInt(b.getAttribute('data-popularity'));
-        return popularityB - popularityA;
-      });
-
-      // Limit to 4 items for the "Popular" filter
-      items.splice(4);
-      pagination.style.display = 'none';
-      btnNewest.classList.remove('active');
-      btnPopular.classList.add('active');
-    } else if (filterType === 'newest') {
-      items.sort((a, b) => {
-        const dateA = new Date(a.getAttribute('data-date'));
-        const dateB = new Date(b.getAttribute('data-date'));
-        return dateB - dateA;
-      });
-      pagination.style.display = 'flex';
-      btnNewest.classList.add('active');
-      btnPopular.classList.remove('active');
-    }
-
-    // Remove existing items from the list
-    while (itemList.firstChild) {
-      itemList.removeChild(itemList.firstChild);
-    }
-
-    // Append sorted items back to the list
-    items.forEach(item => {
-      itemList.appendChild(item);
-    });
-  }
-</script> --}}
 
 <script>
 

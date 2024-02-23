@@ -27,7 +27,7 @@
     style="border: transparent !important; background-color: transparent !important;">
     <div class="form_search d-flex align-items-center shadow-sm">
       <i class="bi bi-search"></i>
-      <input type="text" class="form-control form_search-input" placeholder="Search anything...">
+      <input type="text" class="form-control form_search-input" placeholder="Cari Inovasi ...">
     </div>
   </button>
 
@@ -37,7 +37,10 @@
       <div class="modal-content" style="background: transparent !important; border: transparent !important;">
         <div class="form_search d-flex align-items-center w-100">
           <i class="bi bi-search"></i>
-          <input type="text" class="form-control form_search-input" placeholder="Search anything...">
+          <input type="text" id="searchInnovationInput" class="form-control form_search-input" placeholder="Cari Inovasi berdasarkan judul atau nama pengirim">
+        </div>
+        <div id="searchResult" class="list-group">
+
         </div>
       </div>
     </div>
@@ -64,6 +67,40 @@
   </div>
 
 </section>
+
+<script>
+  function debounce(func, delay) {
+    let timer;
+    return function () {
+      const context = this;
+      const args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(context, args);
+      }, delay);
+    };
+  }
+
+  function searchInnovation(query) {
+    console.log(query)
+    $.ajax({
+      url: '/searchInnovation?query=' + encodeURIComponent(query),
+      type: 'GET',
+      success: function(response) {
+        console.log(response)
+        $('#searchResult').html(response);
+      }
+    })
+  }
+
+  const debounceSearch = debounce(function(){
+    const query = document.getElementById('searchInnovationInput').value;
+    searchInnovation(query);
+  }, 300);
+
+  document.getElementById('searchInnovationInput').addEventListener('input', debounceSearch);
+
+</script>
 
 <script>
   AOS.init()
