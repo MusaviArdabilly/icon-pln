@@ -194,7 +194,7 @@
           </div>
           <div id="content2" class="transition-height">
             <hr>
-            <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $idea->content !!}</p>
+            <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $idea->purpose !!}</p>
           </div>
         </div>
       </div>
@@ -362,7 +362,7 @@
   var quillEditorIsi = new Quill('#quillEditorIsi', {
     theme: 'snow'
   });
-  applyStyles(quillEditorIsi, "{!! $idea->content !!}", /* Styles from your database */);
+  applyStyles(quillEditorIsi, "{!! $idea->purpose !!}", /* Styles from your database */);
 
   var quillEditorSolusi = new Quill('#quillEditorSolusi', {
     theme: 'snow'

@@ -127,7 +127,7 @@ class InternalController extends Controller
         }
         $idea->title = $request->title;
         $idea->background = $request->background;
-        $idea->content = $request->content;
+        $idea->purpose = $request->purpose;
         $idea->solution = $request->solution;
         $idea->team = $request->team;
         $idea->status = 'ide';
@@ -155,7 +155,7 @@ class InternalController extends Controller
         }
         $idea->title = $request->title;
         $idea->background = $request->background;
-        $idea->content = $request->content;
+        $idea->purpose = $request->purpose;
         $idea->solution = $request->solution;
         $idea->team = $request->team;
         $idea->status = 'Ide';
@@ -313,7 +313,7 @@ class InternalController extends Controller
         $comment->user_id = $user_id;
         $comment->idea_id = $idea_id;
         $comment->parent_id = $request->parent_id;
-        $comment->content = $request->content;
+        $comment->purpose = $request->purpose;
         $comment->save();
         
         $idea = Idea::find($id);

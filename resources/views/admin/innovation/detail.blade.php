@@ -98,7 +98,7 @@
             </div>
             <div id="content2" class="transition-height">
               <hr>
-              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $innovation->content !!}</p>
+              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $innovation->purpose !!}</p>
             </div>
           </div>
         </div>
