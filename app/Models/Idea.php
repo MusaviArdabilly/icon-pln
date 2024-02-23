@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\IdeaView;
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\FlowPosition;
 
 class Idea extends Model
 {
@@ -21,10 +22,13 @@ class Idea extends Model
         'thumbnail',
         'title',
         'background',
-        'content',
+        'purpose',
         'solution',
+        'result',
         'team',
         'status',
+        'attachment',
+        'flow_position',
         'total_views',
         'total_comments'
     ];
@@ -39,6 +43,10 @@ class Idea extends Model
 
     public function user():BelongsTo {
         return $this->belongsTo(User::class);
+    }
+
+    public function flow_position():BelongsTo {
+        return $this->belongsTo(FlowPosition::class);
     }
 
     public function view():HasMany {
