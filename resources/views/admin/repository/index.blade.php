@@ -123,7 +123,10 @@
             var newRowRepository = `
               <tr>
                 <td>${index + 1}</td>
-                <td>${item.title}</td>
+                <td>
+                  <span class="mb-2">${item.title}</span>
+                  <span class="fs-12">Oleh: ${item.team}</span>
+                </td>
                 <td>${formattedDate}</td>
                 <td class="text-center">
                   <button class="btn btn-sm btn-outline-danger" onclick="deleteRepository(${item.id})"><i class="fa fa-trash-alt" aria-hidden="true"></i></button>  
