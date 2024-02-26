@@ -137,35 +137,35 @@
                   <!-- .timeline -->
                   <div data-aos="zoom-in-up" data-aos-duration="1500" class="events-content">
                       <ol>
-                          <li class="selected" data-date="01/01/2024">
+                          <li class="px-3 px-md-5 selected" data-date="01/01/2024">
                             <div class="d-flex flex-column flex-sm-row gap-5">
                               <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
                                class="mx-auto" src="{{ asset('assets/image/icon/landing-page/problem.png') }}" alt="">
                               <p style="flex: 1;" class="d-inline-block text-center">{!! $data->section3_subtitle1_content !!}</p>
                             </div>
                           </li>
-                          <li data-date="08/01/2024" class="">
+                          <li data-date="08/01/2024" class="px-3 px-md-5 ">
                             <div class="d-flex flex-column flex-sm-row gap-5">
                               <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
                                class="mx-auto" src="{{ asset('assets/image/icon/landing-page/design.png') }}" alt="">
                               <p style="flex: 1;" class="d-inline-block text-center">{!! $data->section3_subtitle2_content !!}</p>
                             </div>
                           </li>
-                          <li data-date="16/01/2024" class="">
+                          <li data-date="16/01/2024" class="px-3 px-md-5 ">
                             <div class="d-flex flex-column flex-sm-row gap-5">
                               <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
                                class="mx-auto" src="{{ asset('assets/image/icon/landing-page/prototype.png') }}" alt="">
                               <p style="flex: 1;" class="d-inline-block text-center">{!! $data->section3_subtitle3_content !!}</p>
                             </div>
                           </li>
-                          <li data-date="24/01/2024">
+                          <li data-date="24/01/2024" class="px-3 px-md-5 ">
                             <div class="d-flex flex-column flex-sm-row gap-5">
                               <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
                                class="mx-auto" src="{{ asset('assets/image/icon/landing-page/evaluation.png') }}" alt="">
                               <p style="flex: 1;" class="d-inline-block text-center">{!! $data->section3_subtitle4_content !!}</p>
                             </div>
                           </li>
-                          <li data-date="31/01/2024">
+                          <li data-date="31/01/2024" class="px-3 px-md-5 ">
                             <div class="d-flex flex-column flex-sm-row gap-5">
                               <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
                                class="mx-auto" src="{{ asset('assets/image/icon/landing-page/report.png') }}" alt="">
