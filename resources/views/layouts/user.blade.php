@@ -103,15 +103,15 @@
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 									@if (Auth::user()->role == 'super_admin')
 										<a class="dropdown-item" href="/admin/cms/landing-page" data-toggle="modal" data-target="#logoutModal">
-											<i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>Super Admin
+											<i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>Super Admin Dashboard
 										</a>
 									@elseif (Auth::user()->role == 'admin')
 									<a class="dropdown-item" href="/admin/idea" data-toggle="modal" data-target="#logoutModal">
-										<i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>Admin
+										<i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>Admin Dashboard
 									</a>
 									@else
 									<a class="dropdown-item" href="/user/idea" data-toggle="modal" data-target="#logoutModal">
-										<i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>Profil
+										<i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>Dashboard
 									</a>
 									@endif
 									<hr class="m-2">
