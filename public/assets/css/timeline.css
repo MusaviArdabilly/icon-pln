@@ -241,7 +241,7 @@
   -ms-transform: translateX(-100%);
   -o-transform: translateX(-100%);
   transform: translateX(-100%);
-  padding: 0 5%;
+  /* padding: 0 5%; */
   opacity: 0;
   -webkit-animation-duration: 0.4s;
   -moz-animation-duration: 0.4s;
@@ -277,7 +277,8 @@
   animation-direction: reverse;
 }
 .cd-horizontal-timeline .events-content li > * {
-  max-width: 800px;
+  max-width: 1320px;
+  width: 100%;
   margin: 0 auto;
 }
 .cd-horizontal-timeline .events-content h4 {
