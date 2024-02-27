@@ -2,14 +2,14 @@
 @section('content')
   
   <script type="text/javascript">
-    document.getElementById('nav-innovation').classList.add('active');
+    document.getElementById('nav-idea').classList.add('active');
   </script>
 
   
   <div class="min-vh-100">
     <div class="container detail">
       <div class="fw-600 my-3">
-        <a href="/innovation" class="text-decoration-none text-dark d-flex align-items-center">
+        <a href="/idea" class="text-decoration-none text-dark d-flex align-items-center">
           <svg xmlns="http://www.w3.org/2000/svg" height="16" width="10" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
           &nbsp;Kembali
         </a>
@@ -17,22 +17,22 @@
       <div class="row mb-5">
         <div class="col-12 d-md-none">
           <div class="tumbnail-desktop">
-            <img class="rounded" src="{{ asset('storage/' . $innovation->thumbnail) }}" alt="">
+            <img class="rounded" src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
           </div>
         </div>
         <div class="col-12 col-md-9 d-flex flex-column justify-content-between">
           <div>
-            <h1 class="d-none d-md-block fs-32 fw-600" data-mdb-toggle="popover" title="{{ strip_tags($innovation->title) }}">{!! $innovation->title !!}</h1>
-            <h1 class="d-md-none fs-36 fw-600">{!! $innovation->title !!}</h1>
+            <h1 class="d-none d-md-block fs-36 fw-600" data-mdb-toggle="popover" title="{{ strip_tags($idea->title) }}">{!! $idea->title !!}</h1>
+            <h1 class="d-md-none fs-36 fw-600">{!! $idea->title !!}</h1>
             {{-- max 650 character abstraksi --}}
-            {{-- <label class="abstraction fs-16 fw-400 lh-24 mb-4">{!! $innovation->abstract !!}</label> --}}
+            {{-- <label class="abstraction fs-16 fw-400 lh-24 mb-4">{!! $idea->abstract !!}</label> --}}
             {{-- <hr> --}}
           </div>
           <div>
             <h2 class="fs-16 fw-600 m-0">Oleh:</h2>
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-end">
               @php
-                $team = $innovation->team;
+                $team = $idea->team;
                 $teamArray = explode(', ', $team);
               @endphp
               <label class="fs-16 fw-400">
@@ -44,14 +44,14 @@
                   @endif
                 @endfor
               </label>
-              <label class="fs-12 text-secondary ms-auto">{{ $innovation->created_at->format('d/F/Y') }}</label>
+              <label class="fs-12 text-secondary ms-auto">{{ $idea->created_at->format('d/F/Y') }}</label>
             </div>
           </div>
         </div>
         <div class="col-12 col-md-3 d-none d-md-block">
           <div class="d-flex justify-content-end h-100 align-items-center">
             <div class="tumbnail">
-              <img class="rounded" src="{{ asset('storage/' . $innovation->thumbnail) }}" alt="">
+              <img class="rounded" src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
             </div>
           </div>
         </div>
@@ -72,7 +72,7 @@
             </div>
             <div id="content1" class="transition-height">
               <hr>
-              <p class="fs-16 fw-400 lh-24 mt-3 mb-0">{!! $innovation->background !!}</p>
+              <p class="fs-16 fw-400 lh-24 mt-3 mb-0">{!! $idea->background !!}</p>
             </div>
           </div>
         </div>
@@ -91,7 +91,7 @@
             </div>
             <div id="content2" class="transition-height">
               <hr>
-              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $innovation->purpose !!}</p>
+              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $idea->purpose !!}</p>
             </div>
           </div>
         </div>
@@ -110,7 +110,7 @@
             </div>
             <div id="content3" class="transition-height">
               <hr>
-              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $innovation->solution !!}</p>
+              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $idea->solution !!}</p>
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@
         <h3 class="fs-20 fw-600">Lampiran</h3>
       </div>
       <div class="row mb-4">
-        @foreach ($innovation->attachment as $item)
+        @foreach ($idea->attachment as $item)
           @php
             $filePath = $item; 
             $fileInfo = pathinfo($filePath);
@@ -149,23 +149,14 @@
               </a>
             </div>
             @endif
-            <label class="fs-14 fw-500 mt-2 two-rows-text">{{ str_replace('attachments/'.Auth::user()->id.'_'.$innovation->id.'_', '', $item) }}</label>
+            <label class="fs-14 fw-500 mt-2 two-rows-text">{{ str_replace('attachments/', '', $item) }}</label>
           </div>
         @endforeach
       </div>
       <hr class="mb-4">
-      <div class="row mb-4">
-        <div class="col-12">
-          <div class="rounded shadow p-3">
-            <p class="fs-20 fw-600">{{ $flow_position[4]->name }}</p>
-            <p class="fs-16">{{ $innovation->result == null ? 'Belum ada penilaian' : $innovation->result }}</p>
-          </div>
-        </div>
-      </div>
-      <hr class="mb-4">
       <div class="comment mb-4">
         <label class="fs-20 fw-600 mt-0 mb-2">Komentar <label class="fs-16 fw-400">sebagai: {{ Auth::user()->name }}</label></label>
-        <form action="/idea/{{ $innovation->id }}/comment/post" method="POST" class="d-flex align-items-center">
+        <form action="/idea/{{ $idea->id }}/comment/post" method="POST" class="d-flex align-items-center">
           @csrf
           <img class="profil rounded" src="{{ asset('assets/image/tumbnail/default_ava.png') }}" alt="">
           <input type="text" name="content" class="input_comment">
@@ -183,7 +174,7 @@
                     <div class="comment-content mx-2 pt-1">
                       <div class="d-flex justify-content-between align-items-center mb-1">
                         <h2 class="fs-16 fw-600 m-0">{{ $comment->user->name }}</h2>
-                        <div class="fs-14 ms-5 btn-reply cursor-pointer" onclick="showComment({{ $comment->user->id }}, {{ $innovation->id }}, {{ $comment->id }})"><i class="d-inline fs-20 bi bi-reply-fill"></i>Balas</div>
+                        <div class="fs-14 ms-5 btn-reply cursor-pointer" onclick="showComment({{ $comment->user->id }}, {{ $idea->id }}, {{ $comment->id }})"><i class="d-inline fs-20 bi bi-reply-fill"></i>Balas</div>
                       </div>
                       <p class="fs-14 mb-0">{{ $comment->content }}</p>
                     </div>
@@ -218,7 +209,7 @@
       </div>
     </div>
   </div>
-  
+
   <script>
     window.onload = function() {
       showContent('content1', 'toggleShow1', 'toggleHide1');
@@ -255,7 +246,7 @@
 
   <script>
     async function showComment(userId, ideaId, parentId) {
-      const { value: reply } = await window.Swal.fire({
+      const { value: reply } = await Swal.fire({
         title: `Balas komentar`,
         input: "textarea",
         reverseButtons: true,
@@ -273,17 +264,16 @@
         console.log('submited')
         console.log(reply);
         var formData = new FormData();
-        formData.append('_token', '{{ csrf_token() }}'); 
         formData.append('user_id', userId);
         formData.append('idea_id', ideaId);
         formData.append('parent_id', parentId);
         formData.append('content', reply);
-
+  
         $.ajax({
           type: 'POST',
-          // headers: {
-          //   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          // },
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
           url: `/idea/${ideaId}/comment/post`,
           data: formData,
           contentType: false,
@@ -299,7 +289,7 @@
             location.reload();
           },
           error: function(error) {
-            window.Swal.fire({
+            Swal.fire({
               icon: 'error',
               title: 'Gagal',
               text: 'Gagal menyimpan balasan komentar',

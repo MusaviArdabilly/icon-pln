@@ -156,7 +156,7 @@
             </a>
           </div>
           @endif
-          <label class="fs-14 fw-500 mt-2 two-rows-text">{{ str_replace('attachments/', '', $item) }}</label>
+          <label class="fs-14 fw-500 mt-2 two-rows-text">{{ str_replace('attachments/'.Auth::user()->id.'_'.$idea->id.'_', '', $item) }}</label>
         </div>
       @endforeach
     </div>

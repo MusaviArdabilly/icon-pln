@@ -48,10 +48,17 @@
                         @endfor
                       </td>
                       <td class="text-center"><label class="btn btn-sm bg-primary text-white" style="cursor:auto">Ide</label></td>
-                      <td class="text-center nowrap">
-                        <a href="/admin/idea/{{ $item->id }}" class="btn btn-sm btn-secondary mb-1"><i class="fas fa-fw fa-eye"></i></a>
-                        <a href="/admin/idea/{{ $item->id }}/delete" class="btn btn-sm btn-danger mb-1"
-                          onclick="deleteIdea(event)"><i class="fas fa-fw fa-trash"></i></a>
+                      <td class="text-center">
+                        <div class="d-flex">
+                          <a href="/admin/idea/{{ $item->id }}" class="btn btn-sm btn-secondary mb-1 mr-2"><i class="fas fa-fw fa-eye"></i></a>
+                          <a href="/admin/idea/{{ $item->id }}/delete" class="btn btn-sm btn-danger mb-1 mr-2" onclick="deleteIdea(event)"><i class="fas fa-fw fa-trash"></i></a>
+                          <button class="btn btn-sm btn-primary mb-1 mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-fw fa-ellipsis-v"></i>
+                          </button>
+                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/admin/idea/{{ $item->id }}/transfer-to-innovation" onclick="moveIdea(event)">Jadikan Inovasi</a>
+                          </div>
+                        </div>
                       </td>
                     </tr>
                   @empty

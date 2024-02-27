@@ -15,6 +15,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\App;
 use ZipArchive;
 use Illuminate\Support\Facades\File;
+use App\Models\FlowPosition;
 
 class InternalController extends Controller
 {
@@ -142,7 +143,7 @@ class InternalController extends Controller
         $idea->save();
     }
 
-    public function idea_edit(Request $request, $id) {
+    public function idea_edit2(Request $request, $id) {
         $attachments = [];
         
         $idea =  Idea::find($id);
@@ -170,7 +171,23 @@ class InternalController extends Controller
         $idea->save();
     }
 
+    public function idea_edit(Request $request, $id) {
+        $idea =  Idea::find($id);
+        $idea->user_id = Auth::user()->id;
+        if($request->hasFile('thumbnail')){
+            $thumbnail = $request->file('thumbnail')->store('thumbnails', 'public');
+            $idea->thumbnail = $thumbnail;
+        }
+        $idea->title = $request->title;
+        $idea->background = $request->background;
+        $idea->purpose = $request->purpose;
+        $idea->solution = $request->solution;
+        // dd($request->file('thumbnail'));
+        $idea->save();
+    }
+
     public function detail_idea($id) {
+        $flow_position = FlowPosition::all();
         $idea = Idea::find($id);
         $comment = [];
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
@@ -188,7 +205,7 @@ class InternalController extends Controller
             }
         }
 
-        return view('internal.idea.detail', compact('idea', 'comments'));
+        return view('internal.idea.detail', compact('idea', 'comments', 'flow_position'));
     }
     
     public function innovation() {
@@ -196,6 +213,7 @@ class InternalController extends Controller
     }
 
     public function detail_innovation($id) {
+        $flow_position = FlowPosition::all();
         $innovation = Idea::find($id);
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
         
@@ -212,7 +230,7 @@ class InternalController extends Controller
             }
         }
 
-        return view('internal.innovation.detail', compact('innovation', 'comments'));
+        return view('internal.innovation.detail', compact('innovation', 'comments', 'flow_position'));
     }
 
     public function get_innovation(Request $request) {
@@ -313,7 +331,7 @@ class InternalController extends Controller
         $comment->user_id = $user_id;
         $comment->idea_id = $idea_id;
         $comment->parent_id = $request->parent_id;
-        $comment->purpose = $request->purpose;
+        $comment->content = $request->content;
         $comment->save();
         
         $idea = Idea::find($id);
@@ -333,6 +351,7 @@ class InternalController extends Controller
     }
 
     public function detail_idea_user($id) {
+        $flow_position = FlowPosition::all();
         $idea = Idea::find($id);
         $comment = [];
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
@@ -350,7 +369,7 @@ class InternalController extends Controller
             }
         }
 
-        return view('internal.dashboard.detail_idea', compact('idea', 'comments'));
+        return view('internal.dashboard.detail_idea', compact('idea', 'comments', 'flow_position'));
     }
 
 
@@ -363,6 +382,7 @@ class InternalController extends Controller
     }
 
     public function detail_innovation_user($id) {
+        $flow_position = FlowPosition::all();
         $idea = Idea::find($id);
         $comment = [];
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
@@ -380,7 +400,7 @@ class InternalController extends Controller
             }
         }
 
-        return view('internal.dashboard.detail_innovation', compact('idea', 'comments'));
+        return view('internal.dashboard.detail_innovation', compact('idea', 'comments', 'flow_position'));
     }
 
     public function download_archive($id) {
@@ -460,5 +480,28 @@ class InternalController extends Controller
         $result = $search->orderBy('created_at', 'desc')->limit(8)->get();
 
         return view('internal.repository.search_result', compact('total_data', 'result'));
+    }
+
+    public function upload_attachment(Request $request, $id) {
+        $attachments = [];
+        
+        $idea =  Idea::find($id);
+        
+        if ($request->hasFile('attachment')) {
+            foreach ($request->file('attachment') as $attachment) {
+                $attachment_file_name = Auth::user()->id . '_' . $id . '_' . $attachment->getClientOriginalName();
+                $path = $attachment->storeAs('attachments', $attachment_file_name, 'public');
+                $attachments[] = $path;
+            }
+            if ($idea->attachment) {
+                $existing_attachments = $idea->attachment;
+                $attachments = array_merge($existing_attachments, $attachments);
+            }
+            $idea->attachment =  $attachments;
+        }
+        // dd($id, $request->attachment, $idea->attachment, $attachments, $request->attachment);
+        $idea->save();
+
+        return redirect()->back();
     }
 }

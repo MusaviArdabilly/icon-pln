@@ -45,8 +45,8 @@ class Idea extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function flow_position():BelongsTo {
-        return $this->belongsTo(FlowPosition::class);
+    public function get_flow_position():BelongsTo {
+        return $this->belongsTo(FlowPosition::class, 'flow_position');
     }
 
     public function view():HasMany {

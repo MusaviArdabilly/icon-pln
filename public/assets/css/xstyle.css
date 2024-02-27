@@ -133,6 +133,15 @@ body {
   font-weight: bold;
 }
 
+.disabled-link {
+  color: #999; 
+  pointer-events: none; 
+}
+
+.pointer-not-allowed {
+  cursor: not-allowed;
+}
+
 .pointer {
   cursor: pointer;
 }
@@ -645,6 +654,11 @@ body {
 .transition-height {
   max-height: 0;
   overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.transition-height-full {
+  max-height: 100%;
   transition: max-height 0.5s ease;
 }
 

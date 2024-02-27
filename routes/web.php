@@ -29,7 +29,7 @@ Route::get('/lp-v3', [PublicController::class, 'index_v2']);
 Route::get('/lp-v2', [PublicController::class, 'index_v1']);
 
 Route::get('/login', [AuthController::class, 'login']);
-Route::post('/login/post', [AuthController::class, 'login_post']);
+Route::post('/login/post', [AuthController::class, 'login_post2']);
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [AuthController::class, 'register']);
 
@@ -64,6 +64,7 @@ Route::middleware('auth')->group(function () {
         Route::middleware('ownership')->group(function () {
             Route::get('/idea/{id}', [InternalController::class, 'detail_idea_user']);
             Route::get('/innovation/{id}', [InternalController::class, 'detail_innovation_user']);
+            Route::post('/upload-attachment/{id}', [InternalController::class, 'upload_attachment']);
         });
     });
 
@@ -76,6 +77,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/innovation/{id}', [AdminController::class, 'detail_innovation']);
         Route::get('/innovation/{id}/transfer-to-idea', [AdminController::class, 'innovation_to_idea']);
         Route::get('/innovation/{id}/delete', [AdminController::class, 'delete_innovation']);
+        Route::get('/innovation/{id}/approve-step-2', [AdminController::class, 'approve_step_2']);
+        Route::get('/innovation/{id}/approve-step-3', [AdminController::class, 'approve_step_3']);
+        Route::get('/innovation/{id}/approve-step-4', [AdminController::class, 'approve_step_4']);
         Route::get('/repository', [AdminController::class, 'repository']);
 
         Route::get('/repository/get-data', [AdminController::class, 'get_data_repository']);
