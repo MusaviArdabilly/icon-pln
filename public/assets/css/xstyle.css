@@ -232,6 +232,7 @@ body {
 
 .nav-item:hover {
   /* scale: 0.9; */
+  scale: 1;
 }
 
 .nav-item .active {
