@@ -84,7 +84,7 @@
             <div class="col">
               <div class="form-group">
                 <label for="exampleFormControlInput2">Sub judul 1</label>
-                <input type="text" name="section3_subtitle1" value="{{ $data->section3_subtitle1 }}" class="form-control" id="exampleFormControlInput2">
+                <input type="text" name="section3_subtitle1" value="{{ $flow_position[0]->name }}" class="form-control" id="exampleFormControlInput2">
               </div>
               <div class="form-group">
                 <label for="exampleFormControlTextarea2">Konten</label>
@@ -94,7 +94,7 @@
             <div class="col">
               <div class="form-group">
                 <label for="exampleFormControlInput2">Sub judul 2</label>
-                <input type="text" name="section3_subtitle2" value="{{ $data->section3_subtitle2 }}" class="form-control" id="exampleFormControlInput2">
+                <input type="text" name="section3_subtitle2" value="{{ $flow_position[1]->name }}" class="form-control" id="exampleFormControlInput2">
               </div>
               <div class="form-group">
                 <label for="exampleFormControlTextarea2">Konten</label>
@@ -104,7 +104,7 @@
             <div class="col">
               <div class="form-group">
                 <label for="exampleFormControlInput2">Sub judul 3</label>
-                <input type="text" name="section3_subtitle3" value="{{ $data->section3_subtitle3 }}" class="form-control" id="exampleFormControlInput2">
+                <input type="text" name="section3_subtitle3" value="{{ $flow_position[2]->name }}" class="form-control" id="exampleFormControlInput2">
               </div>
               <div class="form-group">
                 <label for="exampleFormControlTextarea2">Konten</label>
@@ -114,7 +114,7 @@
             <div class="col">
               <div class="form-group">
                 <label for="exampleFormControlInput2">Sub judul 4</label>
-                <input type="text" name="section3_subtitle4" value="{{ $data->section3_subtitle4 }}" class="form-control" id="exampleFormControlInput2">
+                <input type="text" name="section3_subtitle4" value="{{ $flow_position[3]->name }}" class="form-control" id="exampleFormControlInput2">
               </div>
               <div class="form-group">
                 <label for="exampleFormControlTextarea2">Konten</label>
@@ -124,7 +124,7 @@
             <div class="col">
               <div class="form-group">
                 <label for="exampleFormControlInput2">Sub judul 5</label>
-                <input type="text" name="section3_subtitle5" value="{{ $data->section3_subtitle5 }}" class="form-control" id="exampleFormControlInput2">
+                <input type="text" name="section3_subtitle5" value="{{ $flow_position[4]->name }}" class="form-control" id="exampleFormControlInput2">
               </div>
               <div class="form-group">
                 <label for="exampleFormControlTextarea2">Konten</label>

@@ -6,7 +6,7 @@
     // document.getElementById('navbar').classList.remove('var-bg-primary', 'shadow', 'sticky-top');
     document.getElementById('navbar').classList.add('d-none');
     document.getElementById('navbar').classList.add('animation-pop-down-navbar');
-    document.getElementById('nav-brand-logo').classList.add('filter-invert');
+    // document.getElementById('nav-brand-logo').classList.add('filter-invert');
   </script>
 
   <div class="hero-video-v5 position-relative">
@@ -117,11 +117,11 @@
                     <div class="events-wrapper">
                       <div class="events">
                         <ol>
-                          <li><a href="#0" data-date="01/01/2024" class="fs-24 fw-600 text-decoration-none selected">{!! $data->section3_subtitle1 !!}</a></li>
-                          <li><a href="#0" data-date="08/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $data->section3_subtitle2 !!}</a></li>
-                          <li><a href="#0" data-date="16/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $data->section3_subtitle3 !!}</a></li>
-                          <li><a href="#0" data-date="24/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $data->section3_subtitle4 !!}</a></li>
-                          <li><a href="#0" data-date="31/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $data->section3_subtitle5 !!}</a></li>
+                          <li><a href="#0" data-date="01/01/2024" class="fs-24 fw-600 text-decoration-none selected">{!! $flow_position[0]->name !!}</a></li>
+                          <li><a href="#0" data-date="08/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $flow_position[1]->name !!}</a></li>
+                          <li><a href="#0" data-date="16/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $flow_position[2]->name !!}</a></li>
+                          <li><a href="#0" data-date="24/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $flow_position[3]->name !!}</a></li>
+                          <li><a href="#0" data-date="31/01/2024" class="fs-24 fw-600 text-decoration-none">{!! $flow_position[4]->name !!}</a></li>
                         </ol>
                         <span class="filling-line" aria-hidden="true" style="transform: scaleX(0.281506);"></span>
                       </div>
@@ -137,35 +137,35 @@
                   <!-- .timeline -->
                   <div data-aos="zoom-in-up" data-aos-duration="1500" class="events-content">
                       <ol>
-                          <li class="selected" data-date="01/01/2024">
+                          <li class="px-3 px-md-5 selected" data-date="01/01/2024">
                             <div class="d-flex flex-column flex-sm-row gap-5">
                               <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
                                class="mx-auto" src="{{ asset('assets/image/icon/landing-page/problem.png') }}" alt="">
                               <p style="flex: 1;" class="d-inline-block text-center">{!! $data->section3_subtitle1_content !!}</p>
                             </div>
                           </li>
-                          <li data-date="08/01/2024" class="">
+                          <li data-date="08/01/2024" class="px-3 px-md-5 ">
                             <div class="d-flex flex-column flex-sm-row gap-5">
                               <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
                                class="mx-auto" src="{{ asset('assets/image/icon/landing-page/design.png') }}" alt="">
                               <p style="flex: 1;" class="d-inline-block text-center">{!! $data->section3_subtitle2_content !!}</p>
                             </div>
                           </li>
-                          <li data-date="16/01/2024" class="">
+                          <li data-date="16/01/2024" class="px-3 px-md-5 ">
                             <div class="d-flex flex-column flex-sm-row gap-5">
                               <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
                                class="mx-auto" src="{{ asset('assets/image/icon/landing-page/prototype.png') }}" alt="">
                               <p style="flex: 1;" class="d-inline-block text-center">{!! $data->section3_subtitle3_content !!}</p>
                             </div>
                           </li>
-                          <li data-date="24/01/2024">
+                          <li data-date="24/01/2024" class="px-3 px-md-5 ">
                             <div class="d-flex flex-column flex-sm-row gap-5">
                               <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
                                class="mx-auto" src="{{ asset('assets/image/icon/landing-page/evaluation.png') }}" alt="">
                               <p style="flex: 1;" class="d-inline-block text-center">{!! $data->section3_subtitle4_content !!}</p>
                             </div>
                           </li>
-                          <li data-date="31/01/2024">
+                          <li data-date="31/01/2024" class="px-3 px-md-5 ">
                             <div class="d-flex flex-column flex-sm-row gap-5">
                               <img style="flex: 1; max-width: 128px; height: auto; align-self: center;"
                                class="mx-auto" src="{{ asset('assets/image/icon/landing-page/report.png') }}" alt="">
@@ -187,11 +187,11 @@
   <script>
     // const heroVideoHeight = document.querySelector('.hero-video').offsetHeight;
     const heroVideoHeight = document.querySelector('.hero-video-v5').offsetHeight;
-    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+    // const navbarHeight = document.querySelector('.navbar').offsetHeight;
     const targetElement = document.getElementById('navbar');
     
     window.addEventListener('scroll', function() {
-      if (window.scrollY > (heroVideoHeight - navbarHeight)) {
+      if (window.scrollY > (heroVideoHeight - 150)) {
         targetElement.classList.remove('d-none');
       } else {
         targetElement.classList.add('d-none');

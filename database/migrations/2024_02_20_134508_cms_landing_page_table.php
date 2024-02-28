@@ -25,15 +25,10 @@ return new class extends Migration
             $table->text('section2_subtitle4');
             $table->text('section2_subtitle4_content');
             $table->text('section3_title');
-            $table->text('section3_subtitle1');
             $table->text('section3_subtitle1_content');
-            $table->text('section3_subtitle2');
             $table->text('section3_subtitle2_content');
-            $table->text('section3_subtitle3');
             $table->text('section3_subtitle3_content');
-            $table->text('section3_subtitle4');
             $table->text('section3_subtitle4_content');
-            $table->text('section3_subtitle5');
             $table->text('section3_subtitle5_content');
             $table->timestamps();
         });

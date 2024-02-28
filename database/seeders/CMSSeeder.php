@@ -26,15 +26,10 @@ class CMSSeeder extends Seeder
             'section2_subtitle4' => 'Wujudkan Idemu',
             'section2_subtitle4_content' => 'Mari kita wujudkan ide yang dimiliki melalui program inovasi yang diselenggarakan oleh PLN.',
             'section3_title' => 'Alur ICONIC',
-            'section3_subtitle1' => 'Problem',
             'section3_subtitle1_content' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors infancy.',
-            'section3_subtitle2' => 'Design',
             'section3_subtitle2_content' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors infancy.',
-            'section3_subtitle3' => 'Prototype',
             'section3_subtitle3_content' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors infancy.',
-            'section3_subtitle4' => 'Evaluasi',
             'section3_subtitle4_content' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors infancy.',
-            'section3_subtitle5' => 'Report',
             'section3_subtitle5_content' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using, making it look like readable English. Many desktop publishing packages and web page editors infancy.',
         ]);
     }

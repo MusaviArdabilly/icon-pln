@@ -9,7 +9,7 @@
 <div class="min-vh-100 mb-3">
   <div class="detail px-5 py-2 rounded shadow bg-white">
     
-    <div class="card w-100 text-center px-3 py-3 hidden_idea_form mt-3 border-0 shadow bounce-in" style="display: none;">
+    {{-- <div class="card w-100 text-center px-3 py-3 hidden_idea_form mt-3 border-0 shadow bounce-in" style="display: none;">
       <h3 class="mx-auto fw-600 mb-4">Edit Data</h3>
       <form id="ideabox-submit">
         <!-- image upload -->
@@ -42,13 +42,6 @@
             </div>
           </div>
         </div>
-        {{-- <div class="row input_item">
-          <p class="col-3">Abstrak</p>
-          <div class="col-9">
-            <div id="quillEditorAbstrak" class="quillCustom shadow border-0 radius-3">
-            </div>
-          </div>
-        </div> --}}
         <div class="row input_item">
           <p class="col-3">Latar Belakang Masalah</p>
           <div class="col-9">
@@ -81,29 +74,11 @@
           </div>
         </div>
       </div>
-      <!-- attachment -->
-      {{-- <div class="row input_item">
-        <p class="col-3">Lampiran</p>
-        <div class="col-9 d-flex justify-content-center">
-          <p class="d-flex">
-            <label for="attachment">
-              <a class="btn btn-primary text-light shadow" role="button" aria-disabled="false">+ Tambah</a>
-            </label>
-            <input type="file" name="file[]" accept=".jpg, .jpeg, .png, .pdf, .ppt, .pptx" id="attachment" style="visibility: hidden; position: absolute;"
-              multiple />
-          </p>
-          <p id="files-area">
-            <span id="filesList">
-              <span id="files-names"></span>
-            </span>
-          </p>
-        </div>
-      </div> --}}
       <div class="d-flex ml-auto w-0" style="width: fit-content;">
         <button type="submit" class="btn btn-primary mr-3" onclick="onSubmit({{ $idea->id }})">Simpan</button>
         <button type="button" class="btn btn-danger" onclick="show(this)">Batal</button>
       </div>
-    </div>
+    </div> --}}
 
     <div class="d-flex justify-content-between my-3">
       <a href="/admin/idea" class="text-decoration-none font-weight-bold d-flex align-items-center">
@@ -113,9 +88,9 @@
         <div class="dropdown-toggle text-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
         </div>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        {{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
           <div class="dropdown-item cursor-pointer" onclick="show(this)">Ubah Data</div>
-        </div>
+        </div> --}}
       </div>
     </div>
     <div class="row mb-5">
@@ -128,9 +103,6 @@
         <div>
           <h2 class="d-none d-md-block font-weight-bold" data-mdb-toggle="popover" title="{{ strip_tags($idea->title) }}">{!! $idea->title !!}</h2>
           <h2 class="d-md-none font-weight-bold">{!! $idea->title !!}</h2>
-          {{-- max 500 character abstraksi --}}
-          {{-- <p class="abstraction fs-16 fw-400 lh-24">{!! $idea->abstract !!}</p> --}}
-          {{-- <hr> --}}
         </div>
         <div>
           <h5 class="font-weight-bold m-0">Oleh:</h5>
@@ -159,68 +131,224 @@
         </div>
       </div>
     </div>
-    <div class="row mb-4">
-      <div class="col-12">
-        <div class="shadow rounded p-3">
-          <div class="d-flex justify-content-between align-items-center">
-            <h2 class="fs-28 fw-600 m-0">Latar Belakang</h2>
-            <div id="toggleHide1" onclick="toggleContent('content1', 'toggleShow1', 'toggleHide1')" class="toggle">
-            {{-- <div id="toggleHide1" onclick="toggleContent('content1', 'toggleShow1', 'toggleHide1')"> --}}
-              <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z"/></svg>
-            </div>
-            <div id="toggleShow1" onclick="toggleContent('content1', 'toggleShow1', 'toggleHide1')" class="toggle d-none">
-              {{-- <div id="toggleShow1" onclick="toggleContent('content1', 'toggleShow1', 'toggleHide1')" class="d-none"> --}}
-              <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg>
-            </div>
-          </div>
-          <div id="content1" class="transition-height">
-            <hr>
-            <p class="fs-16 fw-400 lh-24 mt-3 mb-0">{!! $idea->background !!}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-4">
-      <div class="col-12">
-        <div class="shadow rounded p-3">
-          <div class="d-flex justify-content-between align-items-center">
-            <h2 class="fs-28 fw-600 m-0">Isi</h2>
-            <div id="toggleHide2" onclick="toggleContent('content2', 'toggleShow2', 'toggleHide2')" class="toggle">
-              <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z"/></svg>
-            </div>
-            <div id="toggleShow2" onclick="toggleContent('content2', 'toggleShow2', 'toggleHide2')" class="toggle d-none">
-              <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg>
-            </div>
-          </div>
-          <div id="content2" class="transition-height">
-            <hr>
-            <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $idea->content !!}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-4">
-      <div class="col-12">
-        <div class="shadow rounded p-3">
-          <div class="d-flex justify-content-between align-items-center">
-            <h2 class="fs-28 fw-600 m-0">Usulan</h2>
-            <div id="toggleHide3" onclick="toggleContent('content3', 'toggleShow3', 'toggleHide3')" class="toggle">
-              <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z"/></svg>
-            </div>
-            <div id="toggleShow3" onclick="toggleContent('content3', 'toggleShow3', 'toggleHide3')" class="toggle d-none">
-              <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg>
-            </div>
-          </div>
-          <div id="content3" class="transition-height">
-            <hr>
-            <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $idea->solution !!}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr class="dashed mb-4">
     <div class="row">
-      <h3 class="fs-20 fw-600">Lampiran</h3>
+      <div class="col-12 p-0">
+        <div class="body">
+          <div class="cd-horizontal-timeline loaded">
+            <div class="timeline shadow rounded-4 bg-light">
+              <div class="events-wrapper">
+                <div class="events mt-3">
+                  <ol>
+                    <li><a href="#0" data-date="01/01/2024" class="fs-20 fw-600 text-decoration-none">{!! $flow_position[0]->name !!}</a></li>
+                    <li><a href="#0" data-date="08/01/2024" class="fs-20 fw-600 text-decoration-none {{ $idea->flow_position === 2 ? 'selected' : '' }}">{!! $flow_position[1]->name !!}</a></li>
+                    <li><a href="#0" data-date="16/01/2024" class="fs-20 fw-600 text-decoration-none {{ $idea->flow_position === 3 ? 'selected' : '' }}">{!! $flow_position[2]->name !!}</a></li>
+                    <li><a href="#0" data-date="24/01/2024" class="fs-20 fw-600 text-decoration-none {{ $idea->flow_position === 4 ? 'selected' : '' }}">{!! $flow_position[3]->name !!}</a></li>
+                    <li><a href="#0" data-date="31/01/2024" class="fs-20 fw-600 text-decoration-none {{ $idea->flow_position === 5 ? 'selected' : '' }}">{!! $flow_position[4]->name !!}</a></li>
+                  </ol>
+                  <span class="filling-line" aria-hidden="true" style="transform: scaleX(0.281506);"></span>
+                </div>
+                <!-- .events -->
+                <ul class="cd-timeline-navigation d-block d-md-none">
+                  <li><a href="#0" class="prev inactive">Prev</a></li>
+                  <li><a href="#0" class="next">Next</a></li>
+                </ul>
+              </div>
+              
+            </div>
+            
+            <!-- .timeline -->
+            <div class="events-content">
+              <ol class="m-0 p-0">
+                <li class="" data-date="01/01/2024">
+                  <div class="row my-4">
+                    <div class="col-12">
+                      <div class="shadow rounded p-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <h2 class="fs-28 fw-600 m-0">Latar Belakang Masalah</h2>
+                          <div id="toggleHide1" onclick="toggleContent('content1', 'toggleShow1', 'toggleHide1')" class="toggle">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z"/></svg>
+                          </div>
+                          <div id="toggleShow1" onclick="toggleContent('content1', 'toggleShow1', 'toggleHide1')" class="toggle d-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg>
+                          </div>
+                        </div>
+                        <div id="content1" class="transition-height">
+                          <hr>
+                          <p class="fs-16 fw-400 lh-24 mt-3 mb-0">{!! $idea->background !!}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-12">
+                      <div class="shadow rounded p-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <h2 class="fs-28 fw-600 m-0">Tujuan</h2>
+                          <div id="toggleHide2" onclick="toggleContent('content2', 'toggleShow2', 'toggleHide2')" class="toggle">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z"/></svg>
+                          </div>
+                          <div id="toggleShow2" onclick="toggleContent('content2', 'toggleShow2', 'toggleHide2')" class="toggle d-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg>
+                          </div>
+                        </div>
+                        <div id="content2" class="transition-height">
+                          <hr>
+                          <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $idea->purpose !!}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-12">
+                      <div class="shadow rounded p-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <h2 class="fs-28 fw-600 m-0">Usulan Solusi</h2>
+                          <div id="toggleHide3" onclick="toggleContent('content3', 'toggleShow3', 'toggleHide3')" class="toggle">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z"/></svg>
+                          </div>
+                          <div id="toggleShow3" onclick="toggleContent('content3', 'toggleShow3', 'toggleHide3')" class="toggle d-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg>
+                          </div>
+                        </div>
+                        <div id="content3" class="transition-height">
+                          <hr>
+                          <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $idea->solution !!}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li data-date="08/01/2024" class="{{ $idea->flow_position === 2 ? 'selected' : '' }}"">
+                  <div class="d-flex justify-content-center my-4">
+                    <div class="shadow rounded p-3 px-md-5">
+                      <p class="fs-20 fw-600">Download template dokumen berikut dan isi sesuai dengan petunjuk dan upload</p>
+                      <a href="{{ asset('assets/document/Template_file_1.pdf') }}" download><button class="btn btn-outline-primary">Dokumen 1</button></a>
+                      <a href="{{ asset('assets/document/Template_file_2.pdf') }}" download><button class="btn btn-outline-primary">Dokumen 2</button></a>
+                      <hr>
+                      <p class="fs-20 fw-600">Upload Dokumen</p>
+                      <form action="/user/upload-attachment/{{ $idea->id }}" method="POST" enctype="multipart/form-data" class="mb-4">
+                        @csrf
+                        <div class="row mb-3">
+                          <div class="col-12">
+                            <div class="form-group">
+                              <input type="file" name="attachment[]" multiple class="form-control-file" id="exampleFormControlFile1" accept=".pdf, .ppt, .pptx, .jpg, .jpeg, .png">
+                              <small id="uploadHelp" class="form-text text-muted d-block">Harap upload file dengan ekstensi .pdf, .ppt, .pptx, .jpg, .jpeg, .png</small>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                          <button type="submit" class="btn btn-primary">Upload</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </li>
+                <li data-date="16/01/2024" class="{{ $idea->flow_position === 3 ? 'selected' : '' }}"">
+                  <div class="d-flex justify-content-center my-4">
+                    <div class="shadow rounded p-3 px-md-5">
+                      <p class="fs-20 fw-600">Download template dokumen berikut dan isi sesuai dengan petunjuk dan upload</p>
+                      <a href="{{ asset('assets/document/Template_file_3.pdf') }}" download><button class="btn btn-outline-primary">Dokumen 1</button></a>
+                      <a href="{{ asset('assets/document/Template_file_4.pdf') }}" download><button class="btn btn-outline-primary">Dokumen 2</button></a>
+                      <hr>
+                      <p class="fs-20 fw-600">Upload Dokumen</p>
+                      <form action="/user/upload-attachment/{{ $idea->id }}" method="POST" enctype="multipart/form-data" class="mb-4">
+                        @csrf
+                        <div class="row mb-3">
+                          <div class="col-12">
+                            <div class="form-group">
+                              <input type="file" name="attachment[]" multiple class="form-control-file" id="exampleFormControlFile1" accept=".pdf, .ppt, .pptx, .jpg, .jpeg, .png">
+                              <small id="uploadHelp" class="form-text text-muted d-block">Harap upload file dengan ekstensi .pdf, .ppt, .pptx, .jpg, .jpeg, .png</small>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                          <button type="submit" class="btn btn-primary">Upload</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </li>
+                <li data-date="24/01/2024" class="{{ $idea->flow_position === 4 ? 'selected' : '' }}"">
+                  <div class="h-100 d-flex justify-content-center my-4">
+                    <div class="card p-3 px-md-5 mx-3 mx-md-5">
+                      <form id="ideabox-submit">
+                        <!-- image upload -->
+                        @csrf
+                        <div class="row input_item mt-2">
+                          <p class="col-3">Thumbnail</p>
+                          <div class="col-9 uploader">
+                            <div class="d-flex">
+                              <img height="156px" src="{{ asset('storage/' . $idea->thumbnail) }}" alt="" class="mr-3">
+                              <input id="file-upload" type="file" name="thumbnail" accept="image/*" style="display:none" />
+                              <label for="file-upload" id="file-drag" style="padding: 0px">
+                                <img id="file-image" src="#" alt="Preview" class="hidden" style="height: 128px">
+                                <div id="start">
+                                  <i class="bi bi-download" aria-hidden="true"></i>
+                                  <div>Select a file or drag here</div>
+                                  <div id="notimage" class="hidden">Please select an image</div>
+                                  <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+                                </div>
+                                <div id="response" class="hidden">
+                                  <div id="messages"></div>
+                                </div>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row input_item">
+                          <p class="col-3">Judul/Topik</p>
+                          <div class="col-9">
+                            <div id="quillEditorJudul" class="quillCustom shadow border-0 radius-3">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row input_item">
+                          <p class="col-3">Latar Belakang Masalah</p>
+                          <div class="col-9">
+                            <div id="quillEditorLatarBelakang" class="quillCustom shadow border-0 radius-3">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row input_item">
+                          <p class="col-3">Tujuan</p>
+                          <div class="col-9">
+                            <div id="quillEditorIsi" class="quillCustom shadow border-0 radius-3">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row input_item">
+                          <p class="col-3">Usulan Solusi</p>
+                          <div class="col-9">
+                            <div id="quillEditorSolusi" class="quillCustom shadow border-0 radius-3">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="d-flex ml-auto w-0" style="width: fit-content;">
+                          <button type="submit" class="btn btn-primary mr-3" onclick="onSubmit({{ $idea->id }})">Simpan</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </li>
+                <li data-date="31/01/2024" class="{{ $idea->flow_position === 5 ? 'selected' : '' }}"">
+                  <div class="d-flex justify-content-center my-4 px-3 px-md-5">
+                    <div class="w-100 shadow rounded p-3 px-md-5">
+                      <p class="fs-20 fw-600">{{ $flow_position[4]->name }}</p>
+                      <p class="fs-16">{{ $idea->result == null ? 'Belum ada penilaian' : $idea->result }}</p>
+                    </div>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="dashed mb-4 mt-0">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="fs-20 fw-600">Lampiran</h3>
+      </div>
     </div>
     <div class="row mb-4">
       @foreach ($idea->attachment as $item)
@@ -252,7 +380,7 @@
             </a>
           </div>
           @endif
-          <label class="fs-14 fw-500 mt-2 two-rows-text">{{ str_replace('attachments/', '', $item) }}</label>
+          <label class="fs-14 fw-500 mt-2 two-rows-text">{{ str_replace('attachments/'.Auth::user()->id.'_'.$idea->id.'_', '', $item) }}</label>
         </div>
       @endforeach
     </div>
@@ -299,9 +427,6 @@
                         <div class="comment-content mx-2 pt-1">
                           <div class="d-flex justify-content-between align-items-center">
                             <h2 class="fs-16 fw-600 m-0">{{ $reply->user->name }}</h2>
-                            <a href="/admin/idea/{{ $idea->id }}/comment/{{ $reply->id }}/delete" class="ml-5 cursor-pointer" onclick="deleteComment(event, '{{ $comment->user->name }}')">
-                              <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#e74a3b" d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
-                            </a>
                           </div>
                           <p class="fs-14 mb-0">{{ $reply->content }}</p>
                         </div>
@@ -362,62 +487,12 @@
   var quillEditorIsi = new Quill('#quillEditorIsi', {
     theme: 'snow'
   });
-  applyStyles(quillEditorIsi, "{!! $idea->content !!}", /* Styles from your database */);
+  applyStyles(quillEditorIsi, "{!! $idea->purpose !!}", /* Styles from your database */);
 
   var quillEditorSolusi = new Quill('#quillEditorSolusi', {
     theme: 'snow'
   });
   applyStyles(quillEditorSolusi, "{!! $idea->solution !!}", /* Styles from your database */);
-
-  // chips input
-  var txt = document.getElementById('txt_chips');
-  var list = document.getElementById('list_chips');
-  var items = {!! json_encode(explode(',', $idea->team)) !!} || [];
-
-  txt.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-      let val = txt.value;
-      if (val !== '') {
-        if (items.indexOf(val) >= 0) {
-          alert('Tag name is a duplicate');
-        } else {
-          items.push(val);
-          render();
-          txt.value = '';
-          txt.focus();
-        }
-      } else {
-        alert('Please type a tag Name');
-      }
-    }
-  });
-
-  function render() {
-    list.innerHTML = '';
-    items.map((item, index) => {
-      list.innerHTML += `<li><span>${item}</span><a href="javascript: remove(${index})">X</a></li>`;
-    });
-  }
-
-  function remove(i) {
-    if (i > 0) {
-      items = items.filter((item, index) => index !== i);
-      render();
-    } else {
-      window.Swal.fire({
-        icon: 'error',
-        title: 'Tidak bisa',
-        text: 'Nama pengirim ide tidak bisa dihapus',
-        timer: 3000,
-        showConfirmButton: false,
-      });
-    }
-  }
-
-  window.onload = function () {
-    render();
-    txt.focus();
-  }
 
   // dropzone image upload
   function ekUpload() {
@@ -519,64 +594,20 @@
   }
   ekUpload();
 
-  // attachment
-  const dt = new DataTransfer();
-  attachment = dt
-
-  $("#attachment").on('change', function (e) {
-    for (var i = 0; i < this.files.length; i++) {
-      let fileBloc = $('<span/>', { class: 'file-block' }),
-        fileName = $('<span/>', { class: 'name', text: this.files.item(i).name });
-      fileBloc.append('<span class="file-delete"><span>+</span></span>')
-        .append(fileName);
-      $("#filesList > #files-names").append(fileBloc);
-    };
-
-    for (let file of this.files) {
-      dt.items.add(file);
-    }
-
-    this.files = dt.files;
-
-    $('span.file-delete').click(function () {
-      let name = $(this).next('span.name').text();
-
-      $(this).parent().remove();
-      for (let i = 0; i < dt.items.length; i++) {
-
-        if (name === dt.items[i].getAsFile().name) {
-
-          dt.items.remove(i);
-          continue;
-        }
-      }
-      document.getElementById('attachment').files = dt.files;
-    });
-  });
-
    // submit form
    function onSubmit(id) {
     const valueIdea = {
       title: quillEditorJudul.root.innerHTML,
-      // abstract: quillEditorAbstrak.root.innerHTML,
       background: quillEditorLatarBelakang.root.innerHTML,
-      content: quillEditorIsi.root.innerHTML,
+      purpose: quillEditorIsi.root.innerHTML,
       solution: quillEditorSolusi.root.innerHTML,
-      team: items.join(', ')
     }
 
     var formData = new FormData();
     formData.append('title', valueIdea.title);
-    // formData.append('abstract', valueIdea.abstract);
     formData.append('background', valueIdea.background);
-    formData.append('content', valueIdea.content);
+    formData.append('purpose', valueIdea.purpose);
     formData.append('solution', valueIdea.solution);
-    formData.append('team', valueIdea.team);
-    
-    // Append the file(s) to the FormData object
-    for (let file of attachment.files) {
-      formData.append('attachment[]', file);
-    }
     formData.append('thumbnail', imageUpload);
 
     $.ajax({
@@ -611,6 +642,9 @@
 </script>
 
 <script>
+  showContent('content1', 'toggleShow1', 'toggleHide1')
+  showContent('content2', 'toggleShow2', 'toggleHide2')
+  showContent('content3', 'toggleShow3', 'toggleHide3')
   function toggleContent(elementId, toggleShowId, toggleHideId) {
     const content = document.getElementById(elementId);
     const toggleShow = document.getElementById(toggleShowId);

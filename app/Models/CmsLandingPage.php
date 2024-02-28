@@ -24,15 +24,10 @@ class CmsLandingPage extends Model
         'section2_subtitle4',
         'section2_subtitle4_content',
         'section3_title',
-        'section3_subtitle1',
         'section3_subtitle1_content',
-        'section3_subtitle2',
         'section3_subtitle2_content',
-        'section3_subtitle3',
         'section3_subtitle3_content',
-        'section3_subtitle4',
         'section3_subtitle4_content',
-        'section3_subtitle5',
         'section3_subtitle5_content',
     ];
 }

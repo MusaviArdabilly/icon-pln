@@ -29,7 +29,7 @@
         </div>
         <div class="col-12 col-md-9 d-flex flex-column justify-content-between">
           <div>
-            <h2 class="d-none d-md-block font-weight-bold text-overflow-hidden" data-mdb-toggle="popover" title="{{ strip_tags($innovation->title) }}">{!! $innovation->title !!}</h2>
+            <h2 class="d-none d-md-block font-weight-bold" data-mdb-toggle="popover" title="{{ strip_tags($innovation->title) }}">{!! $innovation->title !!}</h2>
             <h2 class="d-md-none font-weight-bold">{!! $innovation->title !!}</h2>
             {{-- max 500 character abstraksi --}}
             {{-- <p class="abstraction fs-16 fw-400 lh-24">{!! $innovation->abstract !!}</p> --}}
@@ -98,7 +98,7 @@
             </div>
             <div id="content2" class="transition-height">
               <hr>
-              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $innovation->content !!}</p>
+              <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $innovation->purpose !!}</p>
             </div>
           </div>
         </div>
@@ -156,9 +156,18 @@
               </a>
             </div>
             @endif
-            <label class="fs-14 fw-500 mt-2 two-rows-text">{{ str_replace('attachments/', '', $item) }}</label>
+            <label class="fs-14 fw-500 mt-2 two-rows-text">{{ str_replace('attachments/'.Auth::user()->id.'_'.$innovation->id.'_', '', $item) }}</label>
           </div>
         @endforeach
+      </div>
+      <hr class="mb-4">
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="rounded shadow p-3">
+            <p class="fs-20 fw-600">{{ $flow_position[4]->name }}</p>
+            <p class="fs-16">{{ $innovation->result == null ? 'Belum ada penilaian' : $innovation->result }}</p>
+          </div>
+        </div>
       </div>
       <hr class="mb-4">
       <div class="comment mb-4">

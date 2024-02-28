@@ -15,6 +15,7 @@
 		{{-- <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}"> --}}
 		<link rel="stylesheet" href="{{ asset('assets/css/xstyle.css') }}">
 		<link href="{{ asset('assets/css/idea.css') }}" rel="stylesheet" />
+		<link href="{{ asset('assets/css/timeline.css') }}" rel="stylesheet" />
 		
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 	
@@ -142,7 +143,7 @@
 							</li>
 
 							<!-- Nav Item -->
-							<li id="nav-innovation" class="nav-item">
+							<li id="nav-repository" class="nav-item">
 									<a class="nav-link" href="/admin/repository">
 											<i class="fas fa-fw fa-table"></i>
 											<span>Pustaka</span></a>
@@ -290,5 +291,7 @@
 
     <!-- Page level custom scripts -->
     <script src="{{ asset('assets/js/datatables-demo.js') }}"></script>
+		
+		<script src="{{ asset('assets/js/timeline.js') }}"></script>
 	</body>
 </html>

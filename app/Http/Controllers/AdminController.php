@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\User;
+use App\Models\FlowPosition;
 
 class AdminController extends Controller
 {
     public function idea() {
-        $idea = Idea::where('status', 'ide')->get();
+        $idea = Idea::where('status', 'ide')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
         
         return view('admin.idea.index', compact('idea'));
     }
@@ -26,6 +29,7 @@ class AdminController extends Controller
     public function idea_to_innovation($id) {
         $idea = Idea::find($id);
         $idea->status = 'inovasi';
+        $idea->flow_position = 2;
         $idea->save();
         
         return redirect('/admin/idea');
@@ -39,21 +43,26 @@ class AdminController extends Controller
     }
 
     public function innovation() {
-        $innovation = Idea::where('status', 'inovasi')->get();
+        $flow_position = FlowPosition::all();
+        $innovation = Idea::where('status', 'inovasi')
+                            ->orderBy('created_at', 'desc')
+                            ->get();
         
-        return view('admin.innovation.index', compact('innovation'));
+        return view('admin.innovation.index', compact('innovation', 'flow_position'));
     }
 
     public function detail_innovation($id) {
+        $flow_position = FlowPosition::all();
         $innovation = Idea::find($id);
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
         
-        return view('admin.innovation.detail', compact('innovation', 'comments'));
+        return view('admin.innovation.detail', compact('innovation', 'comments', 'flow_position'));
     }
 
     public function innovation_to_idea($id) {
         $innovation = Idea::find($id);
         $innovation->status = 'ide';
+        $innovation->flow_position = 1;
         $innovation->save();
         
         return redirect('/admin/innovation');
@@ -71,8 +80,8 @@ class AdminController extends Controller
     }
 
     public function get_data_user_management() {
-        $users = User::where('role', 'user')->get();
-        $admins = User::where('role', 'admin')->get();
+        $users = User::where('role', 'user')->orderBy('created_at', 'desc')->get();
+        $admins = User::where('role', 'admin')->orderBy('created_at', 'desc')->get();
 
         return response()->json([
             'users' => $users,
@@ -160,5 +169,35 @@ class AdminController extends Controller
         }
 
         $repository->delete();
+    }
+
+    public function approve_step_2($id){
+        $innovation = Idea::findOrFail($id);
+        if($innovation->status == 'inovasi' && $innovation->flow_position == 2){
+            $innovation->flow_position = 3;
+        }
+        $innovation->save();
+
+        return redirect('/admin/innovation');
+    }
+
+    public function approve_step_3($id){
+        $innovation = Idea::findOrFail($id);
+        if($innovation->status == 'inovasi' && $innovation->flow_position == 3){
+            $innovation->flow_position = 4;
+        }
+        $innovation->save();
+
+        return redirect('/admin/innovation');
+    }
+
+    public function approve_step_4($id){
+        $innovation = Idea::findOrFail($id);
+        if($innovation->status == 'inovasi' && $innovation->flow_position == 4){
+            $innovation->flow_position = 5;
+        }
+        $innovation->save();
+
+        return redirect('/admin/innovation');
     }
 }

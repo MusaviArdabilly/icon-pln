@@ -47,7 +47,10 @@
                           @endif
                         @endfor
                       </td>
-                      <td class="text-center"><label class="btn btn-sm bg-primary text-white" style="cursor:auto">Ide</label></td>
+                      <td class="text-center">
+                        <label class="btn btn-sm bg-success text-white" style="cursor: auto">Inovasi</label>
+                        <label class="btn btn-sm btn-outline-success text-secondary" style="cursor: auto">{{ $item->get_flow_position->name }}</label>
+                      </td>
                       <td class="text-center nowrap">
                         <a href="/user/innovation/{{ $item->id }}" class="btn btn-sm btn-secondary mb-1"><i class="fas fa-fw fa-eye"></i></a>
                         <a href="/user/innovation/{{ $item->id }}/delete" class="btn btn-sm btn-danger mb-1"
