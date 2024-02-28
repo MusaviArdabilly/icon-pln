@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Idea;
+use App\Models\notification;
 
 class User extends Authenticatable
 {
@@ -49,5 +50,15 @@ class User extends Authenticatable
 
     public function idea() {
         return $this->hasMany(Idea::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function unreadNotifications()
+    {
+        return $this->notifications()->where('is_read', false)->get();
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\InternalController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CMSController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Artisan;
 
 /*
@@ -104,6 +105,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/download/attachments/{param}', [InternalController::class, 'download_attachment']);
 Route::get('/download/archive/{id}', [InternalController::class, 'download_archive']);
 Route::get('/reload-captcha-url', [AuthController::class, 'reload_captcha']);
+Route::get('/get-unread-notifications', [NotificationController::class, 'getUnreadNotifications']);
+
 
 Route::get('/create-symlink', function () {
     try {
