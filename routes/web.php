@@ -29,7 +29,7 @@ Route::get('/lp-v3', [PublicController::class, 'index_v2']);
 Route::get('/lp-v2', [PublicController::class, 'index_v1']);
 
 Route::get('/login', [AuthController::class, 'login']);
-Route::post('/login/post', [AuthController::class, 'login_post2']);
+Route::post('/login/post', [AuthController::class, 'login_post']);
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [AuthController::class, 'register']);
 
