@@ -207,8 +207,8 @@ class AdminController extends Controller
     }
 
     public function approve_step_4($id){
-        $flow_position_name = $innovation->get_flow_position->name;
         $innovation = Idea::findOrFail($id);
+        $flow_position_name = $innovation->get_flow_position->name;
         if($innovation->status == 'inovasi' && $innovation->flow_position == 4){
             $innovation->flow_position = 5;
         }

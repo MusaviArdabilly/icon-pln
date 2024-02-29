@@ -209,13 +209,18 @@ body {
   overflow: hidden;
 }
 
+/* .no-hover:hover {
+  scale: 1 !important;
+} */
+
+#userNavbar.nav-item:hover {
+  /* scale: 0.9; */
+  scale: 1;
+}
+
 .bounce {
   position: relative;
   animation: bounceAnimation 2s infinite;
-}
-
-.no-hover:hover {
-  scale: 1 !important;
 }
 
 @keyframes bounceAnimation {
@@ -228,11 +233,6 @@ body {
   60% {
     transform: translateY(-15px);
   }
-}
-
-.nav-item:hover {
-  /* scale: 0.9; */
-  scale: 1;
 }
 
 .nav-item .active {

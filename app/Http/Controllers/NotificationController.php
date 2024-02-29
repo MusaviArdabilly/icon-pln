@@ -11,7 +11,7 @@ class NotificationController extends Controller
     public function getUnreadNotifications() {
         $notifications = Notification::where('user_id', Auth::user()->id)
                                     ->orderBy('created_at', 'desc')
-                                    ->limit(5)
+                                    ->limit(3)
                                     ->get();
 
         // $notifications = Auth::user()->unreadNotifications;
