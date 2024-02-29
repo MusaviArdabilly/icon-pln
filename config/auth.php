@@ -60,15 +60,15 @@ return [
     */
 
     'providers' => [
-        // 'users' => [
-        //     'driver' => 'ldap', // eloquent
-        //     'model' => App\Models\User::class,
-        // ],
-
         'users' => [
-            'driver' => 'database',
-            'table' => 'users',
+            'driver' => 'ldap', // eloquent
+            'model' => App\Models\User::class,
         ],
+
+        // 'users' => [
+        //     'driver' => 'database',
+        //     'table' => 'users',
+        // ],
     ],
 
     /*
