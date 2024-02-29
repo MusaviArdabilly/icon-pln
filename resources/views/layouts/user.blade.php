@@ -77,7 +77,7 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-				<ul class="navbar-nav ms-auto">
+				<ul id="userNavbar" class="navbar-nav ms-auto">
 					<li class="nav-item me-2">
 						<a id="nav-home" class="nav-link top-nav-link fw-600 text-white" aria-current="page" href="/">Home</a>
 					</li>
