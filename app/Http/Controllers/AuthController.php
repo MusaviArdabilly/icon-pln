@@ -49,7 +49,7 @@ class AuthController extends Controller
     {
         // $this->ensureIsNotRateLimited();
         $this->validate($request, [
-            $this->username() => 'required|string|regex:/^\w+$/',
+            'username' => 'required|string|regex:/^\w+$/',
             'password' => 'required|string',
             'captcha' => 'required|captcha',
         ], [
@@ -64,8 +64,8 @@ class AuthController extends Controller
         // $email = "renanda.cahyadi";
         // $password = "Congki@2024";
 
-        $username = $this->username();
-        $password = $this->password();
+        $username = $request->username;
+        $password = $request->password;
         // if (!str_contains($email, '@iconpln.co.id')) {
         //     $email .= '@iconpln.co.id';
         // }
