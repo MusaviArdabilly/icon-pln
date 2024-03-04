@@ -61,15 +61,12 @@ class AuthController extends Controller
             'captcha.captcha' => 'Captcha salah',
         ]);
 
-        $email = "renanda.cahyadi";
-        $password = "Congki@2024";
-
-        // $username = $request->username;
-        // $password = $request->password;
-        if (!str_contains($email, '@iconpln.co.id')) {
-            $email .= '@iconpln.co.id';
-        }
-        if (! $this->ldapConnect($email, $password)) {
+        $username = $request->username;
+        $password = $request->password;
+        // if (!str_contains($email, '@iconpln.co.id')) {
+        //     $email .= '@iconpln.co.id';
+        // }
+        if (! $this->ldapConnect($username, $password)) {
             return redirect()->back()->withInput();
         }
     }
@@ -121,7 +118,6 @@ class AuthController extends Controller
         ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
         ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
 
-        dd(@ldap_bind($ldapconn, "iconpln\\" . $uname, $upass)) or die();
         if (@ldap_bind($ldapconn, "iconpln\\".$uname, $upass)) {
             // $_SESSION['collection_user_id'] = $uname;
             // $_SESSION['mail'] = $this->ldapAttribute($ldapconn, $uname, "mail");
