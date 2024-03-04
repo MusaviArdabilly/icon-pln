@@ -61,15 +61,15 @@ class AuthController extends Controller
             'captcha.captcha' => 'Captcha salah',
         ]);
 
-        // $email = "renanda.cahyadi";
-        // $password = "Congki@2024";
+        $email = "renanda.cahyadi";
+        $password = "Congki@2024";
 
-        $username = $request->username;
-        $password = $request->password;
+        // $username = $request->username;
+        // $password = $request->password;
         // if (!str_contains($email, '@iconpln.co.id')) {
         //     $email .= '@iconpln.co.id';
         // }
-        if (! $this->ldapConnect($username, $password)) {
+        if (! $this->ldapConnect($email, $password)) {
             return redirect()->back()->withInput();
         }
     }
