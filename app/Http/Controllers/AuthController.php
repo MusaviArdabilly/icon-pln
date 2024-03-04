@@ -49,7 +49,7 @@ class AuthController extends Controller
     {
         // $this->ensureIsNotRateLimited();
         $this->validate($request, [
-            'username' => 'required|string|regex:/^\w+$/',
+            'username' => 'required|string',
             'password' => 'required|string',
             'captcha' => 'required|captcha',
         ], [
