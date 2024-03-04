@@ -122,8 +122,7 @@ class AuthController extends Controller
         ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
         ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
 
-        // if (@ldap_bind($ldapconn, "iconpln\\".$uname, $upass)) {
-            if(true) {
+        if (@ldap_bind($ldapconn, "iconpln\\".$uname, $upass)) {
             // $_SESSION['collection_user_id'] = $uname;
             // $_SESSION['mail'] = $this->ldapAttribute($ldapconn, $uname, "mail");
 
