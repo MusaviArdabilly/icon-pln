@@ -45,18 +45,31 @@ class AuthController extends Controller
         return response()->json(['captcha_url' => captcha_src()]);
     }
 
-    public function login_post()
+    public function login_post(Request $request)
     {
         // $this->ensureIsNotRateLimited();
+        $this->validate($request, [
+            $this->username() => 'required|string|regex:/^\w+$/',
+            'password' => 'required|string',
+            'captcha' => 'required|captcha',
+        ], [
+            'email.required' => 'Email tidak boleh kosong',
+            'email.email' => 'Masukkan email dengan benar',
+            'email.exists' => 'Email tidak terdaftar',
+            'password.required' => 'Password tidak boleh kosong',
+            'captcha.required' => 'Captcha tidak boleh kosong',
+            'captcha.captcha' => 'Captcha salah',
+        ]);
 
-        $email = "renanda.cahyadi@iconpln.co.id";
-        $password = "Congki@2024";
-        if (!str_contains($email, '@iconpln.co.id')) {
-            $email .= '@iconpln.co.id';
-        }
+        // $email = "renanda.cahyadi";
+        // $password = "Congki@2024";
 
-        if (! $this->ldapConnect($email, $password)) {
-            RateLimiter::hit($this->throttleKey());
+        $username = $this->username();
+        $password = $this->password();
+        // if (!str_contains($email, '@iconpln.co.id')) {
+        //     $email .= '@iconpln.co.id';
+        // }
+        if (! $this->ldapConnect($username, $password)) {
             return redirect()->back()->withInput();
         }
     }
@@ -101,17 +114,34 @@ class AuthController extends Controller
         ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
         ldap_set_option($ldapconn, LDAP_OPT_NETWORK_TIMEOUT, 5);
 
-        dd(@ldap_bind($ldapconn, "iconpln\\".$uname, $upass)) or die();
+        // $ldaphost = "ldap://10.14.23.75 ldap://10.14.23.76";
 
-        if (@ldap_bind($ldapconn, $username, $upass)) {
-            dd("berhasil") or die();
-            $_SESSION['collection_user_id'] = $uname;
-            $_SESSION['mail'] = $this->ldapAttribute($ldapconn, $uname, "mail");
-            // success
-            return true;
+        // $ldapport = 389;
+
+        // $ldapconn = ldap_connect($ldaphost, $ldapport);
+
+        // ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
+        // ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
+
+        if (@ldap_bind($ldapconn, "iconpln\\".$uname, $upass)) {
+            // $_SESSION['collection_user_id'] = $uname;
+            // $_SESSION['mail'] = $this->ldapAttribute($ldapconn, $uname, "mail");
+
+            $user = \App\Models\User::where('username', $uname)->first();
+            if (!$user) {
+                // the user doesn't exist in the database, so we have to create one
+
+                $user = new \App\Models\User();
+                $user->email = $this->ldapAttribute($ldapconn, $uname, "mail");
+                $user->username = $uname;
+                $user->password = $upass;
+                $user->role = 'user';
+            }
+
+            Auth::guard()->login($user, true);
+            return redirect('/')->with('success', 'Login Berhasil');
+
         } else {
-
-            // failed
             return false;
         }
     }
