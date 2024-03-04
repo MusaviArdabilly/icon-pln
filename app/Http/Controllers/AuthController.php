@@ -47,7 +47,7 @@ class AuthController extends Controller
 
     public function login_post()
     {
-        $this->ensureIsNotRateLimited();
+        // $this->ensureIsNotRateLimited();
 
         $email = "renanda.cahyadi@iconpln.co.id";
         $password = "Congki@2024";
