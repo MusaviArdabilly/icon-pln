@@ -128,6 +128,7 @@ class AuthController extends Controller
 
                 $user = new \App\Models\User();
                 $user->email = $this->ldapAttribute($ldapconn, $uname, "mail");
+                $user->name = $uname;
                 $user->username = $uname;
                 $user->password = bcrypt($upass);
                 $user->role = 'user';
