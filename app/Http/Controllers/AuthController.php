@@ -96,33 +96,32 @@ class AuthController extends Controller
     }
 
     public function ldapConnect($uname, $upass) {
-        $ldaphostA = "10.14.23.75";
-        $ldaphostB = "10.14.23.76";
-        $ldapport = 389;
-
-        $ldapconn = ldap_connect($ldaphostA, $ldapport);
-        if (!$ldapconn) {
-            // try another server
-            $ldapconn = ldap_connect($ldaphostB, $ldapport);
-        }
-        if (!$ldapconn) {
-            // exit
-            die("Could not connect to LDAP Server.");
-        }
-
-        ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
-        ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
-        ldap_set_option($ldapconn, LDAP_OPT_NETWORK_TIMEOUT, 5);
-
-        // $ldaphost = "ldap://10.14.23.75 ldap://10.14.23.76";
-
+        // $ldaphostA = "10.14.23.75";
+        // $ldaphostB = "10.14.23.76";
         // $ldapport = 389;
 
-        // $ldapconn = ldap_connect($ldaphost, $ldapport);
+        // $ldapconn = ldap_connect($ldaphostA, $ldapport);
+        // if (!$ldapconn) {
+        //     // try another server
+        //     $ldapconn = ldap_connect($ldaphostB, $ldapport);
+        // }
+        // if (!$ldapconn) {
+        //     // exit
+        //     die("Could not connect to LDAP Server.");
+        // }
 
         // ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
         // ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
-        dd(@ldap_bind($ldapconn, "iconpln\\".$uname, $upass)) or die();
+        // ldap_set_option($ldapconn, LDAP_OPT_NETWORK_TIMEOUT, 5);
+
+        $ldaphost = "ldap://10.14.23.75 ldap://10.14.23.76";
+        $ldapport = 389;
+        $ldapconn = ldap_connect($ldaphost, $ldapport);
+
+        ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
+        ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
+
+        dd(@ldap_bind($ldapconn, "iconpln\\" . $uname, $upass)) or die();
         if (@ldap_bind($ldapconn, "iconpln\\".$uname, $upass)) {
             // $_SESSION['collection_user_id'] = $uname;
             // $_SESSION['mail'] = $this->ldapAttribute($ldapconn, $uname, "mail");
