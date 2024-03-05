@@ -23,6 +23,96 @@
         </div>
       </div>
     </div>
+    <div class="mx-auto my-4 hidden_idea_form" style="display: none">
+      <div class="card p-3 px-md-5 mx-3 mx-md-5">
+        <h1 class="fw-600 text-center fs-28 mb-4">Ubah Data</h1>
+        <form id="ideabox-submit">
+          <!-- image upload -->
+          @csrf
+          <div class="row input_item mt-2">
+            <p class="col-3">Thumbnail</p>
+            <div class="col-9 uploader">
+              <div class="d-flex">
+                <img height="156px" src="{{ asset('storage/' . $idea->thumbnail) }}" alt="" class="mr-3">
+                <input id="file-upload" type="file" name="thumbnail" accept="image/*" style="display:none" />
+                <label for="file-upload" id="file-drag">
+                  <img id="file-image" src="#" alt="Preview" class="hidden">
+                  <div id="start">
+                    <i class="bi bi-download" aria-hidden="true"></i>
+                    <div>Select a file or drag here</div>
+                    <div id="notimage" class="hidden">Please select an image</div>
+                    <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+                  </div>
+                  <div id="response" class="hidden">
+                    <div id="messages"></div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row input_item">
+            <p class="col-3">Judul/Topik</p>
+            <div class="col-9">
+              <div id="quillEditorJudul" class="quillCustom shadow border-0 radius-3">
+              </div>
+            </div>
+          </div>
+          <div class="row input_item">
+            <p class="col-3">Latar Belakang Masalah</p>
+            <div class="col-9">
+              <div id="quillEditorLatarBelakang" class="quillCustom shadow border-0 radius-3">
+              </div>
+            </div>
+          </div>
+          <div class="row input_item">
+            <p class="col-3">Tujuan</p>
+            <div class="col-9">
+              <div id="quillEditorIsi" class="quillCustom shadow border-0 radius-3">
+              </div>
+            </div>
+          </div>
+          <div class="row input_item">
+            <p class="col-3">Usulan Solusi</p>
+            <div class="col-9">
+              <div id="quillEditorSolusi" class="quillCustom shadow border-0 radius-3">
+              </div>
+            </div>
+          </div>
+        </form>
+          <!-- chips input -->
+          <div class="row input_item">
+            <p class="col-3">Team</p>
+            <div class="col-9">
+              <div class="container_chips_input">
+                <ul id="list_chips"></ul>
+                <input type="text" id="txt_chips" placeholder="type and Enter ...">
+              </div>
+            </div>
+          </div>
+          <!-- attachment -->
+          <div class="row input_item">
+            <p class="col-3">Lampiran</p>
+            <div class="col-9 d-flex justify-content-center">
+              <p class="d-flex">
+                <label for="attachment">
+                  <a class="btn btn-primary text-light shadow" role="button" aria-disabled="false">+ Tambah</a>
+                </label>
+                <input type="file" name="file[]" accept=".jpg, .jpeg, .png, .pdf, .ppt, .pptx" id="attachment" style="visibility: hidden; position: absolute;"
+                  multiple />
+              </p>
+              <p id="files-area">
+                <span id="filesList">
+                  <span id="files-names"></span>
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="d-flex ml-auto w-0" style="width: fit-content;">
+            <button type="submit" class="btn btn-primary mr-3" onclick="onSubmit({{ $idea->id }})">Simpan</button>
+            <button type="button" class="btn btn-danger" onclick="show(this)">Batal</button>
+          </div>
+      </div>
+    </div>
     <div class="row mb-1">
       <div class="col-12 d-md-none">
         <div class="tumbnail-desktop">
@@ -70,7 +160,7 @@
                 <div class="events mt-3">
                   <ol>
                     <li><a href="#0" data-date="01/01/2024" class="fs-20 fw-600 text-decoration-none selected">{!! $flow_position[0]->name !!}</a></li>
-                    <li><a href="#0" data-date="08/01/2024" class="fs-20 fw-600 text-secondary text-decoration-none disabled-link">{!! $flow_position[1]->name !!}</a></li>
+                    <li><a href="#0" data-date="08/01/2024" class="fs-20 fw-600 text-secondary text-decoration-none disabled-link" style="cursor: not-allowed">{!! $flow_position[1]->name !!}</a></li>
                     <li><a href="#0" data-date="16/01/2024" class="fs-20 fw-600 text-secondary text-decoration-none disabled-link">{!! $flow_position[2]->name !!}</a></li>
                     <li><a href="#0" data-date="24/01/2024" class="fs-20 fw-600 text-secondary text-decoration-none disabled-link">{!! $flow_position[3]->name !!}</a></li>
                     <li><a href="#0" data-date="31/01/2024" class="fs-20 fw-600 text-secondary text-decoration-none disabled-link">{!! $flow_position[4]->name !!}</a></li>
@@ -151,7 +241,7 @@
                       </div>
                     </li>
                     <li data-date="08/01/2024" class="">
-                      <div class="d-flex justify-content-center my-4">
+                      {{-- <div class="d-flex justify-content-center my-4">
                         <div class="shadow rounded p-3 px-md-5">
                           <p class="fs-20 fw-600">Download template dokumen berikut dan isi sesuai dengan petunjuk dan upload</p>
                           <a href="#"><button class="btn btn-outline-primary">Dokumen 1</button></a>
@@ -173,10 +263,10 @@
                             </div>
                           </form>
                         </div>
-                      </div>
+                      </div> --}}
                     </li>
                     <li data-date="16/01/2024" class="">
-                      <div class="d-flex justify-content-center my-4">
+                      {{-- <div class="d-flex justify-content-center my-4">
                         <div class="shadow rounded p-3 px-md-5">
                           <p class="fs-20 fw-600">Download template dokumen berikut dan isi sesuai dengan petunjuk dan upload</p>
                           <a href="#"><button class="btn btn-outline-primary">Dokumen 1</button></a>
@@ -198,78 +288,18 @@
                             </div>
                           </form>
                         </div>
-                      </div>
+                      </div> --}}
                     </li>
                     <li data-date="24/01/2024">
-                      <div class="d-flex justify-content-center my-4">
-                        <div class="card p-3 px-md-5 mx-3 mx-md-5">
-                          <form id="ideabox-submit">
-                            <!-- image upload -->
-                            @csrf
-                            <div class="row input_item mt-2">
-                              <p class="col-3">Thumbnail</p>
-                              <div class="col-9 uploader">
-                                <div class="d-flex">
-                                  <img height="156px" src="{{ asset('storage/' . $idea->thumbnail) }}" alt="" class="mr-3">
-                                  <input id="file-upload" type="file" name="thumbnail" accept="image/*" style="display:none" />
-                                  <label for="file-upload" id="file-drag">
-                                    <img id="file-image" src="#" alt="Preview" class="hidden">
-                                    <div id="start">
-                                      <i class="bi bi-download" aria-hidden="true"></i>
-                                      <div>Select a file or drag here</div>
-                                      <div id="notimage" class="hidden">Please select an image</div>
-                                      <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
-                                    </div>
-                                    <div id="response" class="hidden">
-                                      <div id="messages"></div>
-                                    </div>
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row input_item">
-                              <p class="col-3">Judul/Topik</p>
-                              <div class="col-9">
-                                <div id="quillEditorJudul" class="quillCustom shadow border-0 radius-3">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row input_item">
-                              <p class="col-3">Latar Belakang Masalah</p>
-                              <div class="col-9">
-                                <div id="quillEditorLatarBelakang" class="quillCustom shadow border-0 radius-3">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row input_item">
-                              <p class="col-3">Tujuan</p>
-                              <div class="col-9">
-                                <div id="quillEditorIsi" class="quillCustom shadow border-0 radius-3">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row input_item">
-                              <p class="col-3">Usulan Solusi</p>
-                              <div class="col-9">
-                                <div id="quillEditorSolusi" class="quillCustom shadow border-0 radius-3">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="d-flex ml-auto w-0" style="width: fit-content;">
-                              <button type="submit" class="btn btn-primary mr-3" onclick="onSubmit({{ $idea->id }})">Simpan</button>
-                              <button type="button" class="btn btn-danger" onclick="show(this)">Batal</button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
+                      
                     </li>
                     <li data-date="31/01/2024">
-                      <div class="d-flex justify-content-center my-4 px-3 px-md-5">
+                      {{-- <div class="d-flex justify-content-center my-4 px-3 px-md-5">
                         <div class="shadow rounded p-3 px-md-5">
                           <p class="fs-20 fw-600">{{ $flow_position[4]->name }}</p>
                           <p class="fs-16">{{ $idea->result == null ? 'Belum ada penilaian' : $idea->result }}</p>
                         </div>
-                      </div>
+                      </div> --}}
                     </li>
                 </ol>
             </div>
@@ -527,9 +557,73 @@
   }
   ekUpload();
 
+  // chips input
+  var txt = document.getElementById('txt_chips');
+  var list = document.getElementById('list_chips');
+  var items = [];
+  var team = @json($idea->team);
+  var teamArr = team.split(', ');
+  items.push(...teamArr);
+
+  txt.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      let val = txt.value;
+      if (val !== '') {
+        if (items.indexOf(val) >= 0) {
+          alert('Tag name is a duplicate');
+        } else {
+          items.push(val);
+          render();
+          txt.value = '';
+          txt.focus();
+        }
+      } else {
+        alert('Please type a tag Name');
+      }
+    }
+  });
+
+  function render() {
+    list.innerHTML = '';
+    items.map((item, index) => {
+      list.innerHTML += `<li><span>${item}</span><a href="javascript: remove(${index})">X</a></li>`;
+    });
+  }
+
+  function remove(i) {
+    if (i > 0) {
+        items = items.filter((item, index) => index !== i);
+        render();
+    } else {
+      window.Swal.fire({
+            icon: 'error',
+            title: 'Tidak bisa',
+            text: 'Nama pengirim ide tidak bisa dihapus',
+            timer: 3000,
+            showConfirmButton: false,
+          });
+    }
+  }
+
+  window.onload = function () {
+    render();
+    txt.focus();
+  
+    for (var i = 0; i < data_attachment.length; i++) {
+      let fileBloc = $('<span/>', { class: 'file-block' }),
+        fileName = $('<span/>', { class: 'name px-2', text: data_attachment[i].replace('attachments/'+user_id+'_'+idea_id+'_', '') });
+        fileBloc.append(fileName);
+      $("#filesList > #files-names").append(fileBloc);
+    }
+  }
+
   // attachment
   const dt = new DataTransfer();
-  attachment = dt
+  attachment = dt;
+  var data_attachment = @json($idea->attachment);
+  var idea_id = @json($idea->id);
+  var user_id = @json($idea->user_id);
+  console.log(attachment);
 
   $("#attachment").on('change', function (e) {
     for (var i = 0; i < this.files.length; i++) {
@@ -563,12 +657,13 @@
   });
 
    // submit form
-   function onSubmit(id) {
+  function onSubmit(id) {
     const valueIdea = {
       title: quillEditorJudul.root.innerHTML,
       background: quillEditorLatarBelakang.root.innerHTML,
       purpose: quillEditorIsi.root.innerHTML,
       solution: quillEditorSolusi.root.innerHTML,
+      team: items.join(', ')
     }
 
     var formData = new FormData();
@@ -576,6 +671,13 @@
     formData.append('background', valueIdea.background);
     formData.append('purpose', valueIdea.purpose);
     formData.append('solution', valueIdea.solution);
+    formData.append('team', valueIdea.team);
+    
+    // Append the file(s) to the FormData object
+    for (let file of attachment.files) {
+      formData.append('attachment[]', file);
+    }
+    formData.append('thumbnail', imageUpload);
 
     $.ajax({
       headers: {

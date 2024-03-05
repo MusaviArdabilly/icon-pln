@@ -367,7 +367,7 @@
             showConfirmButton: false,
           });
     }
-}
+  }
 
   window.onload = function () {
     render();
@@ -515,7 +515,7 @@
       title: quillEditorJudul.root.innerHTML,
       // abstract: quillEditorAbstrak.root.innerHTML,
       background: quillEditorLatarBelakang.root.innerHTML,
-      content: quillEditorIsi.root.innerHTML,
+      purpose: quillEditorIsi.root.innerHTML,
       solution: quillEditorSolusi.root.innerHTML,
       team: items.join(', ')
     }
@@ -524,7 +524,7 @@
     formData.append('title', valueIdea.title);
     // formData.append('abstract', valueIdea.abstract);
     formData.append('background', valueIdea.background);
-    formData.append('content', valueIdea.content);
+    formData.append('purpose', valueIdea.purpose);
     formData.append('solution', valueIdea.solution);
     formData.append('team', valueIdea.team);
     

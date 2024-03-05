@@ -182,7 +182,7 @@ class AdminController extends Controller
 
         $notification = new Notification;
         $notification->user_id = $innovation->user_id;
-        $notification->message = '<strong>' . $flow_position_name . '</strong>' . ' Anda pada judul ' . '<strong>' . strip_tags($innovation->title) . '</strong>' . ' telah Disetujui';
+        $notification->message = '<strong>' . $flow_position_name . '</strong>' . ' Anda pada judul ' . '"' . strip_tags($innovation->title) . '"' . ' <strong>telah Disetujui</strong>';
         $notification->is_read = false;
         $notification->save();
 
@@ -199,7 +199,7 @@ class AdminController extends Controller
 
         $notification = new Notification;
         $notification->user_id = $innovation->user_id;
-        $notification->message = '<strong>' . $flow_position_name . '</strong>' . ' Anda pada judul ' . '<strong>' . strip_tags($innovation->title) . '</strong>' . ' telah Disetujui';
+        $notification->message = '<strong>' . $flow_position_name . '</strong>' . ' Anda pada judul ' . '"' . strip_tags($innovation->title) . '"' . ' <strong>telah Disetujui</strong>';
         $notification->is_read = false;
         $notification->save();
 
@@ -216,10 +216,60 @@ class AdminController extends Controller
 
         $notification = new Notification;
         $notification->user_id = $innovation->user_id;
-        $notification->message = '<strong>' . $flow_position_name . '</strong>' . ' Anda pada judul ' . '<strong>' . strip_tags($innovation->title) . '</strong>' . ' telah Disetujui';
+        $notification->message = '<strong>' . $flow_position_name . '</strong>' . ' Anda pada judul ' . '"' . strip_tags($innovation->title) . '"' . ' <strong>telah Disetujui</strong>';
         $notification->is_read = false;
         $notification->save();
 
         return redirect('/admin/innovation');
+    }
+
+    public function step_4_post(Request $request, $id){
+        $this->validate($request, [
+            'evaluation' => 'required'
+        ], [
+            'evaluation.required' => 'Tidak boleh kosong'
+        ]);
+
+        $innovation = Idea::where('id', $id)
+                            ->where('status', 'inovasi')
+                            ->firstOrFail();
+
+        $flow_position_name = $innovation->get_flow_position->name;
+
+        $innovation->evaluation = $request->evaluation;
+        $innovation->save();
+
+        $notification = new Notification;
+        $notification->user_id = $innovation->user_id;
+        $notification->message = '<strong>' . $flow_position_name . '</strong>' . ' Anda pada judul ' . '"' . strip_tags($innovation->title) . '"' . ' <strong>telah Dievaluasi</strong>';
+        $notification->is_read = false;
+        $notification->save();
+
+        return redirect('/admin/innovation/'.$id);
+    }
+
+    public function step_5_post(Request $request, $id){
+        $this->validate($request, [
+            'result' => 'required'
+        ], [
+            'result.required' => 'Tidak boleh kosong'
+        ]);
+        
+        $innovation = Idea::where('id', $id)
+                            ->where('status', 'inovasi')
+                            ->firstOrFail();
+
+        $flow_position_name = $innovation->get_flow_position->name;
+
+        $innovation->result = $request->result;
+        $innovation->save();
+
+        $notification = new Notification;
+        $notification->user_id = $innovation->user_id;
+        $notification->message = '<strong>' . $flow_position_name . '</strong>' . ' Anda pada judul ' . '"' . strip_tags($innovation->title) . '"' . ' <strong>telah Dinilai</strong>';
+        $notification->is_read = false;
+        $notification->save();
+
+        return redirect('/admin/innovation/'.$id);
     }
 }

@@ -65,7 +65,8 @@ Route::middleware('auth')->group(function () {
         Route::middleware('ownership')->group(function () {
             Route::get('/idea/{id}', [InternalController::class, 'detail_idea_user']);
             Route::get('/innovation/{id}', [InternalController::class, 'detail_innovation_user']);
-            Route::post('/upload-attachment/{id}', [InternalController::class, 'upload_attachment']);
+            Route::post('/upload-attachment/position-2/{id}', [InternalController::class, 'upload_attachment_position_2']);
+            Route::post('/upload-attachment/position-3/{id}', [InternalController::class, 'upload_attachment_position_3']);
         });
     });
 
@@ -81,6 +82,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/innovation/{id}/approve-step-2', [AdminController::class, 'approve_step_2']);
         Route::get('/innovation/{id}/approve-step-3', [AdminController::class, 'approve_step_3']);
         Route::get('/innovation/{id}/approve-step-4', [AdminController::class, 'approve_step_4']);
+        Route::post('/innovation/{id}/step-4/post', [AdminController::class, 'step_4_post']); //evaluation
+        Route::post('/innovation/{id}/step-5/post', [AdminController::class, 'step_5_post']); //report
         Route::get('/repository', [AdminController::class, 'repository']);
 
         Route::get('/repository/get-data', [AdminController::class, 'get_data_repository']);

@@ -132,15 +132,17 @@ class InternalController extends Controller
         $idea->solution = $request->solution;
         $idea->team = $request->team;
         $idea->status = 'ide';
+        $idea->save();
+
         if ($request->hasFile('attachment')) {
             foreach ($request->file('attachment') as $attachment) {
-                $attachment_file_name = $attachment->getClientOriginalName();
+                $attachment_file_name = Auth::user()->id . '_' . $idea->id . '_' . $attachment->getClientOriginalName();
                 $path = $attachment->storeAs('attachments', $attachment_file_name, 'public');
                 $attachments[] = $path;
             }
             $idea->attachment =  $attachments;
+            $idea->save();
         }
-        $idea->save();
     }
 
     public function idea_edit2(Request $request, $id) {
@@ -182,7 +184,20 @@ class InternalController extends Controller
         $idea->background = $request->background;
         $idea->purpose = $request->purpose;
         $idea->solution = $request->solution;
-        // dd($request->file('thumbnail'));
+        $idea->team = $request->team;
+        $idea->status = 'ide';
+        if ($request->hasFile('attachment')) {
+            foreach ($request->file('attachment') as $attachment) {
+                $attachment_file_name = Auth::user()->id . '_' . $id . '_' . $attachment->getClientOriginalName();
+                $path = $attachment->storeAs('attachments', $attachment_file_name, 'public');
+                $attachments[] = $path;
+            }
+            if ($idea->attachment) {
+                $existing_attachments = $idea->attachment;
+                $attachments = array_merge($existing_attachments, $attachments);
+            }
+            $idea->attachment =  $attachments;
+        }
         $idea->save();
     }
 
@@ -301,6 +316,7 @@ class InternalController extends Controller
         $repository = Idea::whereYear('created_at', $year)
                             ->whereMonth('created_at', $monthNumeric)
                             ->where('status', 'inovasi')
+                            ->orderBy('created_at', 'desc')
                             ->get();
 
         // return response()->json($repository);
@@ -405,7 +421,9 @@ class InternalController extends Controller
 
     public function download_archive($id) {
         $name = str_replace(' ', '_', Auth::user()->name);
+        $flow_position = FlowPosition::all();
         $repository = Idea::findOrFail($id);
+        // dd($repository->attachment, $repository->attachment_flow_position_2, $repository->attachment_flow_position_3);
 
         $tempDir = storage_path('app/public/temp_zip/temp_zip_' . time());
         File::makeDirectory($tempDir);
@@ -415,12 +433,26 @@ class InternalController extends Controller
         $zipFilePath = $tempDir . '/' . $zipFileName;
 
         $zip->open($zipFilePath, ZipArchive::CREATE);
-            foreach ($repository->attachment as $attachment) {
-                $attachmentPath = storage_path("app/public/{$attachment}");
-                $zip->addFile($attachmentPath, $attachment);
+        foreach($repository->attachment as $attachment) {
+            $attachmentPath = storage_path("app/public/{$attachment}");
+            $attachmentFileName = 'Lampiran/'.str_replace('attachments/'.$repository->user_id.'_'.$id.'_', '', $attachment);
+            $zip->addFile($attachmentPath, $attachmentFileName);
+        }
+        if($repository->attachment_flow_position_2){
+            foreach($repository->attachment_flow_position_2 as $item){
+                $attachmentPath = storage_path("app/public/{$item}");
+                $attachmentFileName = $flow_position[1]->name.'/'.str_replace('attachments_position_2/'.$repository->user_id.'_'.$id.'_', '', $item);
+                $zip->addFile($attachmentPath, $attachmentFileName);
             }
-            $zip->close();
-        
+        }
+        if($repository->attachment_flow_position_3){
+            foreach($repository->attachment_flow_position_3 as $item){
+                $attachmentPath = storage_path("app/public/{$item}");
+                $attachmentFileName = $flow_position[2]->name.'/'.str_replace('attachments_position_3/'.$repository->user_id.'_'.$id.'_', '', $item);
+                $zip->addFile($attachmentPath, $attachmentFileName);
+            }
+        }
+        $zip->close();
 
         $headers = [
             'Content-Type' => 'application/zip',
@@ -428,7 +460,6 @@ class InternalController extends Controller
         ];
 
         $response = response()->download($zipFilePath, $zipFileName, $headers);
-    
         $response->deleteFileAfterSend(true);
 
         return $response;
@@ -482,7 +513,7 @@ class InternalController extends Controller
         return view('internal.repository.search_result', compact('total_data', 'result'));
     }
 
-    public function upload_attachment(Request $request, $id) {
+    public function upload_attachment_position_2(Request $request, $id) {
         $attachments = [];
         
         $idea =  Idea::find($id);
@@ -490,16 +521,39 @@ class InternalController extends Controller
         if ($request->hasFile('attachment')) {
             foreach ($request->file('attachment') as $attachment) {
                 $attachment_file_name = Auth::user()->id . '_' . $id . '_' . $attachment->getClientOriginalName();
-                $path = $attachment->storeAs('attachments', $attachment_file_name, 'public');
+                $path = $attachment->storeAs('attachments_position_2', $attachment_file_name, 'public');
                 $attachments[] = $path;
             }
             if ($idea->attachment) {
-                $existing_attachments = $idea->attachment;
+                $existing_attachments = $idea->attachment_flow_position_2;
                 $attachments = array_merge($existing_attachments, $attachments);
             }
-            $idea->attachment =  $attachments;
+            $idea->attachment_flow_position_2 =  $attachments;
         }
-        // dd($id, $request->attachment, $idea->attachment, $attachments, $request->attachment);
+        
+        $idea->save();
+
+        return redirect()->back();
+    }
+
+    public function upload_attachment_position_3(Request $request, $id) {
+        $attachments = [];
+        
+        $idea =  Idea::find($id);
+        
+        if ($request->hasFile('attachment')) {
+            foreach ($request->file('attachment') as $attachment) {
+                $attachment_file_name = Auth::user()->id . '_' . $id . '_' . $attachment->getClientOriginalName();
+                $path = $attachment->storeAs('attachments_position_3', $attachment_file_name, 'public');
+                $attachments[] = $path;
+            }
+            if ($idea->attachment) {
+                $existing_attachments = $idea->attachment_flow_position_3;
+                $attachments = array_merge($existing_attachments, $attachments);
+            }
+            $idea->attachment_flow_position_3 =  $attachments;
+        }
+        
         $idea->save();
 
         return redirect()->back();

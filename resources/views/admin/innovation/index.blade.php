@@ -48,26 +48,38 @@
                         @endfor
                       </td>
                       <td class="text-center">
-                        <label class="btn btn-sm bg-success text-white" style="cursor: auto">Inovasi</label>
-                        <label class="btn btn-sm btn-outline-success text-secondary" style="cursor: auto">{{ $item->get_flow_position->name }}</label>
+                        <div>
+                          <label class="d-block btn btn-sm bg-success text-white" style="cursor: auto">Inovasi</label>
+                          <label class="d-block rounded border p-1 fs-14 text-secondary" style="cursor: auto">{{ $item->get_flow_position->name }}</label>
+                        </div>
                       </td>
                       <td class="text-center">
                         <div class="d-flex">
                           <a href="/admin/innovation/{{ $item->id }}" class="btn btn-sm btn-secondary mb-1 mr-2"><i class="fas fa-fw fa-eye"></i></a>
-                          <a href="/admin/innovation/{{ $item->id }}/delete" class="btn btn-sm btn-danger mb-1 mr-2"
-                            onclick="return confirm(`Apakah anda yakin untuk menghapus ide yang berjudul:\n{{ $item->title }}\ndari tim:\n{{ $item->team }}?`)"><i class="fas fa-fw fa-trash"></i></a>
+                          <a href="/admin/innovation/{{ $item->id }}/delete" class="btn btn-sm btn-danger mb-1 mr-2" onclick="deleteIdea(event)">
+                            <i class="fas fa-fw fa-trash"></i>
+                          </a>
                           <button class="btn btn-sm btn-primary mb-1 mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-fw fa-ellipsis-v"></i>
                           </button>
                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="/admin/innovation/{{ $item->id }}/transfer-to-idea" onclick="moveIdea(event)">kembalikan ke Ide</a>
                             <hr class="my-1 {{ $item->flow_position == 5 ? 'd-none' : '' }}">
-                            <a class="dropdown-item {{ $item->flow_position == 2 ? '' : 'd-none' }}" href="/admin/innovation/{{ $item->id }}/approve-step-2" 
-                              onclick="moveIdea(event)">Setujui {{ $flow_position[1]->name }}</a>
-                            <a class="dropdown-item {{ $item->flow_position == 3 ? '' : 'd-none' }}" href="/admin/innovation/{{ $item->id }}/approve-step-3" 
-                              onclick="moveIdea(event)">Setujui {{ $flow_position[2]->name }}</a>
-                            <a class="dropdown-item {{ $item->flow_position == 4 ? '' : 'd-none' }}" href="/admin/innovation/{{ $item->id }}/approve-step-4" 
-                              onclick="moveIdea(event)">Setujui {{ $flow_position[3]->name }}</a>
+                            <a class="dropdown-item {{ $item->flow_position == 2 ? '' : 'd-none' }}" href="/admin/innovation/{{ $item->id }}/approve-step-2">
+                              Setujui {{ $flow_position[1]->name }}
+                            </a>
+                            <a class="dropdown-item {{ $item->flow_position == 3 ? '' : 'd-none' }}" href="/admin/innovation/{{ $item->id }}/approve-step-3">
+                              Setujui {{ $flow_position[2]->name }}
+                            </a>
+                            @if ($item->evaluation)
+                              <a class="dropdown-item {{ $item->flow_position == 4 ? '' : 'd-none' }}" href="/admin/innovation/{{ $item->id }}/approve-step-4">
+                                Setujui {{ $flow_position[3]->name }}
+                              </a>
+                            @else
+                              <a class="dropdown-item {{ $item->flow_position == 4 ? '' : 'd-none' }}" href="/admin/innovation/{{ $item->id }}/#evaluation-input">
+                                Berikan {{ $flow_position[3]->name }}
+                              </a>
+                            @endif
                           </div>
                         </div>
                       </td>

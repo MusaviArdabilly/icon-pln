@@ -48,13 +48,17 @@
                         @endfor
                       </td>
                       <td class="text-center">
-                        <label class="btn btn-sm bg-success text-white" style="cursor: auto">Inovasi</label>
-                        <label class="btn btn-sm btn-outline-success text-secondary" style="cursor: auto">{{ $item->get_flow_position->name }}</label>
+                        <div>
+                          <label class="d-block btn btn-sm bg-success text-white" style="cursor: auto">Inovasi</label>
+                          <label class="d-block rounded border p-1 fs-14 text-secondary" style="cursor: auto">{{ $item->get_flow_position->name }}</label>
+                        </div>
                       </td>
                       <td class="text-center nowrap">
-                        <a href="/user/innovation/{{ $item->id }}" class="btn btn-sm btn-secondary mb-1"><i class="fas fa-fw fa-eye"></i></a>
-                        <a href="/user/innovation/{{ $item->id }}/delete" class="btn btn-sm btn-danger mb-1"
-                          onclick="deleteIdea(event)"><i class="fas fa-fw fa-trash"></i></a>
+                        <div class="d-flex">
+                          <a href="/user/innovation/{{ $item->id }}" class="btn btn-sm btn-secondary mb-1 mr-2"><i class="fas fa-fw fa-eye"></i></a>
+                          <a href="/user/innovation/{{ $item->id }}/delete" class="btn btn-sm btn-danger mb-1"
+                            onclick="deleteIdea(event)"><i class="fas fa-fw fa-trash"></i></a>
+                        </div>
                       </td>
                     </tr>
                   @empty

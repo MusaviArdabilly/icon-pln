@@ -49,9 +49,11 @@
                       </td>
                       <td class="text-center"><label class="btn btn-sm bg-primary text-white" style="cursor:auto">Ide</label></td>
                       <td class="text-center nowrap">
-                        <a href="/user/idea/{{ $item->id }}" class="btn btn-sm btn-secondary mb-1"><i class="fas fa-fw fa-eye"></i></a>
-                        <a href="/user/idea/{{ $item->id }}/delete" class="btn btn-sm btn-danger mb-1"
-                          onclick="deleteIdea(event)"><i class="fas fa-fw fa-trash"></i></a>
+                        <div class="d-flex">
+                          <a href="/user/idea/{{ $item->id }}" class="btn btn-sm btn-secondary mb-1 mr-2"><i class="fas fa-fw fa-eye"></i></a>
+                          <a href="/user/idea/{{ $item->id }}/delete" class="btn btn-sm btn-danger mb-1"
+                            onclick="deleteIdea(event)"><i class="fas fa-fw fa-trash"></i></a>
+                        </div>
                       </td>
                     </tr>
                   @empty

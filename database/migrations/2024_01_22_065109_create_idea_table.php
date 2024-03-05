@@ -20,10 +20,13 @@ return new class extends Migration
             $table->text('background')->nullable();
             $table->text('purpose')->nullable();
             $table->text('solution')->nullable();
+            $table->text('evaluation')->nullable();
             $table->text('result')->nullable();
             $table->string('team');
             $table->string('status');
             $table->json('attachment')->default(new Expression('(JSON_ARRAY())'));
+            $table->json('attachment_flow_position_2')->default(new Expression('(JSON_ARRAY())'));
+            $table->json('attachment_flow_position_3')->default(new Expression('(JSON_ARRAY())'));
             $table->unsignedBigInteger('flow_position')->default(1);
             $table->unsignedBigInteger('total_views')->default(0);
             $table->unsignedBigInteger('total_comments')->default(0);
