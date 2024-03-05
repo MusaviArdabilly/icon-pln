@@ -57,8 +57,6 @@
         <div class="d-flex justify-content-center mb-3">
           <button type="submit" class="btn btn-primary">Login</button>
         </div>
-        <div class="d-flex justify-content-center">
-          <div class="form-text">Belum mempunyai akun? <a href="/register" class="text-decoration-none">Daftar sekarang</a></div>
       </div>
       </form>
     </div>
