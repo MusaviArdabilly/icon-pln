@@ -294,7 +294,7 @@
                       <div class="col-12">
                         <div class="shadow rounded p-3 px-md-5">
                           <p class="fs-20 fw-600">{{ $flow_position[3]->name }}</p>
-                          <p class="fs-16">{{ $innovation->evaluation == null ? 'Belum ada evaluasi' : $idea->evaluation }}</p>
+                          <p class="fs-16">{{ $innovation->evaluation == null ? 'Belum ada evaluasi' : $innovation->evaluation }}</p>
                         </div>
                       </div>
                     </div>

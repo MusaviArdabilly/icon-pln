@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\App;
 use ZipArchive;
 use Illuminate\Support\Facades\File;
 use App\Models\FlowPosition;
+use Hashids\Hashids;
 
 class InternalController extends Controller
 {
@@ -48,32 +49,6 @@ class InternalController extends Controller
 
         return view('internal.idea.index_v3', compact('idea'));
     }
-    // v3 
-    // public function idea_v3(Request $request): View {
-    //     $perPage = 8;
-    //     $currentPage = $request->input('page', 1);
-    
-    //     $totalItems = Idea::where('status', 'ide')->count();
-    
-    //     $ideas = Idea::select('*', DB::raw('(total_views + (2 * total_comments)) as popularity'))
-    //             ->where('status', 'ide')
-    //             ->orderBy('created_at', 'desc')
-    //             ->get();
-    
-    //     // Manually paginate the ideas
-    //     $paginator = new Paginator($ideas, $perPage, $currentPage);
-    //     $idea = $paginator->items();
-    
-    //     if ($request->ajax()) {
-    //         return view('internal.idea.card_idea', compact('idea'));
-    //     }
-    
-    //     $totalPages = ceil($totalItems / $perPage);
-    //     $disablePrev = ($currentPage == 1) ? true : false;
-    //     $disableNext = ($currentPage == $totalPages || $totalPages == 0) ? true : false;
-    
-    //     return view('internal.idea.index_v3', compact('idea', 'totalPages', 'currentPage', 'disablePrev', 'disableNext'));
-    // }
 
     public function idea_v4(Request $request){
         return view('internal.idea.index_v4');
@@ -92,6 +67,8 @@ class InternalController extends Controller
         // Calculate popularity using the given formula
         $idea = $idea->map(function ($item) {
             $item->popularity = $item->total_views + (2 * $item->total_comments);
+            $hashids = new Hashids('', 10); //pad 10 char
+            $item->encryptedId = $hashids->encode($item->id);
             return $item;
         });
 
@@ -174,7 +151,7 @@ class InternalController extends Controller
     }
 
     public function idea_edit(Request $request, $id) {
-        $idea =  Idea::find($id);
+        $idea =  Idea::where('id', $id)->firstOrFail();
         $idea->user_id = Auth::user()->id;
         if($request->hasFile('thumbnail')){
             $thumbnail = $request->file('thumbnail')->store('thumbnails', 'public');
@@ -203,7 +180,8 @@ class InternalController extends Controller
 
     public function detail_idea($id) {
         $flow_position = FlowPosition::all();
-        $idea = Idea::find($id);
+        $idea = Idea::where('id', $id)->firstOrFail();
+        
         $comment = [];
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
         
@@ -229,7 +207,7 @@ class InternalController extends Controller
 
     public function detail_innovation($id) {
         $flow_position = FlowPosition::all();
-        $innovation = Idea::find($id);
+        $innovation = Idea::where('id', $id)->firstOrFail();
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
         
         if(Auth::user()->role == 'user'){
@@ -261,6 +239,8 @@ class InternalController extends Controller
         // Calculate popularity using the given formula
         $innovation = $innovation->map(function ($item) {
             $item->popularity = $item->total_views + (2 * $item->total_comments);
+            $hashids = new Hashids('', 10); //pad 10 char
+            $item->encryptedId = $hashids->encode($item->id);
             return $item;
         });
 
@@ -363,14 +343,23 @@ class InternalController extends Controller
                     ->where('user_id', Auth::user()->id)
                     ->orderBy('created_at', 'desc')->get();
 
+        $idea = $idea->map(function ($item){
+            $hashids = new Hashids('', 10); //pad 10 char
+            $item->encryptedId = $hashids->encode($item->id);
+            return $item;
+        });
+
         return view('internal.dashboard.idea', compact('idea'));
     }
 
     public function detail_idea_user($id) {
         $flow_position = FlowPosition::all();
-        $idea = Idea::find($id);
+        $idea = Idea::where('id', $id)->firstOrFail();
         $comment = [];
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
+
+        $hashids = new Hashids('', 10); //pad 10 char
+        $idea->encryptedId = $hashids->encode($idea->id);
         
         if(Auth::user()->role == 'user'){
             $userId = auth()->id();
@@ -388,18 +377,45 @@ class InternalController extends Controller
         return view('internal.dashboard.detail_idea', compact('idea', 'comments', 'flow_position'));
     }
 
+    public function delete_idea_user(Request $request, $id){
+        $this->validate($request, [
+            'captcha' => 'required|captcha'
+        ]);
+
+        $idea = Idea::where('id', $id)->firstOrFail();
+        $idea->delete();
+
+        return redirect()->back();
+    }
+
+    public function delete_innovation_user(Request $request, $id){
+        $this->validate($request, [
+            'captcha' => 'required|captcha'
+        ]);
+
+        $idea = Idea::where('id', $id)->firstOrFail();
+        $idea->delete();
+
+        return redirect()->back();
+    }
 
     public function innovation_user() {
         $idea = Idea::where('status', 'inovasi')
                     ->where('user_id', Auth::user()->id)
                     ->orderBy('created_at', 'desc')->get();
 
+        $idea = $idea->map(function ($item){
+            $hashids = new Hashids('', 10); //pad 10 char
+            $item->encryptedId = $hashids->encode($item->id);
+            return $item;
+        });
+
         return view('internal.dashboard.innovation', compact('idea'));
     }
 
     public function detail_innovation_user($id) {
         $flow_position = FlowPosition::all();
-        $idea = Idea::find($id);
+        $idea = Idea::where('id', $id)->firstOrFail();
         $comment = [];
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
         
@@ -476,7 +492,7 @@ class InternalController extends Controller
                                 });
                         });
         $total_data = $search->count();
-        $result = $search->orderBy('created_at', 'desc')->limit(8)->get();
+        $result = $search->orderBy('created_at', 'desc')->get();
 
         return view('internal.idea.search_result', compact('result', 'total_data'));
     }
@@ -492,7 +508,7 @@ class InternalController extends Controller
                                 });
                         });
         $total_data = $search->count();
-        $result = $search->orderBy('created_at', 'desc')->limit(8)->get();
+        $result = $search->orderBy('created_at', 'desc')->get();
 
         return view('internal.innovation.search_result', compact('result', 'total_data'));
     }
@@ -508,7 +524,7 @@ class InternalController extends Controller
                                 });
                         });
         $total_data = $search->count();
-        $result = $search->orderBy('created_at', 'desc')->limit(8)->get();
+        $result = $search->orderBy('created_at', 'desc')->get();
 
         return view('internal.repository.search_result', compact('total_data', 'result'));
     }

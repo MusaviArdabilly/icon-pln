@@ -108,7 +108,7 @@
             </div>
           </div>
           <div class="d-flex ml-auto w-0" style="width: fit-content;">
-            <button type="submit" class="btn btn-primary mr-3" onclick="onSubmit({{ $idea->id }})">Simpan</button>
+            <button type="submit" class="btn btn-primary mr-3" onclick="onSubmit('{{ $idea->encryptedId }}')">Simpan</button>
             <button type="button" class="btn btn-danger" onclick="show(this)">Batal</button>
           </div>
       </div>
@@ -507,7 +507,7 @@
 
     function parseFile(file) {
 
-      console.log(file.name);
+      // console.log(file.name);
       output(
         '<strong>' + encodeURI(file.name) + '</strong>'
       );
@@ -623,7 +623,7 @@
   var data_attachment = @json($idea->attachment);
   var idea_id = @json($idea->id);
   var user_id = @json($idea->user_id);
-  console.log(attachment);
+  // console.log(attachment);
 
   $("#attachment").on('change', function (e) {
     for (var i = 0; i < this.files.length; i++) {
@@ -684,7 +684,7 @@
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       type: 'POST',
-      url: `/idea-edit/${id}`,
+      url: `/user/idea-edit/${id}`,
       data: formData,
       contentType: false,
       processData: false,

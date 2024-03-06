@@ -18,14 +18,14 @@ class UserSeeder extends Seeder
             'username' => 'dev_lod',
             'role' => 'admin',
             'email' => 'dev@lodagency.co.id',
-            'password' => bcrypt('password')
+            'password' => bcrypt('lodxicon')
         ]);
         User::create([
             'name' => 'Naufal Fakhrian',
             'username' => 'user_lod',
             'role' => 'user',
             'email' => 'naufal@gmail.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('lodxicon')
         ]);
         User::create([
             'name' => 'Super Admin',

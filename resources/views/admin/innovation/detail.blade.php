@@ -17,7 +17,7 @@
             <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
           </div>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/admin/innovation/{{ $innovation->id }}/transfer-to-idea" onclick="moveIdea(event)">Kembalikan ke Ide</a>
+            <a class="dropdown-item" href="/admin/innovation/{{ $innovation->encryptedId }}/transfer-to-idea" onclick="moveIdea(event)">Kembalikan ke Ide</a>
           </div>
         </div>
       </div>
@@ -308,7 +308,7 @@
                     <div class="row" id="evaluation-input">
                       <div class="col-12">
                         <div class="form-group">
-                          <form action="/admin/innovation/{{ $innovation->id }}/step-4/post" method="POST">
+                          <form action="/admin/innovation/{{ $innovation->encryptedId }}/step-4/post" method="POST">
                             @csrf
                             <label for="exampleFormControlTextarea1">Tambahkan {{ $flow_position[3]->name }}</label>
                             <textarea name="evaluation" class="form-control mb-2" id="exampleFormControlTextarea1" rows="3">{{ $innovation->evaluation }}</textarea>
@@ -340,10 +340,10 @@
                     </div><div class="row">
                       <div class="col-12">
                         <div class="form-group">
-                          <form action="{{ $innovation->id }}/step-5/post" method="POST">
+                          <form action="/admin/innovation/{{ $innovation->encryptedId }}/step-5/post" method="POST">
                             @csrf
                             <label for="exampleFormControlTextarea1">Tambahkan {{ $flow_position[4]->name }}</label>
-                            <textarea name="result" class="form-control mb-2" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea name="result" class="form-control mb-2" id="exampleFormControlTextarea1" rows="3">{{ $innovation->result }}</textarea>
                             <div class="d-flex justify-content-end">
                               <button type="submit" class="btn btn-sm btn-outline-primary">Kirim</button>
                             </div>
