@@ -416,7 +416,7 @@
   });
 
    // submit form
-  function onSubmit() {
+   function onSubmit() {
     const valueIdea = {
       title: quillEditorJudul.root.innerHTML,
       abstract: quillEditorAbstrak.root.innerHTML,
@@ -451,6 +451,7 @@
       processData: false,
       success: function (response) {
         // console.log('Data successfully stored');
+        show(); // hide
         setTimeout(function() {
           window.Swal.fire({
             icon: 'success',
@@ -460,15 +461,9 @@
             showConfirmButton: false,
           });
         }, 500);
-        // show(); // hide
       },
-      error: function(xhr, status, error) {
-        var errorMessage = "Gagal membuat ide";
-        var responseJson = JSON.parse(xhr.responseText);
-        if (responseJson && responseJson.message) {
-          errorMessage = responseJson.message;
-        }
-        window.Swal.fire('Gagal', errorMessage, 'error');
+      error: function (error) {
+        console.log(error);
       }
     });
   }

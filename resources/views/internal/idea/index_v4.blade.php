@@ -105,7 +105,7 @@
       <div class="col-9">
         <div class="container_chips_input">
           <ul id="list_chips"></ul>
-          <input type="text" id="txt_chips" placeholder="type and Enter ...">
+          <input type="text" id="txt_chips" placeholder="Tulis dan Enter ...">
         </div>
       </div>
     </div>
@@ -553,17 +553,17 @@
       processData: false,
       success: function (response) {
         console.log('Data successfully stored');
-        show(); // hide
-        setTimeout(function() {
-          window.Swal.fire({
+        // show(); // hide
+        setTimeout(async () => {
+          await Swal.fire({
             icon: 'success',
             title: 'Berhasil',
             text: 'Data berhasil disimpan',
             timer: 3000,
             showConfirmButton: false,
           });
+          location.reload();
         }, 500);
-        location.reload();
       },
       error: function(xhr, status, error) {
         var errorMessage = "Gagal membuat ide";
@@ -571,7 +571,6 @@
         if (responseJson && responseJson.message) {
           errorMessage = responseJson.message;
         }
-        // window.Swal.fire('Gagal', errorMessage, 'error');
         Swal.fire({
           icon: 'error',
           title: 'Gagal',
