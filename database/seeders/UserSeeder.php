@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('lodxicon')
         ]);
         User::create([
-            'name' => 'Naufal Fakhrian',
+            'name' => 'User LOD',
             'username' => 'user_lod',
             'role' => 'user',
             'email' => 'naufal@gmail.com',
