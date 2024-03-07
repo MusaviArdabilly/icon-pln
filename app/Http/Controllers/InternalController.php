@@ -380,6 +380,9 @@ class InternalController extends Controller
     public function delete_idea_user(Request $request, $id){
         $this->validate($request, [
             'captcha' => 'required|captcha'
+        ],[
+            'captcha.required' => 'Harap mengisi captcha',
+            'captcha.captcha' => 'Captcha Salah'
         ]);
 
         $idea = Idea::where('id', $id)->firstOrFail();
@@ -391,6 +394,9 @@ class InternalController extends Controller
     public function delete_innovation_user(Request $request, $id){
         $this->validate($request, [
             'captcha' => 'required|captcha'
+        ],[
+            'captcha.required' => 'Harap mengisi captcha',
+            'captcha.captcha' => 'Captcha Salah'
         ]);
 
         $idea = Idea::where('id', $id)->firstOrFail();

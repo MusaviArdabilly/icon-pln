@@ -94,6 +94,9 @@ class AdminController extends Controller
     public function delete_innovation(Request $request, $id) {
         $this->validate($request, [
             'captcha' => 'required|captcha'
+        ],[
+            'captcha.required' => 'Harap mengisi captcha',
+            'captcha.captcha' => 'Captcha Salah'
         ]);
 
         $innovation = Idea::where('id', $id)->firstOrFail();
@@ -163,6 +166,11 @@ class AdminController extends Controller
     public function get_data_repository() {
         $repository = Idea::where('status', 'inovasi')
                             ->orderBy('created_at', 'desc')->get();
+        $repository = $repository->map(function ($item){
+            $hashids = new Hashids('', 10);
+            $item->encryptedId = $hashids->encode($item->id);
+            return $item;
+        });
 
         return response()->json($repository);
     }
@@ -188,8 +196,15 @@ class AdminController extends Controller
         return redirect('/admin/repository');
     }
 
-    public function delete_data_repository($id) {
-        $repository = Idea::findOrFail($id);
+    public function delete_data_repository(Request $request, $id) {
+        $this->validate($request, [
+            'captcha' => 'required|captcha'
+        ],[
+            'captcha.required' => 'Harap mengisi captcha',
+            'captcha.captcha' => 'Captcha Salah'
+        ]);
+
+        $repository = Idea::where('id', $id)->firstOrFail();
 
         foreach ($repository->attachment as $attachment) {
             if ($attachment !== 'attachments/attachment-icon.png') {
