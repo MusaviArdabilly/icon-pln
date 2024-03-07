@@ -24,10 +24,13 @@ class Idea extends Model
         'background',
         'purpose',
         'solution',
+        'evaluation',
         'result',
         'team',
         'status',
         'attachment',
+        'attachment_flow_position_2',
+        'attachment_flow_position_3',
         'flow_position',
         'total_views',
         'total_comments'
@@ -35,6 +38,8 @@ class Idea extends Model
     
     protected $casts = [
         'attachment' => 'json',
+        'attachment_flow_position_2' => 'json',
+        'attachment_flow_position_3' => 'json',
     ];
 
     public function comment():HasMany {

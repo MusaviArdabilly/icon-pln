@@ -17,10 +17,10 @@ class Ownership
     public function handle(Request $request, Closure $next): Response
     {
         $ideaId = $request->route('id');
-        $idea = Idea::find($ideaId);
+        $idea = Idea::where('id', $ideaId)->firstOrFail();
 
         if (!$idea || $idea->user_id !== auth()->id()) {
-            abort(403, 'Ini bukan milik anda');
+            abort(403, 'Ide/Inovasi ini bukan milik anda');
         }
 
         return $next($request);

@@ -450,7 +450,7 @@
       contentType: false,
       processData: false,
       success: function (response) {
-        console.log('Data successfully stored');
+        // console.log('Data successfully stored');
         show(); // hide
         setTimeout(function() {
           window.Swal.fire({

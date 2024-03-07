@@ -33,7 +33,7 @@ class AuthController extends Controller
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             return redirect('/')->with('success', 'Login Berhasil');
         }
-        return redirect()->back()->withInput();
+        return redirect()->back()->withInput()->withErrors(['password' => 'Password salah']);
     }
 
     public function logout(){

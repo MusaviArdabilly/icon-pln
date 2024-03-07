@@ -14,25 +14,25 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => 'Developer LOD',
-            'username' => 'dev_lod',
-            'role' => 'admin',
-            'email' => 'dev@lodagency.co.id',
+            'name' => 'User LOD',
+            'username' => 'user_lod',
+            'role' => 'user',
+            'email' => 'userlod@gmail.com',
             'password' => bcrypt('password')
         ]);
         User::create([
             'name' => 'Naufal Fakhrian',
-            'username' => 'user_lod',
+            'username' => 'naufalf',
             'role' => 'user',
-            'email' => 'naufal@gmail.com',
+            'email' => 'naufalf@gmail.com',
             'password' => bcrypt('password')
         ]);
         User::create([
-            'name' => 'Super Admin',
-            'username' => '@super_admin',
-            'role' => 'super_admin',
-            'email' => 'superAdmin@lodagency.co.id',
-            'password' => bcrypt('lodxicon')
+            'name' => 'Bagas FA',
+            'username' => 'bagasfa',
+            'role' => 'user',
+            'email' => 'bagasfa@gmail.com',
+            'password' => bcrypt('password')
         ]);
     }
 }

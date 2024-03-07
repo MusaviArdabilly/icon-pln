@@ -95,7 +95,7 @@
                 <td>${index + 1}</td>
                 <td>${item.name}</td>
                 <td>${item.email}</td>
-                <td class="text-center"><button class="btn btn-sm btn-outline-primary" onclick="makeAdmin(${item.id})">Jadikan Admin</button></td>
+                <td class="text-center"><button class="btn btn-sm btn-outline-primary" onclick="makeAdmin('${item.encryptedId}')">Jadikan Admin</button></td>
               </tr>
               `;
     
@@ -113,7 +113,7 @@
                 <td>${index + 1}</td>
                 <td>${item.name}</td>
                 <td>${item.email}</td>
-                <td class="text-center"><button class="btn btn-sm btn-outline-primary" onclick="makeUser(${item.id})">Jadikan User</button></td>
+                <td class="text-center"><button class="btn btn-sm btn-outline-primary" onclick="makeUser('${item.encryptedId}')">Jadikan User</button></td>
               </tr>
               `;
     

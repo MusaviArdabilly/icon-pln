@@ -48,26 +48,38 @@
                         @endfor
                       </td>
                       <td class="text-center">
-                        <label class="btn btn-sm bg-success text-white" style="cursor: auto">Inovasi</label>
-                        <label class="btn btn-sm btn-outline-success text-secondary" style="cursor: auto">{{ $item->get_flow_position->name }}</label>
+                        <div>
+                          <label class="d-block btn btn-sm bg-success text-white" style="cursor: auto">Inovasi</label>
+                          <label class="d-block rounded border p-1 fs-14 text-secondary" style="cursor: auto">{{ $item->get_flow_position->name }}</label>
+                        </div>
                       </td>
                       <td class="text-center">
                         <div class="d-flex">
-                          <a href="/admin/innovation/{{ $item->id }}" class="btn btn-sm btn-secondary mb-1 mr-2"><i class="fas fa-fw fa-eye"></i></a>
-                          <a href="/admin/innovation/{{ $item->id }}/delete" class="btn btn-sm btn-danger mb-1 mr-2"
-                            onclick="return confirm(`Apakah anda yakin untuk menghapus ide yang berjudul:\n{{ $item->title }}\ndari tim:\n{{ $item->team }}?`)"><i class="fas fa-fw fa-trash"></i></a>
+                          <a href="/admin/innovation/{{ $item->encryptedId }}" class="btn btn-sm btn-secondary mb-1 mr-2"><i class="fas fa-fw fa-eye"></i></a>
+                          <a href="/admin/innovation/{{ $item->encryptedId }}/delete" class="btn btn-sm btn-danger mb-1 mr-2" onclick="deleteIdea(event)">
+                            <i class="fas fa-fw fa-trash"></i>
+                          </a>
                           <button class="btn btn-sm btn-primary mb-1 mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-fw fa-ellipsis-v"></i>
                           </button>
                           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="/admin/innovation/{{ $item->id }}/transfer-to-idea" onclick="moveIdea(event)">kembalikan ke Ide</a>
+                            <a class="dropdown-item" href="/admin/innovation/{{ $item->encryptedId }}/transfer-to-idea" onclick="moveIdea(event)">kembalikan ke Ide</a>
                             <hr class="my-1 {{ $item->flow_position == 5 ? 'd-none' : '' }}">
-                            <a class="dropdown-item {{ $item->flow_position == 2 ? '' : 'd-none' }}" href="/admin/innovation/{{ $item->id }}/approve-step-2" 
-                              onclick="moveIdea(event)">Setujui {{ $flow_position[1]->name }}</a>
-                            <a class="dropdown-item {{ $item->flow_position == 3 ? '' : 'd-none' }}" href="/admin/innovation/{{ $item->id }}/approve-step-3" 
-                              onclick="moveIdea(event)">Setujui {{ $flow_position[2]->name }}</a>
-                            <a class="dropdown-item {{ $item->flow_position == 4 ? '' : 'd-none' }}" href="/admin/innovation/{{ $item->id }}/approve-step-4" 
-                              onclick="moveIdea(event)">Setujui {{ $flow_position[3]->name }}</a>
+                            <a class="dropdown-item {{ $item->flow_position == 2 ? '' : 'd-none' }}" href="/admin/innovation/{{ $item->encryptedId }}/approve-step-2">
+                              Setujui {{ $flow_position[1]->name }}
+                            </a>
+                            <a class="dropdown-item {{ $item->flow_position == 3 ? '' : 'd-none' }}" href="/admin/innovation/{{ $item->encryptedId }}/approve-step-3">
+                              Setujui {{ $flow_position[2]->name }}
+                            </a>
+                            @if ($item->evaluation)
+                              <a class="dropdown-item {{ $item->flow_position == 4 ? '' : 'd-none' }}" href="/admin/innovation/{{ $item->encryptedId }}/approve-step-4">
+                                Setujui {{ $flow_position[3]->name }}
+                              </a>
+                            @else
+                              <a class="dropdown-item {{ $item->flow_position == 4 ? '' : 'd-none' }}" href="/admin/innovation/{{ $item->encryptedId }}/#evaluation-input">
+                                Berikan {{ $flow_position[3]->name }}
+                              </a>
+                            @endif
                           </div>
                         </div>
                       </td>
@@ -92,22 +104,69 @@
   </script>
   
   <script>
-    function deleteIdea(event) {
+    async function deleteIdea(event) {
       event.preventDefault();
-      var redirectTo = event.currentTarget.getAttribute('href');  
-      window.Swal.fire({
+      var urlTarget = event.currentTarget.getAttribute('href');
+      await reloadCaptcha();
+      const { value: captchaResponse } = await window.Swal.fire({
         title: 'Hapus Inovasi',
-        text: 'Apakah anda yakin untuk menghapus inovasi terkait?',
-        icon: 'warning',
-        reverseButtons: true,
+        input: 'text',
+        html: `
+          <div>
+            <label class="form-label">Masukkan captha berikut untuk menghapus ide</label>
+            <div class="form-group">
+              <div class="captcha d-flex justify-content-center">
+                <img id="captcha-image" src="{{ captcha_src(); }}" alt="Captcha" class="rounded mr-2">
+                <button onclick="reloadCaptcha()" class="btn btn-outline-secondary" type="button">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M386.3 160H336c-17.7 0-32 14.3-32 32s14.3 32 32 32H464c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v51.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0s-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3s163.8-62.5 226.3 0L386.3 160z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          `, 
+        inputValidator: (value) => {
+          if(!value){
+            return 'Harap mengisi Captcha';
+          }
+        },
         showCancelButton: true,
         cancelButtonText: 'Batal',
-        confirmButtonText: 'Ya'
-      }).then(function(result) {
-        if (result.isConfirmed) {
-          location.assign(redirectTo);
-        }
+        confirmButtonText: 'Verifikasi',
       });
+
+      if(captchaResponse){
+        $.ajax({
+          url: urlTarget,
+          type: 'POST',
+          data: { 
+            '_token': '{{ csrf_token() }}',
+            'captcha': captchaResponse 
+          },
+          success: function(response) {
+            Swal.fire('Berhasil', 'Konten berhasil dihapus', 'success');
+            location.reload();
+          },
+          error: function(xhr, status, error) {
+            var errorMessage = "Gagal menghapus konten";
+            var responseJson = JSON.parse(xhr.responseText);
+            if (responseJson && responseJson.message) {
+              errorMessage = responseJson.message;
+            }
+            Swal.fire('Gagal', errorMessage, 'error');
+          }
+        })
+      }
+    }
+
+    function reloadCaptcha() {
+      fetch('/reload-captcha-url')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('captcha-image').src = data.captcha_url;
+        })
+        .catch(error => {
+            console.error('Error while reloading captcha', error);
+        });
     }
   </script>
 

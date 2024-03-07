@@ -8,90 +8,11 @@
   
 <div class="min-vh-100 mb-3">
   <div class="detail px-5 py-2 rounded shadow bg-white">
-    
-    {{-- <div class="card w-100 text-center px-3 py-3 hidden_idea_form mt-3 border-0 shadow bounce-in" style="display: none;">
-      <h3 class="mx-auto fw-600 mb-4">Edit Data</h3>
-      <form id="ideabox-submit">
-        <!-- image upload -->
-        @csrf
-        <div class="row input_item">
-          <p class="col-3">Thumbnail</p>
-          <div class="col-9 uploader">
-            <div class="d-flex">
-              <img height="156px" class="mr-3" src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
-              <input id="file-upload" type="file" name="thumbnail" accept="image/*" style="display:none" />
-              <label for="file-upload" id="file-drag">
-                <img id="file-image" src="#" alt="Preview" class="hidden">
-                <div id="start">
-                  <i class="bi bi-download" aria-hidden="true"></i>
-                  <div>Select a file or drag here</div>
-                  <div id="notimage" class="hidden">Please select an image</div>
-                  <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
-                </div>
-                <div id="response" class="hidden">
-                  <div id="messages"></div>
-                </div>
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="row input_item">
-          <p class="col-3">Judul/Topik</p>
-          <div class="col-9">
-            <div id="quillEditorJudul" class="quillCustom shadow border-0 radius-3">
-            </div>
-          </div>
-        </div>
-        <div class="row input_item">
-          <p class="col-3">Latar Belakang Masalah</p>
-          <div class="col-9">
-            <div id="quillEditorLatarBelakang" class="quillCustom shadow border-0 radius-3">
-            </div>
-          </div>
-        </div>
-        <div class="row input_item">
-          <p class="col-3">Tujuan</p>
-          <div class="col-9">
-            <div id="quillEditorIsi" class="quillCustom shadow border-0 radius-3">
-            </div>
-          </div>
-        </div>
-        <div class="row input_item">
-          <p class="col-3">Usulan Solusi</p>
-          <div class="col-9">
-            <div id="quillEditorSolusi" class="quillCustom shadow border-0 radius-3">
-            </div>
-          </div>
-        </div>
-      </form>
-      <!-- chips input -->
-      <div class="row input_item">
-        <p class="col-3">Team</p>
-        <div class="col-9">
-          <div class="container_chips_input">
-            <ul id="list_chips"></ul>
-            <input class="border border-primary rounded" type="text" id="txt_chips" placeholder="Ketik dan tekan enter ...">
-          </div>
-        </div>
-      </div>
-      <div class="d-flex ml-auto w-0" style="width: fit-content;">
-        <button type="submit" class="btn btn-primary mr-3" onclick="onSubmit({{ $idea->id }})">Simpan</button>
-        <button type="button" class="btn btn-danger" onclick="show(this)">Batal</button>
-      </div>
-    </div> --}}
 
     <div class="d-flex justify-content-between my-3">
       <a href="/admin/idea" class="text-decoration-none font-weight-bold d-flex align-items-center">
         <i class="fas fa-fw fa-angle-left"></i>&nbsp;Kembali
       </a>
-      <div class="dropdown">
-        <div class="dropdown-toggle text-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-        </div>
-        {{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <div class="dropdown-item cursor-pointer" onclick="show(this)">Ubah Data</div>
-        </div> --}}
-      </div>
     </div>
     <div class="row mb-5">
       <div class="col-12 d-md-none">
@@ -126,7 +47,7 @@
       <div class="col-12 col-md-3 d-none d-md-block">
         <div class="d-flex justify-content-end h-100 align-items-center">
           <div class="tumbnail">
-            <img src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
+            <img class="rounded" src="{{ asset('storage/' . $idea->thumbnail) }}" alt="">
           </div>
         </div>
       </div>
@@ -218,7 +139,7 @@
                     </div>
                   </div>
                 </li>
-                <li data-date="08/01/2024" class="{{ $idea->flow_position === 2 ? 'selected' : '' }}"">
+                <li data-date="08/01/2024" class="{{ $idea->flow_position === 2 ? 'selected' : '' }}">
                   <div class="d-flex justify-content-center my-4">
                     <div class="shadow rounded p-3 px-md-5">
                       <p class="fs-20 fw-600">Download template dokumen berikut dan isi sesuai dengan petunjuk dan upload</p>
@@ -226,7 +147,7 @@
                       <a href="{{ asset('assets/document/Template_file_2.pdf') }}" download><button class="btn btn-outline-primary">Dokumen 2</button></a>
                       <hr>
                       <p class="fs-20 fw-600">Upload Dokumen</p>
-                      <form action="/user/upload-attachment/{{ $idea->id }}" method="POST" enctype="multipart/form-data" class="mb-4">
+                      <form action="/user/upload-attachment/position-2/{{ $idea->id }}" method="POST" enctype="multipart/form-data" class="mb-4">
                         @csrf
                         <div class="row mb-3">
                           <div class="col-12">
@@ -240,10 +161,50 @@
                           <button type="submit" class="btn btn-primary">Upload</button>
                         </div>
                       </form>
+                      <hr>
+                      <p class="fs-20 fw-600">Dokumen</p>
+                      <div class="row">
+                        @forelse ($idea->attachment_flow_position_2 as $item)
+                          @php
+                            $filePath = $item; 
+                            $fileInfo = pathinfo($filePath);
+                            $fileExtension = $fileInfo['extension'];
+                          @endphp
+                          <div class="col-6 col-md-4 px-3 py-0 attachment">
+                            @if (in_array($fileExtension, ['png', 'jpg', 'jpeg']))
+                            <div class="position-relative shadow rounded attachment-tumbnail rounded">
+                              <img class="position-absolute relative-center attachment-image" src="{{ asset('storage/' . $item) }}" alt="">
+                              <a href="{{ url('download/'.$item) }}" class="position-absolute relative-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="36px"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+                              </a>
+                            </div>
+                            @elseif ($fileExtension == 'pdf')
+                            <div class="position-relative shadow rounded attachment-tumbnail rounded">
+                              <img class="position-absolute relative-center" src="{{ asset('assets/image/icon/pdf-icon.png') }}" alt="" height="100px">
+                              <a href="{{ url('download/'.$item) }}" class="position-absolute relative-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="36px"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+                              </a>
+                            </div>
+                            @elseif (in_array($fileExtension, ['ppt', 'pptx']))
+                            <div class="position-relative shadow rounded attachment-tumbnail rounded">
+                              <img class="position-absolute relative-center" src="{{ asset('assets/image/icon/ppt-icon.png') }}" alt="" height="100px">
+                              <a href="{{ url('download/'.$item) }}" class="position-absolute relative-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="36px"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+                              </a>
+                            </div>
+                            @endif
+                            <label class="fs-14 fw-500 mt-2 two-rows-text">{{ str_replace('attachments_position_2/'.$idea->user_id.'_'.$idea->id.'_', '', $item) }}</label>
+                          </div>
+                        @empty
+                        <div class="col mt-n3">
+                          <small class="form-text text-muted d-block">Belum ada dokumen</small>
+                        </div>
+                        @endforelse
+                      </div>
                     </div>
                   </div>
                 </li>
-                <li data-date="16/01/2024" class="{{ $idea->flow_position === 3 ? 'selected' : '' }}"">
+                <li data-date="16/01/2024" class="{{ $idea->flow_position === 3 ? 'selected' : '' }}">
                   <div class="d-flex justify-content-center my-4">
                     <div class="shadow rounded p-3 px-md-5">
                       <p class="fs-20 fw-600">Download template dokumen berikut dan isi sesuai dengan petunjuk dan upload</p>
@@ -251,7 +212,7 @@
                       <a href="{{ asset('assets/document/Template_file_4.pdf') }}" download><button class="btn btn-outline-primary">Dokumen 2</button></a>
                       <hr>
                       <p class="fs-20 fw-600">Upload Dokumen</p>
-                      <form action="/user/upload-attachment/{{ $idea->id }}" method="POST" enctype="multipart/form-data" class="mb-4">
+                      <form action="/user/upload-attachment/position-3/{{ $idea->id }}" method="POST" enctype="multipart/form-data" class="mb-4">
                         @csrf
                         <div class="row mb-3">
                           <div class="col-12">
@@ -265,72 +226,116 @@
                           <button type="submit" class="btn btn-primary">Upload</button>
                         </div>
                       </form>
+                      <hr>
+                      <p class="fs-20 fw-600">Dokumen</p>
+                      <div class="row">
+                        @forelse ($idea->attachment_flow_position_3 as $item)
+                          @php
+                            $filePath = $item; 
+                            $fileInfo = pathinfo($filePath);
+                            $fileExtension = $fileInfo['extension'];
+                          @endphp
+                          <div class="col-6 col-md-4 px-3 py-0 attachment">
+                            @if (in_array($fileExtension, ['png', 'jpg', 'jpeg']))
+                            <div class="position-relative shadow rounded attachment-tumbnail rounded">
+                              <img class="position-absolute relative-center attachment-image" src="{{ asset('storage/' . $item) }}" alt="">
+                              <a href="{{ url('download/'.$item) }}" class="position-absolute relative-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="36px"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+                              </a>
+                            </div>
+                            @elseif ($fileExtension == 'pdf')
+                            <div class="position-relative shadow rounded attachment-tumbnail rounded">
+                              <img class="position-absolute relative-center" src="{{ asset('assets/image/icon/pdf-icon.png') }}" alt="" height="100px">
+                              <a href="{{ url('download/'.$item) }}" class="position-absolute relative-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="36px"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+                              </a>
+                            </div>
+                            @elseif (in_array($fileExtension, ['ppt', 'pptx']))
+                            <div class="position-relative shadow rounded attachment-tumbnail rounded">
+                              <img class="position-absolute relative-center" src="{{ asset('assets/image/icon/ppt-icon.png') }}" alt="" height="100px">
+                              <a href="{{ url('download/'.$item) }}" class="position-absolute relative-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" height="36px"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
+                              </a>
+                            </div>
+                            @endif
+                            <label class="fs-14 fw-500 mt-2 two-rows-text">{{ str_replace('attachments_position_3/'.$idea->user_id.'_'.$idea->id.'_', '', $item) }}</label>
+                          </div>
+                        @empty
+                        <div class="col mt-n3">
+                          <small class="form-text text-muted d-block">Belum ada dokumen</small>
+                        </div>
+                        @endforelse
                     </div>
                   </div>
                 </li>
-                <li data-date="24/01/2024" class="{{ $idea->flow_position === 4 ? 'selected' : '' }}"">
-                  <div class="h-100 d-flex justify-content-center my-4">
-                    <div class="card p-3 px-md-5 mx-3 mx-md-5">
-                      <form id="ideabox-submit">
-                        <!-- image upload -->
-                        @csrf
-                        <div class="row input_item mt-2">
-                          <p class="col-3">Thumbnail</p>
-                          <div class="col-9 uploader">
-                            <div class="d-flex">
-                              <img height="156px" src="{{ asset('storage/' . $idea->thumbnail) }}" alt="" class="mr-3">
-                              <input id="file-upload" type="file" name="thumbnail" accept="image/*" style="display:none" />
-                              <label for="file-upload" id="file-drag" style="padding: 0px">
-                                <img id="file-image" src="#" alt="Preview" class="hidden" style="height: 128px">
-                                <div id="start">
-                                  <i class="bi bi-download" aria-hidden="true"></i>
-                                  <div>Select a file or drag here</div>
-                                  <div id="notimage" class="hidden">Please select an image</div>
-                                  <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
-                                </div>
-                                <div id="response" class="hidden">
-                                  <div id="messages"></div>
-                                </div>
-                              </label>
-                            </div>
+                <li data-date="24/01/2024" class="{{ $idea->flow_position === 4 ? 'selected' : '' }}">
+                  <div class="row my-4">
+                    <div class="col-12">
+                      <div class="shadow rounded p-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <h2 class="fs-28 fw-600 m-0">Latar Belakang Masalah</h2>
+                          <div id="toggleHide4" onclick="toggleContent('content4', 'toggleShow4', 'toggleHide4')" class="toggle">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z"/></svg>
+                          </div>
+                          <div id="toggleShow4" onclick="toggleContent('content4', 'toggleShow4', 'toggleHide4')" class="toggle d-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg>
                           </div>
                         </div>
-                        <div class="row input_item">
-                          <p class="col-3">Judul/Topik</p>
-                          <div class="col-9">
-                            <div id="quillEditorJudul" class="quillCustom shadow border-0 radius-3">
-                            </div>
+                        <div id="content4" class="transition-height">
+                          <hr>
+                          <p class="fs-16 fw-400 lh-24 mt-3 mb-0">{!! $idea->background !!}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-12">
+                      <div class="shadow rounded p-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <h2 class="fs-28 fw-600 m-0">Tujuan</h2>
+                          <div id="toggleHide5" onclick="toggleContent('content5', 'toggleShow5', 'toggleHide5')" class="toggle">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z"/></svg>
+                          </div>
+                          <div id="toggleShow5" onclick="toggleContent('content5', 'toggleShow5', 'toggleHide5')" class="toggle d-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg>
                           </div>
                         </div>
-                        <div class="row input_item">
-                          <p class="col-3">Latar Belakang Masalah</p>
-                          <div class="col-9">
-                            <div id="quillEditorLatarBelakang" class="quillCustom shadow border-0 radius-3">
-                            </div>
+                        <div id="content5" class="transition-height">
+                          <hr>
+                          <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $idea->purpose !!}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-12">
+                      <div class="shadow rounded p-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <h2 class="fs-28 fw-600 m-0">Usulan Solusi</h2>
+                          <div id="toggleHide6" onclick="toggleContent('content6', 'toggleShow6', 'toggleHide6')" class="toggle">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z"/></svg>
+                          </div>
+                          <div id="toggleShow6" onclick="toggleContent('content6', 'toggleShow6', 'toggleHide6')" class="toggle d-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"/></svg>
                           </div>
                         </div>
-                        <div class="row input_item">
-                          <p class="col-3">Tujuan</p>
-                          <div class="col-9">
-                            <div id="quillEditorIsi" class="quillCustom shadow border-0 radius-3">
-                            </div>
-                          </div>
+                        <div id="content6" class="transition-height">
+                          <hr>
+                          <p class="fs-16 fw-400 lh-24 mb-0 mt-3">{!! $idea->solution !!}</p>
                         </div>
-                        <div class="row input_item">
-                          <p class="col-3">Usulan Solusi</p>
-                          <div class="col-9">
-                            <div id="quillEditorSolusi" class="quillCustom shadow border-0 radius-3">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="d-flex ml-auto w-0" style="width: fit-content;">
-                          <button type="submit" class="btn btn-primary mr-3" onclick="onSubmit({{ $idea->id }})">Simpan</button>
-                        </div>
-                      </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-12">
+                      <div class="shadow rounded p-3 px-md-5">
+                        <p class="fs-20 fw-600">{{ $flow_position[3]->name }}</p>
+                        <p class="fs-16">{{ $idea->evaluation == null ? 'Belum ada evaluasi' : $idea->evaluation }}</p>
+                      </div>
                     </div>
                   </div>
                 </li>
-                <li data-date="31/01/2024" class="{{ $idea->flow_position === 5 ? 'selected' : '' }}"">
+                <li data-date="31/01/2024" class="{{ $idea->flow_position === 5 ? 'selected' : '' }}">
                   <div class="d-flex justify-content-center my-4 px-3 px-md-5">
                     <div class="w-100 shadow rounded p-3 px-md-5">
                       <p class="fs-20 fw-600">{{ $flow_position[4]->name }}</p>
@@ -449,202 +454,12 @@
 </div>
 
 <script>
-  // all data form
-  var items = [];
-  var imageUpload;
-  var attachment;
-
-  // AOS.init();
-  function show() {
-    var paragraph = document.querySelector(".hidden_idea_form");
-    if (paragraph.style.display == "none") {
-      paragraph.style.display = "block";
-    } else {
-      paragraph.style.display = "none";
-    }
-  }
-
-  // Function to apply styles to Quill editor
-  function applyStyles(quillInstance, text, styles) {
-    // Your logic to convert styles from the database to inline styles
-    var inlineStyles = ''; // Modify this based on your actual styles
-
-    // Use Quill's API to insert formatted text
-    quillInstance.clipboard.dangerouslyPasteHTML(0, `<span style="${inlineStyles}">${text}</span>`);
-  }
-
-  // Initialize Quill editors
-  var quillEditorJudul = new Quill('#quillEditorJudul', {
-    theme: 'snow'
-  });
-  applyStyles(quillEditorJudul, "{!! $idea->title !!}", /* Styles from your database */);
-
-  var quillEditorLatarBelakang = new Quill('#quillEditorLatarBelakang', {
-    theme: 'snow'
-  });
-  applyStyles(quillEditorLatarBelakang, "{!! $idea->background !!}", /* Styles from your database */);
-
-  var quillEditorIsi = new Quill('#quillEditorIsi', {
-    theme: 'snow'
-  });
-  applyStyles(quillEditorIsi, "{!! $idea->purpose !!}", /* Styles from your database */);
-
-  var quillEditorSolusi = new Quill('#quillEditorSolusi', {
-    theme: 'snow'
-  });
-  applyStyles(quillEditorSolusi, "{!! $idea->solution !!}", /* Styles from your database */);
-
-  // dropzone image upload
-  function ekUpload() {
-    function Init() {
-      var fileSelect = document.getElementById('file-upload'),
-        fileDrag = document.getElementById('file-drag'),
-        submitButton = document.getElementById('submit-button');
-
-      fileSelect.addEventListener('change', fileSelectHandler, false);
-
-      // Is XHR2 available?
-      var xhr = new XMLHttpRequest();
-      if (xhr.upload) {
-        // File Drop
-        fileDrag.addEventListener('dragover', fileDragHover, false);
-        fileDrag.addEventListener('dragleave', fileDragHover, false);
-        fileDrag.addEventListener('drop', fileSelectHandler, false);
-      }
-    }
-
-    function fileDragHover(e) {
-      var fileDrag = document.getElementById('file-drag');
-
-      e.stopPropagation();
-      e.preventDefault();
-
-      fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
-    }
-
-    function fileSelectHandler(e) {
-      // Fetch FileList object
-      var files = e.target.files || e.dataTransfer.files;
-
-      // Cancel event and hover styling
-      fileDragHover(e);
-
-      // Process all File objects
-      for (var i = 0, f; f = files[i]; i++) {
-        parseFile(f);
-      }
-    }
-
-    // Output
-    function output(msg) {
-      // Response
-      var m = document.getElementById('messages');
-      m.innerHTML = msg;
-    }
-
-    function parseFile(file) {
-
-      console.log(file.name);
-      output(
-        '<strong>' + encodeURI(file.name) + '</strong>'
-      );
-
-      // var fileType = file.type;
-      // console.log(fileType);
-      var imageName = file.name;
-      imageUpload = file
-      var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
-      if (isGood) {
-        document.getElementById('start').classList.add("hidden");
-        document.getElementById('response').classList.remove("hidden");
-        document.getElementById('notimage').classList.add("hidden");
-        // Thumbnail Preview
-        document.getElementById('file-image').classList.remove("hidden");
-        document.getElementById('file-image').src = URL.createObjectURL(file);
-      }
-      else {
-        document.getElementById('file-image').classList.add("hidden");
-        document.getElementById('notimage').classList.remove("hidden");
-        document.getElementById('start').classList.remove("hidden");
-        document.getElementById('response').classList.add("hidden");
-      }
-    }
-
-    function setProgressMaxValue(e) {
-      var pBar = document.getElementById('file-progress');
-
-      if (e.lengthComputable) {
-        pBar.max = e.total;
-      }
-    }
-
-    function updateFileProgress(e) {
-      var pBar = document.getElementById('file-progress');
-
-      if (e.lengthComputable) {
-        pBar.value = e.loaded;
-      }
-    }
-    // Check for the various File API support.
-    if (window.File && window.FileList && window.FileReader) {
-      Init();
-    } else {
-      document.getElementById('file-drag').style.display = 'none';
-    }
-  }
-  ekUpload();
-
-   // submit form
-   function onSubmit(id) {
-    const valueIdea = {
-      title: quillEditorJudul.root.innerHTML,
-      background: quillEditorLatarBelakang.root.innerHTML,
-      purpose: quillEditorIsi.root.innerHTML,
-      solution: quillEditorSolusi.root.innerHTML,
-    }
-
-    var formData = new FormData();
-    formData.append('title', valueIdea.title);
-    formData.append('background', valueIdea.background);
-    formData.append('purpose', valueIdea.purpose);
-    formData.append('solution', valueIdea.solution);
-    formData.append('thumbnail', imageUpload);
-
-    $.ajax({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      type: 'POST',
-      url: `/idea-edit/${id}`,
-      data: formData,
-      contentType: false,
-      processData: false,
-      success: function (response) {
-        console.log('Data successfully stored');
-        show(); // hide
-        setTimeout(function() {
-          window.Swal.fire({
-            icon: 'success',
-            title: 'Berhasil',
-            text: 'Data berhasil disimpan',
-            timer: 3000,
-            showConfirmButton: false,
-          });
-        }, 500);
-        location.reload();
-      },
-      error: function (error) {
-        console.log(error);
-      }
-    });
-  }
-
-</script>
-
-<script>
-  showContent('content1', 'toggleShow1', 'toggleHide1')
-  showContent('content2', 'toggleShow2', 'toggleHide2')
-  showContent('content3', 'toggleShow3', 'toggleHide3')
+  showContent('content1', 'toggleShow1', 'toggleHide1');
+  showContent('content2', 'toggleShow2', 'toggleHide2');
+  showContent('content3', 'toggleShow3', 'toggleHide3');
+  showContent('content4', 'toggleShow4', 'toggleHide4');
+  showContent('content5', 'toggleShow5', 'toggleHide5');
+  showContent('content6', 'toggleShow6', 'toggleHide6');
   function toggleContent(elementId, toggleShowId, toggleHideId) {
     const content = document.getElementById(elementId);
     const toggleShow = document.getElementById(toggleShowId);
