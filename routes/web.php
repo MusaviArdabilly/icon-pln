@@ -52,7 +52,7 @@ Route::middleware(['auth', 'encrypt.decrypt.ids'])->group(function () {
 
     Route::get('/get-detail-repository/{year}/{month}', [InternalController::class, 'get_detail_repository']);
     
-    Route::post('/idea/{ideaId}/comment/post', [InternalController::class, 'comment_post'])->middleware('throttle:create-idea');
+    Route::post('/idea/{ideaId}/comment/post', [InternalController::class, 'comment_post'])->middleware('throttle:post-comment');
 
     Route::get('/searchIdea', [InternalController::class, 'search_idea']);
     Route::get('/searchInnovation', [InternalController::class, 'search_innovation']);

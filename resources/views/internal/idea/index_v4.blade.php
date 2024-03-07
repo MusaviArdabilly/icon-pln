@@ -565,8 +565,21 @@
         }, 500);
         location.reload();
       },
-      error: function (error) {
-        console.log(error);
+      error: function(xhr, status, error) {
+        var errorMessage = "Gagal membuat ide";
+        var responseJson = JSON.parse(xhr.responseText);
+        if (responseJson && responseJson.message) {
+          errorMessage = responseJson.message;
+        }
+        // window.Swal.fire('Gagal', errorMessage, 'error');
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal',
+          text: errorMessage,
+          timer: 3000,
+          showConfirmButton: true,
+          confirmButtonText: 'Ok',
+        });
       }
     });
   }
