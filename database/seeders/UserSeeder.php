@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
             'name' => 'User LOD',
             'username' => 'user_lod',
             'role' => 'user',
-            'email' => 'naufal@gmail.com',
+            'email' => 'userlod@gmail.com',
             'password' => bcrypt('password')
         ]);
         User::create([
