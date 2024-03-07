@@ -17,14 +17,14 @@
         @csrf
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Username</label>
-          <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="{{ old('email') }}">
+          {{-- <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="{{ old('email') }}">
           @if ($errors->has('email'))
               <span class="pl-3 text-danger"><small>{{ $errors->first('email') }}</small></span>
-          @endif
-          {{-- <input type="text" name="username" class="form-control" id="exampleInputEmail1" value="{{ old('username') }}">
+          @endif --}}
+          <input type="text" name="username" class="form-control" id="exampleInputEmail1" value="{{ old('username') }}">
           @if ($errors->has('username'))
               <span class="pl-3 text-danger"><small>{{ $errors->first('username') }}</small></span>
-          @endif --}}
+          @endif
         </div>
         <div class="mb-3">
           <label class="form-label">Password</label>

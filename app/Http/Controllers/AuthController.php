@@ -45,13 +45,11 @@ class AuthController extends Controller
         return response()->json(['captcha_url' => captcha_src()]);
     }
 
-    public function username() {
-        return config('adldap_auth.usernames.eloquent');
-    }
-
-    protected function login_post(Request $request) {
+    public function login_post(Request $request)
+    {
+        // $this->ensureIsNotRateLimited();
         $this->validate($request, [
-            $this->username() => 'required|string|regex:/^\w+$/',
+            'username' => 'required|string',
             'password' => 'required|string',
             'captcha' => 'required|captcha',
         ], [
@@ -63,107 +61,103 @@ class AuthController extends Controller
             'captcha.captcha' => 'Captcha salah',
         ]);
 
-        $credentials = $request->only($this->username(), 'password');
-        $username = $credentials[$this->username()];
-        $password = $credentials['password'];
+        $username = $request->username;
+        $password = $request->password;
+        // if (!str_contains($email, '@iconpln.co.id')) {
+        //     $email .= '@iconpln.co.id';
+        // }
+        if (! $this->ldapConnect($username, $password)) {
+            return redirect()->back()->withInput();
+        }
 
-        $user_format = env('LDAP_USER_FORMAT', 'cn=%s,'.env('LDAP_BASE_DN', ''));
-        $userdn = sprintf($user_format, $username);
+        $user = \App\Models\User::where('username', $username)->first();
+        Auth::guard()->login($user, true);
+        return redirect('/')->with('success', 'Login Berhasil');
+    }
 
-        if(Adldap::auth()->attempt($userdn, $password, $bindAsUser = true)) {
-            // the user exists in the LDAP server, with the provided password
+    public function ensureIsNotRateLimited()
+    {
+        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+            return;
+        }
 
-            $user = \App\Models\User::where($this->username(), $username) -> first();
+        event(new Lockout($this));
+
+        $seconds = RateLimiter::availableIn($this->throttleKey());
+    }
+
+    /**
+     * Get the rate limiting throttle key for the request.
+     *
+     * @return string
+     */
+    public function throttleKey()
+    {
+        return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
+    }
+
+    public function ldapConnect($uname, $upass) {
+        // $ldaphostA = "10.14.23.75";
+        // $ldaphostB = "10.14.23.76";
+        // $ldapport = 389;
+
+        // $ldapconn = ldap_connect($ldaphostA, $ldapport);
+        // if (!$ldapconn) {
+        //     // try another server
+        //     $ldapconn = ldap_connect($ldaphostB, $ldapport);
+        // }
+        // if (!$ldapconn) {
+        //     // exit
+        //     die("Could not connect to LDAP Server.");
+        // }
+
+        // ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
+        // ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
+        // ldap_set_option($ldapconn, LDAP_OPT_NETWORK_TIMEOUT, 5);
+
+        $ldaphost = "ldap://10.14.23.75 ldap://10.14.23.76";
+        $ldapport = 389;
+        $ldapconn = ldap_connect($ldaphost, $ldapport);
+
+        ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
+        ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
+
+        if (@ldap_bind($ldapconn, "iconpln\\".$uname, $upass)) {
+            // $_SESSION['collection_user_id'] = $uname;
+            // $_SESSION['mail'] = $this->ldapAttribute($ldapconn, $uname, "mail");
+
+            $user = \App\Models\User::where('username', $uname)->first();
             if (!$user) {
                 // the user doesn't exist in the database, so we have to create one
 
                 $user = new \App\Models\User();
-                $user->username = $username;
-                $user->password = '';
+                $user->email = $this->ldapAttribute($ldapconn, $uname, "mail");
+                $user->name = $uname;
+                $user->username = $uname;
+                $user->password = bcrypt($upass);
                 $user->role = 'user';
-
-                // you can skip this if there are no extra attributes to read from the LDAP server
-                // or you can move it below this if(!$user) block if you want to keep the user always
-                // in sync with the LDAP server 
-                $sync_attrs = $this->retrieveSyncAttributes($username);
-                foreach ($sync_attrs as $field => $value) {
-                    $user->$field = $value !== null ? $value : '';
-                }
             }
 
-            // by logging the user we create the session, so there is no need to login again (in the configured time).
-            // pass false as second parameter if you want to force the session to expire when the user closes the browser.
-            // have a look at the section 'session lifetime' in `config/session.php` for more options.
-            Auth::guard()->login($user, true);
-            return redirect('/')->with('success', 'Login Berhasil');
-        }
+            return true;
 
-        // the user doesn't exist in the LDAP server or the password is wrong
-        // log error
-        return redirect()->back()->withInput()->withErrors(['password' => 'Password salah']);;
-    }
-
-    protected function retrieveSyncAttributes($username) {
-        $ldapuser = Adldap::search()->where(env('LDAP_USER_ATTRIBUTE'), '=', $username)->first();
-        if ( !$ldapuser ) {
-            // log error
+        } else {
             return false;
         }
-        // if you want to see the list of available attributes in your specific LDAP server:
-        // var_dump($ldapuser->attributes); exit;
-
-        // needed if any attribute is not directly accessible via a method call.
-        // attributes in \Adldap\Models\User are protected, so we will need
-        // to retrieve them using reflection.
-        $ldapuser_attrs = null;
-
-        $attrs = [];
-
-        foreach (config('adldap_auth.sync_attributes') as $local_attr => $ldap_attr) {
-            if ( $local_attr == 'username' ) {
-                continue;
-            }
-
-            $method = 'get' . $ldap_attr;
-            if (method_exists($ldapuser, $method)) {
-                $attrs[$local_attr] = $ldapuser->$method();
-                continue;
-            }
-
-            if ($ldapuser_attrs === null) {
-                $ldapuser_attrs = self::accessProtected($ldapuser, 'attributes');
-            }
-
-            if (!isset($ldapuser_attrs[$ldap_attr])) {
-                // an exception could be thrown
-                $attrs[$local_attr] = null;
-                continue;
-            }
-
-            if (!is_array($ldapuser_attrs[$ldap_attr])) {
-                $attrs[$local_attr] = $ldapuser_attrs[$ldap_attr];
-            }
-
-            if (count($ldapuser_attrs[$ldap_attr]) == 0) {
-                // an exception could be thrown
-                $attrs[$local_attr] = null;
-                continue;
-            }
-
-            // now it returns the first item, but it could return
-            // a comma-separated string or any other thing that suits you better
-            $attrs[$local_attr] = $ldapuser_attrs[$ldap_attr][0];
-            //$attrs[$local_attr] = implode(',', $ldapuser_attrs[$ldap_attr]);
-        }
-
-        return $attrs;
     }
 
-    protected static function accessProtected ($obj, $prop) {
-        $reflection = new \ReflectionClass($obj);
-        $property = $reflection->getProperty($prop);
-        $property->setAccessible(true);
-        return $property->getValue($obj);
+    public function ldapAttribute($ds, $user, $attribute)
+    {
+        $ldap_dn = "OU=Dewan Direksi,DC=iconpln,DC=co,DC=id";
+        try {
+            $attributes = array($attribute);
+            $filter = "(&(objectCategory=person)(sAMAccountName=" . $user . "))";
+            $result = ldap_search($ds, $ldap_dn, $filter, $attributes);
+            $entries = ldap_get_entries($ds, $result);
+            if ($entries["count"] > 0) return $entries[0][$attribute][0];
+        } catch (Exception $e) {
+            ldap_unbind($ds);
+            return;
+        }
     }
 
 }
