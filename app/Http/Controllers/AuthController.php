@@ -33,7 +33,7 @@ class AuthController extends Controller
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             return redirect('/')->with('success', 'Login Berhasil');
         }
-        return redirect()->back()->withInput();
+        return redirect()->back()->withInput()->withErrors(['password' => 'Password salah']);
     }
 
     public function logout(){
@@ -100,7 +100,7 @@ class AuthController extends Controller
 
         // the user doesn't exist in the LDAP server or the password is wrong
         // log error
-        return redirect()->back()->withInput();
+        return redirect()->back()->withInput()->withErrors(['password' => 'Password salah']);;
     }
 
     protected function retrieveSyncAttributes($username) {
