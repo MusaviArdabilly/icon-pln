@@ -66,13 +66,41 @@ class AuthController extends Controller
         // if (!str_contains($email, '@iconpln.co.id')) {
         //     $email .= '@iconpln.co.id';
         // }
-        if (! $this->ldapConnect($username, $password)) {
-            return redirect()->back()->withInput();
-        }
 
         $user = \App\Models\User::where('username', $username)->first();
-        Auth::guard()->login($user, true);
-        return redirect('/')->with('success', 'Login Berhasil');
+        
+        if($user){
+            if(!$user->is_ldap){
+                $hash = password_hash($password, PASSWORD_DEFAULT); 
+                if($user->password){
+                    Auth::guard()->login($user, true);
+                    return redirect('/')->with('success', 'Login Berhasil');
+                } 
+                else {
+                    return redirect()->back()->withInput();
+                }
+            } else if($user->is_ldap) {
+                if (! $this->ldapConnect($username, $password)) {
+                    return redirect()->back()->withInput();
+                } else {
+                    $user = \App\Models\User::where('username', $username)->first();
+                    Auth::guard()->login($user, true);
+                    return redirect('/')->with('success', 'Login Berhasil');
+                }
+            } else {
+                return redirect()->back()->withInput();
+            }
+        } else {
+            if (! $this->ldapConnect($username, $password)) {
+                return redirect()->back()->withInput();
+            } else {
+                $user = \App\Models\User::where('username', $username)->first();
+                Auth::guard()->login($user, true);
+                return redirect('/')->with('success', 'Login Berhasil');
+            }
+        }
+
+        
     }
 
     public function ensureIsNotRateLimited()
@@ -97,24 +125,6 @@ class AuthController extends Controller
     }
 
     public function ldapConnect($uname, $upass) {
-        // $ldaphostA = "10.14.23.75";
-        // $ldaphostB = "10.14.23.76";
-        // $ldapport = 389;
-
-        // $ldapconn = ldap_connect($ldaphostA, $ldapport);
-        // if (!$ldapconn) {
-        //     // try another server
-        //     $ldapconn = ldap_connect($ldaphostB, $ldapport);
-        // }
-        // if (!$ldapconn) {
-        //     // exit
-        //     die("Could not connect to LDAP Server.");
-        // }
-
-        // ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
-        // ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
-        // ldap_set_option($ldapconn, LDAP_OPT_NETWORK_TIMEOUT, 5);
-
         $ldaphost = "ldap://10.14.23.75 ldap://10.14.23.76";
         $ldapport = 389;
         $ldapconn = ldap_connect($ldaphost, $ldapport);
@@ -123,9 +133,6 @@ class AuthController extends Controller
         ldap_set_option($ldapconn, LDAP_OPT_REFERRALS, 0);
 
         if (@ldap_bind($ldapconn, "iconpln\\".$uname, $upass)) {
-            // $_SESSION['collection_user_id'] = $uname;
-            // $_SESSION['mail'] = $this->ldapAttribute($ldapconn, $uname, "mail");
-
             $user = \App\Models\User::where('username', $uname)->first();
             if (!$user) {
                 // the user doesn't exist in the database, so we have to create one
