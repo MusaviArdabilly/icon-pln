@@ -129,7 +129,7 @@
                 </td>
                 <td>${formattedDate}</td>
                 <td class="text-center">
-                  <button class="btn btn-sm btn-outline-danger" onclick="deleteRepository(${item.id})"><i class="fa fa-trash-alt" aria-hidden="true"></i></button>  
+                  <button class="btn btn-sm btn-outline-danger" onclick="deleteRepository('${item.encryptedId}')"><i class="fa fa-trash-alt" aria-hidden="true"></i></button>  
                 </td>
               </tr>
             `
@@ -140,26 +140,68 @@
       })
     }
 
-    function deleteRepository(id){
-      window.Swal.fire({
-        title: 'Hapus repository',
-        text: 'Apakah anda yakin untuk menghapus repository terkait?',
-        icon: 'warning',
-        reverseButtons: true,
+    async function deleteRepository(id) {
+      var urlTarget = 'repository/delete-data/' + id;
+      await reloadCaptcha();
+      const { value: captchaResponse } = await window.Swal.fire({
+        title: 'Hapus Data Pustaka',
+        input: 'text',
+        html: `
+          <div>
+            <label class="form-label">Masukkan captha berikut untuk menghapus data pustaka</label>
+            <div class="form-group">
+              <div class="captcha d-flex justify-content-center">
+                <img id="captcha-image" src="{{ captcha_src(); }}" alt="Captcha" class="rounded mr-2">
+                <button onclick="reloadCaptcha()" class="btn btn-outline-secondary" type="button">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M386.3 160H336c-17.7 0-32 14.3-32 32s14.3 32 32 32H464c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v51.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0s-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3s163.8-62.5 226.3 0L386.3 160z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          `, 
+        inputValidator: (value) => {
+          if(!value){
+            return 'Harap mengisi Captcha';
+          }
+        },
         showCancelButton: true,
         cancelButtonText: 'Batal',
-        confirmButtonText: 'Ya'
-      }).then(function(result) {
-        if (result.isConfirmed) {
-          $.ajax({
-            url: 'repository/delete-data/' + id,
-            type: 'GET',
-            success: function(response){
-              loadRepository();
-            }
-          })
-        }
+        confirmButtonText: 'Verifikasi',
       });
+
+      if(captchaResponse){
+        $.ajax({
+          url: urlTarget,
+          type: 'POST',
+          data: { 
+            '_token': '{{ csrf_token() }}',
+            'captcha': captchaResponse 
+          },
+          success: function(response) {
+            Swal.fire('Berhasil', 'Data berhasil dihapus', 'success');
+            location.reload();
+          },
+          error: function(xhr, status, error) {
+            var errorMessage = "Gagal menghapus data";
+            var responseJson = JSON.parse(xhr.responseText);
+            if (responseJson && responseJson.message) {
+              errorMessage = responseJson.message;
+            }
+            Swal.fire('Gagal', errorMessage, 'error');
+          }
+        })
+      }
+    }
+
+    function reloadCaptcha() {
+      fetch('/reload-captcha-url')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('captcha-image').src = data.captcha_url;
+        })
+        .catch(error => {
+            console.error('Error while reloading captcha', error);
+        });
     }
   </script>
 

@@ -292,11 +292,11 @@
             Swal.fire({
               icon: 'error',
               title: 'Gagal',
-              text: 'Gagal menyimpan balasan komentar',
+              text: errorMessage,
               timer: 5000,
-              showConfirmButton: false,
+              showConfirmButton: true,
+              confirmButtonText: 'Ok',
             });
-            console.log(error);
           }
         });
       }

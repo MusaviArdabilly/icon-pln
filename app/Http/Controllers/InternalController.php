@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\App;
 use ZipArchive;
 use Illuminate\Support\Facades\File;
 use App\Models\FlowPosition;
+use Hashids\Hashids;
 
 class InternalController extends Controller
 {
@@ -48,32 +49,6 @@ class InternalController extends Controller
 
         return view('internal.idea.index_v3', compact('idea'));
     }
-    // v3 
-    // public function idea_v3(Request $request): View {
-    //     $perPage = 8;
-    //     $currentPage = $request->input('page', 1);
-    
-    //     $totalItems = Idea::where('status', 'ide')->count();
-    
-    //     $ideas = Idea::select('*', DB::raw('(total_views + (2 * total_comments)) as popularity'))
-    //             ->where('status', 'ide')
-    //             ->orderBy('created_at', 'desc')
-    //             ->get();
-    
-    //     // Manually paginate the ideas
-    //     $paginator = new Paginator($ideas, $perPage, $currentPage);
-    //     $idea = $paginator->items();
-    
-    //     if ($request->ajax()) {
-    //         return view('internal.idea.card_idea', compact('idea'));
-    //     }
-    
-    //     $totalPages = ceil($totalItems / $perPage);
-    //     $disablePrev = ($currentPage == 1) ? true : false;
-    //     $disableNext = ($currentPage == $totalPages || $totalPages == 0) ? true : false;
-    
-    //     return view('internal.idea.index_v3', compact('idea', 'totalPages', 'currentPage', 'disablePrev', 'disableNext'));
-    // }
 
     public function idea_v4(Request $request){
         return view('internal.idea.index_v4');
@@ -92,6 +67,8 @@ class InternalController extends Controller
         // Calculate popularity using the given formula
         $idea = $idea->map(function ($item) {
             $item->popularity = $item->total_views + (2 * $item->total_comments);
+            $hashids = new Hashids('', 10); //pad 10 char
+            $item->encryptedId = $hashids->encode($item->id);
             return $item;
         });
 
@@ -132,15 +109,17 @@ class InternalController extends Controller
         $idea->solution = $request->solution;
         $idea->team = $request->team;
         $idea->status = 'ide';
+        $idea->save();
+
         if ($request->hasFile('attachment')) {
             foreach ($request->file('attachment') as $attachment) {
-                $attachment_file_name = $attachment->getClientOriginalName();
+                $attachment_file_name = Auth::user()->id . '_' . $idea->id . '_' . $attachment->getClientOriginalName();
                 $path = $attachment->storeAs('attachments', $attachment_file_name, 'public');
                 $attachments[] = $path;
             }
             $idea->attachment =  $attachments;
+            $idea->save();
         }
-        $idea->save();
     }
 
     public function idea_edit2(Request $request, $id) {
@@ -172,7 +151,7 @@ class InternalController extends Controller
     }
 
     public function idea_edit(Request $request, $id) {
-        $idea =  Idea::find($id);
+        $idea =  Idea::where('id', $id)->firstOrFail();
         $idea->user_id = Auth::user()->id;
         if($request->hasFile('thumbnail')){
             $thumbnail = $request->file('thumbnail')->store('thumbnails', 'public');
@@ -182,13 +161,27 @@ class InternalController extends Controller
         $idea->background = $request->background;
         $idea->purpose = $request->purpose;
         $idea->solution = $request->solution;
-        // dd($request->file('thumbnail'));
+        $idea->team = $request->team;
+        $idea->status = 'ide';
+        if ($request->hasFile('attachment')) {
+            foreach ($request->file('attachment') as $attachment) {
+                $attachment_file_name = Auth::user()->id . '_' . $id . '_' . $attachment->getClientOriginalName();
+                $path = $attachment->storeAs('attachments', $attachment_file_name, 'public');
+                $attachments[] = $path;
+            }
+            if ($idea->attachment) {
+                $existing_attachments = $idea->attachment;
+                $attachments = array_merge($existing_attachments, $attachments);
+            }
+            $idea->attachment =  $attachments;
+        }
         $idea->save();
     }
 
     public function detail_idea($id) {
         $flow_position = FlowPosition::all();
-        $idea = Idea::find($id);
+        $idea = Idea::where('id', $id)->firstOrFail();
+        
         $comment = [];
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
         
@@ -214,7 +207,7 @@ class InternalController extends Controller
 
     public function detail_innovation($id) {
         $flow_position = FlowPosition::all();
-        $innovation = Idea::find($id);
+        $innovation = Idea::where('id', $id)->firstOrFail();
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
         
         if(Auth::user()->role == 'user'){
@@ -246,6 +239,8 @@ class InternalController extends Controller
         // Calculate popularity using the given formula
         $innovation = $innovation->map(function ($item) {
             $item->popularity = $item->total_views + (2 * $item->total_comments);
+            $hashids = new Hashids('', 10); //pad 10 char
+            $item->encryptedId = $hashids->encode($item->id);
             return $item;
         });
 
@@ -301,6 +296,7 @@ class InternalController extends Controller
         $repository = Idea::whereYear('created_at', $year)
                             ->whereMonth('created_at', $monthNumeric)
                             ->where('status', 'inovasi')
+                            ->orderBy('created_at', 'desc')
                             ->get();
 
         // return response()->json($repository);
@@ -347,14 +343,23 @@ class InternalController extends Controller
                     ->where('user_id', Auth::user()->id)
                     ->orderBy('created_at', 'desc')->get();
 
+        $idea = $idea->map(function ($item){
+            $hashids = new Hashids('', 10); //pad 10 char
+            $item->encryptedId = $hashids->encode($item->id);
+            return $item;
+        });
+
         return view('internal.dashboard.idea', compact('idea'));
     }
 
     public function detail_idea_user($id) {
         $flow_position = FlowPosition::all();
-        $idea = Idea::find($id);
+        $idea = Idea::where('id', $id)->firstOrFail();
         $comment = [];
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
+
+        $hashids = new Hashids('', 10); //pad 10 char
+        $idea->encryptedId = $hashids->encode($idea->id);
         
         if(Auth::user()->role == 'user'){
             $userId = auth()->id();
@@ -372,18 +377,51 @@ class InternalController extends Controller
         return view('internal.dashboard.detail_idea', compact('idea', 'comments', 'flow_position'));
     }
 
+    public function delete_idea_user(Request $request, $id){
+        $this->validate($request, [
+            'captcha' => 'required|captcha'
+        ],[
+            'captcha.required' => 'Harap mengisi captcha',
+            'captcha.captcha' => 'Captcha Salah'
+        ]);
+
+        $idea = Idea::where('id', $id)->firstOrFail();
+        $idea->delete();
+
+        return redirect()->back();
+    }
+
+    public function delete_innovation_user(Request $request, $id){
+        $this->validate($request, [
+            'captcha' => 'required|captcha'
+        ],[
+            'captcha.required' => 'Harap mengisi captcha',
+            'captcha.captcha' => 'Captcha Salah'
+        ]);
+
+        $idea = Idea::where('id', $id)->firstOrFail();
+        $idea->delete();
+
+        return redirect()->back();
+    }
 
     public function innovation_user() {
         $idea = Idea::where('status', 'inovasi')
                     ->where('user_id', Auth::user()->id)
                     ->orderBy('created_at', 'desc')->get();
 
+        $idea = $idea->map(function ($item){
+            $hashids = new Hashids('', 10); //pad 10 char
+            $item->encryptedId = $hashids->encode($item->id);
+            return $item;
+        });
+
         return view('internal.dashboard.innovation', compact('idea'));
     }
 
     public function detail_innovation_user($id) {
         $flow_position = FlowPosition::all();
-        $idea = Idea::find($id);
+        $idea = Idea::where('id', $id)->firstOrFail();
         $comment = [];
         $comments = Comment::where('idea_id', $id)->orderBy('created_at', 'desc')->get();
         
@@ -405,7 +443,9 @@ class InternalController extends Controller
 
     public function download_archive($id) {
         $name = str_replace(' ', '_', Auth::user()->name);
+        $flow_position = FlowPosition::all();
         $repository = Idea::findOrFail($id);
+        // dd($repository->attachment, $repository->attachment_flow_position_2, $repository->attachment_flow_position_3);
 
         $tempDir = storage_path('app/public/temp_zip/temp_zip_' . time());
         File::makeDirectory($tempDir);
@@ -415,12 +455,26 @@ class InternalController extends Controller
         $zipFilePath = $tempDir . '/' . $zipFileName;
 
         $zip->open($zipFilePath, ZipArchive::CREATE);
-            foreach ($repository->attachment as $attachment) {
-                $attachmentPath = storage_path("app/public/{$attachment}");
-                $zip->addFile($attachmentPath, $attachment);
+        foreach($repository->attachment as $attachment) {
+            $attachmentPath = storage_path("app/public/{$attachment}");
+            $attachmentFileName = 'Lampiran/'.str_replace('attachments/'.$repository->user_id.'_'.$id.'_', '', $attachment);
+            $zip->addFile($attachmentPath, $attachmentFileName);
+        }
+        if($repository->attachment_flow_position_2){
+            foreach($repository->attachment_flow_position_2 as $item){
+                $attachmentPath = storage_path("app/public/{$item}");
+                $attachmentFileName = $flow_position[1]->name.'/'.str_replace('attachments_position_2/'.$repository->user_id.'_'.$id.'_', '', $item);
+                $zip->addFile($attachmentPath, $attachmentFileName);
             }
-            $zip->close();
-        
+        }
+        if($repository->attachment_flow_position_3){
+            foreach($repository->attachment_flow_position_3 as $item){
+                $attachmentPath = storage_path("app/public/{$item}");
+                $attachmentFileName = $flow_position[2]->name.'/'.str_replace('attachments_position_3/'.$repository->user_id.'_'.$id.'_', '', $item);
+                $zip->addFile($attachmentPath, $attachmentFileName);
+            }
+        }
+        $zip->close();
 
         $headers = [
             'Content-Type' => 'application/zip',
@@ -428,7 +482,6 @@ class InternalController extends Controller
         ];
 
         $response = response()->download($zipFilePath, $zipFileName, $headers);
-    
         $response->deleteFileAfterSend(true);
 
         return $response;
@@ -445,7 +498,7 @@ class InternalController extends Controller
                                 });
                         });
         $total_data = $search->count();
-        $result = $search->orderBy('created_at', 'desc')->limit(8)->get();
+        $result = $search->orderBy('created_at', 'desc')->get();
 
         return view('internal.idea.search_result', compact('result', 'total_data'));
     }
@@ -461,7 +514,7 @@ class InternalController extends Controller
                                 });
                         });
         $total_data = $search->count();
-        $result = $search->orderBy('created_at', 'desc')->limit(8)->get();
+        $result = $search->orderBy('created_at', 'desc')->get();
 
         return view('internal.innovation.search_result', compact('result', 'total_data'));
     }
@@ -477,12 +530,12 @@ class InternalController extends Controller
                                 });
                         });
         $total_data = $search->count();
-        $result = $search->orderBy('created_at', 'desc')->limit(8)->get();
+        $result = $search->orderBy('created_at', 'desc')->get();
 
         return view('internal.repository.search_result', compact('total_data', 'result'));
     }
 
-    public function upload_attachment(Request $request, $id) {
+    public function upload_attachment_position_2(Request $request, $id) {
         $attachments = [];
         
         $idea =  Idea::find($id);
@@ -490,16 +543,39 @@ class InternalController extends Controller
         if ($request->hasFile('attachment')) {
             foreach ($request->file('attachment') as $attachment) {
                 $attachment_file_name = Auth::user()->id . '_' . $id . '_' . $attachment->getClientOriginalName();
-                $path = $attachment->storeAs('attachments', $attachment_file_name, 'public');
+                $path = $attachment->storeAs('attachments_position_2', $attachment_file_name, 'public');
                 $attachments[] = $path;
             }
             if ($idea->attachment) {
-                $existing_attachments = $idea->attachment;
+                $existing_attachments = $idea->attachment_flow_position_2;
                 $attachments = array_merge($existing_attachments, $attachments);
             }
-            $idea->attachment =  $attachments;
+            $idea->attachment_flow_position_2 =  $attachments;
         }
-        // dd($id, $request->attachment, $idea->attachment, $attachments, $request->attachment);
+        
+        $idea->save();
+
+        return redirect()->back();
+    }
+
+    public function upload_attachment_position_3(Request $request, $id) {
+        $attachments = [];
+        
+        $idea =  Idea::find($id);
+        
+        if ($request->hasFile('attachment')) {
+            foreach ($request->file('attachment') as $attachment) {
+                $attachment_file_name = Auth::user()->id . '_' . $id . '_' . $attachment->getClientOriginalName();
+                $path = $attachment->storeAs('attachments_position_3', $attachment_file_name, 'public');
+                $attachments[] = $path;
+            }
+            if ($idea->attachment) {
+                $existing_attachments = $idea->attachment_flow_position_3;
+                $attachments = array_merge($existing_attachments, $attachments);
+            }
+            $idea->attachment_flow_position_3 =  $attachments;
+        }
+        
         $idea->save();
 
         return redirect()->back();

@@ -1,8 +1,8 @@
 <p class="list-group-item fs-12 text-muted text-center mb-0 mt-2">
-  <span class="fw-600">Menampilkan {{ $result->count() }} dari {{ $total_data }} Ide</span>
-  @if ($total_data > $result->count())
+  <span class="fw-600">Menampilkan {{ $total_data }} Ide</span>
+  {{-- @if ($total_data > $result->count())
     <br>Gunakan kalimat yang lebih spesifik
-  @endif
+  @endif --}}
 </p>
 @foreach ($result as $item)
   <a href="idea/{{ $item->id }}" class="list-group-item list-group-item-action">

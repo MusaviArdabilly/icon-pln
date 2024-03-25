@@ -33,14 +33,18 @@
 
   <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content" style="background: transparent !important; border: transparent !important;">
-        <div class="form_search d-flex align-items-center w-100">
-          <i class="bi bi-search"></i>
-          <input type="text" id="searchInnovationInput" class="form-control form_search-input" placeholder="Cari Inovasi berdasarkan judul atau nama pengirim">
+        <div class="modal-header border-bottom-0">
+          <div class="form_search d-flex align-items-center w-100">
+            <i class="bi bi-search"></i>
+            <input type="text" id="searchInnovationInput" class="form-control form_search-input" placeholder="Cari Inovasi berdasarkan judul atau nama pengirim">
+          </div>
         </div>
-        <div id="searchResult" class="list-group">
-
+        <div class="modal-body rounded p-0">
+          <div id="searchResult" class="list-group">
+  
+          </div>
         </div>
       </div>
     </div>
@@ -98,6 +102,10 @@
     searchInnovation(query);
   }, 300);
 
+  $('#staticBackdrop').on('show.bs.modal', function () {
+    searchInnovation('');
+  });
+  
   document.getElementById('searchInnovationInput').addEventListener('input', debounceSearch);
 
 </script>

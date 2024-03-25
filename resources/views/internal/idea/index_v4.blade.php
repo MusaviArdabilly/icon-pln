@@ -105,7 +105,7 @@
       <div class="col-9">
         <div class="container_chips_input">
           <ul id="list_chips"></ul>
-          <input type="text" id="txt_chips" placeholder="type and Enter ...">
+          <input type="text" id="txt_chips" placeholder="Tulis dan Enter ...">
         </div>
       </div>
     </div>
@@ -149,14 +149,18 @@
 
   <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content" style="background: transparent !important; border: transparent !important;">
-        <div class="form_search d-flex align-items-center w-100 mb-3">
-          <i class="bi bi-search"></i>
-          <input type="text" id="searchIdeaInput" class="form-control form_search-input focus" placeholder="Cari Ide berdasarkan judul atau nama pengirim">
+        <div class="modal-header border-bottom-0">
+          <div class="form_search d-flex align-items-center w-100 mb-3">
+            <i class="bi bi-search"></i>
+            <input type="text" id="searchIdeaInput" class="form-control form_search-input focus" placeholder="Cari Ide berdasarkan judul atau nama pengirim">
+          </div>
         </div>
-        <div id="searchResult" class="list-group">
-          
+        <div class="modal-body rounded p-0">
+          <div id="searchResult" class="list-group">
+            
+          </div>
         </div>
       </div>
     </div>
@@ -216,6 +220,10 @@
     const query = document.getElementById('searchIdeaInput').value;
     searchIdea(query);
   }, 300);
+
+  $('#staticBackdrop').on('show.bs.modal', function () {
+    searchIdea('');
+  });
 
   document.getElementById('searchIdeaInput').addEventListener('input', debounceSearch);
 </script>
@@ -367,7 +375,7 @@
             showConfirmButton: false,
           });
     }
-}
+  }
 
   window.onload = function () {
     render();
@@ -515,7 +523,7 @@
       title: quillEditorJudul.root.innerHTML,
       // abstract: quillEditorAbstrak.root.innerHTML,
       background: quillEditorLatarBelakang.root.innerHTML,
-      content: quillEditorIsi.root.innerHTML,
+      purpose: quillEditorIsi.root.innerHTML,
       solution: quillEditorSolusi.root.innerHTML,
       team: items.join(', ')
     }
@@ -524,7 +532,7 @@
     formData.append('title', valueIdea.title);
     // formData.append('abstract', valueIdea.abstract);
     formData.append('background', valueIdea.background);
-    formData.append('content', valueIdea.content);
+    formData.append('purpose', valueIdea.purpose);
     formData.append('solution', valueIdea.solution);
     formData.append('team', valueIdea.team);
     
@@ -545,20 +553,32 @@
       processData: false,
       success: function (response) {
         console.log('Data successfully stored');
-        show(); // hide
-        setTimeout(function() {
-          window.Swal.fire({
+        // show(); // hide
+        setTimeout(async () => {
+          await Swal.fire({
             icon: 'success',
             title: 'Berhasil',
             text: 'Data berhasil disimpan',
             timer: 3000,
             showConfirmButton: false,
           });
+          location.reload();
         }, 500);
-        location.reload();
       },
-      error: function (error) {
-        console.log(error);
+      error: function(xhr, status, error) {
+        var errorMessage = "Gagal membuat ide";
+        var responseJson = JSON.parse(xhr.responseText);
+        if (responseJson && responseJson.message) {
+          errorMessage = responseJson.message;
+        }
+        Swal.fire({
+          icon: 'error',
+          title: 'Gagal',
+          text: errorMessage,
+          timer: 3000,
+          showConfirmButton: true,
+          confirmButtonText: 'Ok',
+        });
       }
     });
   }

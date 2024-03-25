@@ -34,7 +34,7 @@ Route::post('/login/post', [AuthController::class, 'login_post']);
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/register', [AuthController::class, 'register']);
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'encrypt.decrypt.ids'])->group(function () {
     Route::get('/idea', [InternalController::class, 'idea_v4']);
     Route::get('/idea/{id}', [InternalController::class, 'detail_idea']);
     Route::get('/innovation', [InternalController::class, 'innovation']);
@@ -42,8 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/repository', [InternalController::class, 'repository_v2']);
     Route::get('/repository-v2', [InternalController::class, 'repository']);
     
-    Route::post('/idea-submit', [InternalController::class, 'idea_submit']);
-    Route::post('/idea-edit/{id}', [InternalController::class, 'idea_edit']);
+    Route::post('/idea-submit', [InternalController::class, 'idea_submit'])->middleware('throttle:create-idea');
     
     Route::get('/get-idea', [InternalController::class, 'get_idea']);
     Route::get('/get-popular-idea', [InternalController::class, 'get_popular_idea']);
@@ -53,7 +52,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/get-detail-repository/{year}/{month}', [InternalController::class, 'get_detail_repository']);
     
-    Route::post('/idea/{id}/comment/post', [InternalController::class, 'comment_post']);
+    Route::post('/idea/{ideaId}/comment/post', [InternalController::class, 'comment_post'])->middleware('throttle:post-comment');
 
     Route::get('/searchIdea', [InternalController::class, 'search_idea']);
     Route::get('/searchInnovation', [InternalController::class, 'search_innovation']);
@@ -65,7 +64,11 @@ Route::middleware('auth')->group(function () {
         Route::middleware('ownership')->group(function () {
             Route::get('/idea/{id}', [InternalController::class, 'detail_idea_user']);
             Route::get('/innovation/{id}', [InternalController::class, 'detail_innovation_user']);
-            Route::post('/upload-attachment/{id}', [InternalController::class, 'upload_attachment']);
+            Route::post('/idea-edit/{id}', [InternalController::class, 'idea_edit']);
+            Route::post('/idea/{id}/delete', [InternalController::class, 'delete_idea_user']);
+            Route::post('/innovation/{id}/delete', [InternalController::class, 'delete_innovation_user']);
+            Route::post('/upload-attachment/position-2/{id}', [InternalController::class, 'upload_attachment_position_2']);
+            Route::post('/upload-attachment/position-3/{id}', [InternalController::class, 'upload_attachment_position_3']);
         });
     });
 
@@ -73,19 +76,21 @@ Route::middleware('auth')->group(function () {
         Route::get('/idea', [AdminController::class, 'idea']);
         Route::get('/idea/{id}', [AdminController::class, 'detail_idea']);
         Route::get('/idea/{id}/transfer-to-innovation', [AdminController::class, 'idea_to_innovation']);
-        Route::get('/idea/{id}/delete', [AdminController::class, 'delete_idea']);
+        Route::post('/idea/{id}/delete', [AdminController::class, 'delete_idea']);
         Route::get('/innovation', [AdminController::class, 'innovation']);
         Route::get('/innovation/{id}', [AdminController::class, 'detail_innovation']);
         Route::get('/innovation/{id}/transfer-to-idea', [AdminController::class, 'innovation_to_idea']);
-        Route::get('/innovation/{id}/delete', [AdminController::class, 'delete_innovation']);
+        Route::post('/innovation/{id}/delete', [AdminController::class, 'delete_innovation']);
         Route::get('/innovation/{id}/approve-step-2', [AdminController::class, 'approve_step_2']);
         Route::get('/innovation/{id}/approve-step-3', [AdminController::class, 'approve_step_3']);
         Route::get('/innovation/{id}/approve-step-4', [AdminController::class, 'approve_step_4']);
+        Route::post('/innovation/{id}/step-4/post', [AdminController::class, 'step_4_post']); //evaluation
+        Route::post('/innovation/{id}/step-5/post', [AdminController::class, 'step_5_post']); //report
         Route::get('/repository', [AdminController::class, 'repository']);
 
         Route::get('/repository/get-data', [AdminController::class, 'get_data_repository']);
         Route::post('/repository/add-data', [AdminController::class, 'add_data_repository']);
-        Route::get('/repository/delete-data/{id}', [AdminController::class, 'delete_data_repository']);
+        Route::post('/repository/delete-data/{id}', [AdminController::class, 'delete_data_repository']);
 
         Route::get('/idea/{ideaId}/comment/{commentId}/delete', [AdminController::class, 'comment_delete']);
         
@@ -100,12 +105,13 @@ Route::middleware('auth')->group(function () {
             Route::get('/user-management/make-user/{id}', [AdminController::class, 'make_user']);
         });
     });
+
+    Route::get('/download/attachments/{param}', [InternalController::class, 'download_attachment']);
+    Route::get('/download/archive/{id}', [InternalController::class, 'download_archive']);
+    Route::get('/get-unread-notifications', [NotificationController::class, 'getUnreadNotifications']);
 });
 
-Route::get('/download/attachments/{param}', [InternalController::class, 'download_attachment']);
-Route::get('/download/archive/{id}', [InternalController::class, 'download_archive']);
 Route::get('/reload-captcha-url', [AuthController::class, 'reload_captcha']);
-Route::get('/get-unread-notifications', [NotificationController::class, 'getUnreadNotifications']);
 
 
 Route::get('/create-symlink', function () {
