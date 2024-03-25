@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Adldap\Laravel\Facades\Adldap;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -66,39 +67,47 @@ class AuthController extends Controller
         // if (!str_contains($email, '@iconpln.co.id')) {
         //     $email .= '@iconpln.co.id';
         // }
+        
+        if (! $this->ldapConnect($username, $password)) {
+            return redirect()->back()->withInput();
+        }
 
         $user = \App\Models\User::where('username', $username)->first();
+        Auth::guard()->login($user, true);
+        return redirect('/')->with('success', 'Login Berhasil');
+
+        // $user = \App\Models\User::where('username', $username)->first();
         
-        if($user){
-            if(!$user->is_ldap){
-                $hash = password_hash($password, PASSWORD_DEFAULT); 
-                if($user->password){
-                    Auth::guard()->login($user, true);
-                    return redirect('/')->with('success', 'Login Berhasil');
-                } 
-                else {
-                    return redirect()->back()->withInput();
-                }
-            } else if($user->is_ldap) {
-                if (! $this->ldapConnect($username, $password)) {
-                    return redirect()->back()->withInput();
-                } else {
-                    $user = \App\Models\User::where('username', $username)->first();
-                    Auth::guard()->login($user, true);
-                    return redirect('/')->with('success', 'Login Berhasil');
-                }
-            } else {
-                return redirect()->back()->withInput();
-            }
-        } else {
-            if (! $this->ldapConnect($username, $password)) {
-                return redirect()->back()->withInput();
-            } else {
-                $user = \App\Models\User::where('username', $username)->first();
-                Auth::guard()->login($user, true);
-                return redirect('/')->with('success', 'Login Berhasil');
-            }
-        }
+        // if($user){
+        //     if(!$user->is_ldap){
+        //         $hash = password_hash($password, PASSWORD_DEFAULT); 
+        //         if($user->password){
+        //             Auth::guard()->login($user, true);
+        //             return redirect('/')->with('success', 'Login Berhasil');
+        //         } 
+        //         else {
+        //             return redirect()->back()->withInput();
+        //         }
+        //     } else if($user->is_ldap) {
+        //         if (! $this->ldapConnect($username, $password)) {
+        //             return redirect()->back()->withInput();
+        //         } else {
+        //             $user = \App\Models\User::where('username', $username)->first();
+        //             Auth::guard()->login($user, true);
+        //             return redirect('/')->with('success', 'Login Berhasil');
+        //         }
+        //     } else {
+        //         return redirect()->back()->withInput();
+        //     }
+        // } else {
+        //     if (! $this->ldapConnect($username, $password)) {
+        //         return redirect()->back()->withInput();
+        //     } else {
+        //         $user = \App\Models\User::where('username', $username)->first();
+        //         Auth::guard()->login($user, true);
+        //         return redirect('/')->with('success', 'Login Berhasil');
+        //     }
+        // }
 
         
     }
@@ -143,6 +152,7 @@ class AuthController extends Controller
                 $user->username = $uname;
                 $user->password = bcrypt($upass);
                 $user->role = 'user';
+                $user->save();
             }
 
             return true;
